@@ -1,0 +1,78 @@
+/* Themed card foundation */
+
+.card {
+  --navigation-icon-background: color-mix(in srgb, var(--button-accent) 16%, transparent);
+  --navigation-icon-color: var(--button-accent);
+  --navigation-icon-transform: none;
+  --navigation-arrow-background: rgba(255, 255, 255, 0.08);
+  --navigation-arrow-color: rgba(255, 255, 255, 0.72);
+  --navigation-arrow-transform: none;
+
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.05rem;
+  padding: 0.75rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045));
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--button-accent);
+  content: '';
+}
+
+/* Interaction states */
+
+.card:hover {
+  --navigation-icon-background: var(--button-accent);
+  --navigation-icon-color: #241713;
+  --navigation-icon-transform: scale(1.04);
+  --navigation-arrow-background: var(--button-accent);
+  --navigation-arrow-color: #241713;
+  --navigation-arrow-transform: translateY(2px);
+
+  border-color: var(--button-accent);
+  background: color-mix(in srgb, var(--button-accent) 14%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0.75rem 1.75rem rgba(12, 7, 5, 0.2);
+  transform: translateY(-3px);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--button-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    gap: 0.55rem;
+    padding: 0.625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition-duration: 0.01ms;
+  }
+}

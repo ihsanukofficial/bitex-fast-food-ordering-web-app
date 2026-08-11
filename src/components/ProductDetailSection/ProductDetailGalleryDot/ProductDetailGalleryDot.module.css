@@ -1,0 +1,35 @@
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(34, 34, 34, 0.32);
+  cursor: pointer;
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.dot:hover {
+  background: rgba(215, 27, 31, 0.68);
+  transform: scale(1.1);
+}
+
+.dot:focus-visible {
+  outline: 2px solid #d71b1f;
+  outline-offset: 2px;
+}
+
+.active {
+  width: 1.5rem;
+  background: #d71b1f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    transition: none;
+  }
+}

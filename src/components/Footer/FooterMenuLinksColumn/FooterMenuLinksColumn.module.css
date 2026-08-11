@@ -1,0 +1,23 @@
+.column {
+  min-width: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.13);
+  padding-left: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+@media (max-width: 1023px) {
+  .column {
+    padding-left: clamp(1rem, 5vw, 3rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .column {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .column {
+    padding-left: 0.75rem;
+  }
+}

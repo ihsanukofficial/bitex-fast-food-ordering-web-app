@@ -1,0 +1,143 @@
+/* Gallery composition */
+
+.heroImageGallery {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr) minmax(0, 0.9fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.4vw, 1rem);
+  width: min(100%, 44rem);
+  aspect-ratio: 1.35 / 1;
+  margin-inline: auto;
+  padding: clamp(0.75rem, 1.5vw, 1.15rem);
+  box-sizing: border-box;
+}
+
+.heroImageGallery::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: 1px solid rgba(238, 217, 180, 0.8);
+  border-radius: 2.5rem;
+  background: #fff;
+  box-shadow: 0 1.5rem 4rem rgba(86, 52, 9, 0.09);
+  content: '';
+}
+
+.heroImageGallery > * {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.galleryItem {
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.galleryItem:hover {
+  z-index: 4;
+  box-shadow: 0 1.25rem 2.5rem rgba(57, 33, 5, 0.18);
+  transform: translate3d(0, -5px, 0);
+}
+
+.itemOne {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.itemTwo {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.itemThree {
+  z-index: 2;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.itemFour {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.itemFive {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* Responsive arrangements */
+
+@media (max-width: 900px) {
+  .heroImageGallery {
+    width: min(100%, 43rem);
+    aspect-ratio: 1.45 / 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .heroImageGallery {
+    width: min(100%, 36rem);
+    gap: 0.65rem;
+    padding: 0.6rem;
+  }
+
+  .heroImageGallery::before {
+    border-radius: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroImageGallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 13rem repeat(2, 8.5rem);
+    aspect-ratio: auto;
+    gap: 0.6rem;
+    padding: 0;
+  }
+
+  .heroImageGallery::before {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .itemThree {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .itemOne {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .itemTwo {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .itemFour {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .itemFive {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+/* Motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .galleryItem {
+    transition-duration: 0.01ms;
+  }
+}

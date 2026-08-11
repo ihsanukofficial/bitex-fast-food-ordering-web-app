@@ -1,0 +1,18 @@
+.headline {
+  max-width: 10ch;
+  margin: 0.35rem 0 0;
+  color: #232323;
+  font-size: clamp(3rem, 5.2vw, 5.35rem);
+  font-weight: 850;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .headline {
+    max-width: 12ch;
+    margin-top: 0.25rem;
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+}

@@ -1,0 +1,19 @@
+.collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-bottom: 0.85rem;
+  transform-origin: right center;
+}
+
+.collapse:last-child {
+  margin-bottom: 0;
+}
+
+.inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.removing {
+  pointer-events: none;
+}

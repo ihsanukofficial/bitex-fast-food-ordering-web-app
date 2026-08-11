@@ -1,0 +1,8 @@
+.summary {
+  display: grid;
+  gap: 1rem;
+  border-top: 1px solid #eadfce;
+  padding: 1.1rem clamp(1rem, 3vw, 2rem) 1.35rem;
+  background: #fff;
+  box-shadow: 0 -0.8rem 2rem rgba(61, 36, 7, 0.06);
+}

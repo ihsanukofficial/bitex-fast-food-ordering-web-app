@@ -1,0 +1,8 @@
+.summary {
+  display: grid;
+  gap: 0.8rem;
+  border: 1px solid #f0dfb7;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  background: #fff6df;
+}

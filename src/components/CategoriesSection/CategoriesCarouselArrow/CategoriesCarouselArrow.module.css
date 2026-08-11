@@ -1,0 +1,107 @@
+/* Control positioning */
+
+.arrow {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 3px solid #fff8e9;
+  border-radius: 50%;
+  padding: 0;
+  background: #d71b1f;
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-50%);
+  box-shadow:
+    0 0 0 1px rgba(215, 27, 31, 0.18),
+    0 10px 24px rgba(88, 31, 14, 0.2);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.previous {
+  left: -2.25rem;
+}
+
+.next {
+  right: -2.25rem;
+}
+
+/* Interaction states */
+
+.arrow:hover {
+  background: #f6b800;
+  color: #171717;
+  box-shadow:
+    0 0 0 1px rgba(43, 43, 43, 0.32),
+    0 12px 28px rgba(43, 43, 43, 0.28);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.arrow:active {
+  background: #e59500;
+  transform: translateY(-50%) scale(0.98);
+}
+
+.arrow:focus-visible {
+  outline: 4px solid #d71b1f;
+  outline-offset: 3px;
+}
+
+/* Responsive sizing */
+
+@media (max-width: 1365px) {
+  .previous {
+    left: -1.25rem;
+  }
+
+  .next {
+    right: -1.25rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .arrow {
+    top: 48%;
+    width: 46px;
+    height: 46px;
+    border-width: 2px;
+  }
+
+  .previous {
+    left: -0.45rem;
+  }
+
+  .next {
+    right: -0.45rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .previous {
+    left: -0.3rem;
+  }
+
+  .next {
+    right: -0.3rem;
+  }
+}
+
+/* Motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition-duration: 0.01ms;
+  }
+}

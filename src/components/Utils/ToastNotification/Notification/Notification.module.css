@@ -1,0 +1,66 @@
+/* Notification states */
+
+.notification {
+  width: min(100%, 420px);
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.85rem 0.8rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: #211a12;
+  color: #fff;
+  box-shadow: 0 14px 36px rgba(20, 13, 4, 0.28);
+  box-sizing: border-box;
+}
+
+.notification.exiting {
+  pointer-events: none;
+}
+
+/* Content and actions */
+
+.icon {
+  display: grid;
+  place-items: center;
+  color: #fca810;
+}
+
+.quantityIncreased {
+  border-color: rgba(252, 168, 16, 0.42);
+}
+
+.quantityIncreased .icon {
+  color: #ffc45a;
+}
+
+.message {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dismissButton {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dismissButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dismissButton:focus-visible {
+  outline: 2px solid #fca810;
+  outline-offset: 2px;
+}

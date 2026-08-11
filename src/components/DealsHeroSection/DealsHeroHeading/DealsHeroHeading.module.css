@@ -1,0 +1,15 @@
+.heading {
+  max-width: 46rem;
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+  }
+}

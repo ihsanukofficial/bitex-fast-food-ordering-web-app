@@ -1,0 +1,22 @@
+.card {
+  display: grid;
+  grid-template-columns: 2.35rem minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: 2.1rem minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,38 @@
+.section {
+  min-width: 0;
+}
+
+.section h2 {
+  margin: 0 0 0.8rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.section ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section a {
+  display: inline-block;
+  color: #ededed;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.section a:hover {
+  color: #fca810;
+  transform: translateX(3px);
+}
+
+.section a:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid #fca810;
+  outline-offset: 3px;
+}

@@ -1,0 +1,18 @@
+.badge {
+  display: grid;
+  flex: 0 0 4.2rem;
+  width: 4.2rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid rgba(246, 184, 0, 0.36);
+  border-radius: 0.7rem;
+  background: #fff8e9;
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .badge {
+    flex-basis: 3.65rem;
+    width: 3.65rem;
+  }
+}

@@ -1,0 +1,6 @@
+.price {
+  display: grid;
+  justify-items: end;
+  gap: 0.1rem;
+  color: #d71b1f;
+}

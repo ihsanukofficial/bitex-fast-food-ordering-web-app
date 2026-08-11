@@ -1,0 +1,12 @@
+.statement {
+  width: 100%;
+  margin: 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 4px solid #f6b800;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-weight: 750;
+  line-height: 1.5;
+  box-sizing: border-box;
+}

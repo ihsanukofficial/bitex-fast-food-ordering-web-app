@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+
+# Build Output
+dist/
+dist-ssr/
+coverage/
+
+# Environment Variables and Secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+!.dev.vars.*.example
+*.local
+*.pem
+*.key
+*.p12
+*.pfx
+/credentials.json
+/credentials.*.json
+!/credentials.example.json
+/api-keys.json
+/api-keys.*.json
+!/api-keys.example.json
+/secrets.json
+/secrets.*.json
+!/secrets.example.json
+/credentials/
+/secrets/
+
+# Logs
+logs/
+*.log
+*.log.*
+npm-debug.log*
+
+# Cache and Temporary Files
+.vite/
+.cache/
+.npm/
+.oxlintcache
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.pid
+*.pid.lock
+
+# Editor / IDE
+.vscode/
+.idea/
+.vs/
+.history/
+*.suo
+*.ntvs*
+*.swp
+*.swo
+*~
+
+# Operating System
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Project-Specific Generated Files
+vite.config.*.timestamp-*

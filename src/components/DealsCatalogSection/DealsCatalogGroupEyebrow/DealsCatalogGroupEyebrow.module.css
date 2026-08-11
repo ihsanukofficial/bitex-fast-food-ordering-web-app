@@ -1,0 +1,8 @@
+.eyebrow {
+  margin: 0 0 0.3rem;
+  color: var(--section-accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

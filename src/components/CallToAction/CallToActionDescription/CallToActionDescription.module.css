@@ -1,0 +1,17 @@
+.description {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 820px);
+  margin: 0;
+  color: #4f3c0b;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 560px) {
+  .description {
+    line-height: 1.55;
+  }
+}

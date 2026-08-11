@@ -1,0 +1,15 @@
+.title {
+  margin: 0;
+  color: #252525;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+@media (max-width: 639px) {
+  .title {
+    font-size: 1.05rem;
+    line-height: 1.15;
+  }
+}

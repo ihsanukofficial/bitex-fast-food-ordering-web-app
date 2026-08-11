@@ -1,0 +1,30 @@
+.arrow {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 1.75rem;
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--navigation-arrow-background);
+  color: var(--navigation-arrow-color);
+  transform: var(--navigation-arrow-transform);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .arrow {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-basis: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition-duration: 0.01ms;
+  }
+}

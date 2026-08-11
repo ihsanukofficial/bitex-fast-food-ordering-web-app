@@ -1,0 +1,13 @@
+.logo {
+  width: clamp(95px, 13vw, 145px);
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  transform: translateY(6px);
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 92px;
+  }
+}

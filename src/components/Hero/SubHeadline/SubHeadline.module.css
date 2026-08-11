@@ -1,0 +1,15 @@
+.subHeadline {
+  max-width: 34rem;
+  margin: 0;
+  color: #626262;
+  font-size: clamp(1rem, 1.55vw, 1.15rem);
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+@media (max-width: 480px) {
+  .subHeadline {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+}

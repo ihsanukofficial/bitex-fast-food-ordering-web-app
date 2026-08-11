@@ -1,0 +1,14 @@
+.label {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .label {
+    display: none;
+  }
+}

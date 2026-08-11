@@ -1,0 +1,17 @@
+.image {
+  width: 92px;
+  height: 92px;
+  display: block;
+  border: 1px solid #eee4d5;
+  border-radius: 0.8rem;
+  background: #fff;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .image {
+    width: 76px;
+    height: 76px;
+  }
+}

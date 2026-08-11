@@ -1,0 +1,35 @@
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+}
+
+.highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #535353;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.highlights span::before {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: #d71b1f;
+  content: '';
+}
+
+@media (max-width: 900px) {
+  .highlights {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .highlights {
+    gap: 0.45rem 0.8rem;
+  }
+}

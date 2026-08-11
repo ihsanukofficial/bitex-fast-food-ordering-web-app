@@ -1,0 +1,29 @@
+.arrow {
+  display: grid;
+  flex: 0 0 2.1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--popular-item-arrow-background, #f6b800);
+  color: var(--popular-item-arrow-color, #292929);
+  transform: translateX(var(--popular-item-arrow-shift, 0));
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (max-width: 1023px) {
+  .arrow {
+    flex-basis: 1.9rem;
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition-duration: 0.01ms;
+  }
+}

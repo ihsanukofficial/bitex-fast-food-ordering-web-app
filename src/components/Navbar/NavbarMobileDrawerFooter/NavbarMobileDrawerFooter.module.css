@@ -1,0 +1,8 @@
+.footer {
+  display: grid;
+  gap: 0.2rem;
+  border-top: 1px solid #ececec;
+  padding: 1.25rem;
+  background: #fff9ec;
+  color: #393226;
+}

@@ -1,0 +1,28 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(4rem, 8vw, 7.5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255, 193, 7, 0.18), transparent 27rem),
+    #fff;
+  box-sizing: border-box;
+}
+
+.section::after {
+  position: absolute;
+  right: -7rem;
+  bottom: -9rem;
+  width: 21rem;
+  height: 21rem;
+  border: 2.5rem solid rgba(215, 27, 31, 0.04);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding-block: 3.25rem;
+  }
+}

@@ -1,0 +1,8 @@
+.heading {
+  margin: 0;
+  font-size: clamp(2.35rem, 5vw, 4.25rem);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  text-wrap: balance;
+}

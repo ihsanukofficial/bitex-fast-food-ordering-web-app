@@ -1,0 +1,11 @@
+.addons {
+  margin: 0;
+  color: #746d65;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.addons strong {
+  color: #3b3732;
+}

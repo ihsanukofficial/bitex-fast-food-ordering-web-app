@@ -1,0 +1,26 @@
+.textBlock {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  max-width: 36rem;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .textBlock {
+    width: min(660px, 100%);
+    margin-inline: auto;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .textBlock {
+    width: 100%;
+    gap: 0.75rem;
+  }
+}

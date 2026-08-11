@@ -1,0 +1,15 @@
+.section {
+  width: 100%;
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 44%),
+    #232323;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding-block: 3.25rem;
+  }
+}

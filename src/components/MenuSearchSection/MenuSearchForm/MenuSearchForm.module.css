@@ -1,0 +1,32 @@
+.form {
+  --search-control-height: 60px;
+  --search-control-radius: 16px;
+  position: relative;
+  z-index: 30;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 1rem 2.5rem rgba(17, 10, 3, 0.22);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .form {
+    --search-control-height: 56px;
+    --search-control-radius: 13px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+    padding: 0.75rem;
+    border-radius: 1.15rem;
+  }
+}

@@ -1,0 +1,12 @@
+.logo {
+  display: block;
+  width: 3.4rem;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 560px) {
+  .logo {
+    width: 3rem;
+  }
+}

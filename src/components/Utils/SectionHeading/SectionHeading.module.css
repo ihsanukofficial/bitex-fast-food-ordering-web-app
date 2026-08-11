@@ -1,0 +1,16 @@
+.sectionHeading {
+  margin: 0 0 3rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .sectionHeading {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .sectionHeading {
+    margin-bottom: 1.5rem;
+  }
+}

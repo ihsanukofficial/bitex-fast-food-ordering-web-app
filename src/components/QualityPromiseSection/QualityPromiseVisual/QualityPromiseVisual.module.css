@@ -1,0 +1,19 @@
+.visual {
+  position: relative;
+  min-height: 36rem;
+  padding: 1.25rem 1.25rem 0 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .visual {
+    min-height: 32rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .visual {
+    min-height: 27rem;
+    padding: 0.75rem 0.75rem 0 0;
+  }
+}

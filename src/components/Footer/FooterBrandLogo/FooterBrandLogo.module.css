@@ -1,0 +1,29 @@
+.logo {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.logo img {
+  width: 90px;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.logo:hover img {
+  transform: translateY(-2px);
+}
+
+.logo:focus-visible {
+  outline: 3px solid #fca810;
+  outline-offset: 5px;
+}
+
+@media (max-width: 559px) {
+  .logo img {
+    width: 82px;
+  }
+}

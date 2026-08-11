@@ -1,0 +1,7 @@
+.pricing {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: auto;
+}

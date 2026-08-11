@@ -1,0 +1,6 @@
+.page {
+  min-height: calc(100vh - 80px);
+  background:
+    radial-gradient(circle at top right, rgba(246, 184, 0, 0.09), transparent 28rem),
+    #fffdf9;
+}

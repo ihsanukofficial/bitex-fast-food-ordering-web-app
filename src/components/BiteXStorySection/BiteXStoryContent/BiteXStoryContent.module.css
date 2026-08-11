@@ -1,0 +1,9 @@
+.content {
+  max-width: 34rem;
+}
+
+@media (max-width: 860px) {
+  .content {
+    max-width: 42rem;
+  }
+}

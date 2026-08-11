@@ -1,0 +1,12 @@
+.availability {
+  margin: 0.25rem 0 0;
+  color: #777067;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .availability {
+    font-size: clamp(0.68rem, 2.5vw, 0.78rem);
+  }
+}

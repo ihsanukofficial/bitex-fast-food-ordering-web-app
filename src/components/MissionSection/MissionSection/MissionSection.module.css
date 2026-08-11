@@ -1,0 +1,38 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+  overflow: hidden;
+  background: #d71b1f;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.section::before,
+.section::after {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+}
+
+.section::before {
+  top: -15rem;
+  left: -10rem;
+  width: 34rem;
+  height: 34rem;
+}
+
+.section::after {
+  right: -6rem;
+  bottom: -13rem;
+  width: 27rem;
+  height: 27rem;
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding-block: 3.25rem;
+  }
+}

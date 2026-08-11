@@ -1,0 +1,41 @@
+.section {
+  min-width: 0;
+}
+
+.section h2 {
+  margin: 0 0 0.8rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.links a {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.links a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fca810;
+  transform: translateY(-2px);
+}
+
+.links a:focus-visible {
+  outline: 2px solid #fca810;
+  outline-offset: 3px;
+}

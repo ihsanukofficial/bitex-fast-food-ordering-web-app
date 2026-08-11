@@ -1,0 +1,9 @@
+.quantity {
+  display: grid;
+  grid-template-columns: 30px 34px 30px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #e1d5c3;
+  border-radius: 999px;
+  background: #fffaf1;
+}

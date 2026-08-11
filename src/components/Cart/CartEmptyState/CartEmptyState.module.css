@@ -1,0 +1,9 @@
+.empty {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.7rem;
+  padding: 2rem;
+  text-align: center;
+}

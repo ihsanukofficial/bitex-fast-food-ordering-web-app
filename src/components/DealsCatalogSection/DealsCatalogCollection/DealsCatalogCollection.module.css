@@ -1,0 +1,4 @@
+.collection {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}

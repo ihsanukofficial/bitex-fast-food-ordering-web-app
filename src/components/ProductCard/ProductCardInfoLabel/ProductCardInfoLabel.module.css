@@ -1,0 +1,11 @@
+.label {
+  color: #3d3934;
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+
+@media (max-width: 639px) {
+  .label {
+    font-size: 0.58rem;
+  }
+}

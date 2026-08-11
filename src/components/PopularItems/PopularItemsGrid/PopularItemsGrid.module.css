@@ -1,0 +1,44 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.6vw, 1.25rem);
+  width: 100%;
+  margin-top: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    width: auto;
+    grid-template-columns: none;
+    grid-auto-columns: minmax(170px, 72vw);
+    grid-auto-flow: column;
+    gap: 0.8rem;
+    overflow-x: auto;
+    margin: 2.25rem -1rem 0;
+    padding: 0.25rem 1rem 0.75rem;
+    scroll-padding-inline: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: #d5b05c transparent;
+  }
+
+  .grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .grid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .grid::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #d5b05c;
+  }
+}

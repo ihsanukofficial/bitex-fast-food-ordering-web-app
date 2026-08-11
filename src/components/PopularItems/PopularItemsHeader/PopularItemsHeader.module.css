@@ -1,0 +1,7 @@
+.header {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 42rem);
+  margin-inline: auto;
+  text-align: center;
+}

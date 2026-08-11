@@ -1,0 +1,44 @@
+.card {
+  --popular-item-arrow-background: #f6b800;
+  --popular-item-arrow-color: #292929;
+  --popular-item-arrow-shift: 0;
+  --popular-item-image-scale: 1;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #eee4d4;
+  border-radius: 1.35rem;
+  background: #fff;
+  color: inherit;
+  box-shadow: 0 0.7rem 2rem rgba(86, 52, 9, 0.07);
+  scroll-snap-align: start;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  --popular-item-arrow-background: #d71b1f;
+  --popular-item-arrow-color: #fff;
+  --popular-item-arrow-shift: 2px;
+  --popular-item-image-scale: 1.035;
+  transform: translateY(-6px);
+  box-shadow: 0 1.2rem 2.8rem rgba(86, 52, 9, 0.13);
+}
+
+.card:focus-visible {
+  outline: 3px solid #d71b1f;
+  outline-offset: 4px;
+}
+
+@media (max-width: 1023px) {
+  .card {
+    border-radius: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition-duration: 0.01ms;
+  }
+}

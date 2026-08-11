@@ -1,0 +1,5 @@
+.header {
+  width: min(100%, 43rem);
+  margin-inline: auto;
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+.description {
+  max-width: 18rem;
+  margin: 0;
+  color: #bdbdbd;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 1023px) {
+  .description {
+    max-width: 32rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .description {
+    max-width: 26rem;
+    font-size: 0.86rem;
+  }
+}

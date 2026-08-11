@@ -1,0 +1,12 @@
+.price {
+  color: #d71b1f;
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 639px) {
+  .price {
+    font-size: 1.15rem;
+  }
+}

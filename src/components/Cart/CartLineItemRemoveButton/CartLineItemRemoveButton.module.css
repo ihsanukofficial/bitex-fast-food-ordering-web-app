@@ -1,0 +1,23 @@
+.remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #a13438;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.remove:hover {
+  color: #d71b1f;
+  text-decoration: underline;
+}
+
+.remove:disabled {
+  cursor: default;
+  opacity: 0.55;
+  text-decoration: none;
+}

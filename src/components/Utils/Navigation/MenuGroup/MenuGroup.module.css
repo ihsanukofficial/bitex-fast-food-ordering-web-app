@@ -1,0 +1,17 @@
+.menuGroup {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.sidebar {
+  align-items: stretch;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+@media (max-width: 1023px) {
+  .desktop {
+    display: none;
+  }
+}

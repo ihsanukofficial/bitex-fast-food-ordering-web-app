@@ -1,0 +1,13 @@
+.title {
+  overflow-wrap: anywhere;
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: clamp(1rem, 4.5vw, 1.35rem);
+  }
+}

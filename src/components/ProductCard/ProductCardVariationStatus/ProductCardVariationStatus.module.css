@@ -1,0 +1,11 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  background: #f5f1ea;
+  color: #655f57;
+  font-size: 0.7rem;
+  font-weight: 650;
+}

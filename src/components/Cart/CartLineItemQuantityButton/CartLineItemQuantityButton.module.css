@@ -1,0 +1,20 @@
+.button {
+  height: 30px;
+  border: 0;
+  background: transparent;
+  color: #292929;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.button:hover:not(:disabled) {
+  background: #f6b800;
+  color: #2d2106;
+}
+
+.button:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}

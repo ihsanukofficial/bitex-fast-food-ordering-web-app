@@ -1,0 +1,15 @@
+.value {
+  min-height: 12rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.085);
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .value {
+    min-height: auto;
+  }
+}

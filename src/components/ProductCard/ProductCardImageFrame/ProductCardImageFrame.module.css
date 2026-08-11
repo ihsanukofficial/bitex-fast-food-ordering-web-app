@@ -1,0 +1,13 @@
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 205px;
+}
+
+@media (max-width: 639px) {
+  .frame {
+    height: 100%;
+    min-height: 0;
+  }
+}

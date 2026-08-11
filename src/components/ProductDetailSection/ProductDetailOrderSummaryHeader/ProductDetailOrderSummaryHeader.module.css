@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #d71b1f;
+}
+
+.header h3 {
+  margin: 0;
+  color: #2d281e;
+  font-size: 0.95rem;
+}

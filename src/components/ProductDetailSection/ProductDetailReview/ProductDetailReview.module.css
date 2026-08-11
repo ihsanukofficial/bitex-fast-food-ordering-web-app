@@ -1,0 +1,24 @@
+.review {
+  display: grid;
+  gap: 0.8rem;
+  border-top: 1px solid #e8e8e8;
+  padding: 1rem 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.name {
+  margin: 0 0 0.2rem;
+  color: #292929;
+  font-size: 0.95rem;
+}
+
+.date {
+  color: #858585;
+  font-size: 0.78rem;
+}

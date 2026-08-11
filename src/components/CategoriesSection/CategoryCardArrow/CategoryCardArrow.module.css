@@ -1,0 +1,28 @@
+.arrow {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--category-card-arrow-background, #f8edda);
+  color: #222;
+  transform: translateX(var(--category-card-arrow-shift, 0));
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (max-width: 767px) {
+  .arrow {
+    width: 34px;
+    height: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition-duration: 0.01ms;
+  }
+}

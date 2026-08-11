@@ -1,0 +1,11 @@
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+}

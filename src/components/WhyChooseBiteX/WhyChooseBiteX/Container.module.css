@@ -1,0 +1,26 @@
+.section {
+  width: 100%;
+  background: #96650d;
+}
+
+.content {
+  width: min(100%, 1080px);
+  display: grid;
+  gap: 2.5rem;
+  box-sizing: border-box;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+@media (max-width: 768px) {
+  .content {
+    gap: 2rem;
+    padding-block: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    gap: 1.75rem;
+    padding-block: 2.7rem;
+  }
+}

@@ -1,0 +1,31 @@
+.textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid #e1d6c5;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  line-height: 1.45;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.address {
+  min-height: 104px;
+}
+
+.instructions {
+  min-height: 88px;
+}
+
+.textarea::placeholder {
+  color: #929292;
+}
+
+.textarea:focus {
+  border-color: #f6b800;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(246, 184, 0, 0.18);
+}

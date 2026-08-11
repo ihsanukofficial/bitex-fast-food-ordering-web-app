@@ -1,0 +1,13 @@
+.variation {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+  --dropdown-control-height: 50px;
+  --dropdown-control-radius: 0.8rem;
+}
+
+.label {
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 750;
+}

@@ -1,0 +1,17 @@
+.marker {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f6b800;
+  color: #2a1a06;
+  font-weight: 900;
+}
+
+@media (max-width: 640px) {
+  .marker {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+}

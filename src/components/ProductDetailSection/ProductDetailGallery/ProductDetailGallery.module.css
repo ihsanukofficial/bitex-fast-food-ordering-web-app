@@ -1,0 +1,18 @@
+.gallery {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border: 1px solid #ece2d3;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 1.25rem 3.5rem rgba(78, 46, 8, 0.09);
+  box-sizing: border-box;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.gallery:focus-visible {
+  outline: 3px solid #d71b1f;
+  outline-offset: 4px;
+}

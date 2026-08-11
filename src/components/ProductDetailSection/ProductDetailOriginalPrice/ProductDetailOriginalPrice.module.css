@@ -1,0 +1,13 @@
+.original,
+.discountedOriginal {
+  color: #d71b1f;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.discountedOriginal {
+  color: #858585;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: line-through;
+}

@@ -1,0 +1,35 @@
+.banner {
+  position: relative;
+  z-index: 20;
+  isolation: isolate;
+  width: 100%;
+  min-height: 290px;
+  padding: 2.5rem 0;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.75rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 1.5rem 4rem rgba(57, 31, 7, 0.16);
+}
+
+@media (max-width: 900px) {
+  .banner {
+    min-height: 250px;
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .banner {
+    min-height: 310px;
+    padding: 1.5rem;
+    border-radius: 1.35rem;
+  }
+
+}

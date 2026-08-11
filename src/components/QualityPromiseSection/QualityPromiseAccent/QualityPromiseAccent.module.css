@@ -1,0 +1,9 @@
+.accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 62%;
+  height: 62%;
+  border-radius: 1.4rem;
+  background: #f6b800;
+}

@@ -1,0 +1,17 @@
+.icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.9rem;
+  background: var(--section-accent);
+  box-shadow: 0 0.65rem 1.5rem color-mix(in srgb, var(--section-accent) 25%, transparent);
+  color: #fff;
+}
+
+@media (max-width: 639px) {
+  .icon {
+    width: 2.65rem;
+    height: 2.65rem;
+  }
+}

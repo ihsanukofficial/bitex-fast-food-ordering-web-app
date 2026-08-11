@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Bently Rittero DEMO VERSION';
+  src: url('../../../assets/fonts/Bently Rittero DEMO VERSION.ttf') format('truetype');
+  font-display: swap;
+}
+
+.redStyleText {
+  color: #d71b1f;
+  font-family: 'Bently Rittero DEMO VERSION', serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}

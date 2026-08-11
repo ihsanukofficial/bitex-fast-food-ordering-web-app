@@ -1,0 +1,37 @@
+.actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: clamp(2rem, 4vw, 3.25rem);
+}
+
+.actions .button {
+  min-height: 52px;
+  margin-top: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+.actions .button:last-child {
+  border: 2px solid #2b2b2b;
+  background: transparent;
+  color: #2b2b2b;
+}
+
+@media (max-width: 480px) {
+  .actions {
+    width: min(100%, 320px);
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .actions .button {
+    width: 100%;
+  }
+}

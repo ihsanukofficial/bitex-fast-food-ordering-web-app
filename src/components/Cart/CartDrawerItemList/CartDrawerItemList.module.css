@@ -1,0 +1,10 @@
+.items {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: 0;
+  overflow-y: auto;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  overscroll-behavior: contain;
+  scrollbar-color: #d8bd80 transparent;
+}

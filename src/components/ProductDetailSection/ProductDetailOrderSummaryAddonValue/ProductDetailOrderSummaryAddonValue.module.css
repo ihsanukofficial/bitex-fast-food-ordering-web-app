@@ -1,0 +1,10 @@
+.value {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.value small {
+  color: #70654f;
+  font-size: 0.72rem;
+  font-weight: 600;
+}

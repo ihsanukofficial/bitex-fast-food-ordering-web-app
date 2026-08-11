@@ -1,0 +1,30 @@
+.icon {
+  width: 2.55rem;
+  height: 2.55rem;
+  flex: 0 0 2.55rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--button-accent) 38%, transparent);
+  border-radius: 0.75rem;
+  background: var(--navigation-icon-background);
+  color: var(--navigation-icon-color);
+  transform: var(--navigation-icon-transform);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (max-width: 480px) {
+  .icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-basis: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition-duration: 0.01ms;
+  }
+}

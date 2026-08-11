@@ -1,0 +1,26 @@
+.toggle {
+  width: 42px;
+  height: 42px;
+  display: none;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  background: #f4f4f4;
+  color: #282828;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background: #fcae24;
+}
+
+.toggle:focus-visible {
+  outline: 3px solid rgba(215, 27, 31, 0.3);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1023px) {
+  .toggle {
+    display: grid;
+  }
+}

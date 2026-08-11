@@ -1,0 +1,23 @@
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 20rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0.8rem;
+  background: #232323;
+  box-shadow: 0 1rem 2.5rem rgba(35, 35, 35, 0.22);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 560px) {
+  .caption {
+    max-width: calc(100% - 1.75rem);
+    box-sizing: border-box;
+  }
+}

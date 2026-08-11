@@ -1,0 +1,6 @@
+.description {
+  margin: 1.4rem 0 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  line-height: 1.75;
+}

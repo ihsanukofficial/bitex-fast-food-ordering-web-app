@@ -1,0 +1,14 @@
+.items {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: #746d65;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.items strong {
+  color: #3b3732;
+}

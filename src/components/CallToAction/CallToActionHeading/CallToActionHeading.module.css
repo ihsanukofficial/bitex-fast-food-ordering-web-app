@@ -1,0 +1,12 @@
+.heading {
+  position: relative;
+  z-index: 1;
+  max-width: 16ch;
+  margin-bottom: 1.25rem;
+  color: #292929;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+}

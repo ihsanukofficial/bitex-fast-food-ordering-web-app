@@ -1,0 +1,84 @@
+/* Page layout */
+
+.page {
+  min-height: calc(100vh - 70px);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(4rem, 10vw, 8rem);
+  color: #24201c;
+  background:
+    radial-gradient(circle at 72% 32%, rgba(246, 184, 0, 0.18), transparent 24rem),
+    #fffaf1;
+}
+
+.content {
+  width: min(100%, 720px);
+  margin-inline: auto;
+  padding: clamp(2rem, 7vw, 4.5rem);
+  border: 1px solid #eadbc4;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.88);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: #c91e24;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 4.4rem);
+  line-height: 0.98;
+}
+
+.description {
+  max-width: 34rem;
+  margin: 1.25rem auto 0;
+  color: #6b5d50;
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  line-height: 1.7;
+}
+
+/* Recovery actions */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  min-height: 3.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding-inline: 1.4rem;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.primaryAction {
+  color: #fff;
+  background: #d61f26;
+}
+
+.secondaryAction {
+  border: 1px solid #dfd0b9;
+  background: #fff;
+}
+
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  outline: 3px solid rgba(214, 31, 38, 0.34);
+  outline-offset: 3px;
+}

@@ -1,0 +1,11 @@
+.panel {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.inner {
+  min-height: 0;
+  overflow: hidden;
+}

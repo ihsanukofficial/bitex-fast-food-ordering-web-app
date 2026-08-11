@@ -1,0 +1,31 @@
+.shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 83% 42%, rgba(246, 184, 0, 0.24), transparent 24rem),
+    radial-gradient(circle at 8% 88%, rgba(215, 27, 31, 0.08), transparent 25rem),
+    #fffaf0;
+}
+
+.shell::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59, 39, 8, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 39, 8, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  content: '';
+  mask-image: linear-gradient(90deg, black, transparent 68%);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    min-height: auto;
+  }
+}

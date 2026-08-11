@@ -1,0 +1,16 @@
+.dots {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(34, 34, 34, 0.08);
+  border-radius: 999px;
+  padding: 0.45rem 0.6rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0.35rem 1rem rgba(34, 34, 34, 0.12);
+  transform: translateX(-50%);
+  backdrop-filter: blur(6px);
+}

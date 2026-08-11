@@ -1,0 +1,16 @@
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
+  align-items: end;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 2.5rem;
+  }
+}

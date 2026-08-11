@@ -1,0 +1,22 @@
+.item {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  overflow-wrap: anywhere;
+  color: #5d6269;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.item::before {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  margin-top: 0.42rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #fca810;
+  box-shadow: 0 0 0 1px rgba(215, 27, 31, 0.3);
+  content: '';
+}

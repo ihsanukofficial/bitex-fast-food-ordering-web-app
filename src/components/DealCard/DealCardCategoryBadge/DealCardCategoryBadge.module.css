@@ -1,0 +1,23 @@
+.badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 0.42rem 0.7rem;
+  background: var(--deal-accent, #d71b1f);
+  box-shadow: 0 0.45rem 1.2rem rgba(35, 21, 5, 0.16);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (max-width: 639px) {
+  .badge {
+    top: 0.7rem;
+    left: 0.7rem;
+  }
+}

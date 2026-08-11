@@ -1,0 +1,35 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.row dt,
+.row dd {
+  margin: 0;
+}
+
+.row dt {
+  color: #666;
+}
+
+.row dd {
+  color: #292929;
+  font-weight: 750;
+}
+
+.discount dt,
+.discount dd {
+  color: #168147;
+}
+
+.grandTotal {
+  border-top: 1px solid #e5d6bd;
+  padding-top: 0.7rem;
+  font-size: 1.15rem;
+  font-weight: 850;
+}
+
+.grandTotal dd {
+  color: #d71b1f;
+}

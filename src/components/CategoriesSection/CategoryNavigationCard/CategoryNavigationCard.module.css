@@ -1,0 +1,48 @@
+.card {
+  --category-card-arrow-background: #f8edda;
+  --category-card-arrow-shift: 0;
+  --category-card-image-scale: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #eadbc1;
+  border-radius: 1.4rem;
+  background: #fff;
+  color: #2b2b2b;
+  text-decoration: none;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  --category-card-arrow-background: #f6b800;
+  --category-card-arrow-shift: 2px;
+  --category-card-image-scale: 1.045;
+  transform: translate3d(0, -6px, 0);
+  box-shadow: 0 1.2rem 2.8rem rgba(86, 52, 9, 0.13);
+}
+
+.card:focus-visible {
+  outline: 3px solid #d71b1f;
+  outline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+  .card {
+    border-width: 1px;
+    border-radius: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition-duration: 0.01ms;
+  }
+}

@@ -1,0 +1,23 @@
+.image {
+  position: relative;
+  display: block;
+  width: calc(100% - 1.5rem);
+  height: 34.5rem;
+  object-fit: cover;
+  object-position: center 38%;
+  border-radius: 1.4rem;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.28);
+}
+
+@media (max-width: 860px) {
+  .image {
+    height: 30.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .image {
+    width: calc(100% - 0.75rem);
+    height: 25.5rem;
+  }
+}

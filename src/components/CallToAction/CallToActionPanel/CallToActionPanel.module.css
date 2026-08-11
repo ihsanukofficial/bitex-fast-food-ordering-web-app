@@ -1,0 +1,45 @@
+.panel {
+  position: relative;
+  width: min(100%, 920px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: auto;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
+  overflow: hidden;
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(255, 255, 255, 0.42), transparent 11rem),
+    #f6b800;
+  box-shadow: 0 1.5rem 4rem rgba(107, 65, 4, 0.14);
+  box-sizing: border-box;
+}
+
+.panel::before,
+.panel::after {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(215, 27, 31, 0.1);
+  content: '';
+  pointer-events: none;
+}
+
+.panel::before {
+  top: -5rem;
+  right: -3rem;
+  width: 12rem;
+  height: 12rem;
+}
+
+.panel::after {
+  bottom: -4rem;
+  left: -2rem;
+  width: 9rem;
+  height: 9rem;
+}
+
+@media (max-width: 560px) {
+  .panel {
+    border-radius: 1.35rem;
+  }
+}

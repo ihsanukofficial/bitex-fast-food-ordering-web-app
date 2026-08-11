@@ -1,0 +1,7 @@
+.subtitle {
+  margin: 0;
+  color: #6e665c;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.6;
+  text-wrap: balance;
+}

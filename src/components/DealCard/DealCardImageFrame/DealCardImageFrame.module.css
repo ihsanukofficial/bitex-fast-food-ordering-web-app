@@ -1,0 +1,13 @@
+.frame {
+  --deal-image-transform: none;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0;
+  background: #fff;
+}
+
+.frame:hover {
+  --deal-image-transform: scale(1.035);
+}

@@ -1,0 +1,21 @@
+.frame {
+  position: relative;
+  aspect-ratio: 1.2;
+  overflow: hidden;
+  border-radius: 2rem 0.6rem 2rem 0.6rem;
+  box-shadow: 0 1.8rem 4.5rem rgba(58, 35, 13, 0.18);
+}
+
+.frame::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(25, 13, 3, 0.22));
+  content: '';
+}
+
+@media (max-width: 560px) {
+  .frame {
+    aspect-ratio: 1;
+    border-radius: 1.5rem 0.45rem 1.5rem 0.45rem;
+  }
+}

@@ -1,0 +1,15 @@
+.group {
+  scroll-margin-top: 6rem;
+  border: 1px solid color-mix(in srgb, var(--section-accent) 18%, white);
+  border-radius: 2rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  background:
+    linear-gradient(135deg, var(--section-tint), rgba(255, 255, 255, 0.92));
+}
+
+@media (max-width: 639px) {
+  .group {
+    border-radius: 1.35rem;
+    padding: 1rem;
+  }
+}

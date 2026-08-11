@@ -1,0 +1,73 @@
+.figure {
+  position: relative;
+  margin: 0;
+  padding: 0 0 2rem 1.25rem;
+}
+
+.figure::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 55%;
+  height: 62%;
+  border-radius: 0.9rem;
+  background:
+    radial-gradient(circle, rgba(215, 27, 31, 0.22) 1.5px, transparent 1.7px)
+      0 0 / 13px 13px;
+  content: '';
+}
+
+.image {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.12;
+  object-fit: cover;
+  border-radius: 0.8rem 2rem 0.8rem 2rem;
+  box-shadow: 0 1.8rem 4.5rem rgba(79, 46, 10, 0.18);
+}
+
+.caption {
+  position: absolute;
+  right: -1rem;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.95rem 1.2rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0.8rem 2.5rem rgba(79, 46, 10, 0.14);
+  color: #3f3f3f;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.caption span {
+  color: #d71b1f;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 860px) {
+  .figure {
+    order: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .figure {
+    padding: 0 0 2.5rem 0.75rem;
+  }
+
+  .image {
+    aspect-ratio: 1;
+    border-radius: 0.6rem 1.4rem 0.6rem 1.4rem;
+  }
+
+  .caption {
+    right: 0;
+    max-width: calc(100% - 1rem);
+    box-sizing: border-box;
+  }
+}

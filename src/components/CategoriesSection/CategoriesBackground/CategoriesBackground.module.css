@@ -1,0 +1,16 @@
+.background {
+  position: relative;
+  width: 100%;
+  padding-block: clamp(4rem, 7vw, 6rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0 100%, rgba(246, 184, 0, 0.13), transparent 24rem),
+    #fff8e9;
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .background {
+    padding-block: 3.25rem;
+  }
+}

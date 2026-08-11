@@ -1,0 +1,26 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(5rem, 9vw, 8rem);
+  background:
+    linear-gradient(118deg, rgba(27, 19, 15, 0.97), rgba(70, 31, 20, 0.95) 58%, rgba(153, 18, 22, 0.94)),
+    #251814;
+  color: #fff;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  content: '';
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-block: 4rem;
+  }
+}

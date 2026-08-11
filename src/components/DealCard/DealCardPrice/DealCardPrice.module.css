@@ -1,0 +1,8 @@
+.price {
+  margin: 0;
+  color: var(--deal-accent, #d71b1f);
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}

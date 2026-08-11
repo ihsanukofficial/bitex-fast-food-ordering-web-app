@@ -1,0 +1,36 @@
+.submitButton {
+  width: var(--search-control-height, 56px);
+  height: var(--search-control-height, 56px);
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #d71b1f;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  border-radius: var(--search-control-radius, 12px);
+  box-shadow: 0 0.65rem 1.5rem rgba(215, 27, 31, 0.25);
+}
+
+.submitButton:hover {
+  background: #be1519;
+  transform: translateY(-2px);
+  box-shadow: 0 0.85rem 1.8rem rgba(215, 27, 31, 0.32);
+}
+
+.submitButton:focus-visible {
+  outline: 3px solid rgba(246, 184, 0, 0.75);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .submitButton {
+    width: 100%;
+    min-height: var(--search-control-height, 56px);
+    flex: 0 0 var(--search-control-height, 56px);
+  }
+}

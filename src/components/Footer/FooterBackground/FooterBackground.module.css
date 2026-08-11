@@ -1,0 +1,37 @@
+.background {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: clamp(3.25rem, 6vw, 5rem);
+  background: #252525;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.background::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d71b1f 0 62%, #f6b800 62% 100%);
+  content: '';
+}
+
+@media (max-width: 1023px) {
+  .background {
+    padding-top: 3.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .background {
+    padding-top: 2.75rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .background {
+    padding-top: 2.5rem;
+  }
+}

@@ -1,0 +1,13 @@
+.price {
+  margin-left: 0.35rem;
+  color: #928a7f;
+  font-size: 0.95rem;
+  text-decoration: line-through;
+}
+
+@media (max-width: 639px) {
+  .price {
+    margin-left: 0.4rem;
+    font-size: 0.8rem;
+  }
+}
