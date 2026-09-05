@@ -1,0 +1,646 @@
+/* Shared primitives reused across every admin screen. Custom properties come from
+   AdminLayout.module.css's .shell, the outermost wrapper for the whole panel. */
+
+.panel {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--admin-shadow-md);
+}
+
+.panel + .panel {
+  margin-top: 1rem;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.panelHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--admin-ink);
+}
+
+.panelSubtitle {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--admin-muted);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--admin-border-soft);
+  border-radius: var(--admin-radius-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+}
+
+.table th,
+.table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--admin-border-soft);
+}
+
+.table td {
+  /* Most columns are short data (names, prices, dates) that read best on one line,
+     but free-text columns (e.g. a deal's "Includes" list) can run long — forcing
+     nowrap there just pushes the table wider than its panel instead of wrapping. */
+  white-space: normal;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
+  background: var(--admin-bg);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.table tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+.table tbody tr:nth-child(even) {
+  background: var(--admin-border-soft);
+}
+
+.table tbody tr:hover {
+  background: rgba(215, 27, 31, 0.045);
+}
+
+.clickableRow {
+  cursor: pointer;
+}
+
+.inlineLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.inlineLink:hover,
+.inlineLink:focus-visible {
+  color: var(--admin-red);
+  text-decoration: underline;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tableWrap .table {
+  border: none;
+}
+
+.tableImage {
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--admin-radius-sm);
+  object-fit: cover;
+  background: var(--admin-bg);
+  box-shadow: 0 0 0 1px var(--admin-border-soft);
+}
+
+.tableImagePlaceholder {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-bg);
+  color: var(--admin-muted-soft);
+  box-shadow: 0 0 0 1px var(--admin-border-soft);
+}
+
+.cellPrimary {
+  font-weight: 700;
+  color: var(--admin-ink);
+}
+
+.cellMuted {
+  color: var(--admin-muted);
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--admin-border-soft);
+}
+
+.formHeading {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--admin-ink);
+}
+
+/* Section headings inside a .form are plain <h2> elements with inline margin/font-size
+   (kept intentionally small by the page); everything else routes through here so every
+   section reads as a clear, evenly spaced break without touching that markup. */
+.form h2 {
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--admin-border-soft);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--admin-ink);
+}
+
+.form h2:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-ink);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--admin-muted-soft);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--admin-red);
+  box-shadow: 0 0 0 3px var(--admin-red-soft);
+}
+
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  background: var(--admin-bg);
+  color: var(--admin-muted);
+  cursor: not-allowed;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.checkboxField {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--admin-ink-soft);
+}
+
+.checkboxField input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--admin-red);
+}
+
+.fieldGroupLabel {
+  display: block;
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--admin-ink-soft);
+}
+
+.fieldGroupHint {
+  margin: 0.3rem 0 0;
+  font-size: 0.78rem;
+  color: var(--admin-muted);
+}
+
+.formSection {
+  padding-top: 1.35rem;
+  margin-top: 0.15rem;
+  border-top: 1px solid var(--admin-border-soft);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-red);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--admin-red-dark);
+}
+
+.button:active:not(:disabled) {
+  background: var(--admin-red-dark);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  background: var(--admin-muted-soft);
+  cursor: not-allowed;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-ink-soft);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.secondaryButton:hover {
+  border-color: var(--admin-red);
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.secondaryButton:disabled {
+  color: var(--admin-muted-soft);
+  background: var(--admin-surface);
+  cursor: not-allowed;
+}
+
+.dangerButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--admin-red-soft-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-red-dark);
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dangerButton:hover:not(:disabled) {
+  background: var(--admin-red-soft);
+}
+
+.dangerButton:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.dangerButton:disabled {
+  color: var(--admin-muted-soft);
+  border-color: var(--admin-border);
+  cursor: not-allowed;
+}
+
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-ink-soft);
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.linkButton:hover:not(:disabled) {
+  border-color: var(--admin-red);
+  background: var(--admin-red-soft);
+  color: var(--admin-red);
+}
+
+.linkButton:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.linkButton:disabled {
+  color: var(--admin-muted-soft);
+  background: var(--admin-surface);
+  cursor: not-allowed;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.9rem;
+  border-left: 3px solid var(--admin-success);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-success-soft);
+  color: var(--admin-success);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.9rem;
+  border-left: 3px solid var(--admin-red);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.subList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.subList > .subListRow {
+  padding: 0.7rem 0.8rem;
+  background: var(--admin-bg);
+  border: 1px solid var(--admin-border-soft);
+  border-radius: var(--admin-radius-md);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.subList > .subListRow:hover {
+  border-color: var(--admin-border);
+  background: var(--admin-surface);
+}
+
+.subListRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)) auto;
+  gap: 0.6rem;
+  align-items: end;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: var(--admin-bg);
+  color: var(--admin-ink-soft);
+  text-transform: capitalize;
+}
+
+.badge::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.75;
+}
+
+.badge[data-tone='success'] {
+  background: var(--admin-success-soft);
+  border-color: rgba(21, 122, 61, 0.22);
+  color: var(--admin-success);
+}
+
+.badge[data-tone='danger'] {
+  background: var(--admin-red-soft);
+  border-color: var(--admin-red-soft-border);
+  color: var(--admin-red-dark);
+}
+
+.badge[data-tone='warning'] {
+  background: var(--admin-warning-soft);
+  border-color: rgba(161, 92, 0, 0.22);
+  color: var(--admin-warning);
+}
+
+.badge[data-tone='accent'] {
+  background: var(--admin-red-soft);
+  border-color: var(--admin-red-soft-border);
+  color: var(--admin-red-dark);
+}
+
+.statusSelect {
+  padding: 0.42rem 0.7rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-ink);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.statusSelect:hover {
+  filter: brightness(0.97);
+}
+
+.statusSelect:focus-visible {
+  outline: none;
+  border-color: var(--admin-red);
+  box-shadow: 0 0 0 3px var(--admin-red-soft);
+}
+
+.statusSelect:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.statusSelect[data-status='pending'],
+.statusSelect[data-status='confirmed'] {
+  border-color: var(--admin-warning-soft);
+  background: var(--admin-warning-soft);
+  color: var(--admin-warning);
+}
+
+.statusSelect[data-status='preparing'],
+.statusSelect[data-status='out_for_delivery'] {
+  border-color: #dfe7fb;
+  background: var(--admin-info-soft);
+  color: var(--admin-info);
+}
+
+.statusSelect[data-status='delivered'] {
+  border-color: var(--admin-success-soft);
+  background: var(--admin-success-soft);
+  color: var(--admin-success);
+}
+
+.statusSelect[data-status='cancelled'] {
+  border-color: var(--admin-red-soft-border);
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+}
+
+.emptyState {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--admin-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  background: var(--admin-bg);
+  border-radius: var(--admin-radius-md);
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.85rem;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  background: var(--admin-surface);
+  transition: border-color 0.15s ease;
+}
+
+.statCard:hover {
+  border-color: var(--admin-muted-soft);
+}
+
+.statCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.statLabel {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--admin-muted);
+}
+
+.statIcon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+}
+
+.statValue {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--admin-ink);
+}
+
+@media (max-width: 640px) {
+  .table th,
+  .table td {
+    padding: 0.65rem 0.7rem;
+    font-size: 0.82rem;
+  }
+}

@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.label {
+  color: #292929;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 42px 48px 42px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+}
+
+.button {
+  height: 42px;
+  border: 0;
+  background: #f5f5f5;
+  color: #222;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  background: #fca810;
+}
+
+.button:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.value {
+  text-align: center;
+  font-weight: 800;
+}

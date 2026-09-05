@@ -1,0 +1,98 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.avatarButton {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #d71b1f;
+  cursor: pointer;
+  overflow: visible;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.avatarButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(215, 27, 31, 0.25);
+}
+
+.avatarButton:focus-visible {
+  outline: 3px solid rgba(215, 27, 31, 0.3);
+  outline-offset: 2px;
+}
+
+.avatarButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+
+.editBadge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+.hiddenInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.removeButton {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #999;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.removeButton:hover:not(:disabled) {
+  color: #b3151a;
+  text-decoration: underline;
+}
+
+.removeButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

@@ -1,0 +1,812 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+}
+
+.headerTitle {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--admin-ink);
+}
+
+.headerSubtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: var(--admin-muted);
+}
+
+.periodFilter {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.25rem;
+  border: 1px solid var(--admin-border-soft);
+  border-radius: var(--admin-radius-md);
+  background: var(--admin-surface);
+}
+
+.periodButton,
+.periodButtonActive {
+  padding: 0.45rem 0.85rem;
+  border: none;
+  border-radius: var(--admin-radius-sm);
+  background: transparent;
+  color: var(--admin-muted);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.periodButton:hover:not(:disabled) {
+  background: var(--admin-bg);
+  color: var(--admin-ink);
+}
+
+.periodButton:focus-visible,
+.periodButtonActive:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.periodButtonActive {
+  background: var(--admin-red);
+  color: #fff;
+}
+
+.periodButton:disabled,
+.periodButtonActive:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.customRangeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.customRangeRow input[type='date'] {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-ink);
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.customRangeRow input[type='date']:focus-visible {
+  outline: none;
+  border-color: var(--admin-red);
+  box-shadow: 0 0 0 3px var(--admin-red-soft);
+}
+
+.customRangeSeparator {
+  color: var(--admin-muted);
+  font-size: 0.82rem;
+}
+
+/* Tab navigation */
+
+.tabList {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.25rem 0 0;
+  border-bottom: 1px solid var(--admin-border-soft);
+}
+
+.tabButton,
+.tabButtonActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--admin-muted);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tabButton:hover {
+  color: var(--admin-ink);
+}
+
+.tabButton:focus-visible,
+.tabButtonActive:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.tabButtonActive {
+  color: var(--admin-red);
+  border-bottom-color: var(--admin-red);
+}
+
+.tabPanel {
+  margin-top: 1rem;
+}
+
+/* Overview's 6 KPI cards read better as a deliberate 3x2 grid than left to
+   auto-fit, which can carve out a phantom extra column at in-between widths and
+   leave the row visibly lopsided. */
+.statGrid3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .statGrid3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .statGrid3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Metric cards (composed with admin.module.css's .statCard) */
+
+.metricCardAlert {
+  border-color: var(--admin-warning-soft);
+  background: var(--admin-warning-soft);
+}
+
+.sparkline {
+  display: block;
+  width: 100%;
+  height: 1.75rem;
+  margin-top: 0.15rem;
+}
+
+.sparklineArea {
+  stroke: none;
+}
+
+.sparklineLine {
+  fill: none;
+  stroke: var(--admin-red);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* The card stretches a much wider-than-tall viewBox with preserveAspectRatio
+     "none", so X and Y scale by very different factors — without this, a steep
+     segment's stroke (whose thickness leans on the heavily-stretched X axis)
+     renders visibly wider than a shallow one. This pins the stroke to a constant
+     screen-pixel width regardless of that per-segment scaling. */
+  vector-effect: non-scaling-stroke;
+}
+
+.metricContext {
+  margin: -0.25rem 0 0;
+  font-size: 0.76rem;
+  color: var(--admin-muted);
+}
+
+.metricDelta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: -0.25rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.metricDeltaUp {
+  color: var(--admin-success);
+}
+
+.metricDeltaDown {
+  color: var(--admin-red-dark);
+}
+
+.deltaIconUp,
+.deltaIconDown {
+  display: inline-flex;
+}
+
+.deltaIconUp {
+  transform: rotate(-90deg);
+}
+
+.deltaIconDown {
+  transform: rotate(90deg);
+}
+
+.metricDeltaContext {
+  font-weight: 500;
+  color: var(--admin-muted);
+}
+
+/* Section layout */
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--admin-ink);
+}
+
+.chartPanel {
+  margin-top: 1rem;
+}
+
+.tripleRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* Stretch (the grid default) so every panel in the row matches the tallest
+     sibling's height instead of each shrinking to its own content — with
+     align-items: start, panels with fewer/shorter rows (e.g. Top Products vs.
+     Orders Overview vs. Recently Joined) visibly fell short of the row. */
+}
+
+/* The Products tab's 6 panels read better as a deliberate 3x2 grid — left to
+   auto-fit, a lone 6th panel can end up stranded alone in a near-empty row. */
+.tripleRow3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .tripleRow3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .tripleRow3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tripleRow > * {
+  /* admin.module.css's `.panel + .panel` rule (written for panels stacked down
+     the page) also matches these grid siblings and outguns this override on
+     specificity alone, so the 2nd/3rd card in the row would otherwise sit 1rem
+     lower than the 1st — !important is the direct way to say "not here". */
+  margin-top: 0 !important;
+  /* Without this, a grid item whose content has a wide intrinsic min-width (a
+     table with several columns, here) refuses to shrink to its 1fr share and
+     drags the whole grid — and the page — wider than the viewport instead of
+     scrolling internally via its own .tableWrap. */
+  min-width: 0;
+}
+
+/* Empty state */
+
+.chartEmpty {
+  display: grid;
+  place-items: center;
+  min-height: 10rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--admin-muted);
+  font-size: 0.88rem;
+}
+
+/* Revenue chart */
+
+.chartWrap {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.chartSvg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+}
+
+.chartGridline {
+  stroke: var(--admin-border-soft);
+  stroke-width: 1;
+}
+
+.chartAxisLabel {
+  font-size: 7px;
+  fill: var(--admin-muted);
+  font-family: var(--admin-font);
+}
+
+.chartArea {
+  stroke: none;
+}
+
+.chartLine {
+  fill: none;
+  stroke: var(--admin-red);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.chartLinePrevious {
+  fill: none;
+  stroke: var(--admin-muted-soft);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 5 4;
+  vector-effect: non-scaling-stroke;
+}
+
+.chartLegend {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chartLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--admin-ink-soft);
+}
+
+.chartLegendSwatch {
+  width: 1.1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--admin-red);
+}
+
+.chartLegendSwatchPrevious {
+  background: repeating-linear-gradient(90deg, var(--admin-muted-soft) 0 4px, transparent 4px 7px);
+}
+
+.chartCrosshair {
+  stroke: var(--admin-border);
+  stroke-width: 1;
+}
+
+.chartDot {
+  fill: var(--admin-red);
+  stroke: var(--admin-surface);
+  stroke-width: 2;
+}
+
+.chartTooltip {
+  position: absolute;
+  transform: translate(-50%, -115%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-ink);
+  color: #fff;
+  font-size: 0.76rem;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--admin-shadow-md);
+}
+
+.chartTooltip strong {
+  font-size: 0.85rem;
+}
+
+.chartTooltip span {
+  color: #c7c7cc;
+}
+
+.chartTooltip .chartTooltipPrevious {
+  margin-top: 0.15rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: #9d9da4;
+}
+
+/* A table's box sizes itself to fit its content no matter what width/height/
+   max-height say — CSS's table-height algorithm treats all three as a minimum,
+   never a cap (unlike a plain div, where `height` + `overflow: hidden` alone
+   already clips fine; even `table-layout: fixed` only pins column widths, not
+   row heights). With a bucketed series long enough to need 20-30+ rows, that let
+   this "visually hidden" table render at its full natural size in both
+   dimensions and extend the whole page well past the real content. Dropping
+   `display` out of the table/row/cell family sidesteps that algorithm entirely —
+   `role="table"` etc. in the markup restores the semantics screen readers need,
+   since this table exists only for them. */
+.srOnlyTable,
+.srOnlyTable tbody,
+.srOnlyTable tr,
+.srOnlyTable th,
+.srOnlyTable td {
+  display: block;
+}
+
+.srOnlyTable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Order status bars */
+
+.statusList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.statusRow {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 2rem;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.25rem;
+}
+
+.statusRowLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--admin-ink-soft);
+}
+
+.statusRowTrack {
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--admin-bg);
+  overflow: hidden;
+}
+
+.statusRowFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.statusRowCount {
+  text-align: right;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--admin-ink);
+}
+
+/* Top products */
+
+.topProductsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topProductRow {
+  display: grid;
+  grid-template-columns: 1.1rem 2.25rem 1fr auto;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Used when the list has no image column (top spenders, category revenue, ...) —
+   otherwise the grid still reserves the image's track for the next child in DOM
+   order, squeezing the title into it. */
+.topProductRowNoImage {
+  grid-template-columns: 1.1rem 1fr auto;
+}
+
+.topProductRank {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--admin-muted);
+  text-align: center;
+}
+
+.topProductImage {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--admin-radius-sm);
+  object-fit: cover;
+}
+
+.topProductImagePlaceholder {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-bg);
+  color: var(--admin-muted-soft);
+}
+
+.topProductInfo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.topProductTitle {
+  margin: 0;
+  overflow: hidden;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--admin-ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topProductSubtitle {
+  font-weight: 500;
+  color: var(--admin-muted);
+}
+
+.topProductBarTrack {
+  height: 0.35rem;
+  border-radius: 999px;
+  background: var(--admin-bg);
+  overflow: hidden;
+}
+
+.topProductBarFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--admin-red);
+  opacity: 0.85;
+}
+
+.topProductMetrics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  white-space: nowrap;
+}
+
+.topProductUnits {
+  font-size: 0.76rem;
+  color: var(--admin-muted);
+}
+
+.topProductRevenue {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--admin-ink);
+}
+
+/* Recently joined users */
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.userAvatar {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.userName {
+  overflow: hidden;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--admin-ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userEmail {
+  overflow: hidden;
+  font-size: 0.78rem;
+  color: var(--admin-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userJoined {
+  font-size: 0.74rem;
+  color: var(--admin-muted-soft);
+}
+
+/* Peak-hours heatmap */
+
+.heatmapWrap {
+  margin-top: 0.75rem;
+  overflow-x: auto;
+}
+
+.heatmapGrid {
+  display: grid;
+  grid-template-columns: 2.75rem repeat(24, minmax(1.1rem, 1fr));
+  gap: 2px;
+  min-width: 40rem;
+}
+
+.heatmapCornerCell {
+  grid-column: 1;
+}
+
+.heatmapHourLabel {
+  font-size: 0.62rem;
+  color: var(--admin-muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.heatmapDayLabel {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--admin-ink-soft);
+}
+
+.heatmapCell {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: var(--admin-red);
+  cursor: default;
+}
+
+.heatmapTooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-ink);
+  color: #fff;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--admin-shadow-md);
+  z-index: 1;
+}
+
+.heatmapTooltip strong {
+  font-size: 0.78rem;
+}
+
+.heatmapTooltip span {
+  color: #c7c7cc;
+}
+
+.heatmapLegend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  font-size: 0.74rem;
+  color: var(--admin-muted);
+}
+
+.heatmapLegendSwatches {
+  width: 5rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(215, 27, 31, 0.06), var(--admin-red));
+}
+
+/* Export */
+
+.panelExportRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Skeletons */
+
+.skeletonCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonLine {
+  height: 0.9rem;
+  margin-bottom: 0.5rem;
+  border-radius: 999px;
+  background: var(--admin-bg);
+}
+
+.skeletonCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonCard::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .statusRow {
+    grid-template-columns: 5.2rem 1fr 1.75rem;
+  }
+
+  .topProductRow {
+    grid-template-columns: 1rem 2rem 1fr;
+    row-gap: 0.35rem;
+  }
+
+  .topProductRowNoImage {
+    grid-template-columns: 1rem 1fr;
+  }
+
+  .topProductMetrics {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: calc(1rem + 2rem + 0.65rem * 2);
+  }
+}

@@ -1,0 +1,110 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.heading {
+  margin: 0;
+  color: #242424;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.tabList {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+  overflow-x: auto;
+}
+
+.tab {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid #eadfcd;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  background: #fff;
+  color: #5d6269;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.tab:hover {
+  border-color: #d71b1f;
+}
+
+.tab:focus-visible {
+  outline: 3px solid #d71b1f;
+  outline-offset: 2px;
+}
+
+.activeTab {
+  border-color: #d71b1f;
+  background: #d71b1f;
+  color: #fff;
+}
+
+.tabQuantity {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border: 1px solid #eee3d3;
+  border-radius: 0.9rem;
+  padding: 1rem;
+  background: #fffaf1;
+}
+
+.panelHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.panelTitle {
+  margin: 0;
+  color: #242424;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.panelPrice {
+  color: #d71b1f;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.panelDescription {
+  margin: 0;
+  color: #5d6269;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+@media (min-width: 480px) {
+  .infoGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

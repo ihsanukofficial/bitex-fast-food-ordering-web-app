@@ -1,0 +1,92 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  border-color: #e6d3d3;
+  box-shadow: 0 0.5rem 1.5rem rgba(15, 15, 15, 0.05);
+}
+
+.main {
+  min-width: 0;
+  flex: 1;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.orderCode {
+  font-weight: 750;
+  color: #1a1a1a;
+  font-size: 0.92rem;
+}
+
+.date {
+  margin: 0 0 0.3rem;
+  color: #999;
+  font-size: 0.78rem;
+}
+
+.summary {
+  margin: 0;
+  color: #555;
+  font-size: 0.86rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.total {
+  margin: 0;
+  font-weight: 750;
+  color: #1a1a1a;
+}
+
+.viewButton {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.viewButton:hover {
+  border-color: #d71b1f;
+  color: #d71b1f;
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .aside {
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

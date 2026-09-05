@@ -1,0 +1,25 @@
+.stars {
+  display: inline-flex;
+  gap: 0.15rem;
+}
+
+.starButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 0.4rem;
+}
+
+.starButton:hover {
+  background: rgba(252, 168, 16, 0.1);
+}
+
+.starButton:focus-visible {
+  outline: 2px solid #d71b1f;
+  outline-offset: 1px;
+}

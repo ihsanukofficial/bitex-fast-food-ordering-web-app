@@ -1,0 +1,45 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.group[data-variant='stat'] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -120% 0;
+  }
+  100% {
+    background-position: 120% 0;
+  }
+}
+
+.item {
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.item[data-variant='row'] {
+  height: 5.5rem;
+}
+
+.item[data-variant='stat'] {
+  height: 6.5rem;
+}
+
+.item[data-variant='card'] {
+  height: 9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    animation: none;
+  }
+}

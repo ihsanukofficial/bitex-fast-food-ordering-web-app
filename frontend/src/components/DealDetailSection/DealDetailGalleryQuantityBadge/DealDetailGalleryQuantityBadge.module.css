@@ -1,0 +1,28 @@
+.badge {
+  position: absolute;
+  left: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #d71b1f;
+  color: #fff;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+.main {
+  top: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.thumbnail {
+  top: 0.25rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.62rem;
+}

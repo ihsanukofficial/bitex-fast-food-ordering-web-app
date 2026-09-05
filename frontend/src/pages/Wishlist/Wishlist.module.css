@@ -1,0 +1,55 @@
+.page {
+  padding: clamp(2rem, 5vw, 3.5rem) 0 4rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #d71b1f;
+}
+
+.heading {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+}
+
+.status {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.error {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: #fdeceb;
+  color: #b3151a;
+  font-weight: 600;
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  min-height: 40vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.emptyTitle {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.emptyText {
+  margin: 0;
+  color: #777;
+  font-size: 0.95rem;
+}

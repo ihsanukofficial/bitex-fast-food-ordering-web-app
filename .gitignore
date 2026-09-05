@@ -6,6 +6,9 @@ dist/
 dist-ssr/
 coverage/
 
+# Backend uploads (user/admin-uploaded and seeded media)
+backend/uploads/
+
 # Environment Variables and Secrets
 .env
 .env.*

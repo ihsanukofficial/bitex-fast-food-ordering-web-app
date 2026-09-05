@@ -1,0 +1,16 @@
+.form {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.6rem;
+  background: #fdeceb;
+  color: #b3151a;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

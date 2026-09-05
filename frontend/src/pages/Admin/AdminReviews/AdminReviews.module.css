@@ -1,0 +1,183 @@
+.filters {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.searchField {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 14rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-muted);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.searchField:focus-within {
+  border-color: var(--admin-red);
+  box-shadow: 0 0 0 3px var(--admin-red-soft);
+}
+
+.searchInput {
+  flex: 1;
+  padding: 0.6rem 0;
+  border: none;
+  background: transparent;
+  color: var(--admin-ink);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.ratingSelect {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-ink);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ratingSelect:focus-visible {
+  outline: none;
+  border-color: var(--admin-red);
+  box-shadow: 0 0 0 3px var(--admin-red-soft);
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reviewCard {
+  display: grid;
+  grid-template-columns: 14rem 1fr auto;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.1rem;
+  border: 1px solid var(--admin-border-soft);
+  border-radius: var(--admin-radius-lg);
+  background: var(--admin-surface);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.reviewCard:hover {
+  border-color: var(--admin-border);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.reviewProduct {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.reviewProductText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.productTitle {
+  margin: 0;
+  overflow: hidden;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--admin-ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 0.1rem;
+}
+
+.reviewBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reviewText {
+  margin: 0;
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--admin-ink-soft);
+}
+
+.reviewMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.reviewer {
+  font-weight: 700;
+  color: var(--admin-ink);
+}
+
+.reviewerEmail {
+  font-weight: 500;
+  color: var(--admin-muted);
+}
+
+.reviewDate {
+  flex-shrink: 0;
+  color: var(--admin-muted);
+}
+
+.skeletonCard {
+  height: 6.5rem;
+  border-radius: var(--admin-radius-lg);
+  background: linear-gradient(90deg, var(--admin-bg) 25%, var(--admin-border-soft) 37%, var(--admin-bg) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonCard {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviewCard {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewCard > button {
+    justify-self: flex-start;
+  }
+}

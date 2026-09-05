@@ -1,0 +1,92 @@
+.addButton {
+  align-self: flex-start;
+  padding: 0.4rem 0.85rem;
+  margin-top: 0.35rem;
+  border: 1px solid #d71b1f;
+  border-radius: 999px;
+  background: #fff;
+  color: #d71b1f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.addButton:hover {
+  background: #fdeceb;
+}
+
+.addButton:focus-visible {
+  outline: 2px solid #d71b1f;
+  outline-offset: 2px;
+}
+
+.unavailable {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: #999;
+  font-style: italic;
+}
+
+.submitted {
+  margin-top: 0.4rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #eee;
+  border-radius: 0.75rem;
+  background: #fafafa;
+}
+
+.submittedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.submittedDate {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.submittedText {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.reviewActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+}
+
+.editButton {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  border-color: #d71b1f;
+  color: #d71b1f;
+}
+
+.deleteButton {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #f3c8c8;
+  border-radius: 999px;
+  background: #fff;
+  color: #b3151a;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background: #fdeceb;
+}

@@ -1,0 +1,14 @@
+.status {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: #6b6b6b;
+  font-size: 0.95rem;
+}
+
+.status[data-tone='error'] {
+  color: #d71b1f;
+}

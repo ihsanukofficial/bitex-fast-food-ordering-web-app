@@ -1,0 +1,12 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.heading {
+  margin: 0;
+  color: #242424;
+  font-size: 1.15rem;
+  font-weight: 800;
+}

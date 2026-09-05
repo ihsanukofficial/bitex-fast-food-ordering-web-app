@@ -1,0 +1,37 @@
+.gallery {
+  width: 100%;
+}
+
+.mainFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #ece2d3;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 1.25rem 3.5rem rgba(78, 46, 8, 0.09);
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.mainFrame:focus-visible {
+  outline: 3px solid #d71b1f;
+  outline-offset: 4px;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.thumbnails {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-bottom: 0.25rem;
+  overflow-x: auto;
+}

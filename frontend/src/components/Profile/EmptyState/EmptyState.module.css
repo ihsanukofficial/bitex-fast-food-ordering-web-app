@@ -1,0 +1,51 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(2rem, 5vw, 3rem) 1.5rem;
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 0.25rem;
+  border-radius: 50%;
+  background: #f6f1ea;
+  color: #d71b1f;
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 750;
+  color: #1a1a1a;
+}
+
+.message {
+  margin: 0;
+  max-width: 26rem;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.action {
+  margin-top: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: #d71b1f;
+  color: #fff;
+  font-weight: 750;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.action:hover {
+  background: #bd1519;
+}

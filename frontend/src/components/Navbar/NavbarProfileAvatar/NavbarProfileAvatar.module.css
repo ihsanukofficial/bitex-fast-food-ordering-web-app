@@ -1,0 +1,195 @@
+.container {
+  position: relative;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #d71b1f;
+  border: 1.5px solid rgba(215, 27, 31, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.avatar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(215, 27, 31, 0.25);
+}
+
+.avatar:focus-visible {
+  outline: 3px solid rgba(215, 27, 31, 0.3);
+  outline-offset: 2px;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initials {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  line-height: 1;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  z-index: 1200;
+  width: 17rem;
+  border: 1px solid #ececec;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 20px 45px -10px rgba(20, 12, 5, 0.28), 0 4px 12px rgba(20, 12, 5, 0.06);
+  overflow: hidden;
+  animation: menuIn 0.16s ease-out;
+  transform-origin: top right;
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  background: #fbf8f5;
+  border-bottom: 1px solid #f0ebe6;
+}
+
+.menuAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #d71b1f;
+}
+
+.menuHeaderText {
+  min-width: 0;
+}
+
+.menuName {
+  margin: 0;
+  overflow: hidden;
+  font-size: 0.92rem;
+  font-weight: 750;
+  color: #1a1a1a;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuEmail {
+  margin: 0.2rem 0 0;
+  overflow: hidden;
+  font-size: 0.78rem;
+  color: #8c8c8c;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuItems {
+  padding: 0.4rem;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: none;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: #333;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.menuItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  color: #999;
+  transition: color 0.15s ease;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: #fbeceb;
+  color: #d71b1f;
+}
+
+.menuItem:hover .menuItemIcon,
+.menuItem:focus-visible .menuItemIcon {
+  color: #d71b1f;
+}
+
+.menuItem:active {
+  background: #f6dedd;
+}
+
+.menuItem:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgba(215, 27, 31, 0.35);
+}
+
+.logoutItem {
+  color: #b3151a;
+}
+
+.logoutItem .menuItemIcon {
+  color: #d68a8c;
+}
+
+.logoutItem:hover,
+.logoutItem:focus-visible {
+  background: #fdeceb;
+  color: #b3151a;
+}
+
+.logoutItem:hover .menuItemIcon,
+.logoutItem:focus-visible .menuItemIcon {
+  color: #b3151a;
+}
+
+@media (max-width: 420px) {
+  .menu {
+    width: min(90vw, 17rem);
+  }
+}

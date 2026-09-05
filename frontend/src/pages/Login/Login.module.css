@@ -1,0 +1,103 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+  min-height: 60vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 26rem;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 1.5rem 3rem rgba(15, 15, 15, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #d71b1f;
+}
+
+.heading {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 800;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field input {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.7rem;
+  font: inherit;
+}
+
+.field input:focus-visible {
+  border-color: #d71b1f;
+}
+
+.error {
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.6rem;
+  background: #fdeceb;
+  color: #b3151a;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.submit {
+  margin-top: 0.4rem;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background: #d71b1f;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: #bd1519;
+}
+
+.submit:disabled {
+  background: #9a9a9a;
+  cursor: not-allowed;
+}
+
+.footer {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.footer a {
+  color: #d71b1f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

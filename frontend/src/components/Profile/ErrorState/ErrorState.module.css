@@ -1,0 +1,45 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(2rem, 5vw, 3rem) 1.5rem;
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 0.25rem;
+  border-radius: 50%;
+  background: #fdeceb;
+  color: #b3151a;
+}
+
+.message {
+  margin: 0;
+  max-width: 26rem;
+  color: #555;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.retry {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.3rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 750;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.retry:hover {
+  border-color: #d71b1f;
+  color: #d71b1f;
+}
