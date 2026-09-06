@@ -1,5 +1,19 @@
-.loadTrigger {
-  width: 100%;
-  height: 1px;
-  pointer-events: none;
+/* Keeps a page-change's scroll-into-view (see MenuProductsSection.jsx) from landing
+   the grid's first row underneath the fixed navbar (70px, see NavbarBar.module.css). */
+.gridAnchor {
+  scroll-margin-top: 90px;
+  transition: opacity 0.2s ease;
+}
+
+/* The next page is being fetched from the server (see useMenuProductsPage) — dims the
+   previous page's products in place rather than flashing the grid blank while it's
+   in flight. */
+.gridAnchor[data-fetching='true'] {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gridAnchor {
+    transition: none;
+  }
 }

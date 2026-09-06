@@ -53,3 +53,10 @@
   color: #777;
   font-size: 0.95rem;
 }
+
+/* Keeps a page-change's scroll-into-view (see Wishlist.jsx) from landing the grid's
+   first row underneath the fixed navbar (70px, see NavbarBar.module.css) — this page
+   has no sticky search bar beneath it to also clear, unlike Menu. */
+.gridAnchor {
+  scroll-margin-top: 90px;
+}

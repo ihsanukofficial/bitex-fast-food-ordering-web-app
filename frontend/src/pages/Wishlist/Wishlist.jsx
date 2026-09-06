@@ -1,11 +1,15 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import Container from '../../components/Utils/Container/Container';
 import ProductCard from '../../components/ProductCard/ProductCard/ProductCard';
 import MenuProductsGrid from '../../components/MenuProductsSection/MenuProductsGrid/MenuProductsGrid';
+import Pagination from '../../components/Utils/Pagination/Pagination';
 import { useWishlist } from '../../context/WishlistContext';
 import { mapProductToCardProps } from '../../hooks/data/useMenuProducts';
 import usePageEntranceAnimations from '../../hooks/usePageEntranceAnimations';
+import usePagination from '../../hooks/usePagination';
 import styles from './Wishlist.module.css';
+
+const PAGE_SIZE = 12;
 
 /**
  * Wishlist
@@ -13,13 +17,28 @@ import styles from './Wishlist.module.css';
  * The signed-in customer's saved products — reuses the exact same ProductCard and
  * grid the Menu page renders (via the shared mapProductToCardProps), so a wishlisted
  * item looks and behaves identically here, heart included, right down to the
- * quick-add button.
+ * quick-add button. Paged 12 at a time the same way Menu is (see
+ * MenuProductsSection) — no resetKey here, unlike Menu: removing a heart mid-browse
+ * shouldn't bounce the customer back to page 1, only clamp down if the page they were
+ * on stops existing.
  */
 function Wishlist() {
   const pageRef = useRef(null);
+  const gridAnchorRef = useRef(null);
   const { products, isLoading, error } = useWishlist();
+  const cardProps = useMemo(() => products.map(mapProductToCardProps), [products]);
+  const { page, totalPages, pageItems, goToPage } = usePagination(cardProps, PAGE_SIZE);
 
   usePageEntranceAnimations(pageRef);
+
+  const handlePageChange = (nextPage) => {
+    goToPage(nextPage);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    gridAnchorRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  };
 
   return (
     <main id="main-content" ref={pageRef} className={styles.page} tabIndex="-1">
@@ -42,11 +61,22 @@ function Wishlist() {
         )}
 
         {products.length > 0 && (
-          <MenuProductsGrid>
-            {products.map((product) => (
-              <ProductCard key={product._id} {...mapProductToCardProps(product)} />
-            ))}
-          </MenuProductsGrid>
+          <>
+            <div ref={gridAnchorRef} className={styles.gridAnchor}>
+              <MenuProductsGrid>
+                {pageItems.map((product) => (
+                  <ProductCard key={product.id} {...product} />
+                ))}
+              </MenuProductsGrid>
+            </div>
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              totalItems={products.length}
+              pageSize={PAGE_SIZE}
+              onPageChange={handlePageChange}
+            />
+          </>
         )}
       </Container>
     </main>

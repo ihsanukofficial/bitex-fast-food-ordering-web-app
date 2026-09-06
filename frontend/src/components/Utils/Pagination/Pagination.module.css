@@ -1,0 +1,89 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 2.75rem;
+}
+
+.summary {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #767676;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stepButton,
+.pageButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  padding: 0 0.5rem;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.stepButton:hover:not(:disabled),
+.pageButton:hover:not([data-active='true']) {
+  border-color: rgba(215, 27, 31, 0.35);
+  color: #d71b1f;
+  transform: translateY(-1px);
+}
+
+.stepButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pageButton[data-active='true'] {
+  border-color: #d71b1f;
+  background: #d71b1f;
+  color: #fff;
+  cursor: default;
+  transform: none;
+}
+
+.stepButton:focus-visible,
+.pageButton:focus-visible {
+  outline: 3px solid rgba(246, 184, 0, 0.55);
+  outline-offset: 2px;
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: flex-end;
+  height: 2.35rem;
+  padding: 0 0.3rem;
+  color: #9c9c9c;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .stepButton,
+  .pageButton {
+    min-width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.8rem;
+  }
+}

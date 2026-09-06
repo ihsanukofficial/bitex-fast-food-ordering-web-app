@@ -1,32 +1,40 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { preload } from 'react-dom';
 import {
   Navigate,
   useLocation,
   useNavigate,
   useParams,
+  useSearchParams,
 } from 'react-router-dom';
 import menuSearchBackgroundImage from '../../assets/gallery/1.webp';
 import MenuSearchSection from '../../components/MenuSearchSection/MenuSearchSection/MenuSearchSection';
 import MenuProductsSection from '../../components/MenuProductsSection/MenuProductsSection/MenuProductsSection';
 import PageLoadingState from '../../components/Utils/PageLoadingState/PageLoadingState';
 import { ALL_CATEGORY_ID, useCategoryNavigation } from '../../hooks/data/useCategories';
-import { useMenuProducts } from '../../hooks/data/useMenuProducts';
+import { useMenuProductsPage } from '../../hooks/data/useMenuProducts';
 import usePageEntranceAnimations from '../../hooks/usePageEntranceAnimations';
 import styles from './Menu.module.css';
+
+const PAGE_SIZE = 12;
 
 /**
  * Menu
  *
- * Owns menu search and category-filter state, then derives the visible product
- * collection for the route.
+ * Owns menu search and category-filter state, then asks the server for exactly one
+ * page (12) of matching products at a time — see useMenuProductsPage — rather than
+ * loading the whole catalog and slicing it client-side. Page number lives in the URL
+ * the same way category and search already do, so reloading, sharing a link, or using
+ * the browser's back/forward buttons all land back on the same page.
  */
 function Menu() {
   preload(menuSearchBackgroundImage, { as: 'image', fetchPriority: 'high' });
 
   const pageRef = useRef(null);
+  const productsRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { category: categorySlug } = useParams();
   const initialQuery = new URLSearchParams(location.search).get('q') || '';
   const {
@@ -35,7 +43,6 @@ function Menu() {
     menuCategorySlugMap,
     getMenuCategoryPath,
   } = useCategoryNavigation();
-  const { menuProducts, isLoading: isLoadingProducts } = useMenuProducts();
   // Editable text is separate from the submitted filter to avoid searching per keystroke.
   const [searchText, setSearchText] = useState(initialQuery);
   const [selectedCategoryId, setSelectedCategoryId] = useState(
@@ -56,30 +63,72 @@ function Menu() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categorySlug, location.search, isLoadingCategories]);
 
-  const filteredProducts = useMemo(() => {
-    const normalizedQuery = submittedQuery.trim().toLowerCase();
+  const requestedPage = Math.max(1, Number(searchParams.get('page')) || 1);
 
-    return menuProducts.filter((product) => {
-      const matchesCategory =
-        selectedCategoryId === ALL_CATEGORY_ID ||
-        product.categoryId === selectedCategoryId;
-      const matchesSearch =
-        product.title.toLowerCase().includes(normalizedQuery) ||
-        product.description.toLowerCase().includes(normalizedQuery);
+  const {
+    menuProducts,
+    pagination,
+    isLoading: isLoadingProducts,
+    isFetching,
+  } = useMenuProductsPage({
+    categoryId: selectedCategoryId,
+    query: submittedQuery,
+    page: requestedPage,
+    pageSize: PAGE_SIZE,
+  });
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [menuProducts, selectedCategoryId, submittedQuery]);
+  // Never shown as "current" while out of range — see the clamp effect below, which
+  // corrects the URL itself once the server's real total is known.
+  const page = Math.min(requestedPage, pagination.totalPages);
 
-  const navigateToMenu = (categoryId, query) => {
+  // Corrects the URL once the server reports fewer pages than requested — e.g. a
+  // search narrows the results while sitting on page 4 of what used to be a longer
+  // list. Skipped while a request is still in flight: pagination briefly still
+  // reflects the *previous* filter's totals then, and clamping against that would
+  // fight the real numbers arriving a moment later.
+  useEffect(() => {
+    if (isFetching || requestedPage <= pagination.totalPages) return;
+
+    setSearchParams(
+      (previous) => {
+        const next = new URLSearchParams(previous);
+        if (pagination.totalPages <= 1) next.delete('page');
+        else next.set('page', String(pagination.totalPages));
+        return next;
+      },
+      { replace: true },
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestedPage, pagination.totalPages, isFetching]);
+
+  // Null for "All" — MenuResultsSummary treats that as "nothing to announce", the same
+  // as an empty search: browsing the whole catalog needs no result message at all.
+  const selectedCategoryLabel =
+    selectedCategoryId === ALL_CATEGORY_ID
+      ? null
+      : menuCategoryOptions.find((option) => option.value === selectedCategoryId)?.label || null;
+
+  // preserveScroll tells RouteScrollManager to leave the scroll position alone for
+  // this navigation — the category dropdown changes the URL's pathname (a genuine
+  // route change, which RouteScrollManager would otherwise reset to the very top of
+  // the page for), but it should land the customer on the results grid instead (see
+  // below), not back up at the search banner.
+  const navigateToMenu = (categoryId, query, { preserveScroll = false } = {}) => {
     const basePath = getMenuCategoryPath(categoryId);
-    navigate(query ? `${basePath}?q=${encodeURIComponent(query)}` : basePath);
+    const path = query ? `${basePath}?q=${encodeURIComponent(query)}` : basePath;
+    navigate(path, preserveScroll ? { state: { preserveScroll: true } } : undefined);
   };
 
   const handleCategoryChange = (event) => {
     const nextCategoryId = event.target.value;
     setSelectedCategoryId(nextCategoryId);
-    navigateToMenu(nextCategoryId, submittedQuery);
+    // A fresh path with no `page` in it — building it from scratch (rather than
+    // patching the current search params) is what resets pagination back to page 1
+    // for the new category, the same way it already resets for a new search below.
+    navigateToMenu(nextCategoryId, submittedQuery, { preserveScroll: true });
+    // Lands the customer on the new results' first row — see MenuProductsSection —
+    // instead of leaving them wherever they'd scrolled to for the previous filter.
+    productsRef.current?.scrollToTop();
   };
 
   const handleSearchSubmit = (event) => {
@@ -89,6 +138,16 @@ function Menu() {
     setSearchText(queryValue);
     setSubmittedQuery(queryValue);
     navigateToMenu(selectedCategoryId, queryValue);
+    productsRef.current?.scrollToTop();
+  };
+
+  const handlePageChange = (nextPage) => {
+    setSearchParams((previous) => {
+      const next = new URLSearchParams(previous);
+      if (nextPage <= 1) next.delete('page');
+      else next.set('page', String(nextPage));
+      return next;
+    });
   };
 
   if (isLoadingCategories || isLoadingProducts) return <PageLoadingState />;
@@ -114,7 +173,18 @@ function Menu() {
         onSubmit={handleSearchSubmit}
       />
 
-      <MenuProductsSection products={filteredProducts} />
+      <MenuProductsSection
+        ref={productsRef}
+        products={menuProducts}
+        page={page}
+        totalPages={pagination.totalPages}
+        totalItems={pagination.total}
+        pageSize={PAGE_SIZE}
+        isFetching={isFetching}
+        onPageChange={handlePageChange}
+        searchQuery={submittedQuery.trim()}
+        categoryLabel={selectedCategoryLabel}
+      />
     </main>
   );
 }

@@ -24,7 +24,12 @@ export const listProducts = asyncHandler(async (req, res) => {
   const filter = {};
   if (categoryId && categoryId !== 'all') filter.categoryId = categoryId;
   if (q?.trim()) {
-    const pattern = new RegExp(q.trim(), 'i');
+    // Escaped so a search term containing regex metacharacters (a stray `(`, `.`,
+    // `+`, etc. — easy to type by accident) is matched literally instead of either
+    // throwing an invalid-regex error or silently matching something the customer
+    // never typed.
+    const escaped = q.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(escaped, 'i');
     filter.$or = [{ title: pattern }, { shortDescription: pattern }];
   }
 
