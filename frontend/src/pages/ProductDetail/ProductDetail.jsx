@@ -13,6 +13,7 @@ import { useProduct } from '../../hooks/data/useCatalog';
 import ProductDetailSection from '../../components/ProductDetailSection/ProductDetailSection/ProductDetailSection';
 import { useCart } from '../../context/CartContext';
 import { MAX_CART_ITEM_QUANTITY, toCartId } from '../../utils/cartConstants';
+import { getProductPricing } from '../../utils/pricing';
 import usePageEntranceAnimations from '../../hooks/usePageEntranceAnimations';
 import styles from './ProductDetail.module.css';
 
@@ -65,23 +66,7 @@ function ProductDetail() {
 
   const displayedPrice = useMemo(() => {
     if (!product) return null;
-
-    // The first price-bearing selected option defines price for configurable products.
-    for (const variation of product.variations) {
-      const option = variation.options.find(
-        (item) => item.label === selections[variation.name],
-      );
-
-      if (option?.originalPrice !== undefined) {
-        return {
-          originalPrice: option.originalPrice,
-          discountPercentage: option.discountPercentage || 0,
-          discountedPrice: option.discountedPrice ?? option.originalPrice,
-        };
-      }
-    }
-
-    return product.price;
+    return getProductPricing(product, selections);
   }, [product, selections]);
 
   const addonsTotal = useMemo(() => {
@@ -98,12 +83,14 @@ function ProductDetail() {
   );
 
   const canAddToCart = useMemo(() => {
-    if (!product?.available) return false;
+    // No resolvable price (a malformed product with no priced option) means there's
+    // nothing to charge — never let checkout start from an unpriced item.
+    if (!product?.available || !displayedPrice) return false;
 
     return product.variations
       .filter((variation) => variation.required)
       .every((variation) => Boolean(selections[variation.name]));
-  }, [product, selections]);
+  }, [product, selections, displayedPrice]);
 
   const handleVariationChange = useCallback((name, value) => {
     setSelections((current) => ({ ...current, [name]: value }));

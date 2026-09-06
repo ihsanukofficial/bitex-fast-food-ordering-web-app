@@ -473,15 +473,36 @@ export const buildAddonPopularity = (periodOrders, limit = 8) => buildSelectionP
 // Operational analytics
 // ---------------------------------------------------------------------------
 
-/** Order counts by day-of-week x hour-of-day, for spotting real rush patterns. */
-export const buildPeakHeatmap = (periodOrders) => {
-  const grid = Array.from({ length: 7 }, () => Array.from({ length: 24 }, () => 0));
-  periodOrders.forEach((order) => {
-    if (order.status === 'cancelled') return;
-    const date = new Date(order.createdAt);
-    grid[date.getDay()][date.getHours()] += 1;
+/**
+ * Order counts for the last 7 calendar days (today always last) x hour-of-day, for
+ * spotting real rush patterns. A rolling window independent of the dashboard's period
+ * filter — this always reflects "right now," not however far back the selected period
+ * reaches. Each row carries its own actual weekday label since which weekday lands in
+ * which row shifts by the day (today's weekday isn't always Saturday).
+ */
+export const buildPeakHeatmap = (orders, now = new Date()) => {
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(startOfToday);
+    date.setDate(date.getDate() - (6 - i));
+    return date;
   });
-  return grid;
+
+  const grid = days.map(() => Array.from({ length: 24 }, () => 0));
+
+  orders.forEach((order) => {
+    if (order.status === 'cancelled') return;
+    const orderDate = new Date(order.createdAt);
+    const orderDayStart = new Date(orderDate.getFullYear(), orderDate.getMonth(), orderDate.getDate());
+    const dayIndex = Math.round((orderDayStart - startOfToday) / DAY_MS) + 6;
+    if (dayIndex < 0 || dayIndex > 6) return;
+    grid[dayIndex][orderDate.getHours()] += 1;
+  });
+
+  return {
+    grid,
+    days: days.map((date, i) => ({ label: DAY_NAMES[date.getDay()], isToday: i === 6 })),
+  };
 };
 
 /**

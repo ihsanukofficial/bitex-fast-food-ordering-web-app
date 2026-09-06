@@ -76,7 +76,7 @@ function ProductDetailSection({
           onChange={onQuantityChange}
         />
         <ProductDetailOrderSummary
-          unitPrice={price.discountedPrice}
+          unitPrice={price?.discountedPrice ?? 0}
           addonsTotal={addonsTotal}
           quantity={quantity}
           total={total}

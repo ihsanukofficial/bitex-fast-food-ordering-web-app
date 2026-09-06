@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const backendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const projectRoot = path.resolve(backendRoot, '..');
-const frontendSrcRoot = path.join(projectRoot, 'src');
+const frontendSrcRoot = path.join(projectRoot, 'frontend', 'src');
 const uploadsSeedRoot = path.join(backendRoot, 'uploads', 'seed');
 
 const copiedUrlsBySource = new Map();

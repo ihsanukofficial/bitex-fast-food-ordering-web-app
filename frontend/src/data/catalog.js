@@ -21,11 +21,8 @@ const products = [
     longDescription:
       "The BiteX Special Pizza is our signature creation, generously topped with tender grilled chicken, beef pepperoni, black olives, mushrooms, green peppers, onions, sweet corn, and a rich layer of premium mozzarella cheese. Finished with our signature pizza sauce and baked on a freshly hand-tossed crust, it's the perfect choice for anyone who loves a fully loaded pizza packed with bold flavors.",
 
-    price: {
-      originalPrice: 949,
-      discountPercentage: 0,
-      discountedPrice: 949,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -34,27 +31,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 949,
+            price: 949,
             discountPercentage: 0,
-            discountedPrice: 949,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1749,
+            price: 1749,
             discountPercentage: 5,
-            discountedPrice: 1662,
           },
           {
             label: 'Large (13")',
-            originalPrice: 2449,
+            price: 2449,
             discountPercentage: 10,
-            discountedPrice: 2204,
           },
           {
             label: 'Family (16")',
-            originalPrice: 3299,
+            price: 3299,
             discountPercentage: 15,
-            discountedPrice: 2804,
           },
         ],
       },
@@ -135,11 +128,8 @@ const products = [
     longDescription:
       "Our Pepperoni Beef Pizza is crafted with premium beef pepperoni layered over rich mozzarella cheese and our signature tomato pizza sauce. Baked on a freshly hand-tossed crust and finished with a sprinkle of Italian herbs, this pizza delivers a bold, smoky, and cheesy flavor that's perfect for pepperoni lovers.",
 
-    price: {
-      originalPrice: 899,
-      discountPercentage: 0,
-      discountedPrice: 899,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -148,27 +138,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 899,
+            price: 899,
             discountPercentage: 0,
-            discountedPrice: 899,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1649,
+            price: 1649,
             discountPercentage: 5,
-            discountedPrice: 1567,
           },
           {
             label: 'Large (13")',
-            originalPrice: 2299,
+            price: 2299,
             discountPercentage: 10,
-            discountedPrice: 2069,
           },
           {
             label: 'Family (16")',
-            originalPrice: 3099,
+            price: 3099,
             discountPercentage: 15,
-            discountedPrice: 2634,
           },
         ],
       },
@@ -243,11 +229,8 @@ const products = [
     longDescription:
       "Our Veggie Delight Pizza is a fresh and flavorful choice for vegetable lovers. It's generously topped with crunchy bell peppers, onions, mushrooms, black olives, sweet corn, juicy tomatoes, and premium mozzarella cheese over our signature pizza sauce. Baked on a hand-tossed crust, every slice delivers a delicious combination of freshness, cheesiness, and authentic Italian-inspired flavor.",
 
-    price: {
-      originalPrice: 699,
-      discountPercentage: 0,
-      discountedPrice: 699,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -256,27 +239,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 699,
+            price: 699,
             discountPercentage: 0,
-            discountedPrice: 699,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1249,
+            price: 1249,
             discountPercentage: 5,
-            discountedPrice: 1187,
           },
           {
             label: 'Large (13")',
-            originalPrice: 1849,
+            price: 1849,
             discountPercentage: 10,
-            discountedPrice: 1664,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2399,
+            price: 2399,
             discountPercentage: 15,
-            discountedPrice: 2039,
           },
         ],
       },
@@ -356,11 +335,8 @@ const products = [
     longDescription:
       "Our Chicken Tandoori Pizza brings together juicy tandoori-marinated chicken, fresh onions, green capsicum, tomatoes, and premium mozzarella cheese over our signature pizza sauce. Finished with aromatic herbs and baked on a freshly hand-tossed crust, this pizza delivers the perfect fusion of authentic Pakistani tandoori flavors and classic Italian-style pizza.",
 
-    price: {
-      originalPrice: 799,
-      discountPercentage: 0,
-      discountedPrice: 799,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -369,27 +345,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 799,
+            price: 799,
             discountPercentage: 0,
-            discountedPrice: 799,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1499,
+            price: 1499,
             discountPercentage: 5,
-            discountedPrice: 1424,
           },
           {
             label: 'Large (13")',
-            originalPrice: 2099,
+            price: 2099,
             discountPercentage: 10,
-            discountedPrice: 1889,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2799,
+            price: 2799,
             discountPercentage: 15,
-            discountedPrice: 2379,
           },
         ],
       },
@@ -467,11 +439,8 @@ const products = [
     longDescription:
       "Our Creamy Malai Boti Pizza is made with succulent malai-marinated chicken, creamy garlic sauce, premium mozzarella cheese, onions, and green capsicum. Baked on a freshly hand-tossed crust, every slice is rich, creamy, and packed with smooth, savory flavors, making it a perfect choice for those who enjoy mild yet indulgent pizzas.",
 
-    price: {
-      originalPrice: 849,
-      discountPercentage: 0,
-      discountedPrice: 849,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -480,27 +449,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 849,
+            price: 849,
             discountPercentage: 0,
-            discountedPrice: 849,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1549,
+            price: 1549,
             discountPercentage: 5,
-            discountedPrice: 1472,
           },
           {
             label: 'Large (13")',
-            originalPrice: 2199,
+            price: 2199,
             discountPercentage: 10,
-            discountedPrice: 1979,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2999,
+            price: 2999,
             discountPercentage: 15,
-            discountedPrice: 2549,
           },
         ],
       },
@@ -577,11 +542,8 @@ const products = [
     longDescription:
       "Our Chicken Supreme Pizza is topped with tender grilled chicken, fresh onions, green capsicum, mushrooms, black olives, sweet corn, and premium mozzarella cheese over our signature pizza sauce. Baked to perfection on a hand-tossed crust, it's a hearty, cheesy, and flavorful pizza that's perfect for every chicken lover.",
 
-    price: {
-      originalPrice: 849,
-      discountPercentage: 0,
-      discountedPrice: 849,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -590,27 +552,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 849,
+            price: 849,
             discountPercentage: 0,
-            discountedPrice: 849,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1549,
+            price: 1549,
             discountPercentage: 5,
-            discountedPrice: 1472,
           },
           {
             label: 'Large (13")',
-            originalPrice: 2199,
+            price: 2199,
             discountPercentage: 10,
-            discountedPrice: 1979,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2999,
+            price: 2999,
             discountPercentage: 15,
-            discountedPrice: 2549,
           },
         ],
       },
@@ -690,11 +648,8 @@ const products = [
     longDescription:
       "Our Cheese Lover Pizza is specially crafted for true cheese enthusiasts. Made with a generous layer of premium mozzarella, rich cheddar, and our signature pizza sauce, every slice delivers an irresistibly creamy, gooey, and satisfying experience. Baked on a freshly hand-tossed crust and finished with Italian herbs, it's the perfect comfort food for every cheese lover.",
 
-    price: {
-      originalPrice: 699,
-      discountPercentage: 0,
-      discountedPrice: 699,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -703,27 +658,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 699,
+            price: 699,
             discountPercentage: 0,
-            discountedPrice: 699,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1299,
+            price: 1299,
             discountPercentage: 5,
-            discountedPrice: 1234,
           },
           {
             label: 'Large (13")',
-            originalPrice: 1899,
+            price: 1899,
             discountPercentage: 10,
-            discountedPrice: 1709,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2499,
+            price: 2499,
             discountPercentage: 15,
-            discountedPrice: 2124,
           },
         ],
       },
@@ -799,11 +750,8 @@ const products = [
     longDescription:
       "Our Chicken BBQ Pizza is topped with tender grilled BBQ chicken, smoky barbecue sauce, premium mozzarella cheese, onions, green capsicum, and a sprinkle of Italian herbs. Baked on a freshly hand-tossed crust, every slice offers the perfect balance of sweet, smoky, and cheesy flavors that make this pizza an instant favorite.",
 
-    price: {
-      originalPrice: 799,
-      discountPercentage: 0,
-      discountedPrice: 799,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -812,27 +760,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 799,
+            price: 799,
             discountPercentage: 0,
-            discountedPrice: 799,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1449,
+            price: 1449,
             discountPercentage: 5,
-            discountedPrice: 1377,
           },
           {
             label: 'Large (13")',
-            originalPrice: 2099,
+            price: 2099,
             discountPercentage: 10,
-            discountedPrice: 1889,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2799,
+            price: 2799,
             discountPercentage: 15,
-            discountedPrice: 2379,
           },
         ],
       },
@@ -909,11 +853,8 @@ const products = [
     longDescription:
       "Our Chicken Fajita Pizza is topped with juicy fajita-seasoned chicken, fresh onions, green capsicum, tomatoes, and premium mozzarella cheese over our signature pizza sauce. Baked on a hand-tossed crust and finished with aromatic herbs, this pizza delivers a delicious combination of bold Mexican-inspired flavors and cheesy goodness in every slice.",
 
-    price: {
-      originalPrice: 749,
-      discountPercentage: 0,
-      discountedPrice: 749,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -922,27 +863,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 749,
+            price: 749,
             discountPercentage: 0,
-            discountedPrice: 749,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1399,
+            price: 1399,
             discountPercentage: 5,
-            discountedPrice: 1329,
           },
           {
             label: 'Large (13")',
-            originalPrice: 1999,
+            price: 1999,
             discountPercentage: 10,
-            discountedPrice: 1799,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2699,
+            price: 2699,
             discountPercentage: 15,
-            discountedPrice: 2294,
           },
         ],
       },
@@ -1020,11 +957,8 @@ const products = [
     longDescription:
       "Our Chicken Tikka Pizza is topped with succulent chicken tikka pieces, premium mozzarella cheese, onions, green capsicum, tomatoes, and our signature pizza sauce. Baked on a freshly hand-tossed crust and finished with aromatic herbs, this pizza perfectly blends the bold taste of traditional chicken tikka with the irresistible goodness of a classic pizza.",
 
-    price: {
-      originalPrice: 749,
-      discountPercentage: 0,
-      discountedPrice: 749,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -1033,27 +967,23 @@ const products = [
         options: [
           {
             label: 'Small (7")',
-            originalPrice: 749,
+            price: 749,
             discountPercentage: 0,
-            discountedPrice: 749,
           },
           {
             label: 'Medium (10")',
-            originalPrice: 1399,
+            price: 1399,
             discountPercentage: 5,
-            discountedPrice: 1329,
           },
           {
             label: 'Large (13")',
-            originalPrice: 1999,
+            price: 1999,
             discountPercentage: 10,
-            discountedPrice: 1799,
           },
           {
             label: 'Family (16")',
-            originalPrice: 2699,
+            price: 2699,
             discountPercentage: 15,
-            discountedPrice: 2294,
           },
         ],
       },
@@ -1133,10 +1063,10 @@ const products = [
     longDescription:
       "Our American Burger features a juicy grilled beef patty, melted cheddar cheese, crisp lettuce, fresh tomatoes, sliced onions, crunchy pickles, and our signature burger sauce, all served inside a soft toasted sesame bun. Every bite delivers the authentic taste of a classic American burger with rich flavors and premium ingredients.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 549,
+      amount: 549,
       discountPercentage: 0,
-      discountedPrice: 549,
     },
 
     variations: [],
@@ -1213,10 +1143,10 @@ const products = [
     longDescription:
       "Our Tikka Burger features a tender chicken fillet marinated in authentic tikka spices, grilled to perfection, and topped with crisp lettuce, fresh tomatoes, onions, and our signature creamy sauce. Served in a freshly toasted sesame bun, it's a delicious fusion of smoky desi flavors and classic burger goodness.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 399,
+      amount: 399,
       discountPercentage: 0,
-      discountedPrice: 399,
     },
 
     variations: [],
@@ -1291,10 +1221,10 @@ const products = [
     longDescription:
       "Our Chicken Patty Burger features a golden, crispy chicken patty layered with fresh lettuce, juicy tomatoes, sliced onions, and creamy mayonnaise inside a soft toasted sesame bun. Every bite delivers the perfect combination of crunch, tenderness, and rich flavor, making it an ideal choice for a quick and satisfying meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 399,
+      amount: 399,
       discountPercentage: 0,
-      discountedPrice: 399,
     },
 
     variations: [],
@@ -1369,10 +1299,10 @@ const products = [
     longDescription:
       "Our Zinger Burger features a perfectly seasoned crispy chicken fillet, fried until golden and crunchy, then topped with fresh lettuce, juicy tomatoes, sliced onions, and creamy mayonnaise inside a soft toasted sesame bun. Every bite delivers an irresistible combination of crunch, tenderness, and flavor, making it one of BiteX's most popular burgers.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 499,
+      amount: 499,
       discountPercentage: 0,
-      discountedPrice: 499,
     },
 
     variations: [],
@@ -1447,10 +1377,10 @@ const products = [
     longDescription:
       "Our Zinger Cheese Burger features a crispy golden chicken zinger fillet layered with melted cheddar cheese, crisp lettuce, fresh tomatoes, sliced onions, and creamy mayonnaise inside a soft toasted sesame bun. Every bite delivers the perfect combination of crunchy chicken, rich cheese, and fresh ingredients, making it an irresistible choice for cheese lovers.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 599,
+      amount: 599,
       discountPercentage: 0,
-      discountedPrice: 599,
     },
 
     variations: [],
@@ -1526,10 +1456,10 @@ const products = [
     longDescription:
       "Our Pizza Patty Burger combines the best of burgers and pizza in one delicious bite. It features a crispy chicken patty layered with rich pizza sauce, melted mozzarella cheese, fresh lettuce, tomatoes, onions, and a sprinkle of Italian herbs, all served inside a soft toasted sesame bun. It's cheesy, crispy, and packed with bold pizza-inspired flavors.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 649,
+      amount: 649,
       discountPercentage: 0,
-      discountedPrice: 649,
     },
 
     variations: [],
@@ -1606,10 +1536,10 @@ const products = [
     longDescription:
       "Our Fish Burger features a tender, flaky fish fillet coated in a crispy golden crumb, topped with fresh lettuce, juicy tomatoes, sliced onions, and creamy tartar sauce inside a soft toasted sesame bun. Every bite offers a light, crunchy, and flavorful seafood experience that's perfect for fish lovers seeking something different.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 699,
+      amount: 699,
       discountPercentage: 0,
-      discountedPrice: 699,
     },
 
     variations: [],
@@ -1684,10 +1614,10 @@ const products = [
     longDescription:
       "Our Crispy Fried Burger features a perfectly seasoned chicken fillet coated in a crunchy golden crust, topped with crisp lettuce, juicy tomatoes, sliced onions, and creamy mayonnaise inside a freshly toasted sesame bun. Every bite delivers an irresistible combination of crispy texture, juicy chicken, and fresh ingredients for a truly satisfying meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 649,
+      amount: 649,
       discountPercentage: 0,
-      discountedPrice: 649,
     },
 
     variations: [],
@@ -1762,10 +1692,10 @@ const products = [
     longDescription:
       "Our Grilled Chicken Burger features a tender, flame-grilled chicken breast seasoned with aromatic herbs and spices, layered with crisp lettuce, fresh tomatoes, sliced onions, and our signature garlic mayo inside a freshly toasted sesame bun. Every bite delivers a smoky, juicy, and wholesome flavor that's perfect for those who prefer grilled over fried.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 699,
+      amount: 699,
       discountPercentage: 0,
-      discountedPrice: 699,
     },
 
     variations: [],
@@ -1840,10 +1770,10 @@ const products = [
     longDescription:
       "Our Tower Cheese Burger is built for big appetites, featuring two crispy chicken fillets layered with slices of melted cheddar cheese, crisp lettuce, juicy tomatoes, fresh onions, creamy mayonnaise, and our signature burger sauce. Served in a freshly toasted sesame bun, every bite delivers a satisfying combination of crunchy chicken, rich cheese, and bold flavors that make this burger a true BiteX signature.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 799,
+      amount: 799,
       discountPercentage: 0,
-      discountedPrice: 799,
     },
 
     variations: [],
@@ -1920,10 +1850,10 @@ const products = [
     longDescription:
       "Our Pizza Zinger Burger brings together the irresistible crunch of a crispy zinger fillet with the rich flavors of a classic pizza. Layered with pizza sauce, melted mozzarella cheese, fresh lettuce, tomatoes, onions, and Italian herbs inside a toasted sesame bun, this burger delivers a cheesy, crispy, and satisfying fusion that's perfect for pizza and burger lovers alike.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 799,
+      amount: 799,
       discountPercentage: 0,
-      discountedPrice: 799,
     },
 
     variations: [],
@@ -2000,10 +1930,10 @@ const products = [
     longDescription:
       "Our Stuffed Burger is crafted for true burger lovers, featuring a thick crispy chicken patty stuffed with molten mozzarella cheese. Layered with cheddar cheese, fresh lettuce, juicy tomatoes, onions, creamy mayonnaise, and our signature burger sauce, it's served in a freshly toasted sesame bun. Every bite delivers an explosion of crispy texture, creamy cheese, and bold flavors, making it one of BiteX's most indulgent premium burgers.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 849,
+      amount: 849,
       discountPercentage: 0,
-      discountedPrice: 849,
     },
 
     variations: [],
@@ -2081,10 +2011,10 @@ const products = [
     longDescription:
       "Our Double Decker Burger is built for serious burger lovers. Featuring two crispy chicken fillets layered with melted cheddar cheese, crisp lettuce, fresh tomatoes, onions, creamy mayonnaise, and our signature burger sauce, this premium burger is served in a freshly toasted sesame bun. Every bite delivers double the crunch, double the flavor, and an unforgettable combination of juicy chicken, creamy cheese, and fresh ingredients.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 899,
+      amount: 899,
       discountPercentage: 0,
-      discountedPrice: 899,
     },
 
     variations: [],
@@ -2161,10 +2091,10 @@ const products = [
     longDescription:
       "The BiteX Special Burger is the pride of our menu, crafted with a premium crispy chicken fillet, melted cheddar and mozzarella cheese, fresh lettuce, juicy tomatoes, crispy onions, pickles, and our exclusive BiteX Special Sauce. Served in a freshly toasted sesame bun, this masterpiece combines rich flavors, premium ingredients, and generous portions to deliver the ultimate burger experience in every bite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 949,
+      amount: 949,
       discountPercentage: 0,
-      discountedPrice: 949,
     },
 
     variations: [],
@@ -2242,10 +2172,10 @@ const products = [
     longDescription:
       "Our Beef Burger is crafted with a thick, juicy grilled beef patty made from premium quality beef, topped with melted cheddar cheese, crisp lettuce, fresh tomatoes, onions, crunchy pickles, and our signature BiteX burger sauce. Served in a freshly toasted sesame bun, every bite delivers rich, smoky flavors, tender beef, and the perfect balance of freshness, making it a must-try for every beef lover.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 949,
+      amount: 949,
       discountPercentage: 0,
-      discountedPrice: 949,
     },
 
     variations: [],
@@ -2324,10 +2254,10 @@ const products = [
     longDescription:
       "Our Vegetable Fried Rice is prepared with premium long-grain rice, stir-fried over high heat with fresh carrots, cabbage, capsicum, green onions, sweet corn, and aromatic garlic. Seasoned with our signature soy-based sauce and authentic Asian spices, every serving delivers a perfect balance of freshness, flavor, and texture that's ideal as a meal on its own or alongside your favorite side dish.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 599,
+      amount: 599,
       discountPercentage: 0,
-      discountedPrice: 599,
     },
 
     variations: [],
@@ -2406,10 +2336,10 @@ const products = [
     longDescription:
       "Our Chicken Fried Rice is prepared with premium long-grain rice stir-fried over high heat with juicy chicken pieces, fresh carrots, cabbage, capsicum, green onions, garlic, and our signature soy-based seasoning. Cooked in a traditional wok, every serving delivers smoky aroma, perfectly balanced flavors, and a satisfying combination of tender chicken and fluffy rice.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 749,
+      amount: 749,
       discountPercentage: 0,
-      discountedPrice: 749,
     },
 
     variations: [],
@@ -2488,10 +2418,10 @@ const products = [
     longDescription:
       "Our Special Chicken Fried Rice is a premium Chinese dish prepared with fragrant long-grain rice, succulent chicken pieces, fluffy scrambled egg, fresh carrots, cabbage, capsicum, sweet corn, green onions, and garlic. Expertly stir-fried in a hot wok with our signature soy-based seasoning and aromatic spices, every serving delivers rich flavor, smoky aroma, and a generous portion that's perfect for a complete meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 899,
+      amount: 899,
       discountPercentage: 0,
-      discountedPrice: 899,
     },
 
     variations: [],
@@ -2572,10 +2502,10 @@ const products = [
     longDescription:
       "Our Vegetable Chow Mein is prepared with premium egg noodles stir-fried over high heat with fresh cabbage, carrots, capsicum, onions, sweet corn, green onions, and garlic. Tossed in our signature soy-based sauce and aromatic spices, every serving delivers the perfect balance of smoky wok flavor, fresh vegetables, and satisfying texture for an authentic Chinese dining experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 599,
+      amount: 599,
       discountPercentage: 0,
-      discountedPrice: 599,
     },
 
     variations: [],
@@ -2655,10 +2585,10 @@ const products = [
     longDescription:
       "Our Chicken Chow Mein is prepared using premium egg noodles stir-fried over high heat with tender chicken strips, fresh cabbage, carrots, capsicum, onions, green onions, and garlic. Tossed in our signature soy-based sauce with aromatic spices and sesame oil, every serving delivers smoky wok flavor, juicy chicken, and perfectly cooked noodles for an authentic Chinese dining experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 849,
+      amount: 849,
       discountPercentage: 0,
-      discountedPrice: 849,
     },
 
     variations: [],
@@ -2738,10 +2668,10 @@ const products = [
     longDescription:
       "Our Chicken Manchurian with Rice features crispy fried chicken pieces tossed in a rich, savory Manchurian sauce made with garlic, ginger, soy sauce, and aromatic spices. Served alongside a generous portion of fragrant egg fried rice, this classic Chinese favorite offers the perfect balance of sweet, spicy, and savory flavors, making it a hearty and satisfying meal for lunch or dinner.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1099,
+      amount: 1099,
       discountPercentage: 0,
-      discountedPrice: 1099,
     },
 
     variations: [],
@@ -2824,10 +2754,10 @@ const products = [
     longDescription:
       "Our Chicken Leg Piece is made from premium fresh chicken, marinated for hours in a blend of signature herbs and spices before being coated in our crispy seasoned breading. Pressure-fried until perfectly golden, it delivers a crunchy exterior with tender, juicy meat inside. Every bite is packed with bold flavor, making it the perfect choice for fried chicken lovers.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 299,
+      amount: 299,
       discountPercentage: 0,
-      discountedPrice: 299,
     },
 
     variations: [],
@@ -2905,10 +2835,10 @@ const products = [
     longDescription:
       "Our Chicken Thigh Piece is made from premium fresh chicken, marinated in a secret blend of herbs and spices before being coated in our signature crispy breading. Pressure-fried until golden brown, it offers an irresistible crunchy exterior with tender, juicy dark meat inside. Rich in flavor and perfectly seasoned, it's an ideal choice for anyone who loves succulent fried chicken.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 329,
+      amount: 329,
       discountPercentage: 0,
-      discountedPrice: 329,
     },
 
     variations: [],
@@ -2986,10 +2916,10 @@ const products = [
     longDescription:
       "Our 5 Hot Wings are marinated in a bold blend of herbs and fiery spices before being coated in our signature crispy breading and fried to golden perfection. Each wing delivers a crunchy exterior with juicy, tender meat inside. Packed with smoky heat and irresistible flavor, these wings are perfect as a snack, appetizer, or a satisfying meal for spice lovers.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 399,
+      amount: 399,
       discountPercentage: 0,
-      discountedPrice: 399,
     },
 
     variations: [],
@@ -3068,10 +2998,10 @@ const products = [
     longDescription:
       "Our 10 Hot Wings are marinated in a flavorful blend of herbs and fiery spices before being coated in our signature crispy breading and fried until perfectly golden. Served as a generous portion of ten wings, they're crunchy on the outside, juicy on the inside, and bursting with smoky, spicy flavor. Perfect for sharing with friends or satisfying serious wing cravings.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 749,
+      amount: 749,
       discountPercentage: 0,
-      discountedPrice: 749,
     },
 
     variations: [],
@@ -3150,10 +3080,10 @@ const products = [
     longDescription:
       "Our 10 BBQ Wings are marinated in a special blend of herbs and spices before being fried to a perfect golden crisp. Each wing is generously coated in our rich, smoky BBQ sauce, delivering a delicious balance of sweet, tangy, and savory flavors. Served as a generous portion of ten wings, they're perfect for sharing with family and friends or satisfying a serious BBQ craving.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 749,
+      amount: 749,
       discountPercentage: 0,
-      discountedPrice: 749,
     },
 
     variations: [],
@@ -3232,10 +3162,10 @@ const products = [
     longDescription:
       "Our 10 Chicken Nuggets are made from premium chicken breast, seasoned with a blend of herbs and spices, coated in a light crispy breadcrumb crust, and fried until perfectly golden. Crunchy on the outside and tender on the inside, these bite-sized nuggets are served fresh and pair perfectly with your favorite dipping sauce. They're ideal for sharing, snacking, or enjoying as a satisfying meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 749,
+      amount: 749,
       discountPercentage: 0,
-      discountedPrice: 749,
     },
 
     variations: [],
@@ -3315,10 +3245,10 @@ const products = [
     longDescription:
       "Our Small Fries are made from premium-quality potatoes, cut fresh and fried until perfectly golden and crispy. Lightly seasoned with BiteX's signature blend of salt and spices, they offer a fluffy interior with a satisfying crunch on the outside. Whether enjoyed on their own or paired with your favorite burger or fried chicken, these fries are the perfect side for any meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 249,
+      amount: 249,
       discountPercentage: 0,
-      discountedPrice: 249,
     },
 
     variations: [],
@@ -3392,10 +3322,10 @@ const products = [
     longDescription:
       "Our Medium Fries are prepared from premium-quality potatoes, freshly cut and fried until perfectly golden with a crispy exterior and fluffy interior. Lightly coated with BiteX's signature seasoning blend, they deliver the perfect balance of crunch and flavor. Ideal for sharing or enjoying alongside your favorite burger, pizza, or fried chicken meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 349,
+      amount: 349,
       discountPercentage: 0,
-      discountedPrice: 349,
     },
 
     variations: [],
@@ -3469,10 +3399,10 @@ const products = [
     longDescription:
       "Our Large Fries are made from premium farm-fresh potatoes, freshly cut and fried until perfectly golden. Crispy on the outside and fluffy on the inside, they're lightly coated with BiteX's signature seasoning for the perfect balance of flavor. Whether you're sharing with friends or enjoying them as a meal companion, these generously portioned fries deliver freshness, crunch, and satisfaction in every bite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 549,
+      amount: 549,
       discountPercentage: 0,
-      discountedPrice: 549,
     },
 
     variations: [],
@@ -3546,10 +3476,10 @@ const products = [
     longDescription:
       "Our Mayo Fries feature freshly cut premium potatoes fried until perfectly golden and crispy, then generously drizzled with rich, creamy mayonnaise. Finished with BiteX's signature seasoning and a sprinkle of herbs, every bite offers the perfect combination of crunchy fries and smooth, flavorful mayo. A customer favorite that's perfect as a snack or side dish.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 399,
+      amount: 399,
       discountPercentage: 0,
-      discountedPrice: 399,
     },
 
     variations: [],
@@ -3625,10 +3555,10 @@ const products = [
     longDescription:
       "Our Loaded Fries are the ultimate indulgence for fry lovers. Freshly cut golden fries are topped with juicy crispy chicken bites, rich melted mozzarella and cheddar cheese, jalapeños, fresh spring onions, and a generous drizzle of BiteX Signature Sauce, garlic mayo, and smoky BBQ sauce. Every bite delivers the perfect combination of crunchy fries, tender chicken, creamy cheese, and bold flavors, making it a complete meal rather than just a side dish.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 899,
+      amount: 899,
       discountPercentage: 0,
-      discountedPrice: 899,
     },
 
     variations: [],
@@ -3707,10 +3637,10 @@ const products = [
     longDescription:
       "The BiteX Special Soup is our house specialty, prepared with tender shredded chicken, mushrooms, carrots, cabbage, sweet corn, spring onions, and silky egg ribbons simmered in a rich, flavorful broth. Infused with aromatic herbs, black pepper, soy sauce, garlic, and our signature seasoning, this hearty soup delivers warmth, comfort, and a satisfying combination of textures. Perfect for sharing or enjoying as a wholesome meal on its own.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 899,
+      amount: 899,
       discountPercentage: 0,
-      discountedPrice: 899,
     },
 
     variations: [],
@@ -3792,10 +3722,10 @@ const products = [
     longDescription:
       "Our Hot and Sour Soup is crafted with tender shredded chicken, mushrooms, carrots, cabbage, bamboo shoots, egg ribbons, and spring onions simmered in a rich chicken broth. Flavored with soy sauce, vinegar, black pepper, chili, and aromatic spices, it delivers the perfect harmony of heat and tanginess. Every bowl is hearty, comforting, and packed with authentic Asian flavors that make it an ideal starter or light meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 849,
+      amount: 849,
       discountPercentage: 0,
-      discountedPrice: 849,
     },
 
     variations: [],
@@ -3878,10 +3808,10 @@ const products = [
     longDescription:
       "Our Vegetable Soup is a nourishing blend of fresh carrots, cabbage, mushrooms, sweet corn, green beans, peas, spring onions, and garlic simmered in a rich vegetable broth. Enhanced with aromatic herbs, black pepper, and signature seasonings, every bowl delivers comforting warmth and natural flavors. Light yet satisfying, it's the perfect choice for anyone looking for a healthy, delicious starter or a comforting meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 749,
+      amount: 749,
       discountPercentage: 0,
-      discountedPrice: 749,
     },
 
     variations: [],
@@ -3965,10 +3895,10 @@ const products = [
     longDescription:
       "Our Cheese Pasta is made with perfectly cooked premium pasta coated in a rich and creamy blend of mozzarella, cheddar, and parmesan cheese. Infused with garlic, butter, fresh herbs, and BiteX's signature seasoning, every bite delivers a smooth, cheesy, and comforting flavor. Finished with a sprinkle of parmesan and herbs, this dish is perfect for cheese lovers seeking a satisfying and indulgent meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 699,
+      amount: 699,
       discountPercentage: 0,
-      discountedPrice: 699,
     },
 
     variations: [],
@@ -4048,10 +3978,10 @@ const products = [
     longDescription:
       "Our Alfredo Pasta is prepared with perfectly cooked premium pasta tossed in a rich, velvety Alfredo sauce made from fresh cream, butter, parmesan cheese, and garlic. Tender grilled chicken pieces are added for extra flavor and protein, then finished with mixed herbs, cracked black pepper, and freshly grated parmesan. Every bite is smooth, creamy, and packed with authentic Italian-inspired flavors that make this dish a customer favorite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 799,
+      amount: 799,
       discountPercentage: 0,
-      discountedPrice: 799,
     },
 
     variations: [],
@@ -4130,10 +4060,10 @@ const products = [
     longDescription:
       "Our Creamy Chicken Pasta is crafted with premium pasta tossed in a luxurious cream sauce made from fresh cream, butter, mozzarella, and parmesan cheese. Tender grilled chicken strips are combined with sautéed garlic, mushrooms, and herbs to create a rich, velvety dish bursting with flavor. Finished with freshly grated parmesan and parsley, this indulgent pasta is the perfect choice for anyone craving a hearty and satisfying meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 949,
+      amount: 949,
       discountPercentage: 0,
-      discountedPrice: 949,
     },
 
     variations: [],
@@ -4214,10 +4144,10 @@ const products = [
     longDescription:
       "Our Crunchy Pasta combines perfectly cooked premium pasta with a rich, creamy cheese sauce made from fresh cream, mozzarella, and parmesan. It's topped with crispy golden fried chicken strips that add an irresistible crunch to every bite. Finished with garlic, herbs, parmesan cheese, and BiteX's signature seasoning, this indulgent dish delivers the perfect contrast between creamy pasta and crispy chicken, making it one of our most satisfying meals.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 999,
+      amount: 999,
       discountPercentage: 0,
-      discountedPrice: 999,
     },
 
     variations: [],
@@ -4298,10 +4228,10 @@ const products = [
     longDescription:
       "Our Spicy Penne Pasta features perfectly cooked penne pasta tossed in a bold, spicy tomato sauce infused with garlic, chili flakes, herbs, and BiteX's signature seasoning. Tender grilled chicken pieces, fresh bell peppers, onions, and parmesan cheese create a delicious combination of heat and savory flavor. Finished with parsley and freshly grated parmesan, this dish is perfect for guests who enjoy rich Italian flavors with a spicy kick.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 949,
+      amount: 949,
       discountPercentage: 0,
-      discountedPrice: 949,
     },
 
     variations: [],
@@ -4385,10 +4315,10 @@ const products = [
     longDescription:
       "Our Chicken Shawarma is prepared with tender chicken marinated for hours in a blend of Middle Eastern spices, then grilled to perfection for a smoky, juicy flavor. Wrapped in freshly baked pita bread with crisp lettuce, tomatoes, onions, pickles, and creamy garlic sauce, it's finished with BiteX's signature seasoning for a delicious balance of freshness and bold flavor in every bite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 299,
+      amount: 299,
       discountPercentage: 0,
-      discountedPrice: 299,
     },
 
     variations: [],
@@ -4467,10 +4397,10 @@ const products = [
     longDescription:
       "Our Chicken Cheese Shawarma features tender chicken marinated in authentic Middle Eastern spices and grilled to perfection. Wrapped in soft pita bread with melted mozzarella cheese, crisp lettuce, tomatoes, onions, pickles, and our signature garlic sauce, this shawarma delivers the perfect combination of smoky chicken, creamy cheese, and fresh vegetables. Every bite is rich, satisfying, and packed with bold flavors.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 349,
+      amount: 349,
       discountPercentage: 0,
-      discountedPrice: 349,
     },
 
     variations: [],
@@ -4550,10 +4480,10 @@ const products = [
     longDescription:
       "Our Veggie Shawarma is a delicious vegetarian wrap filled with freshly grilled bell peppers, mushrooms, onions, lettuce, tomatoes, cabbage, sweet corn, and pickles. Wrapped in warm pita bread with creamy garlic sauce and BiteX's signature Middle Eastern seasoning, this wholesome wrap offers the perfect balance of freshness, crunch, and savory flavor. It's a light yet satisfying choice for anyone craving a meat-free meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 299,
+      amount: 299,
       discountPercentage: 0,
-      discountedPrice: 299,
     },
 
     variations: [],
@@ -4634,10 +4564,10 @@ const products = [
     longDescription:
       "Our Special Kabab Shawarma is made with tender, smoky seekh kabab grilled to perfection and wrapped in freshly baked pita bread. Filled with crisp lettuce, tomatoes, onions, pickles, and creamy garlic sauce, it's finished with BiteX's signature Middle Eastern seasoning for a bold and satisfying flavor. Every bite delivers the perfect combination of juicy kabab, fresh vegetables, and rich, creamy sauce.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 399,
+      amount: 399,
       discountPercentage: 0,
-      discountedPrice: 399,
     },
 
     variations: [],
@@ -4716,10 +4646,10 @@ const products = [
     longDescription:
       "Our Chicken Paratha Roll is prepared with juicy marinated chicken grilled to perfection and wrapped in a freshly made flaky paratha. Filled with crisp lettuce, onions, tomatoes, cucumber, and drizzled with creamy garlic mayo and BiteX's signature spicy sauce, this roll delivers the perfect combination of smoky chicken, soft layers of paratha, and fresh crunchy vegetables. A hearty and flavorful meal that's perfect for lunch or dinner.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 399,
+      amount: 399,
       discountPercentage: 0,
-      discountedPrice: 399,
     },
 
     variations: [],
@@ -4799,10 +4729,10 @@ const products = [
     longDescription:
       "Our Zinger Shawarma combines a crispy golden fried chicken fillet with soft, freshly baked pita bread for the ultimate crunchy wrap. Layered with crisp lettuce, tomatoes, onions, pickles, creamy garlic mayo, and BiteX's signature spicy sauce, every bite delivers an irresistible mix of crunch, freshness, and bold flavors. It's the perfect fusion of a classic zinger and authentic shawarma, making it one of our most satisfying wraps.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 449,
+      amount: 449,
       discountPercentage: 0,
-      discountedPrice: 449,
     },
 
     variations: [],
@@ -4882,10 +4812,10 @@ const products = [
     longDescription:
       "Our Zinger Paratha Roll features a crispy golden fried chicken fillet wrapped inside a freshly made flaky paratha. Layered with crisp lettuce, onions, tomatoes, cucumber, creamy garlic mayo, and BiteX's signature spicy sauce, this hearty roll delivers the perfect balance of crunch, tenderness, and bold flavors. Every bite combines the richness of buttery paratha with the satisfying crispiness of our signature zinger chicken for an unforgettable meal.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 499,
+      amount: 499,
       discountPercentage: 0,
-      discountedPrice: 499,
     },
 
     variations: [],
@@ -4965,10 +4895,10 @@ const products = [
     longDescription:
       "Our Arabic Shawarma is inspired by authentic Middle Eastern street food. Tender chicken is marinated in traditional Arabic spices and slow-grilled until perfectly juicy, then wrapped in soft saj bread with crispy fries, pickles, creamy garlic sauce, and a touch of signature seasoning. Grilled until lightly crispy on the outside, this large shawarma delivers smoky, creamy, and savory flavors in every bite, making it one of BiteX's signature wraps.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 599,
+      amount: 599,
       discountPercentage: 0,
-      discountedPrice: 599,
     },
 
     variations: [],
@@ -5047,10 +4977,10 @@ const products = [
     longDescription:
       "Our Afghani Wrap features succulent chicken marinated in rich Afghani spices, yogurt, cream, garlic, and herbs, then flame-grilled until perfectly tender and juicy. Wrapped in soft flatbread with crisp lettuce, onions, tomatoes, and a generous layer of our signature creamy Afghani sauce, this wrap delivers a mild, smoky, and creamy flavor in every bite. It's a hearty, satisfying meal inspired by authentic Afghan cuisine and crafted with BiteX's premium ingredients.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 649,
+      amount: 649,
       discountPercentage: 0,
-      discountedPrice: 649,
     },
 
     variations: [],
@@ -5131,10 +5061,10 @@ const products = [
     longDescription:
       "Our Tender Wrap is made with golden crispy chicken tenders wrapped in soft flatbread and loaded with fresh lettuce, tomatoes, onions, crunchy pickles, and creamy garlic mayo. Finished with BiteX's signature spicy sauce and premium seasonings, this wrap delivers the perfect combination of crispy chicken, fresh vegetables, and bold flavors in every bite. It's a satisfying meal for anyone who loves crispy chicken wraps.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 699,
+      amount: 699,
       discountPercentage: 0,
-      discountedPrice: 699,
     },
 
     variations: [],
@@ -5214,10 +5144,10 @@ const products = [
     longDescription:
       "The Master Wrap is BiteX's premium signature wrap, crafted for those with a big appetite. It combines juicy grilled chicken and crispy chicken strips with melted mozzarella cheese, fresh lettuce, tomatoes, onions, pickles, and jalapeños, all wrapped in a soft toasted flatbread. Finished with creamy garlic mayo, smoky BBQ sauce, and BiteX's signature spicy sauce, every bite delivers a perfect balance of smoky, cheesy, crispy, and fresh flavors.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 749,
+      amount: 749,
       discountPercentage: 0,
-      discountedPrice: 749,
     },
 
     variations: [],
@@ -5303,10 +5233,10 @@ const products = [
     longDescription:
       "Our Mexican Chicken Steak features a tender, juicy chicken breast marinated in authentic Mexican herbs and spices before being flame-grilled to perfection. It's topped with our rich house-made Mexican sauce and served alongside golden crispy fries, sautéed seasonal vegetables, and creamy mashed potatoes. Every bite offers a delicious balance of smoky, spicy, and savory flavors, making it one of BiteX's signature premium steak platters.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1499,
+      amount: 1499,
       discountPercentage: 0,
-      discountedPrice: 1499,
     },
 
     variations: [],
@@ -5389,10 +5319,10 @@ const products = [
     longDescription:
       "Our Pepper Chicken Steak features a premium chicken breast marinated in herbs and signature spices before being flame-grilled until perfectly juicy and tender. Finished with our rich, creamy black pepper sauce, it's served alongside crispy golden fries, buttery mashed potatoes, and sautéed seasonal vegetables. The bold pepper flavor combined with the smoky grilled chicken creates a classic steak experience that's both hearty and satisfying.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1499,
+      amount: 1499,
       discountPercentage: 0,
-      discountedPrice: 1499,
     },
 
     variations: [],
@@ -5475,10 +5405,10 @@ const products = [
     longDescription:
       "Our Jalapeño Chicken Steak is crafted from a premium chicken breast marinated in signature herbs and spices, then flame-grilled until tender and juicy. It's finished with a rich, creamy jalapeño sauce that delivers a smooth, mildly spicy kick. Served with crispy golden fries, buttery mashed potatoes, and freshly sautéed seasonal vegetables, this steak platter offers the perfect combination of creamy, smoky, and spicy flavors for a premium dining experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1499,
+      amount: 1499,
       discountPercentage: 0,
-      discountedPrice: 1499,
     },
 
     variations: [],
@@ -5563,10 +5493,10 @@ const products = [
     longDescription:
       "Our Mediterranean Chicken Steak features a tender, premium chicken breast marinated in aromatic Mediterranean herbs, garlic, olive oil, and signature spices before being flame-grilled to perfection. It's finished with a rich, creamy Mediterranean herb sauce and served with crispy golden fries, buttery mashed potatoes, and freshly sautéed seasonal vegetables. Every bite delivers a balanced combination of smoky grilled chicken, fragrant herbs, and creamy flavors for an elegant premium steak experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1549,
+      amount: 1549,
       discountPercentage: 0,
-      discountedPrice: 1549,
     },
 
     variations: [],
@@ -5652,10 +5582,10 @@ const products = [
     longDescription:
       "Our American Chicken Steak features a premium chicken breast marinated in signature herbs and spices before being flame-grilled until perfectly tender and juicy. It's topped with a rich American-style mushroom cream sauce made with fresh mushrooms, butter, garlic, and cream. Served alongside crispy golden fries, creamy mashed potatoes, and sautéed seasonal vegetables, this hearty platter delivers comforting flavors and a premium steakhouse experience in every bite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1549,
+      amount: 1549,
       discountPercentage: 0,
-      discountedPrice: 1549,
     },
 
     variations: [],
@@ -5740,10 +5670,10 @@ const products = [
     longDescription:
       "Our Mexican Beef Steak is crafted from a premium cut of tender beef, marinated in authentic Mexican herbs, garlic, and signature spices before being flame-grilled to perfection. It's finished with our rich house-made Mexican sauce that delivers a bold, smoky, and mildly spicy flavor. Served alongside crispy golden fries, creamy mashed potatoes, and freshly sautéed seasonal vegetables, this premium steak platter offers a restaurant-quality dining experience with every bite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1999,
+      amount: 1999,
       discountPercentage: 0,
-      discountedPrice: 1999,
     },
 
     variations: [],
@@ -5827,10 +5757,10 @@ const products = [
     longDescription:
       "Our Pepper Beef Steak features a premium cut of tender beef, expertly marinated with signature herbs and spices before being flame-grilled to lock in its natural juices. It's finished with our creamy black pepper sauce made from freshly cracked black pepper, butter, garlic, and fresh cream. Served alongside crispy golden fries, buttery mashed potatoes, and sautéed seasonal vegetables, this steak platter delivers bold flavors and a classic steakhouse experience in every bite.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1999,
+      amount: 1999,
       discountPercentage: 0,
-      discountedPrice: 1999,
     },
 
     variations: [],
@@ -5914,10 +5844,10 @@ const products = [
     longDescription:
       "Our Jalapeño Beef Steak features a premium cut of tender beef, marinated in signature herbs and spices before being flame-grilled to perfection. It's finished with a rich, creamy jalapeño sauce made with fresh jalapeños, cream, and herbs, creating the perfect balance of heat and creaminess. Served alongside crispy golden fries, buttery mashed potatoes, and freshly sautéed seasonal vegetables, this premium steak platter delivers bold flavors and an unforgettable dining experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 1999,
+      amount: 1999,
       discountPercentage: 0,
-      discountedPrice: 1999,
     },
 
     variations: [],
@@ -6001,10 +5931,10 @@ const products = [
     longDescription:
       "Our Mediterranean Beef Steak features a premium cut of tender beef marinated in aromatic Mediterranean herbs, garlic, olive oil, and signature spices before being flame-grilled to perfection. Finished with a rich, creamy Mediterranean herb sauce, it's served alongside crispy golden fries, buttery mashed potatoes, and freshly sautéed seasonal vegetables. Every bite delivers a delicious combination of juicy beef, fragrant herbs, and creamy flavors for an authentic premium steakhouse experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 2099,
+      amount: 2099,
       discountPercentage: 0,
-      discountedPrice: 2099,
     },
 
     variations: [],
@@ -6090,10 +6020,10 @@ const products = [
     longDescription:
       "Our American Beef Steak is prepared using a premium cut of tender beef, marinated in signature herbs and spices before being flame-grilled to lock in its natural juices. It's finished with a rich American-style mushroom cream sauce made from fresh mushrooms, butter, garlic, and cream. Served alongside crispy golden fries, creamy mashed potatoes, and freshly sautéed seasonal vegetables, this hearty steak platter delivers comforting flavors and a true premium steakhouse experience.",
 
+    pricingType: "simple",
     price: {
-      originalPrice: 2099,
+      amount: 2099,
       discountPercentage: 50,
-      discountedPrice: 1049,
     },
 
     variations: [],
@@ -6185,11 +6115,8 @@ const products = [
     longDescription:
       "BiteX Cold Drink is our signature cola-style refreshment, blending sparkling carbonated water with balanced caramel sweetness and a smooth cola flavor. Served properly chilled, its fine bubbles and clean finish make it the ideal companion for pizzas, burgers, fried chicken, and spicy meals. Choose a 500 ml bottle for one, a 1 L or 1.5 L bottle for sharing, or a 2.25 L bottle for family meals and gatherings.",
 
-    price: {
-      originalPrice: 149,
-      discountPercentage: 0,
-      discountedPrice: 149,
-    },
+    pricingType: "variation",
+    price: null,
 
     variations: [
       {
@@ -6198,30 +6125,26 @@ const products = [
         options: [
           {
             label: "500 ml",
-            originalPrice: 149,
+            price: 149,
             discountPercentage: 0,
-            discountedPrice: 149,
             calories: 210,
           },
           {
             label: "1 L",
-            originalPrice: 229,
+            price: 229,
             discountPercentage: 0,
-            discountedPrice: 229,
             calories: 420,
           },
           {
             label: "1.5 L",
-            originalPrice: 299,
+            price: 299,
             discountPercentage: 0,
-            discountedPrice: 299,
             calories: 630,
           },
           {
             label: "2.25 L",
-            originalPrice: 399,
+            price: 399,
             discountPercentage: 0,
-            discountedPrice: 399,
             calories: 945,
           },
         ],
@@ -6310,24 +6233,6 @@ const createRatingSummary = (reviews) => {
   return { overallRating, totalReviews, distribution, reviews };
 };
 
-/**
- * Uses the first priced variation as the catalog-card starting price.
- * Products without priced variations retain their explicitly configured base price.
- */
-const createBasePrice = (product) => {
-  const firstPricedOption = product.variations
-    .flatMap((variation) => variation.options)
-    .find((option) => option.discountedPrice !== undefined);
-
-  if (!firstPricedOption) return product.price;
-
-  return {
-    originalPrice: firstPricedOption.originalPrice,
-    discountPercentage: firstPricedOption.discountPercentage,
-    discountedPrice: firstPricedOption.discountedPrice,
-  };
-};
-
 // Resolve category labels and derived commercial metadata once at module initialization.
 const catalog = products.map((product) => {
   const category = getCategoryById(product.categoryId);
@@ -6335,7 +6240,6 @@ const catalog = products.map((product) => {
   return {
     ...product,
     category: category.name,
-    price: createBasePrice(product),
     ratings: createRatingSummary(product.ratings.reviews),
   };
 });

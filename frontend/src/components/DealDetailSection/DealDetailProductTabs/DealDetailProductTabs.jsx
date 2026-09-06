@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { createProductDetailInformationItems } from '../../../data/productInformationItems';
+import { getProductPricing } from '../../../utils/pricing';
 import ProductDetailIngredients from '../../ProductDetailSection/ProductDetailIngredients/ProductDetailIngredients';
 import ProductDetailInformationItem from '../../ProductDetailSection/ProductDetailInformationItem/ProductDetailInformationItem';
 import styles from './DealDetailProductTabs.module.css';
@@ -20,6 +21,7 @@ function DealDetailProductTabs({ items }) {
   const active = validItems[activeIndex] || validItems[0];
   const { product } = active;
   const infoItems = createProductDetailInformationItems(product);
+  const pricing = getProductPricing(product);
 
   return (
     <div className={styles.section}>
@@ -52,7 +54,9 @@ function DealDetailProductTabs({ items }) {
         <div className={styles.panelHeader}>
           <h3 className={styles.panelTitle}>{product.title}</h3>
           <span className={styles.panelPrice}>
-            Rs. {product.price.discountedPrice.toLocaleString('en-PK')} each
+            {pricing
+              ? `${pricing.isStartingPrice ? 'From ' : ''}Rs. ${pricing.discountedPrice.toLocaleString('en-PK')} each`
+              : 'Price unavailable'}
           </span>
         </div>
         {product.shortDescription && (

@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 
 const priceSchema = new mongoose.Schema(
   {
-    originalPrice: { type: Number, required: true },
+    amount: { type: Number, required: true },
     discountPercentage: { type: Number, default: 0 },
-    discountedPrice: { type: Number, required: true },
   },
   { _id: false },
 );
@@ -12,9 +11,8 @@ const priceSchema = new mongoose.Schema(
 const variationOptionSchema = new mongoose.Schema(
   {
     label: { type: String, required: true },
-    originalPrice: { type: Number },
+    price: { type: Number },
     discountPercentage: { type: Number, default: 0 },
-    discountedPrice: { type: Number },
   },
   { _id: false },
 );
@@ -75,7 +73,8 @@ const productSchema = new mongoose.Schema(
     images: { type: [String], default: [] },
     shortDescription: { type: String, default: '' },
     longDescription: { type: String, default: '' },
-    price: { type: priceSchema, required: true },
+    pricingType: { type: String, enum: ['simple', 'variation'], required: true },
+    price: { type: priceSchema, required: false, default: null },
     variations: { type: [variationSchema], default: [] },
     addons: { type: [addonSchema], default: [] },
     ingredients: { type: [String], default: [] },
@@ -94,22 +93,10 @@ const productSchema = new mongoose.Schema(
 const RATING_LABELS = ['one', 'two', 'three', 'four', 'five'];
 
 /**
- * discountedPrice is always derived here, never trusted from client input, so an admin
- * only ever sets originalPrice + discountPercentage and the two numbers can never drift
- * out of sync (a stale discountedPrice left over from a previous edit, a typo, etc.).
- */
-const computeDiscountedPrice = (originalPrice, discountPercentage) => {
-  const original = Number(originalPrice) || 0;
-  const percentage = Math.min(100, Math.max(0, Number(discountPercentage) || 0));
-  return Math.max(0, Math.round(original - (original * percentage) / 100));
-};
-
-/**
- * Mirrors catalog.js's createRatingSummary/createBasePrice: aggregate ratings, per-option
- * discounted prices, and the catalog-card base price are all derived, not hand-authored,
- * so they cannot drift from the underlying reviews/variation data an admin edits. Runs
- * pre-validate (not pre-save) so the computed discountedPrice already exists by the time
- * price.discountedPrice's `required` validator checks for it.
+ * Aggregate rating metadata is derived, not hand-authored, so it cannot drift from the
+ * underlying reviews an admin edits. Pricing is no longer derived here — pricingType
+ * makes the authoritative price explicit (product.price for "simple", the selected
+ * variation option for "variation"), so there is nothing left to compute or borrow.
  */
 productSchema.pre('validate', function computeDerivedFields(next) {
   const reviews = this.ratings?.reviews || [];
@@ -125,51 +112,6 @@ productSchema.pre('validate', function computeDerivedFields(next) {
   this.ratings.totalReviews = totalReviews;
   this.ratings.overallRating = overallRating;
   this.ratings.distribution = distribution;
-
-  // A storewide/base discount should apply to every variation option automatically —
-  // an admin discounting the product shouldn't have to re-enter the same percentage
-  // on each size or flavor. An option that sets its own discount always wins that
-  // one instead. A real admin-set base price (originalPrice > 0) is never touched by
-  // the "borrow the first option's price" branch below, so this stays the discount
-  // the admin actually entered across every future edit — not whichever option
-  // happened to be first the last time this saved, which is what let a single
-  // option's own discount quietly hijack the base and stop propagating to the rest.
-  const baseDiscountPercentage = Number(this.price?.discountPercentage) || 0;
-  const hasOwnBasePrice = Number(this.price?.originalPrice) > 0;
-
-  // Only an option the admin actually priced (originalPrice > 0) counts as "priced" —
-  // otherwise every freshly-added option (which defaults to 0) would look priced and
-  // could wrongly win the "first priced option" race below.
-  this.variations.forEach((variation) => {
-    variation.options.forEach((option) => {
-      if (Number(option.originalPrice) > 0) {
-        const effectiveDiscount = Number(option.discountPercentage) > 0 ? option.discountPercentage : baseDiscountPercentage;
-        option.discountedPrice = computeDiscountedPrice(option.originalPrice, effectiveDiscount);
-      } else {
-        option.discountedPrice = undefined;
-      }
-    });
-  });
-
-  if (hasOwnBasePrice) {
-    this.price.discountedPrice = computeDiscountedPrice(this.price.originalPrice, this.price.discountPercentage);
-  } else {
-    // No real base price was set — borrow the first priced variation option's own
-    // numbers purely so the catalog card has something to display.
-    const firstPricedOption = this.variations
-      .flatMap((variation) => variation.options)
-      .find((option) => option.discountedPrice !== undefined);
-
-    if (firstPricedOption) {
-      this.price = {
-        originalPrice: firstPricedOption.originalPrice,
-        discountPercentage: firstPricedOption.discountPercentage || 0,
-        discountedPrice: firstPricedOption.discountedPrice,
-      };
-    } else if (this.price) {
-      this.price.discountedPrice = computeDiscountedPrice(this.price.originalPrice, this.price.discountPercentage);
-    }
-  }
 
   next();
 });

@@ -61,6 +61,10 @@ export function NotificationProvider({ children }) {
       dispatchToast({
         status: notification.type === 'order_cancelled' ? 'error' : 'order-update',
         message: notification.message,
+        // Lets the toast itself offer a "Leave a Review" shortcut for a delivered
+        // order — see ToastNotificationContainer/Notification. Undefined for every
+        // other notification type, so no other toast renders the button.
+        reviewOrderId: notification.type === 'order_delivered' ? notification.order : undefined,
       });
     });
 

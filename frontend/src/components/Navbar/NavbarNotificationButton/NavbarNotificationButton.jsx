@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useNotifications } from '../../../context/NotificationContext';
 import Icon from '../../Utils/Icon/Icon';
 import NavbarCartBadge from '../NavbarCartBadge/NavbarCartBadge';
@@ -33,6 +34,7 @@ function NavbarNotificationButton() {
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -56,6 +58,16 @@ function NavbarNotificationButton() {
 
   const handleNotificationClick = (notification) => {
     if (!notification.read) markAsRead(notification._id);
+  };
+
+  // Kept available here (not just on the toast, which has already dismissed itself by
+  // the time most customers get around to reviewing) so "leave a review" stays one
+  // click away for as long as the notification itself stays in the bell's history.
+  const handleReviewClick = (event, notification) => {
+    event.stopPropagation();
+    if (!notification.read) markAsRead(notification._id);
+    setIsOpen(false);
+    navigate(`/profile/orders/${notification.order}`);
   };
 
   return (
@@ -91,20 +103,34 @@ function NavbarNotificationButton() {
               <p className={styles.empty}>You have no notifications yet.</p>
             ) : (
               notifications.map((notification) => (
-                <button
+                <div
                   key={notification._id}
-                  type="button"
-                  role="menuitem"
                   className={`${styles.item} ${notification.read ? '' : styles.unread}`}
-                  onClick={() => handleNotificationClick(notification)}
                 >
-                  <span className={styles.itemDot} aria-hidden="true" />
-                  <span className={styles.itemBody}>
-                    <span className={styles.itemTitle}>{notification.title}</span>
-                    <span className={styles.itemMessage}>{notification.message}</span>
-                    <span className={styles.itemTime}>{formatRelativeTime(notification.createdAt)}</span>
-                  </span>
-                </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className={styles.itemMain}
+                    onClick={() => handleNotificationClick(notification)}
+                  >
+                    <span className={styles.itemDot} aria-hidden="true" />
+                    <span className={styles.itemBody}>
+                      <span className={styles.itemTitle}>{notification.title}</span>
+                      <span className={styles.itemMessage}>{notification.message}</span>
+                      <span className={styles.itemTime}>{formatRelativeTime(notification.createdAt)}</span>
+                    </span>
+                  </button>
+                  {notification.type === 'order_delivered' && notification.order && (
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className={styles.reviewButton}
+                      onClick={(event) => handleReviewClick(event, notification)}
+                    >
+                      Leave a Review
+                    </button>
+                  )}
+                </div>
               ))
             )}
           </div>

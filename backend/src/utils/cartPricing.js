@@ -1,6 +1,7 @@
 import DealSection from '../models/DealSection.js';
 import Product from '../models/Product.js';
 import { ApiError } from './ApiError.js';
+import { getProductBasePricing } from './pricing.js';
 import { toCartId } from './toCartId.js';
 
 export const MAX_ITEM_QUANTITY = 20;
@@ -51,10 +52,26 @@ export const priceProductItem = async (item) => {
     }
   }
 
-  const pricedVariation = selectedVariations.find(
-    ({ option }) => option.discountedPrice !== undefined,
-  );
-  const basePrice = pricedVariation?.option.discountedPrice ?? product.price.discountedPrice;
+  let pricing;
+  if (product.pricingType === 'variation') {
+    // assertValidPricing (productController.js) rejects a product with more than one
+    // priced variation at write time, so exactly one product.variations entry is ever
+    // "the" priced one. Identify it from the product definition itself — never by
+    // checking a selected option's price against zero, since a deliberately free
+    // option (price: 0, e.g. a "Kids" size included with a combo) is still that
+    // variation's authoritative selection, not evidence it's the wrong variation.
+    const pricedVariationDef = product.variations.find((variation) =>
+      variation.options.some((option) => option.price != null),
+    );
+    const matchedSelection = selectedVariations.find((entry) => entry.name === pricedVariationDef?.name);
+    pricing = getProductBasePricing(product, matchedSelection?.option);
+  } else {
+    pricing = getProductBasePricing(product);
+  }
+  if (!pricing) {
+    throw new ApiError(400, `${product.title} has no price set for the selected options.`);
+  }
+  const basePrice = pricing.discountedPrice;
 
   const requestedAddons = item.selections?.addons || [];
   const selectedAddons = requestedAddons

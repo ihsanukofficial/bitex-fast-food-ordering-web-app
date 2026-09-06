@@ -1,18 +1,19 @@
 import { Fragment, useState } from 'react';
-import { DAY_NAMES } from './dashboardAnalytics';
 import styles from './AdminDashboard.module.css';
 
 /**
  * PeakHoursHeatmap
  *
- * Order volume by day-of-week x hour-of-day. A sequential encoding is the right
- * choice for a single magnitude (order count) — one hue (the admin's brand red),
- * light to dark, rather than a categorical palette. Implemented as opacity steps
- * over the same red used everywhere else on the dashboard, so it reads as "more of
- * the same thing" rather than a new, unrelated color scale.
+ * Order volume across the last 7 days x hour-of-day, today always the last row. A
+ * sequential encoding is the right choice for a single magnitude (order count) — one
+ * hue (the admin's brand red), light to dark, rather than a categorical palette.
+ * Implemented as opacity steps over the same red used everywhere else on the
+ * dashboard, so it reads as "more of the same thing" rather than a new, unrelated
+ * color scale.
  */
-function PeakHoursHeatmap({ grid }) {
+function PeakHoursHeatmap({ heatmap }) {
   const [hoverCell, setHoverCell] = useState(null);
+  const { grid, days } = heatmap;
 
   const maxCount = Math.max(...grid.flat(), 1);
   const total = grid.flat().reduce((sum, count) => sum + count, 0);
@@ -33,27 +34,31 @@ function PeakHoursHeatmap({ grid }) {
           </div>
         ))}
 
-        {DAY_NAMES.map((dayName, dayIndex) => (
-          <Fragment key={dayName}>
-            <div className={styles.heatmapDayLabel}>{dayName}</div>
+        {days.map((day, dayIndex) => (
+          <Fragment key={dayIndex}>
+            <div className={styles.heatmapDayLabel}>
+              {day.label}
+              {day.isToday && <span className={styles.heatmapTodayTag}>Today</span>}
+            </div>
             {Array.from({ length: 24 }, (_, hour) => {
               const count = grid[dayIndex][hour];
               const isHovered = hoverCell?.day === dayIndex && hoverCell?.hour === hour;
               return (
                 <div
-                  key={`${dayName}-${hour}`}
+                  key={`${dayIndex}-${hour}`}
                   className={styles.heatmapCell}
                   style={{ opacity: count === 0 ? 0.06 : 0.12 + (count / maxCount) * 0.88 }}
                   onPointerEnter={() => setHoverCell({ day: dayIndex, hour, count })}
                   onPointerLeave={() => setHoverCell(null)}
                   role="img"
-                  aria-label={`${dayName} ${hour}:00, ${count} order${count === 1 ? '' : 's'}`}
+                  aria-label={`${day.label}${day.isToday ? ' (today)' : ''} ${hour}:00, ${count} order${count === 1 ? '' : 's'}`}
                 >
                   {isHovered && (
                     <div className={styles.heatmapTooltip}>
                       <strong>{count} order{count === 1 ? '' : 's'}</strong>
                       <span>
-                        {dayName}, {hour}:00
+                        {day.label}
+                        {day.isToday ? ' (today)' : ''}, {hour}:00
                       </span>
                     </div>
                   )}
@@ -73,12 +78,13 @@ function PeakHoursHeatmap({ grid }) {
       {/* Same values, reachable without hovering — for screen readers and keyboard users.
           Explicit roles restore the table semantics CSS display:block (see the stylesheet) removes. */}
       <table className={styles.srOnlyTable} role="table">
-        <caption>Order counts by day of week and hour</caption>
+        <caption>Order counts by day and hour, last 7 days</caption>
         <tbody role="rowgroup">
-          {DAY_NAMES.map((dayName, dayIndex) => (
-            <tr key={dayName} role="row">
+          {days.map((day, dayIndex) => (
+            <tr key={dayIndex} role="row">
               <th scope="row" role="rowheader">
-                {dayName}
+                {day.label}
+                {day.isToday ? ' (today)' : ''}
               </th>
               {grid[dayIndex].map((count, hour) => (
                 <td key={hour} role="cell">

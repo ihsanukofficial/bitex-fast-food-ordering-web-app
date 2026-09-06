@@ -95,6 +95,7 @@ function ToastNotificationContainer() {
           id,
           message: createMessage(detail),
           status: detail.status,
+          reviewOrderId: detail.reviewOrderId,
         },
       ]);
 
@@ -148,6 +149,7 @@ function ToastNotificationContainer() {
           message={notification.message}
           status={notification.status}
           isExiting={notification.isExiting}
+          reviewOrderId={notification.reviewOrderId}
           onDismiss={() => dismissNotification(notification.id)}
         />
       ))}

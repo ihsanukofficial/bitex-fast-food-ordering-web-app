@@ -50,6 +50,7 @@ const seedProducts = async () => {
     images: product.images.map(copySeedAsset),
     shortDescription: product.shortDescription,
     longDescription: product.longDescription,
+    pricingType: product.pricingType,
     price: product.price,
     variations: product.variations,
     addons: product.addons,

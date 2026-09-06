@@ -38,6 +38,24 @@
   border-bottom: 1px solid var(--admin-border);
 }
 
+.pricingTag {
+  flex-shrink: 0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: var(--admin-bg);
+  color: var(--admin-muted);
+}
+
+.pricingTag[data-priced='true'] {
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+}
+
 .variationBadge {
   display: grid;
   place-items: center;
@@ -73,6 +91,27 @@
   outline: none;
   border-color: var(--admin-red);
   box-shadow: 0 0 0 3px var(--admin-red-soft);
+}
+
+.pricingTypeToggle {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.pricingTypeToggle label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--admin-ink-soft);
+  cursor: pointer;
+}
+
+.pricingTypeToggle input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--admin-red);
 }
 
 .requiredToggle {
@@ -127,6 +166,13 @@
 
 .optionRow + .optionRow {
   margin-top: 0.5rem;
+}
+
+/* Used for a variation other than the first — it can only ever be a free choice
+   (label only), so the price/discount/final-price columns aren't shown at all. */
+.optionRowSimple {
+  grid-template-columns: minmax(9rem, 2fr) auto;
+  min-width: 0;
 }
 
 .optionHeaderRow {

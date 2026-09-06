@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { apiClient, uploadFile } from '../../../services/apiClient';
 import AdminDrawer from '../../../components/Admin/AdminDrawer/AdminDrawer';
 import Icon from '../../../components/Utils/Icon/Icon';
+import { calculateDiscountedPrice, getProductPricing } from '../../../utils/pricing';
 import styles from '../admin.module.css';
 import productStyles from './AdminProducts.module.css';
 
@@ -11,7 +12,8 @@ const EMPTY_FORM = {
   images: [],
   shortDescription: '',
   longDescription: '',
-  price: { originalPrice: 0, discountPercentage: 0 },
+  pricingType: 'simple',
+  price: { amount: 0, discountPercentage: 0 },
   variations: [],
   addons: [],
   ingredients: '',
@@ -31,18 +33,10 @@ const toList = (value) =>
     .map((entry) => entry.trim())
     .filter(Boolean);
 
-/**
- * Preview-only mirror of the backend's discountedPrice formula (see Product.js's
- * pre-validate hook) — purely informational, since the server always recomputes the
- * real value and never trusts whatever the client displays or sends. A variation
- * option without its own discount inherits the base price's, so pass that as
- * `fallbackDiscountPercentage` when previewing an option's price.
- */
-const computeDiscountedPricePreview = ({ originalPrice, discountPercentage }, fallbackDiscountPercentage = 0) => {
-  const original = Number(originalPrice) || 0;
-  const ownDiscount = Number(discountPercentage) || 0;
-  const percentage = Math.min(100, Math.max(0, ownDiscount > 0 ? ownDiscount : Number(fallbackDiscountPercentage) || 0));
-  return Math.max(0, Math.round(original - (original * percentage) / 100));
+const productPricingLabel = (product) => {
+  const pricing = getProductPricing(product);
+  if (!pricing) return 'No price set';
+  return `${pricing.isStartingPrice ? 'From ' : ''}Rs. ${pricing.discountedPrice}`;
 };
 
 const productToForm = (product) => ({
@@ -51,7 +45,10 @@ const productToForm = (product) => ({
   images: product.images,
   shortDescription: product.shortDescription,
   longDescription: product.longDescription,
-  price: { originalPrice: product.price.originalPrice, discountPercentage: product.price.discountPercentage },
+  pricingType: product.pricingType,
+  price: product.price
+    ? { amount: product.price.amount, discountPercentage: product.price.discountPercentage }
+    : { amount: 0, discountPercentage: 0 },
   variations: product.variations,
   addons: product.addons,
   ingredients: product.ingredients.join(', '),
@@ -153,11 +150,12 @@ function AdminProducts() {
     }));
   };
   const addOption = (variationIndex) => {
+    // Only the first variation can ever carry pricing (see the Variations section
+    // hint) — options on any other variation are a free choice, so they never get
+    // price/discountPercentage fields to begin with.
+    const newOption = variationIndex === 0 ? { label: '', price: 0, discountPercentage: 0 } : { label: '' };
     updateVariation(variationIndex, {
-      options: [
-        ...form.variations[variationIndex].options,
-        { label: '', originalPrice: 0, discountPercentage: 0 },
-      ],
+      options: [...form.variations[variationIndex].options, newOption],
     });
   };
   const updateOption = (variationIndex, optionIndex, changes) => {
@@ -215,10 +213,29 @@ function AdminProducts() {
     try {
       const payload = {
         ...form,
-        price: {
-          originalPrice: Number(form.price.originalPrice),
-          discountPercentage: Number(form.price.discountPercentage),
-        },
+        price:
+          form.pricingType === 'simple'
+            ? {
+                amount: Number(form.price.amount),
+                discountPercentage: Number(form.price.discountPercentage),
+              }
+            : null,
+        // Only the first variation may carry pricing — strip any price/discount off
+        // every other variation's options regardless of what's in state, so importing
+        // a priced variation from another product (which lands after index 0) can
+        // never smuggle a second priced variation into the payload.
+        variations: form.variations.map((variation, variationIndex) => ({
+          ...variation,
+          options: variation.options.map((option) =>
+            variationIndex === 0
+              ? {
+                  ...option,
+                  price: option.price === '' || option.price == null ? undefined : Number(option.price),
+                  discountPercentage: Number(option.discountPercentage) || 0,
+                }
+              : { label: option.label },
+          ),
+        })),
         ingredients: toList(form.ingredients),
         allergens: toList(form.allergens),
         badges: toList(form.badges),
@@ -292,7 +309,9 @@ function AdminProducts() {
                 </td>
                 <td className={styles.cellPrimary}>{product.title}</td>
                 <td className={styles.cellMuted}>{categoryName(product.categoryId)}</td>
-                <td className={styles.cellPrimary}>Rs. {product.price.discountedPrice}</td>
+                <td className={styles.cellPrimary}>
+                  {productPricingLabel(product)}
+                </td>
                 <td>
                   <span className={styles.badge} data-tone={product.available ? 'success' : 'danger'}>
                     {product.available ? 'Available' : 'Unavailable'}
@@ -424,23 +443,51 @@ function AdminProducts() {
           </div>
 
           <div className={styles.formSection}>
+            <span className={styles.fieldGroupLabel}>Pricing</span>
+            <p className={styles.fieldGroupHint}>
+              Simple products are priced once, here. Variation products (e.g. a pizza priced by
+              size) are priced entirely through their variation options below instead — this
+              product never gets its own base price, so there&rsquo;s only ever one price to edit
+              per size/option.
+            </p>
+            <div className={productStyles.pricingTypeToggle} style={{ marginTop: '0.75rem' }}>
+              <label>
+                <input
+                  type="radio"
+                  name="pricingType"
+                  checked={form.pricingType === 'simple'}
+                  onChange={() => setForm({ ...form, pricingType: 'simple', variations: [] })}
+                />
+                <span>Simple</span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="pricingType"
+                  checked={form.pricingType === 'variation'}
+                  onChange={() => setForm({ ...form, pricingType: 'variation' })}
+                />
+                <span>Variation</span>
+              </label>
+            </div>
+          </div>
+
+          {form.pricingType === 'simple' && (
+          <div className={styles.formSection}>
             <span className={styles.fieldGroupLabel}>Base price</span>
             <p className={styles.fieldGroupHint}>
-              Required (greater than 0) unless this product has variations with their own pricing —
-              in that case the first priced variation option determines the displayed price
-              automatically. The discounted price is calculated automatically and isn&rsquo;t editable.
-              This discount % also applies to every variation option that doesn&rsquo;t set its own —
-              an option with its own discount always uses that instead.
+              Required (greater than 0). The discounted price is calculated automatically and
+              isn&rsquo;t editable.
             </p>
             <div className={styles.formRow} style={{ marginTop: '0.75rem' }}>
               <label className={styles.field}>
-                <span>Original price</span>
+                <span>Price</span>
                 <input
                   type="number"
                   min={1}
-                  value={form.price.originalPrice}
+                  value={form.price.amount}
                   onChange={(event) =>
-                    setForm({ ...form, price: { ...form.price, originalPrice: event.target.value } })
+                    setForm({ ...form, price: { ...form.price, amount: event.target.value } })
                   }
                 />
               </label>
@@ -458,10 +505,15 @@ function AdminProducts() {
               </label>
               <label className={styles.field}>
                 <span>Discounted price (calculated)</span>
-                <input type="number" value={computeDiscountedPricePreview(form.price)} disabled />
+                <input
+                  type="number"
+                  value={calculateDiscountedPrice(form.price.amount, form.price.discountPercentage)}
+                  disabled
+                />
               </label>
             </div>
           </div>
+          )}
 
           <div className={styles.formSection}>
             <span className={styles.fieldGroupLabel}>Images</span>
@@ -483,13 +535,18 @@ function AdminProducts() {
             <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
           </div>
 
+          {form.pricingType === 'variation' && (
           <div className={styles.formSection}>
             <div className={styles.panelHeader} style={{ marginBottom: '0.75rem' }}>
               <div>
                 <span className={styles.fieldGroupLabel}>Variations</span>
                 <p className={styles.fieldGroupHint}>
-                  Choices the customer picks from, like a size or a flavor. Mark one Required to force a
-                  choice before the item can be added to the cart.
+                  Choices the customer picks from, like a size or a flavor. The <strong>first
+                  variation</strong> is the only one that can be priced — that&rsquo;s what sets this
+                  product&rsquo;s price, so mark it Required to force a choice before the item can be
+                  added to the cart. Any variation added after that is just a free choice (e.g.
+                  Color, Flavor) with no price of its own; if a choice should add extra cost (e.g.
+                  a crust upgrade), price that in Addons below instead.
                 </p>
               </div>
               <button type="button" className={styles.secondaryButton} onClick={addVariation}>
@@ -542,6 +599,9 @@ function AdminProducts() {
                     value={variation.name}
                     onChange={(event) => updateVariation(variationIndex, { name: event.target.value })}
                   />
+                  <span className={productStyles.pricingTag} data-priced={variationIndex === 0}>
+                    {variationIndex === 0 ? 'Priced' : 'Free choice'}
+                  </span>
                   <label className={productStyles.requiredToggle}>
                     <input
                       type="checkbox"
@@ -562,67 +622,104 @@ function AdminProducts() {
                 </div>
 
                 <div className={productStyles.optionTableWrap}>
-                  {variation.options.length > 0 && (
-                    <div className={`${productStyles.optionRow} ${productStyles.optionHeaderRow}`}>
-                      <span>Option</span>
-                      <span>Price</span>
-                      <span>Discount %</span>
-                      <span>Final price</span>
-                      <span />
-                    </div>
+                  {variationIndex === 0 ? (
+                    <>
+                      {variation.options.length > 0 && (
+                        <div className={`${productStyles.optionRow} ${productStyles.optionHeaderRow}`}>
+                          <span>Option</span>
+                          <span>Price</span>
+                          <span>Discount %</span>
+                          <span>Final price</span>
+                          <span />
+                        </div>
+                      )}
+                      {variation.options.map((option, optionIndex) => (
+                        <div key={optionIndex} className={productStyles.optionRow}>
+                          <input
+                            required
+                            aria-label="Option label"
+                            placeholder="Label, e.g. Large"
+                            className={productStyles.tableInput}
+                            value={option.label}
+                            onChange={(event) =>
+                              updateOption(variationIndex, optionIndex, { label: event.target.value })
+                            }
+                          />
+                          <input
+                            type="number"
+                            min={0}
+                            aria-label="Price"
+                            className={productStyles.tableInput}
+                            value={option.price ?? 0}
+                            onChange={(event) =>
+                              updateOption(variationIndex, optionIndex, { price: Number(event.target.value) })
+                            }
+                          />
+                          <input
+                            type="number"
+                            min={0}
+                            max={100}
+                            aria-label="Discount percentage"
+                            className={productStyles.tableInput}
+                            value={option.discountPercentage ?? 0}
+                            onChange={(event) =>
+                              updateOption(variationIndex, optionIndex, {
+                                discountPercentage: Number(event.target.value),
+                              })
+                            }
+                          />
+                          <input
+                            disabled
+                            type="number"
+                            aria-label="Discounted price (calculated)"
+                            className={productStyles.tableInput}
+                            value={calculateDiscountedPrice(option.price, option.discountPercentage)}
+                          />
+                          <button
+                            type="button"
+                            className={productStyles.iconButton}
+                            aria-label="Remove option"
+                            title="Remove option"
+                            onClick={() => removeOption(variationIndex, optionIndex)}
+                          >
+                            <Icon name="ri-close-line" size="0.95rem" ariaLabel="" />
+                          </button>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {variation.options.length > 0 && (
+                        <div className={`${productStyles.optionRow} ${productStyles.optionRowSimple} ${productStyles.optionHeaderRow}`}>
+                          <span>Option</span>
+                          <span />
+                        </div>
+                      )}
+                      {variation.options.map((option, optionIndex) => (
+                        <div key={optionIndex} className={`${productStyles.optionRow} ${productStyles.optionRowSimple}`}>
+                          <input
+                            required
+                            aria-label="Option label"
+                            placeholder="Label, e.g. Blue"
+                            className={productStyles.tableInput}
+                            value={option.label}
+                            onChange={(event) =>
+                              updateOption(variationIndex, optionIndex, { label: event.target.value })
+                            }
+                          />
+                          <button
+                            type="button"
+                            className={productStyles.iconButton}
+                            aria-label="Remove option"
+                            title="Remove option"
+                            onClick={() => removeOption(variationIndex, optionIndex)}
+                          >
+                            <Icon name="ri-close-line" size="0.95rem" ariaLabel="" />
+                          </button>
+                        </div>
+                      ))}
+                    </>
                   )}
-                  {variation.options.map((option, optionIndex) => (
-                    <div key={optionIndex} className={productStyles.optionRow}>
-                      <input
-                        required
-                        aria-label="Option label"
-                        placeholder="Label, e.g. Large"
-                        className={productStyles.tableInput}
-                        value={option.label}
-                        onChange={(event) =>
-                          updateOption(variationIndex, optionIndex, { label: event.target.value })
-                        }
-                      />
-                      <input
-                        type="number"
-                        aria-label="Original price"
-                        className={productStyles.tableInput}
-                        value={option.originalPrice}
-                        onChange={(event) =>
-                          updateOption(variationIndex, optionIndex, { originalPrice: Number(event.target.value) })
-                        }
-                      />
-                      <input
-                        type="number"
-                        min={0}
-                        max={100}
-                        aria-label="Discount percentage"
-                        className={productStyles.tableInput}
-                        value={option.discountPercentage}
-                        onChange={(event) =>
-                          updateOption(variationIndex, optionIndex, {
-                            discountPercentage: Number(event.target.value),
-                          })
-                        }
-                      />
-                      <input
-                        disabled
-                        type="number"
-                        aria-label="Discounted price (calculated)"
-                        className={productStyles.tableInput}
-                        value={computeDiscountedPricePreview(option, form.price.discountPercentage)}
-                      />
-                      <button
-                        type="button"
-                        className={productStyles.iconButton}
-                        aria-label="Remove option"
-                        title="Remove option"
-                        onClick={() => removeOption(variationIndex, optionIndex)}
-                      >
-                        <Icon name="ri-close-line" size="0.95rem" ariaLabel="" />
-                      </button>
-                    </div>
-                  ))}
                   <button
                     type="button"
                     className={productStyles.addRowButton}
@@ -635,6 +732,7 @@ function AdminProducts() {
               </div>
             ))}
           </div>
+          )}
 
           <div className={styles.formSection}>
             <div className={styles.panelHeader} style={{ marginBottom: '0.75rem' }}>

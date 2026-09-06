@@ -5,7 +5,6 @@ import useAdminOrderEvents from '../../../hooks/useAdminOrderEvents';
 import { apiClient } from '../../../services/apiClient';
 import Icon from '../../../components/Utils/Icon/Icon';
 import {
-  DAY_NAMES,
   ORDER_STATUS_LABELS,
   PERIODS,
   attachComparison,
@@ -168,6 +167,20 @@ function AdminDashboard() {
   useAdminOrderEvents(() => {
     load().catch((requestError) => setError(requestError.message));
   });
+
+  // Order events alone won't shift the peak-hours heatmap's rolling 7-day window
+  // if the tab is left open across midnight with no new activity — this tick forces
+  // a re-render each minute so "today" (and thus the last row) never goes stale.
+  // Scoped to the Operations tab only (the sole consumer of the heatmap): every other
+  // tab's analytics recompute from scratch on every re-render (nothing here is
+  // memoized), so ticking unconditionally would burn a full recompute of whichever
+  // tab happens to be open, every minute, for a staleness fix it doesn't need.
+  const [, forceClockTick] = useState(0);
+  useEffect(() => {
+    if (activeTab !== 'operations') return undefined;
+    const interval = setInterval(() => forceClockTick((tick) => tick + 1), 60000);
+    return () => clearInterval(interval);
+  }, [activeTab]);
 
   if (tab && !TABS.some((entry) => entry.id === tab)) {
     return <Navigate to="/admin/dashboard" replace />;
@@ -696,7 +709,9 @@ function AdminDashboard() {
       const avgFulfillmentHours = computeAvgFulfillmentHours(periodOrders);
       const cancellationStats = computeCancellationStats(periodOrders);
       const previousCancellationStats = computeCancellationStats(previousOrders);
-      const peakHeatmap = buildPeakHeatmap(periodOrders);
+      // Always the last 7 calendar days (today last) regardless of the period filter
+      // above, refreshed live via useAdminOrderEvents + the periodic clock tick.
+      const peakHeatmap = buildPeakHeatmap(orders, now);
       const cancellationTrend = attachComparison(
         buildCancellationTrend(orders, period, now, customRange),
         orders,
@@ -711,11 +726,11 @@ function AdminDashboard() {
 
       let busiestSlot = '—';
       let busiestCount = -1;
-      peakHeatmap.forEach((row, day) =>
+      peakHeatmap.grid.forEach((row, day) =>
         row.forEach((count, hour) => {
           if (count > busiestCount) {
             busiestCount = count;
-            busiestSlot = `${DAY_NAMES[day]}, ${hour}:00`;
+            busiestSlot = `${peakHeatmap.days[day].label}, ${hour}:00`;
           }
         }),
       );
@@ -742,7 +757,7 @@ function AdminDashboard() {
           label: 'Busiest Time',
           value: busiestCount > 0 ? busiestSlot : '—',
           icon: 'ri-fire-fill',
-          context: busiestCount > 0 ? `${busiestCount} orders in that hour` : 'No orders yet',
+          context: busiestCount > 0 ? `${busiestCount} orders in that hour, last 7 days` : 'No orders yet',
         },
         {
           key: 'promo-uses',
@@ -775,9 +790,11 @@ function AdminDashboard() {
           <div className={`${adminStyles.panel} ${styles.chartPanel}`}>
             <div className={adminStyles.panelHeaderText}>
               <h2 className={styles.sectionTitle}>Peak Order Times</h2>
-              <p className={adminStyles.panelSubtitle}>When orders actually come in, by day and hour.</p>
+              <p className={adminStyles.panelSubtitle}>
+                When orders actually come in, by day and hour — last 7 days, live.
+              </p>
             </div>
-            <PeakHoursHeatmap grid={peakHeatmap} />
+            <PeakHoursHeatmap heatmap={peakHeatmap} />
           </div>
 
           <div className={adminStyles.panel}>

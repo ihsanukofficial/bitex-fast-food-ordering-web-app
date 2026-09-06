@@ -4,3 +4,8 @@
   flex-wrap: wrap;
   gap: 0.75rem;
 }
+
+.startingFrom {
+  font-size: 0.85rem;
+  color: #5d6269;
+}
