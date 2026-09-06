@@ -191,8 +191,26 @@
   color: #9c9c9c;
 }
 
-@media (max-width: 420px) {
+/* On phones, an absolutely-positioned dropdown pinned to the bell's own right edge
+   reads as lopsided and can run close to (or past) the screen edge. Fixed instead,
+   with the same left/right inset Container.module.css uses for the rest of the
+   page's gutter, both centers it on the screen and matches its width to everything
+   else on the page, rather than a dropdown-width guess. */
+@media (max-width: 639px) {
   .menu {
-    width: min(90vw, 22rem);
+    position: fixed;
+    top: 82px;
+    left: 1.25rem;
+    right: 1.25rem;
+    width: auto;
+    max-width: none;
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 359px) {
+  .menu {
+    left: 1rem;
+    right: 1rem;
   }
 }
