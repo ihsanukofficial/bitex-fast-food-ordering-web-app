@@ -195,7 +195,7 @@ const products = [
 
     available: true,
 
-    badges: ["Customer Favorite"],
+    badges: [],
 
     tags: ["Pepperoni", "Beef", "Cheesy", "Classic"],
 
@@ -301,7 +301,7 @@ const products = [
 
     available: true,
 
-    badges: ["Vegetarian"],
+    badges: [],
 
     tags: ["Veggie", "Fresh", "Cheesy", "Garden Fresh"],
 
@@ -405,7 +405,7 @@ const products = [
 
     available: true,
 
-    badges: ["Customer Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Tandoori", "Spicy", "Cheesy", "Desi Flavor"],
 
@@ -508,7 +508,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Choice", "Creamy Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Creamy", "Malai Boti", "Cheesy", "Mild"],
 
@@ -614,7 +614,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Chicken Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Loaded", "Cheesy", "Premium", "Supreme"],
 
@@ -716,7 +716,7 @@ const products = [
 
     available: true,
 
-    badges: ["Cheese Lover", "Customer Favorite"],
+    badges: [],
 
     tags: ["Cheesy", "Creamy", "Vegetarian", "Classic", "Premium"],
 
@@ -819,7 +819,7 @@ const products = [
 
     available: true,
 
-    badges: ["Smoky Favorite", "Best Seller"],
+    badges: [],
 
     tags: ["Chicken", "BBQ", "Smoky", "Cheesy", "Grilled"],
 
@@ -923,7 +923,7 @@ const products = [
 
     available: true,
 
-    badges: ["Spicy Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Fajita", "Spicy", "Cheesy", "Loaded"],
 
@@ -1027,7 +1027,7 @@ const products = [
 
     available: true,
 
-    badges: ["Desi Favorite", "Best Seller"],
+    badges: [],
 
     tags: ["Chicken", "Tikka", "Spicy", "Cheesy", "Desi"],
 
@@ -1109,7 +1109,7 @@ const products = [
 
     available: true,
 
-    badges: ["Classic", "Best Seller"],
+    badges: [],
 
     tags: ["Beef", "American", "Grilled", "Classic", "Cheesy"],
 
@@ -1187,7 +1187,7 @@ const products = [
 
     available: true,
 
-    badges: ["Desi Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Tikka", "Spicy", "Grilled", "Desi"],
 
@@ -1265,7 +1265,7 @@ const products = [
 
     available: true,
 
-    badges: ["Customer Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Crispy", "Classic", "Juicy", "Mayo"],
 
@@ -1343,7 +1343,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Customer Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Zinger", "Crispy", "Crunchy", "Classic"],
 
@@ -1422,7 +1422,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Cheese Lover"],
+    badges: [],
 
     tags: ["Chicken", "Zinger", "Cheesy", "Crispy", "Premium"],
 
@@ -1502,7 +1502,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Choice", "Fusion Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Pizza", "Cheesy", "Fusion", "Crispy"],
 
@@ -1580,7 +1580,7 @@ const products = [
 
     available: true,
 
-    badges: ["Seafood Special", "Chef's Choice"],
+    badges: [],
 
     tags: ["Fish", "Seafood", "Crispy", "Fresh", "Premium"],
 
@@ -1658,7 +1658,7 @@ const products = [
 
     available: true,
 
-    badges: ["Customer Favorite", "Crispy Special"],
+    badges: [],
 
     tags: ["Chicken", "Crispy", "Fried", "Crunchy", "Classic"],
 
@@ -1736,7 +1736,7 @@ const products = [
 
     available: true,
 
-    badges: ["Healthy Choice", "Grilled Favorite"],
+    badges: [],
 
     tags: ["Chicken", "Grilled", "Healthy", "Juicy", "Smoky"],
 
@@ -1816,7 +1816,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Big Bite", "Best Seller"],
+    badges: [],
 
     tags: ["Tower", "Double Chicken", "Cheesy", "Crispy", "Premium"],
 
@@ -1896,7 +1896,7 @@ const products = [
 
     available: true,
 
-    badges: ["Fusion Favorite", "Chef's Choice", "Premium"],
+    badges: [],
 
     tags: ["Chicken", "Zinger", "Pizza", "Cheesy", "Fusion"],
 
@@ -1977,7 +1977,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Premium", "Cheese Lover"],
+    badges: [],
 
     tags: ["Stuffed", "Chicken", "Cheesy", "Premium", "Crispy"],
 
@@ -2057,7 +2057,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Mega Size", "Best Seller"],
+    badges: [],
 
     tags: ["Double", "Chicken", "Cheesy", "Premium", "Loaded"],
 
@@ -2138,7 +2138,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Chef's Special", "Best Seller", "Premium"],
+    badges: ["Signature", "Best Seller"],
 
     tags: ["Signature", "Chicken", "Premium", "Loaded", "Cheesy"],
 
@@ -2218,7 +2218,7 @@ const products = [
 
     available: true,
 
-    badges: ["Premium", "Beef Lover", "Chef's Choice"],
+    badges: [],
 
     tags: ["Beef", "Grilled", "Premium", "Juicy", "Classic"],
 
@@ -2302,7 +2302,7 @@ const products = [
 
     available: true,
 
-    badges: ["Vegetarian", "Healthy Choice"],
+    badges: [],
 
     tags: ["Chinese", "Rice", "Vegetarian", "Fresh", "Stir-Fried"],
 
@@ -2384,7 +2384,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "High Protein"],
+    badges: [],
 
     tags: ["Chinese", "Chicken", "Rice", "Wok Tossed", "Protein Rich"],
 
@@ -2468,7 +2468,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "High Protein"],
+    badges: ["Signature", "Best Seller"],
 
     tags: ["Chinese", "Chicken", "Fried Rice", "Signature", "Premium"],
 
@@ -2551,7 +2551,7 @@ const products = [
 
     available: true,
 
-    badges: ["Vegetarian", "Healthy Choice"],
+    badges: [],
 
     tags: ["Chinese", "Noodles", "Vegetarian", "Wok Tossed", "Fresh"],
 
@@ -2634,7 +2634,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "High Protein"],
+    badges: [],
 
     tags: ["Chinese", "Chicken", "Noodles", "Wok Tossed", "Protein Rich"],
 
@@ -2718,7 +2718,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Signature", "High Protein"],
+    badges: [],
 
     tags: ["Chinese", "Chicken", "Manchurian", "Rice", "Signature"],
 
@@ -2801,7 +2801,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Crispy", "Freshly Fried"],
+    badges: [],
 
     tags: ["Fried Chicken", "Chicken Leg", "Crispy", "Juicy", "Crunchy"],
 
@@ -2882,7 +2882,7 @@ const products = [
 
     available: true,
 
-    badges: ["Customer Favorite", "Crispy", "Freshly Fried"],
+    badges: [],
 
     tags: ["Fried Chicken", "Chicken Thigh", "Juicy", "Crunchy", "Premium"],
 
@@ -2964,7 +2964,7 @@ const products = [
 
     available: true,
 
-    badges: ["Spicy", "Best Seller", "Freshly Fried"],
+    badges: [],
 
     tags: ["Fried Chicken", "Hot Wings", "Spicy", "Crispy", "Snack"],
 
@@ -3046,7 +3046,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Perfect for Sharing", "Spicy"],
+    badges: [],
 
     tags: ["Fried Chicken", "Hot Wings", "Spicy", "Sharing", "Crispy"],
 
@@ -3128,7 +3128,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "BBQ Favorite", "Perfect for Sharing"],
+    badges: [],
 
     tags: ["Fried Chicken", "BBQ Wings", "Smoky", "Sharing", "Crispy"],
 
@@ -3209,7 +3209,7 @@ const products = [
 
     available: true,
 
-    badges: ["Kids' Favorite", "Best Seller", "Perfect for Sharing"],
+    badges: ["Best Seller"],
 
     tags: ["Chicken", "Nuggets", "Crispy", "Snack", "Sharing"],
 
@@ -3288,7 +3288,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Crispy", "Fresh Cut"],
+    badges: [],
 
     tags: ["Fries", "Sides", "Crispy", "Potato", "Snack"],
 
@@ -3365,7 +3365,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Fresh Cut", "Perfect for Sharing"],
+    badges: [],
 
     tags: ["Fries", "Sides", "Crispy", "Golden", "Potato"],
 
@@ -3442,7 +3442,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Perfect for Sharing", "Fresh Cut"],
+    badges: [],
 
     tags: ["Fries", "Sides", "Crispy", "Golden", "Sharing"],
 
@@ -3521,7 +3521,7 @@ const products = [
 
     available: true,
 
-    badges: ["Customer Favorite", "Creamy", "Best Seller"],
+    badges: [],
 
     tags: ["Fries", "Mayonnaise", "Creamy", "Sides", "Snack"],
 
@@ -3603,7 +3603,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "Cheese Lover", "Loaded"],
+    badges: ["Signature", "Best Seller"],
 
     tags: ["Loaded Fries", "Chicken", "Cheesy", "Premium", "Sharing"],
 
@@ -3688,7 +3688,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "Chef's Special"],
+    badges: ["Signature", "Best Seller"],
 
     tags: ["Soup", "Chicken", "Comfort Food", "Premium", "Signature"],
 
@@ -3774,7 +3774,7 @@ const products = [
 
     available: true,
 
-    badges: ["Spicy", "Best Seller", "Classic Chinese"],
+    badges: [],
 
     tags: ["Soup", "Chinese", "Hot & Sour", "Spicy", "Comfort Food"],
 
@@ -3859,7 +3859,7 @@ const products = [
 
     available: true,
 
-    badges: ["Healthy Choice", "Vegetarian", "Freshly Prepared"],
+    badges: [],
 
     tags: ["Soup", "Vegetarian", "Healthy", "Comfort Food", "Fresh"],
 
@@ -3944,7 +3944,7 @@ const products = [
 
     available: true,
 
-    badges: ["Cheese Lover", "Creamy", "Best Seller"],
+    badges: [],
 
     tags: ["Pasta", "Cheesy", "Creamy", "Italian", "Comfort Food"],
 
@@ -4026,7 +4026,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Creamy", "Italian Classic"],
+    badges: [],
 
     tags: ["Pasta", "Alfredo", "Chicken", "Creamy", "Italian"],
 
@@ -4110,7 +4110,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Creamy", "High Protein", "Chef's Favorite"],
+    badges: [],
 
     tags: ["Pasta", "Chicken", "Creamy", "Italian", "Premium"],
 
@@ -4194,7 +4194,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "Crunchy", "High Protein"],
+    badges: ["Signature", "Best Seller"],
 
     tags: ["Pasta", "Crispy Chicken", "Creamy", "Cheesy", "Premium"],
 
@@ -4279,7 +4279,7 @@ const products = [
 
     available: true,
 
-    badges: ["Spicy", "Best Seller", "Italian Classic", "High Protein"],
+    badges: [],
 
     tags: ["Pasta", "Penne", "Spicy", "Chicken", "Italian"],
 
@@ -4363,7 +4363,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Freshly Grilled", "Customer Favorite"],
+    badges: [],
 
     tags: ["Shawarma", "Wrap", "Chicken", "Middle Eastern", "Grilled"],
 
@@ -4446,7 +4446,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Cheese Lover", "Freshly Grilled"],
+    badges: [],
 
     tags: ["Shawarma", "Wrap", "Chicken", "Cheesy", "Middle Eastern"],
 
@@ -4530,7 +4530,7 @@ const products = [
 
     available: true,
 
-    badges: ["Vegetarian", "Fresh", "Healthy Choice"],
+    badges: [],
 
     tags: ["Shawarma", "Wrap", "Vegetarian", "Fresh", "Healthy"],
 
@@ -4612,7 +4612,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Best Seller", "Freshly Grilled"],
+    badges: [],
 
     tags: ["Shawarma", "Wrap", "Kabab", "Grilled", "Signature"],
 
@@ -4695,7 +4695,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Freshly Made", "High Protein"],
+    badges: [],
 
     tags: ["Paratha Roll", "Chicken", "Wrap", "Grilled", "Street Food"],
 
@@ -4778,7 +4778,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Crispy", "Customer Favorite", "High Protein"],
+    badges: [],
 
     tags: ["Shawarma", "Wrap", "Zinger", "Crispy Chicken", "Fusion"],
 
@@ -4861,7 +4861,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Crispy", "High Protein", "Customer Favorite"],
+    badges: [],
 
     tags: ["Paratha Roll", "Zinger", "Crispy Chicken", "Wrap", "Street Food"],
 
@@ -4943,7 +4943,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "Authentic Arabic", "High Protein"],
+    badges: ["Signature", "Best Seller"],
 
     tags: ["Arabic Shawarma", "Chicken", "Wrap", "Middle Eastern", "Signature"],
 
@@ -5027,7 +5027,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "Creamy", "High Protein"],
+    badges: [],
 
     tags: ["Afghani", "Wrap", "Chicken", "Creamy", "Grilled"],
 
@@ -5110,7 +5110,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Crispy", "High Protein", "Customer Favorite"],
+    badges: [],
 
     tags: ["Wrap", "Chicken Tenders", "Crispy Chicken", "Flatbread", "Premium"],
 
@@ -5197,7 +5197,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Best Seller", "Loaded", "High Protein"],
+    badges: [],
 
     tags: ["Master Wrap", "Chicken", "Loaded", "Signature", "Premium"],
 
@@ -5285,7 +5285,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Chef's Special", "High Protein", "Premium"],
+    badges: ["Signature"],
 
     tags: ["Steak", "Chicken", "Mexican", "Grilled", "Premium"],
 
@@ -5371,7 +5371,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Chef's Special", "Premium", "High Protein"],
+    badges: [],
 
     tags: ["Steak", "Chicken", "Black Pepper", "Grilled", "Premium"],
 
@@ -5458,7 +5458,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Premium", "High Protein", "Spicy"],
+    badges: [],
 
     tags: ["Steak", "Chicken", "Jalapeño", "Grilled", "Premium"],
 
@@ -5547,7 +5547,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Premium", "High Protein", "Herb Infused"],
+    badges: [],
 
     tags: ["Steak", "Chicken", "Mediterranean", "Grilled", "Premium"],
 
@@ -5635,7 +5635,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Premium", "High Protein", "Customer Favorite"],
+    badges: [],
 
     tags: ["Steak", "Chicken", "American", "Mushroom Sauce", "Premium"],
 
@@ -5722,7 +5722,7 @@ const products = [
 
     available: true,
 
-    badges: ["Signature", "Premium", "Chef's Special", "High Protein"],
+    badges: [],
 
     tags: ["Steak", "Beef", "Mexican", "Grilled", "Premium"],
 
@@ -5809,7 +5809,7 @@ const products = [
 
     available: true,
 
-    badges: ["Best Seller", "Premium", "Chef's Special", "High Protein"],
+    badges: [],
 
     tags: ["Steak", "Beef", "Black Pepper", "Grilled", "Premium"],
 
@@ -5896,7 +5896,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Premium", "High Protein", "Spicy"],
+    badges: [],
 
     tags: ["Steak", "Beef", "Jalapeño", "Grilled", "Premium"],
 
@@ -5985,7 +5985,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Premium", "High Protein", "Herb Infused"],
+    badges: [],
 
     tags: ["Steak", "Beef", "Mediterranean", "Grilled", "Premium"],
 
@@ -6073,7 +6073,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chef's Special", "Premium", "High Protein", "Customer Favorite"],
+    badges: [],
 
     tags: ["Steak", "Beef", "American", "Mushroom Sauce", "Premium"],
 
@@ -6180,7 +6180,7 @@ const products = [
 
     available: true,
 
-    badges: ["Chilled", "Signature Drink"],
+    badges: ["Signature Drink"],
 
     tags: ["Cold Drink", "Cola", "Carbonated", "Refreshing", "Family Size"],
 

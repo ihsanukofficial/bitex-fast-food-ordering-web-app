@@ -1,16 +1,17 @@
 .description {
   margin: 0;
-  color: #6f6a63;
+  display: -webkit-box;
+  overflow: hidden;
+  color: #726c62;
   font-size: 0.82rem;
-  line-height: 1.55;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-@media (max-width: 639px) {
+@media (min-width: 1024px) {
   .description {
-    display: -webkit-box;
-    overflow: hidden;
-    font-size: 0.72rem;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 }

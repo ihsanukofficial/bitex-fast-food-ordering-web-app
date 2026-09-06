@@ -1,12 +1,22 @@
 .price {
   color: #d71b1f;
-  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-size: 1.3rem;
   font-weight: 850;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
-@media (max-width: 639px) {
+@media (min-width: 1024px) {
   .price {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
   }
+}
+
+.fromLabel {
+  margin-right: 0.25rem;
+  color: #8c837a;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }

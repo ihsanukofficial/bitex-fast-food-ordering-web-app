@@ -2,10 +2,20 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.35rem 0.55rem;
+  height: 1.6rem;
+  padding: 0 0.55rem;
   border-radius: 999px;
   background: #f5f1ea;
-  color: #655f57;
+  color: #4a453d;
   font-size: 0.7rem;
-  font-weight: 650;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .status {
+    height: 1.75rem;
+    padding: 0 0.65rem;
+    font-size: 0.76rem;
+  }
 }

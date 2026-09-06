@@ -1,14 +1,13 @@
 .media {
+  grid-area: media;
   position: relative;
-  padding: 1.75rem 1.25rem;
+  min-width: 0;
+  /* Centered, not stretched or top-pinned: on tablet/desktop the content column is
+     usually the taller of the two (see ProductCardContent), so this keeps the
+     square balanced within that row instead of looking stuck to one edge with
+     empty space on the other side. */
+  align-self: center;
+  aspect-ratio: 1 / 1;
   background: #fff;
-}
-
-@media (max-width: 639px) {
-  .media {
-    min-width: 0;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 0.75rem 0.5rem;
-  }
+  overflow: hidden;
 }

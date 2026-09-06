@@ -1,0 +1,34 @@
+.footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 0.8rem 1rem 1rem;
+  border-top: 1px solid #eee3d2;
+}
+
+/* Its own column now (see ProductCardShell), not a row spanning underneath — this is
+   the one area that opts back into filling the row's full height (ProductCardShell's
+   grid otherwise sizes every area to its own content), specifically so price and the
+   action can center within whatever height the row ends up being. */
+@media (min-width: 640px) {
+  .footer {
+    align-self: stretch;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.1rem;
+    border-top: none;
+    border-left: 1px solid #eee3d2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    gap: 0.65rem;
+    padding: 1.35rem 1.5rem;
+  }
+}

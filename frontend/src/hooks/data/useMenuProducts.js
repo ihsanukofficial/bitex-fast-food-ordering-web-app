@@ -35,6 +35,7 @@ export const mapProductToCardProps = (product) => {
     spiceLevel: product.spiceLevel,
     image: product.images[0],
     variations: product.variations,
+    badges: product.badges,
   };
 };
 

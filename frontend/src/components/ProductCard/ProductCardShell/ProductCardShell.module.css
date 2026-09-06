@@ -2,14 +2,27 @@
   position: relative;
   width: 100%;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* Mobile default: a plain vertical stack — image on top, details, then price+CTA.
+     Each area name below is matched by a `grid-area` declared on the actual element
+     in its own module (ProductCardMedia/Content/Footer) — plain identifiers, not
+     CSS-module class names, so this still works across the module boundary. */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'media'
+    'content'
+    'footer';
+  /* Not stretch: letting each area take its own natural height is what keeps the
+     card's overall height driven by its content instead of by whichever area
+     happens to be tallest — see ProductCardFooter, the one area that opts back into
+     stretching once there's a row (tablet+) worth stretching within. */
+  align-items: start;
   border: 1px solid #eadfcd;
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   overflow: hidden;
   background: #fff;
   box-sizing: border-box;
-  box-shadow: 0 0.65rem 2rem rgba(83, 50, 9, 0.07);
+  box-shadow: 0 0.5rem 1.5rem rgba(83, 50, 9, 0.06);
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
@@ -18,8 +31,8 @@
 
 .card:hover {
   border-color: #e1c994;
-  box-shadow: 0 1.25rem 3rem rgba(83, 50, 9, 0.14);
-  transform: translateY(-6px);
+  box-shadow: 0 0.9rem 2.2rem rgba(83, 50, 9, 0.12);
+  transform: translateY(-3px);
 }
 
 .card:focus-within {
@@ -27,13 +40,19 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 639px) {
+/* Tablet: back to three columns side by side, but tighter image/price widths than
+   desktop gets — there's less total width to split three ways. */
+@media (min-width: 640px) {
   .card {
-    display: grid;
-    grid-template-columns: minmax(105px, 38%) minmax(0, 1fr);
-    align-items: stretch;
-    border-width: 1px;
-    border-radius: 1.1rem;
+    grid-template-columns: minmax(110px, 130px) minmax(0, 1fr) minmax(130px, 155px);
+    grid-template-areas: 'media content footer';
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    grid-template-columns: minmax(145px, 170px) minmax(0, 1fr) minmax(170px, 200px);
+    border-radius: 1.4rem;
   }
 }
 

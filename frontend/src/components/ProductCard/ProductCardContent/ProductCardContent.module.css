@@ -1,19 +1,25 @@
 .content {
-  flex: 1;
+  grid-area: content;
+  min-width: 0;
   background: #fff;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  padding: 1.25rem;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
   border-top: 1px solid #eee3d2;
 }
 
-@media (max-width: 639px) {
+@media (min-width: 640px) {
   .content {
-    min-width: 0;
-    gap: 0.5rem;
-    padding: 0.85rem;
-    border-top: 0;
+    padding: 1rem 1.1rem;
+    border-top: none;
     border-left: 1px solid #eee3d2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content {
+    gap: 0.65rem;
+    padding: 1.35rem 1.5rem;
   }
 }

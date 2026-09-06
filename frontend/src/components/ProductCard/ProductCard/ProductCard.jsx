@@ -3,9 +3,12 @@ import { useCart } from '../../../context/CartContext';
 import { toCartId } from '../../../utils/cartConstants';
 import WishlistHeartButton from '../../Wishlist/WishlistHeartButton/WishlistHeartButton';
 import ProductCardAddToCartButton from '../ProductCardAddToCartButton/ProductCardAddToCartButton';
+import ProductCardBadge from '../ProductCardBadge/ProductCardBadge';
 import ProductCardContent from '../ProductCardContent/ProductCardContent';
 import ProductCardDescription from '../ProductCardDescription/ProductCardDescription';
 import ProductCardDetailLink from '../ProductCardDetailLink/ProductCardDetailLink';
+import ProductCardFooter from '../ProductCardFooter/ProductCardFooter';
+import ProductCardHeader from '../ProductCardHeader/ProductCardHeader';
 import ProductCardImage from '../ProductCardImage/ProductCardImage';
 import ProductCardImageFrame from '../ProductCardImageFrame/ProductCardImageFrame';
 import ProductCardInfo from '../ProductCardInfo/ProductCardInfo';
@@ -21,7 +24,13 @@ import ProductCardVariationStatus from '../ProductCardVariationStatus/ProductCar
  * ProductCard
  *
  * Presents catalog product data and supplies default variation selections when adding
- * directly from a listing.
+ * directly from a listing. One per row (see MenuProductsGrid) gives this a full-width
+ * row's worth of space, used as three regions — a square image, a details column
+ * (title + rating on one line, a capped description, then tags), and price + the
+ * add-to-cart action as their own column — rather than a tall stack where each piece
+ * claims a full row of its own. Narrower than ~700px (ProductCardShell), there isn't
+ * room for that third column, so price/action drops to its own full-width row
+ * underneath instead — see ProductCardFooter.
  */
 function ProductCard({
   productId,
@@ -36,6 +45,7 @@ function ProductCard({
   preparationTime,
   spiceLevel,
   variations = [],
+  badges = [],
   onAddToCart,
 }) {
   const { addProduct } = useCart();
@@ -79,30 +89,32 @@ function ProductCard({
         <ProductCardImageFrame>
           <ProductCardImage src={image} alt={title} />
         </ProductCardImageFrame>
+        <ProductCardBadge badges={badges} />
         <WishlistHeartButton productId={productId} />
       </ProductCardMedia>
       <ProductCardContent>
-        <ProductCardTitle>{title}</ProductCardTitle>
-        <ProductCardDescription>{description}</ProductCardDescription>
-        <ProductCardPricing
-          currentPrice={currentPrice}
-          originalPrice={originalPrice}
-        />
-        <ProductCardPurchaseMeta>
+        <ProductCardHeader>
+          <ProductCardTitle>{title}</ProductCardTitle>
           <ProductCardRating rating={rating} reviewCount={reviewCount} />
+        </ProductCardHeader>
+        <ProductCardDescription>{description}</ProductCardDescription>
+        <ProductCardPurchaseMeta>
           <ProductCardVariationStatus
             variationNames={variations.map((variation) => variation.name)}
           />
+          <ProductCardInfo preparationTime={preparationTime} spiceLevel={spiceLevel} />
         </ProductCardPurchaseMeta>
-        <ProductCardInfo
-          preparationTime={preparationTime}
-          spiceLevel={spiceLevel}
+      </ProductCardContent>
+      <ProductCardFooter>
+        <ProductCardPricing
+          currentPrice={currentPrice}
+          originalPrice={originalPrice}
         />
         <ProductCardAddToCartButton
           onClick={handleAddToCart}
           label={hasRequiredVariation ? 'Select Options' : 'Add to Cart'}
         />
-      </ProductCardContent>
+      </ProductCardFooter>
     </ProductCardShell>
   );
 }

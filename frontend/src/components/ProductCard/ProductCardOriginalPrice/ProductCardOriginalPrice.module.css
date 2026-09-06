@@ -1,13 +1,20 @@
 .price {
   margin-left: 0.35rem;
-  color: #928a7f;
-  font-size: 0.95rem;
+  color: #a39a8d;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: line-through;
+  white-space: nowrap;
 }
 
-@media (max-width: 639px) {
+@media (min-width: 640px) {
   .price {
-    margin-left: 0.4rem;
-    font-size: 0.8rem;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .price {
+    font-size: 0.92rem;
   }
 }

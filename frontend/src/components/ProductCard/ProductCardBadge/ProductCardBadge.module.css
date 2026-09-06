@@ -1,0 +1,25 @@
+.badge {
+  position: absolute;
+  top: 0.45rem;
+  left: 0.45rem;
+  z-index: 2;
+  max-width: calc(100% - 0.9rem);
+  overflow: hidden;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: #d71b1f;
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-shadow: 0 0.2rem 0.5rem rgba(215, 27, 31, 0.25);
+}
+
+@media (min-width: 1024px) {
+  .badge {
+    padding: 0.24rem 0.55rem;
+    font-size: 0.64rem;
+  }
+}
