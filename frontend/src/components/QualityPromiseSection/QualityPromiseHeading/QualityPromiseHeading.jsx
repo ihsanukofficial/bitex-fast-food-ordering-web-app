@@ -6,10 +6,10 @@ import styles from './QualityPromiseHeading.module.css';
  * Renders the semantic heading for the quality promise experience with
  * feature-specific presentation.
  */
-function QualityPromiseHeading() {
+function QualityPromiseHeading({ children = 'Made right, not just made fast' }) {
   return (
     <h2 id="quality-heading" className={styles.heading}>
-      Made right, not just made fast
+      {children}
     </h2>
   );
 }

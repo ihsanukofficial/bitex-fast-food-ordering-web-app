@@ -7,12 +7,12 @@ import styles from './FreshIngredientsImage.module.css';
  * Renders the fresh-ingredients visual with feature-specific sizing and loading
  * behavior.
  */
-function FreshIngredientsImage() {
+function FreshIngredientsImage({ image }) {
   return (
     <figure className={styles.figure}>
       <img
         className={styles.image}
-        src={ingredientsImage}
+        src={image || ingredientsImage}
         alt="A freshly made BiteX burger served with crisp fries"
         loading="lazy"
         decoding="async"

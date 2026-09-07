@@ -6,10 +6,10 @@ import styles from './MissionHeading.module.css';
  * Renders the semantic heading for the brand mission experience with feature-specific
  * presentation.
  */
-function MissionHeading() {
+function MissionHeading({ children = 'Happiness in every bite' }) {
   return (
     <h2 id="mission-heading" className={styles.heading}>
-      Happiness in every bite
+      {children}
     </h2>
   );
 }

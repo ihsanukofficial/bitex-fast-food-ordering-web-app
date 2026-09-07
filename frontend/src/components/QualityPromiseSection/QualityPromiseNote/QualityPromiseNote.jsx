@@ -7,11 +7,11 @@ import styles from './QualityPromiseNote.module.css';
  *
  * Provides supporting context that completes the quality promise message.
  */
-function QualityPromiseNote() {
+function QualityPromiseNote({ title, description }) {
   return (
     <p className={styles.note}>
-      <QualityPromiseNoteTitle />
-      <QualityPromiseNoteDescription />
+      <QualityPromiseNoteTitle>{title}</QualityPromiseNoteTitle>
+      <QualityPromiseNoteDescription>{description}</QualityPromiseNoteDescription>
     </p>
   );
 }

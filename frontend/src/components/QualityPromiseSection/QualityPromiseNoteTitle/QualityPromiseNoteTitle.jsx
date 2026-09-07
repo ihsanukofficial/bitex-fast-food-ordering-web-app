@@ -5,8 +5,8 @@ import styles from './QualityPromiseNoteTitle.module.css';
  *
  * Renders the quality promise title with its dedicated typography.
  */
-function QualityPromiseNoteTitle() {
-  return <strong className={styles.title}>Prepared with care</strong>;
+function QualityPromiseNoteTitle({ children = 'Prepared with care' }) {
+  return <strong className={styles.title}>{children}</strong>;
 }
 
 export default QualityPromiseNoteTitle;

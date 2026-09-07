@@ -15,15 +15,15 @@ import SubHeadline from '../SubHeadline/SubHeadline';
  * Composes the homepage value proposition, primary actions, highlights, and
  * promotional imagery.
  */
-const HeroSection = ({ highlights }) => {
+const HeroSection = ({ eyebrow, headline, subHeadline, highlights }) => {
   return (
     <HeroShell>
       <Container>
         <HeroContent>
           <HeroTextBlock>
-            <HeroEyebrow />
-            <Headline />
-            <SubHeadline />
+            <HeroEyebrow>{eyebrow}</HeroEyebrow>
+            <Headline>{headline}</Headline>
+            <SubHeadline>{subHeadline}</SubHeadline>
             <DiscoverOurMenuBtn />
             <HeroHighlights highlights={highlights} />
           </HeroTextBlock>

@@ -19,13 +19,21 @@ const CACHE_TTL_SECONDS = 60;
  * Failures are swallowed and logged: Redis being unreachable should degrade this
  * endpoint back to querying MongoDB directly, never take it down.
  */
+// connectRedis() already logs the first real connection failure and then throws a
+// tagged, silent error for every request made during its cooldown window — logging
+// again here would just repeat that same line once per request while Redis is down.
+const logCacheError = (message, error) => {
+  if (error.code === 'REDIS_COOLDOWN') return;
+  console.error(message, error.message);
+};
+
 export const getCachedAllProducts = async () => {
   try {
     const client = await connectRedis();
     const raw = await client.get(CACHE_KEY);
     return raw ? JSON.parse(raw) : null;
   } catch (error) {
-    console.error('Product cache read failed, falling back to MongoDB:', error.message);
+    logCacheError('Product cache read failed, falling back to MongoDB:', error);
     return null;
   }
 };
@@ -35,7 +43,7 @@ export const setCachedAllProducts = async (products) => {
     const client = await connectRedis();
     await client.set(CACHE_KEY, JSON.stringify(products), 'EX', CACHE_TTL_SECONDS);
   } catch (error) {
-    console.error('Product cache write failed:', error.message);
+    logCacheError('Product cache write failed:', error);
   }
 };
 
@@ -45,6 +53,6 @@ export const invalidateProductsCache = async () => {
     const client = await connectRedis();
     await client.del(CACHE_KEY);
   } catch (error) {
-    console.error('Product cache invalidation failed:', error.message);
+    logCacheError('Product cache invalidation failed:', error);
   }
 };

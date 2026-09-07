@@ -1,6 +1,7 @@
 import Cart from '../models/Cart.js';
 import Order, { ORDER_STATUSES } from '../models/Order.js';
 import PromoCode from '../models/PromoCode.js';
+import Review from '../models/Review.js';
 import { emitToAdmins } from '../realtime/socket.js';
 import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
@@ -99,11 +100,26 @@ export const listOrders = asyncHandler(async (req, res) => {
   res.json({ orders });
 });
 
-/** Powers the admin Order Detail page. */
+/**
+ * Powers the admin Order Detail page. Attaches each item's own customer review (if
+ * any) the same way myOrders does for the customer's own profile view, so the admin
+ * can see feedback on this order without cross-referencing the reviews collection
+ * separately.
+ */
 export const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate('user', 'name email');
   if (!order) throw new ApiError(404, 'Order not found.');
-  res.json({ order });
+
+  const reviews = await Review.find({ order: order._id }).select('orderItemIndex stars text createdAt');
+  const reviewByItemIndex = new Map(reviews.map((review) => [review.orderItemIndex, review]));
+
+  const plainOrder = order.toObject();
+  plainOrder.items = plainOrder.items.map((item, index) => ({
+    ...item,
+    review: reviewByItemIndex.get(index) || null,
+  }));
+
+  res.json({ order: plainOrder });
 });
 
 export const updateOrderStatus = asyncHandler(async (req, res) => {

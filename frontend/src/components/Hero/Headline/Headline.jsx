@@ -1,16 +1,17 @@
-import RedStyleText from '../../Utils/RedStyleText/RedStyleText';
+import HighlightedText from '../../Utils/HighlightedText/HighlightedText';
 import styles from './Headline.module.css';
 
 /**
  * Headline
  *
- * Provides the primary homepage promise as the hero section semantic heading.
+ * Provides the primary homepage promise as the hero section semantic heading. The
+ * *asterisk*-wrapped word (see HighlightedText) is what admins move via the Site
+ * Content editor instead of code.
  */
-const Headline = () => {
+const Headline = ({ children = 'The *Taste* You Remember.' }) => {
   return (
     <h1 className={styles.headline}>
-      The <RedStyleText>Taste</RedStyleText> You Remember
-      <span style={{ color: '#d71b1f' }}>.</span>
+      <HighlightedText text={children} />
     </h1>
   );
 };

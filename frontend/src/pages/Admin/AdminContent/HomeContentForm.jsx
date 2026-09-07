@@ -69,7 +69,7 @@ function HomeContentForm() {
           <input value={content.hero.eyebrow} onChange={(e) => update(['hero', 'eyebrow'], e.target.value)} />
         </label>
         <label className={styles.field}>
-          <span>Headline</span>
+          <span>Headline (wrap a word in *asterisks* to highlight it in red)</span>
           <input value={content.hero.headline} onChange={(e) => update(['hero', 'headline'], e.target.value)} />
         </label>
       </div>
@@ -196,7 +196,7 @@ function HomeContentForm() {
 
       <h2 style={{ margin: 0, fontSize: '1rem' }}>Call to action</h2>
       <label className={styles.field}>
-        <span>Heading</span>
+        <span>Heading (wrap a word in *asterisks* to highlight it in red)</span>
         <input value={content.cta.heading} onChange={(e) => update(['cta', 'heading'], e.target.value)} />
       </label>
       <label className={styles.field}>

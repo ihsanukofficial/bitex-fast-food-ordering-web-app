@@ -8,12 +8,12 @@ import styles from './QualityPromiseVisual.module.css';
  *
  * Composes the visual region of the quality promise experience.
  */
-function QualityPromiseVisual() {
+function QualityPromiseVisual({ image, noteTitle, noteDescription }) {
   return (
     <div className={styles.visual}>
       <QualityPromiseAccent />
-      <QualityPromiseImage />
-      <QualityPromiseNote />
+      <QualityPromiseImage image={image} />
+      <QualityPromiseNote title={noteTitle} description={noteDescription} />
     </div>
   );
 }

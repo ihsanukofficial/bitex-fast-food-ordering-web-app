@@ -8,12 +8,12 @@ import styles from './MissionContent.module.css';
  *
  * Keeps brand mission content layout separate from stateful orchestration.
  */
-function MissionContent() {
+function MissionContent({ eyebrow, heading, description }) {
   return (
     <div className={styles.content}>
-      <MissionEyebrow />
-      <MissionHeading />
-      <MissionDescription />
+      <MissionEyebrow>{eyebrow}</MissionEyebrow>
+      <MissionHeading>{heading}</MissionHeading>
+      <MissionDescription>{description}</MissionDescription>
     </div>
   );
 }

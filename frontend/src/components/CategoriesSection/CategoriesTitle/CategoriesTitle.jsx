@@ -6,10 +6,10 @@ import styles from './CategoriesTitle.module.css';
  *
  * Renders the category discovery title with its dedicated typography.
  */
-function CategoriesTitle() {
+function CategoriesTitle({ children = 'A craving for every mood' }) {
   return (
     <SectionHeading id="categories-heading" className={styles.title}>
-      A craving for every mood
+      {children}
     </SectionHeading>
   );
 }

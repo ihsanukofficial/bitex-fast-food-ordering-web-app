@@ -15,8 +15,17 @@ function QualityPromiseSection({ content }) {
     <section className={styles.section} aria-labelledby="quality-heading">
       <Container>
         <QualityPromiseLayout>
-          <QualityPromiseContent promises={content?.promises} />
-          <QualityPromiseVisual />
+          <QualityPromiseContent
+            eyebrow={content?.eyebrow}
+            heading={content?.heading}
+            description={content?.description}
+            promises={content?.promises}
+          />
+          <QualityPromiseVisual
+            image={content?.image}
+            noteTitle={content?.note?.title}
+            noteDescription={content?.note?.description}
+          />
         </QualityPromiseLayout>
       </Container>
     </section>

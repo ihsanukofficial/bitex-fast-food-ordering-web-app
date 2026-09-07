@@ -10,13 +10,13 @@ import styles from './BiteXStoryContent.module.css';
  *
  * Keeps BiteX story content layout separate from stateful orchestration.
  */
-function BiteXStoryContent({ stats }) {
+function BiteXStoryContent({ eyebrow, heading, lead, description, stats }) {
   return (
     <div className={styles.content}>
-      <BiteXStoryEyebrow />
-      <BiteXStoryHeading />
-      <BiteXStoryLead />
-      <BiteXStoryDescription />
+      <BiteXStoryEyebrow>{eyebrow}</BiteXStoryEyebrow>
+      <BiteXStoryHeading>{heading}</BiteXStoryHeading>
+      <BiteXStoryLead>{lead}</BiteXStoryLead>
+      <BiteXStoryDescription>{description}</BiteXStoryDescription>
       <BiteXStoryStats stats={stats} />
     </div>
   );

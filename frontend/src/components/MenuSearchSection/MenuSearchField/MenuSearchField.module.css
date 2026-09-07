@@ -20,12 +20,3 @@
   outline-offset: 1px;
   box-shadow: 0 0.5rem 1.2rem rgba(22, 14, 5, 0.1);
 }
-
-@media (max-width: 640px) {
-  .field {
-    width: 100%;
-    min-height: var(--search-control-height, 56px);
-    flex: 0 0 var(--search-control-height, 56px);
-  }
-}
-

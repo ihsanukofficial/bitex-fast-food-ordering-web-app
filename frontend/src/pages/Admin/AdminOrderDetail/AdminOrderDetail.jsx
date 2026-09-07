@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { apiClient } from '../../../services/apiClient';
 import { getOrderCode, formatCurrency, formatOrderDateTime } from '../../../utils/orderStatus';
 import Icon from '../../../components/Utils/Icon/Icon';
+import ProductDetailReviewStars from '../../../components/ProductDetailSection/ProductDetailReviewStars/ProductDetailReviewStars';
 import styles from '../admin.module.css';
 
 const STATUSES = ['pending', 'confirmed', 'preparing', 'out_for_delivery', 'delivered', 'cancelled'];
@@ -101,21 +102,42 @@ function AdminOrderDetail() {
               </thead>
               <tbody>
                 {order.items.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      {item.image ? (
-                        <img className={styles.tableImage} src={item.image} alt="" />
-                      ) : (
-                        <span className={styles.tableImagePlaceholder} aria-hidden="true">
-                          <Icon name="ri-restaurant-2-fill" size="1.1rem" ariaLabel="" />
-                        </span>
-                      )}
-                    </td>
-                    <td className={styles.cellPrimary}>{item.title}</td>
-                    <td className={styles.cellMuted}>{item.quantity}</td>
-                    <td className={styles.cellMuted}>{formatCurrency(item.unitPrice)}</td>
-                    <td className={styles.cellPrimary}>{formatCurrency(item.lineTotal)}</td>
-                  </tr>
+                  <Fragment key={index}>
+                    <tr>
+                      <td>
+                        {item.image ? (
+                          <img className={styles.tableImage} src={item.image} alt="" />
+                        ) : (
+                          <span className={styles.tableImagePlaceholder} aria-hidden="true">
+                            <Icon name="ri-restaurant-2-fill" size="1.1rem" ariaLabel="" />
+                          </span>
+                        )}
+                      </td>
+                      <td className={styles.cellPrimary}>{item.title}</td>
+                      <td className={styles.cellMuted}>{item.quantity}</td>
+                      <td className={styles.cellMuted}>{formatCurrency(item.unitPrice)}</td>
+                      <td className={styles.cellPrimary}>{formatCurrency(item.lineTotal)}</td>
+                    </tr>
+                    {/* The customer's own feedback on this specific line, if they left
+                        one — see getOrderById, which attaches it by matching this
+                        item's index against the Review collection. */}
+                    {item.review && (
+                      <tr>
+                        <td />
+                        <td colSpan={4} style={{ paddingTop: 0 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
+                            <ProductDetailReviewStars rating={item.review.stars} />
+                            <span className={styles.cellMuted}>
+                              Reviewed {formatOrderDateTime(item.review.createdAt)}
+                            </span>
+                          </div>
+                          <p className={styles.cellMuted} style={{ margin: 0, fontStyle: 'italic' }}>
+                            &ldquo;{item.review.text}&rdquo;
+                          </p>
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
                 ))}
               </tbody>
             </table>

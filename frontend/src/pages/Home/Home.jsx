@@ -31,11 +31,16 @@ function Home() {
 
   return (
     <main id="main-content" ref={pageRef} className={styles.home} tabIndex="-1">
-      <HeroSection highlights={content.hero.highlights} />
+      <HeroSection
+        eyebrow={content.hero.eyebrow}
+        headline={content.hero.headline}
+        subHeadline={content.hero.subHeadline}
+        highlights={content.hero.highlights}
+      />
       <PopularItems content={content.popularItems} />
-      <CategoriesSection categories={categories} />
+      <CategoriesSection categories={categories} content={content.categoriesSection} />
       <WhyChooseBiteXSection content={content.whyChooseBiteX} />
-      <CallToActionSection />
+      <CallToActionSection content={content.cta} />
     </main>
   )
 }

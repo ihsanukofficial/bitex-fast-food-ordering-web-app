@@ -6,10 +6,10 @@ import styles from './BiteXStoryHeading.module.css';
  * Renders the semantic heading for the BiteX story experience with feature-specific
  * presentation.
  */
-function BiteXStoryHeading() {
+function BiteXStoryHeading({ children = 'Big flavor began with one simple idea' }) {
   return (
     <h1 id="bitex-story-heading" className={styles.heading}>
-      Big flavor began with one simple idea
+      {children}
     </h1>
   );
 }

@@ -14,8 +14,14 @@ function FreshIngredientsSection({ content }) {
     <section className={styles.section} aria-labelledby="ingredients-heading">
       <Container>
         <div className={styles.wrapper}>
-          <FreshIngredientsImage />
-          <FreshIngredientsContent highlights={content?.highlights} />
+          <FreshIngredientsImage image={content?.image} />
+          <FreshIngredientsContent
+            eyebrow={content?.eyebrow}
+            heading={content?.heading}
+            description={content?.description}
+            closing={content?.closing}
+            highlights={content?.highlights}
+          />
         </div>
       </Container>
     </section>

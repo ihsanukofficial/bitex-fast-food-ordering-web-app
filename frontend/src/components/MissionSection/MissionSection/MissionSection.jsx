@@ -15,7 +15,7 @@ function MissionSection({ content }) {
     <section className={styles.section} aria-labelledby="mission-heading">
       <Container>
         <MissionSectionLayout>
-          <MissionContent />
+          <MissionContent eyebrow={content?.eyebrow} heading={content?.heading} description={content?.intro} />
           <MissionValuesGrid values={content?.values} />
         </MissionSectionLayout>
       </Container>

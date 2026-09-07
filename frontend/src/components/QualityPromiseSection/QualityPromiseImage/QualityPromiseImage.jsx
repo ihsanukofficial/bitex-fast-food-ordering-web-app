@@ -7,11 +7,11 @@ import styles from './QualityPromiseImage.module.css';
  * Renders the quality promise visual with feature-specific sizing and loading
  * behavior.
  */
-function QualityPromiseImage() {
+function QualityPromiseImage({ image }) {
   return (
     <img
       className={styles.image}
-      src={qualityImage}
+      src={image || qualityImage}
       alt="A BiteX chef carefully preparing a fresh burger"
       width="1402"
       height="1122"

@@ -6,6 +6,9 @@ import styles from './MenuSearchSubmitButton.module.css';
  * MenuSearchSubmitButton
  *
  * Submits the controlled menu search while exposing its transient loading state.
+ * Stays a compact square icon button at every width now (see MenuSearchInputRow,
+ * which pairs it with the search field instead of letting it stretch full-width on
+ * its own row) — the icon alone reads as "search" clearly enough on its own.
  */
 function MenuSearchSubmitButton({ isLoading = false }) {
   return (
@@ -18,7 +21,7 @@ function MenuSearchSubmitButton({ isLoading = false }) {
       {isLoading ? (
         <MenuSearchLoadingSpinner />
       ) : (
-        <Icon name="ri-search-line" size="1.35rem" color="currentColor" ariaLabel="Search" />
+        <Icon name="ri-search-line" size="1.2rem" color="currentColor" ariaLabel="" />
       )}
     </button>
   );

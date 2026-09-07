@@ -6,10 +6,10 @@ import styles from './BiteXStoryImageFrame.module.css';
  *
  * Provides the clipping and positioning boundary for the BiteX story image.
  */
-function BiteXStoryImageFrame() {
+function BiteXStoryImageFrame({ image }) {
   return (
     <div className={styles.frame}>
-      <BiteXStoryImage />
+      <BiteXStoryImage image={image} />
     </div>
   );
 }

@@ -14,8 +14,18 @@ function BiteXStorySection({ content }) {
     <section className={styles.section} aria-labelledby="bitex-story-heading">
       <Container>
         <BiteXStoryLayout>
-          <BiteXStoryContent stats={content?.stats} />
-          <BiteXStoryVisual />
+          <BiteXStoryContent
+            eyebrow={content?.eyebrow}
+            heading={content?.heading}
+            lead={content?.lead}
+            description={content?.description}
+            stats={content?.stats}
+          />
+          <BiteXStoryVisual
+            image={content?.image}
+            captionTitle={content?.caption?.title}
+            captionDescription={content?.caption?.description}
+          />
         </BiteXStoryLayout>
       </Container>
     </section>

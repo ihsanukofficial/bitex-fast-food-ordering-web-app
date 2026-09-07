@@ -148,7 +148,7 @@ const seedContent = async (products) => {
   await HomeContent.create({
     hero: {
       eyebrow: 'Fresh. Fast. Full of flavor.',
-      headline: 'The Taste You Remember.',
+      headline: 'The *Taste* You Remember.',
       subHeadline:
         'Your favorite comfort foods, prepared hot and fresh with ingredients you can trust.',
       highlights: heroHighlights,
@@ -172,7 +172,7 @@ const seedContent = async (products) => {
       closingStatement: 'BiteX – Where Every Bite Brings Happiness!',
     },
     cta: {
-      heading: 'Ready for Your Next Delicious Bite?',
+      heading: 'Ready for Your Next *Delicious* Bite?',
       description:
         'Explore our wide variety of mouth-watering meals and discover exclusive deals crafted to make every craving worth it.',
     },

@@ -1,0 +1,19 @@
+.row {
+  /* flex: 1 is the fix here, not just tidiness — without it, this wrapper sizes to
+     its own content inside .form's row (desktop/tablet) instead of stretching to
+     fill the rest of the bar, leaving the search field short and the remaining
+     width as bare, empty glass background. The search field's own flex: 1 (see
+     MenuSearchField) then fills *this* row exactly the way it used to fill .form
+     directly, before the field and the button were grouped in here for mobile. */
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  gap: 0.6rem;
+}
+
+@media (max-width: 640px) {
+  .row {
+    gap: 0.5rem;
+  }
+}

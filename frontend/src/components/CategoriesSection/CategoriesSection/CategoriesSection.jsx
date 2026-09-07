@@ -13,15 +13,15 @@ import CategoriesTitle from '../CategoriesTitle/CategoriesTitle';
  * Builds category navigation from catalog metadata so availability counts and routes
  * stay aligned.
  */
-function CategoriesSection({ categories }) {
+function CategoriesSection({ categories, content }) {
   return (
     <CategoriesBackground>
       <Container>
         <CategoriesContent>
           <CategoriesHeader>
-            <CategoriesEyebrow />
-            <CategoriesTitle />
-            <CategoriesSubtitle />
+            <CategoriesEyebrow>{content?.eyebrow}</CategoriesEyebrow>
+            <CategoriesTitle>{content?.title}</CategoriesTitle>
+            <CategoriesSubtitle>{content?.subtitle}</CategoriesSubtitle>
           </CategoriesHeader>
           <CategoriesCarousel categories={categories} />
         </CategoriesContent>

@@ -5,11 +5,11 @@ import styles from './HeroEyebrow.module.css';
  *
  * Renders the compact contextual label that introduces the homepage hero content.
  */
-function HeroEyebrow() {
+function HeroEyebrow({ children = 'Fresh. Fast. Full of flavor.' }) {
   return (
     <p className={styles.eyebrow}>
       <span aria-hidden="true" />
-      Fresh. Fast. Full of flavor.
+      {children}
     </p>
   );
 }

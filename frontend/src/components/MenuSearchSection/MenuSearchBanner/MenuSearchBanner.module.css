@@ -27,9 +27,13 @@
 
 @media (max-width: 640px) {
   .banner {
-    min-height: 310px;
-    padding: 1.5rem;
+    /* Not a fixed min-height here (unlike the tiers above) — the search form stacks
+       into a column at this width (see MenuSearchForm), so its own natural height
+       already fills the banner correctly; forcing a minimum on top of that (this
+       was previously 310px, taller than even the tablet tier above it) just
+       reserved dead space around the form instead of hugging it. */
+    min-height: 0;
+    padding: 1.25rem;
     border-radius: 1.35rem;
   }
-
 }

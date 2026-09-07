@@ -11,13 +11,13 @@ import CallToActionPanel from '../CallToActionPanel/CallToActionPanel';
  * Assembles the call-to-action section from focused content and presentation
  * primitives.
  */
-function CallToActionSection() {
+function CallToActionSection({ content }) {
   return (
     <CallToActionBackground>
       <Container>
         <CallToActionPanel>
-          <CallToActionHeading />
-          <CallToActionDescription />
+          <CallToActionHeading>{content?.heading}</CallToActionHeading>
+          <CallToActionDescription>{content?.description}</CallToActionDescription>
           <CallToActionActions />
         </CallToActionPanel>
       </Container>

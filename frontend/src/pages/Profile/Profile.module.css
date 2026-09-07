@@ -25,5 +25,16 @@
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout {
+    /* Tighter still — the nav (see AccountNavigation) is a shorter, lighter block
+       at this width, and sitting closer to the header above and the content below
+       is what makes it read as part of one page instead of a separate section
+       floating between the two. */
+    gap: 0.75rem;
   }
 }

@@ -9,12 +9,12 @@ import styles from './QualityPromiseContent.module.css';
  *
  * Keeps quality promise content layout separate from stateful orchestration.
  */
-function QualityPromiseContent({ promises }) {
+function QualityPromiseContent({ eyebrow, heading, description, promises }) {
   return (
     <div className={styles.content}>
-      <QualityPromiseEyebrow />
-      <QualityPromiseHeading />
-      <QualityPromiseDescription />
+      <QualityPromiseEyebrow>{eyebrow}</QualityPromiseEyebrow>
+      <QualityPromiseHeading>{heading}</QualityPromiseHeading>
+      <QualityPromiseDescription>{description}</QualityPromiseDescription>
       <QualityPromiseList promises={promises} />
     </div>
   );

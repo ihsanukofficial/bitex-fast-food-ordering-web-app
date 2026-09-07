@@ -4,6 +4,7 @@ import MenuSearchBanner from '../MenuSearchBanner/MenuSearchBanner';
 import MenuSearchContent from '../MenuSearchContent/MenuSearchContent';
 import MenuSearchField from '../MenuSearchField/MenuSearchField';
 import MenuSearchForm from '../MenuSearchForm/MenuSearchForm';
+import MenuSearchInputRow from '../MenuSearchInputRow/MenuSearchInputRow';
 import MenuSearchSubmitButton from '../MenuSearchSubmitButton/MenuSearchSubmitButton';
 
 /**
@@ -32,11 +33,13 @@ function MenuSearchSection({
               selectedCategoryId={selectedCategoryId}
               onChange={onCategoryChange}
             />
-            <MenuSearchField
-              value={searchValue}
-              onChange={onSearchChange}
-            />
-            <MenuSearchSubmitButton isLoading={isLoading} />
+            <MenuSearchInputRow>
+              <MenuSearchField
+                value={searchValue}
+                onChange={onSearchChange}
+              />
+              <MenuSearchSubmitButton isLoading={isLoading} />
+            </MenuSearchInputRow>
           </MenuSearchForm>
         </MenuSearchContent>
       </MenuSearchBanner>

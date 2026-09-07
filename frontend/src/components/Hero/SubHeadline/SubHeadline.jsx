@@ -5,8 +5,10 @@ import styles from './SubHeadline.module.css';
  *
  * Supports the hero promise with concise positioning copy.
  */
-const SubHeadline = () => {
-  return <p className={styles.subHeadline}>Your favorite comfort foods, prepared hot and fresh with ingredients you can trust.</p>;
+const SubHeadline = ({
+  children = 'Your favorite comfort foods, prepared hot and fresh with ingredients you can trust.',
+}) => {
+  return <p className={styles.subHeadline}>{children}</p>;
 };
 
 export default SubHeadline;

@@ -5,8 +5,8 @@ import styles from './BiteXStoryEyebrow.module.css';
  *
  * Renders the compact contextual label that introduces the BiteX story content.
  */
-function BiteXStoryEyebrow() {
-  return <p className={styles.eyebrow}>Our story</p>;
+function BiteXStoryEyebrow({ children = 'Our story' }) {
+  return <p className={styles.eyebrow}>{children}</p>;
 }
 
 export default BiteXStoryEyebrow;

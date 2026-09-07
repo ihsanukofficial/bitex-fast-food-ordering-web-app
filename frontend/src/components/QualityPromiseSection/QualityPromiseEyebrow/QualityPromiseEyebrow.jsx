@@ -5,8 +5,8 @@ import styles from './QualityPromiseEyebrow.module.css';
  *
  * Renders the compact contextual label that introduces the quality promise content.
  */
-function QualityPromiseEyebrow() {
-  return <p className={styles.eyebrow}>The quality promise</p>;
+function QualityPromiseEyebrow({ children = 'The quality promise' }) {
+  return <p className={styles.eyebrow}>{children}</p>;
 }
 
 export default QualityPromiseEyebrow;

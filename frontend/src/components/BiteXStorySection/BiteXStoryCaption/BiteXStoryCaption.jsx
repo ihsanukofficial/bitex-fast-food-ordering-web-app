@@ -7,11 +7,11 @@ import styles from './BiteXStoryCaption.module.css';
  *
  * Composes supporting caption content within the BiteX story visual.
  */
-function BiteXStoryCaption() {
+function BiteXStoryCaption({ title, description }) {
   return (
     <figcaption className={styles.caption}>
       <BiteXStoryCaptionLogoBadge />
-      <BiteXStoryCaptionText />
+      <BiteXStoryCaptionText title={title} description={description} />
     </figcaption>
   );
 }

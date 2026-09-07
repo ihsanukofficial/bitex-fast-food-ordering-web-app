@@ -26,11 +26,3 @@
   outline: 3px solid rgba(246, 184, 0, 0.75);
   outline-offset: 3px;
 }
-
-@media (max-width: 640px) {
-  .submitButton {
-    width: 100%;
-    min-height: var(--search-control-height, 56px);
-    flex: 0 0 var(--search-control-height, 56px);
-  }
-}

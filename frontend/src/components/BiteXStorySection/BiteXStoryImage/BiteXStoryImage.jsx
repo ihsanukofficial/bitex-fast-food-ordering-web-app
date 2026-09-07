@@ -7,13 +7,14 @@ import styles from './BiteXStoryImage.module.css';
  *
  * Renders the BiteX story visual with feature-specific sizing and alternative text.
  */
-function BiteXStoryImage() {
-  preload(storyImage, { as: 'image', fetchPriority: 'high' });
+function BiteXStoryImage({ image }) {
+  const src = image || storyImage;
+  preload(src, { as: 'image', fetchPriority: 'high' });
 
   return (
     <img
       className={styles.image}
-      src={storyImage}
+      src={src}
       alt="Guests enjoying meals inside a BiteX restaurant"
       width="3160"
       height="1312"

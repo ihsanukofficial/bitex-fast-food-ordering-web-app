@@ -7,11 +7,11 @@ import styles from './BiteXStoryCaptionText.module.css';
  *
  * Provides the styled text primitive used by the BiteX story composition.
  */
-function BiteXStoryCaptionText() {
+function BiteXStoryCaptionText({ title, description }) {
   return (
     <span className={styles.text}>
-      <BiteXStoryCaptionTitle />
-      <BiteXStoryCaptionDescription />
+      <BiteXStoryCaptionTitle>{title}</BiteXStoryCaptionTitle>
+      <BiteXStoryCaptionDescription>{description}</BiteXStoryCaptionDescription>
     </span>
   );
 }

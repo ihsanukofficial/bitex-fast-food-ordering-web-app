@@ -5,8 +5,8 @@ import styles from './MissionEyebrow.module.css';
  *
  * Renders the compact contextual label that introduces the brand mission content.
  */
-function MissionEyebrow() {
-  return <p className={styles.eyebrow}>Our mission</p>;
+function MissionEyebrow({ children = 'Our mission' }) {
+  return <p className={styles.eyebrow}>{children}</p>;
 }
 
 export default MissionEyebrow;

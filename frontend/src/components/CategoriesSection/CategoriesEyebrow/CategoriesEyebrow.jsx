@@ -5,8 +5,8 @@ import styles from './CategoriesEyebrow.module.css';
  *
  * Renders the compact contextual label that introduces the category discovery content.
  */
-function CategoriesEyebrow() {
-  return <p className={styles.eyebrow}>Explore the menu</p>;
+function CategoriesEyebrow({ children = 'Explore the menu' }) {
+  return <p className={styles.eyebrow}>{children}</p>;
 }
 
 export default CategoriesEyebrow;

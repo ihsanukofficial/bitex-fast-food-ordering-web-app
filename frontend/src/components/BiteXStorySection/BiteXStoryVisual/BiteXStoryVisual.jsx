@@ -7,11 +7,11 @@ import styles from './BiteXStoryVisual.module.css';
  *
  * Composes the visual region of the BiteX story experience.
  */
-function BiteXStoryVisual() {
+function BiteXStoryVisual({ image, captionTitle, captionDescription }) {
   return (
     <figure className={styles.figure}>
-      <BiteXStoryImageFrame />
-      <BiteXStoryCaption />
+      <BiteXStoryImageFrame image={image} />
+      <BiteXStoryCaption title={captionTitle} description={captionDescription} />
     </figure>
   );
 }
