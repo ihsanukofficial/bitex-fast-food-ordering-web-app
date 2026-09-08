@@ -31,7 +31,8 @@ const formatRelativeTime = (isoDate) => {
  * oldest interaction to newest, marking a notification read as soon as it's opened.
  */
 function NavbarNotificationButton() {
-  const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
+  const { notifications, unreadCount, hasMore, isLoadingMore, loadMore, markAsRead, markAllAsRead } =
+    useNotifications();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
   const navigate = useNavigate();
@@ -132,6 +133,16 @@ function NavbarNotificationButton() {
                   )}
                 </div>
               ))
+            )}
+            {hasMore && (
+              <button
+                type="button"
+                className={styles.loadMoreButton}
+                onClick={loadMore}
+                disabled={isLoadingMore}
+              >
+                {isLoadingMore ? 'Loading…' : 'Load more'}
+              </button>
             )}
           </div>
         </div>

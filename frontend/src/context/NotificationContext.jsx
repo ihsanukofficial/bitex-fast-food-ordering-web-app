@@ -6,6 +6,8 @@ import { useAuth } from './AuthContext';
 
 const NotificationContext = createContext(null);
 
+const PAGE_SIZE = 10;
+
 const dispatchToast = (detail) => {
   window.dispatchEvent(new CustomEvent(ORDER_NOTIFICATION_TOAST_EVENT, { detail }));
 };
@@ -22,20 +24,24 @@ export function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [socket, setSocket] = useState(null);
 
   const refresh = useCallback(async () => {
     if (!isAuthenticated) {
       setNotifications([]);
       setUnreadCount(0);
+      setHasMore(false);
       return;
     }
 
     setIsLoading(true);
     try {
-      const data = await apiClient.get('/notifications');
+      const data = await apiClient.get(`/notifications?limit=${PAGE_SIZE}`);
       setNotifications(data.notifications);
       setUnreadCount(data.unreadCount);
+      setHasMore(data.hasMore);
     } catch {
       // Non-critical: the bell simply stays as-is until the next successful refresh.
     } finally {
@@ -46,6 +52,28 @@ export function NotificationProvider({ children }) {
   useEffect(() => {
     refresh();
   }, [refresh]);
+
+  // Fetches the next 10 older than whatever's currently loaded, so the bell never
+  // renders its whole history at once — a cursor on the oldest loaded item's
+  // createdAt, not a numeric offset, so this stays correct even if a new
+  // notification was prepended by the socket handler below in between clicks.
+  const loadMore = useCallback(async () => {
+    if (isLoadingMore || !hasMore || notifications.length === 0) return;
+
+    setIsLoadingMore(true);
+    try {
+      const oldest = notifications[notifications.length - 1];
+      const data = await apiClient.get(
+        `/notifications?limit=${PAGE_SIZE}&before=${encodeURIComponent(oldest.createdAt)}`,
+      );
+      setNotifications((current) => [...current, ...data.notifications]);
+      setHasMore(data.hasMore);
+    } catch {
+      // Non-critical — the button just stays put so the user can try again.
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [isLoadingMore, hasMore, notifications]);
 
   useEffect(() => {
     if (!isAuthenticated) return undefined;
@@ -99,8 +127,19 @@ export function NotificationProvider({ children }) {
   }, []);
 
   const value = useMemo(
-    () => ({ notifications, unreadCount, isLoading, markAsRead, markAllAsRead, refresh, socket }),
-    [notifications, unreadCount, isLoading, markAsRead, markAllAsRead, refresh, socket],
+    () => ({
+      notifications,
+      unreadCount,
+      isLoading,
+      hasMore,
+      isLoadingMore,
+      loadMore,
+      markAsRead,
+      markAllAsRead,
+      refresh,
+      socket,
+    }),
+    [notifications, unreadCount, isLoading, hasMore, isLoadingMore, loadMore, markAsRead, markAllAsRead, refresh, socket],
   );
 
   return <NotificationContext.Provider value={value}>{children}</NotificationContext.Provider>;

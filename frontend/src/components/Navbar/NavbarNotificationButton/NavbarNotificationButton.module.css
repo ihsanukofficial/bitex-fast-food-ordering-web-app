@@ -191,6 +191,32 @@
   color: #9c9c9c;
 }
 
+.loadMoreButton {
+  display: block;
+  width: calc(100% - 0.8rem);
+  margin: 0.3rem 0.4rem 0.2rem;
+  padding: 0.55rem;
+  border: 1px solid #f0ebe6;
+  border-radius: 0.6rem;
+  background: #fbf8f5;
+  color: var(--brand-red);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.loadMoreButton:hover:not(:disabled),
+.loadMoreButton:focus-visible {
+  background: #fbeceb;
+  border-color: rgba(215, 27, 31, 0.35);
+}
+
+.loadMoreButton:disabled {
+  color: #9c9c9c;
+  cursor: default;
+}
+
 /* On phones, an absolutely-positioned dropdown pinned to the bell's own right edge
    reads as lopsided and can run close to (or past) the screen edge. Fixed instead,
    with the same left/right inset Container.module.css uses for the rest of the
