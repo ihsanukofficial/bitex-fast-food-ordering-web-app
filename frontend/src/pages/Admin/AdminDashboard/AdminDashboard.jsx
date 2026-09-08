@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import useAdminOrderEvents from '../../../hooks/useAdminOrderEvents';
 import { apiClient } from '../../../services/apiClient';
@@ -132,9 +132,15 @@ function AdminDashboard() {
   const [deals, setDeals] = useState(null);
   const [promoCodes, setPromoCodes] = useState(null);
   const [error, setError] = useState('');
-  const [period, setPeriod] = useState('30d');
-  const [customStart, setCustomStart] = useState('');
-  const [customEnd, setCustomEnd] = useState('');
+
+  // Backed by the URL (not local state) so the selected period — including a custom
+  // range — survives a refresh instead of always bouncing back to the "30 Days"
+  // default, the same way AdminOrders' status tabs already stay put across a reload.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedPeriod = searchParams.get('period') || '30d';
+  const period = PERIODS.some((entry) => entry.id === requestedPeriod) ? requestedPeriod : '30d';
+  const customStart = searchParams.get('start') || '';
+  const customEnd = searchParams.get('end') || '';
 
   const load = () => {
     setError('');
@@ -187,14 +193,32 @@ function AdminDashboard() {
   }
 
   const handlePeriodClick = (id) => {
-    setPeriod(id);
-    if (id === 'custom' && !customStart && !customEnd) {
-      const end = new Date();
-      const start = new Date(end.getTime() - 29 * 24 * 60 * 60 * 1000);
-      setCustomStart(start.toISOString().slice(0, 10));
-      setCustomEnd(end.toISOString().slice(0, 10));
-    }
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set('period', id);
+      if (id === 'custom' && !customStart && !customEnd) {
+        const end = new Date();
+        const start = new Date(end.getTime() - 29 * 24 * 60 * 60 * 1000);
+        next.set('start', start.toISOString().slice(0, 10));
+        next.set('end', end.toISOString().slice(0, 10));
+      }
+      return next;
+    });
   };
+
+  const setCustomStart = (value) =>
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set('start', value);
+      return next;
+    });
+
+  const setCustomEnd = (value) =>
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set('end', value);
+      return next;
+    });
 
   const isLoading =
     !error && [stats, orders, users, products, categories, deals, promoCodes].some((value) => value === null);
@@ -874,7 +898,10 @@ function AdminDashboard() {
         {TABS.map((tabItem) => (
           <Link
             key={tabItem.id}
-            to={tabItem.id === 'overview' ? '/admin/dashboard' : `/admin/dashboard/${tabItem.id}`}
+            to={{
+              pathname: tabItem.id === 'overview' ? '/admin/dashboard' : `/admin/dashboard/${tabItem.id}`,
+              search: searchParams.toString(),
+            }}
             className={tabItem.id === activeTab ? styles.tabButtonActive : styles.tabButton}
             aria-current={tabItem.id === activeTab ? 'page' : undefined}
           >
