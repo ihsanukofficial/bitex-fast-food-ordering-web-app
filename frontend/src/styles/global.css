@@ -18,4 +18,9 @@
   --star-gold: #fca810;
   --ink: #1a1a1a;
   --font-base: 'Outfit', sans-serif;
+
+  /* Same gold used by the Popular Items mobile carousel's own scrollbar
+     (components/PopularItems/PopularItemsGrid) — named here so the site-wide
+     scrollbar styling in index.css and that carousel's stay in sync. */
+  --scrollbar-thumb: #d5b05c;
 }

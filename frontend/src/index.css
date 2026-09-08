@@ -25,6 +25,32 @@ textarea {
   outline-offset: 3px;
 }
 
+/* Same thin, gold-thumbed scrollbar as the Popular Items mobile carousel
+   (components/PopularItems/PopularItemsGrid), applied site-wide instead of just
+   that one carousel — the document's own scrollbar plus every internal
+   overflow-scroll container (dropdowns, tables, etc). scrollbar-color/-width are
+   inherited properties, so setting them on html covers descendants in Firefox;
+   the unscoped ::-webkit-scrollbar rule is the Chrome/Safari/Edge equivalent of
+   "every element's scrollbar", not just html's. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

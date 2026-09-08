@@ -26,7 +26,7 @@
     scroll-padding-inline: 1rem;
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
-    scrollbar-color: #d5b05c transparent;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
   }
 
   .grid::-webkit-scrollbar {
@@ -39,7 +39,7 @@
 
   .grid::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    background: #d5b05c;
+    background: var(--scrollbar-thumb);
   }
 }
 
