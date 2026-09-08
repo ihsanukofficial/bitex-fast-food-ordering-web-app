@@ -3,6 +3,7 @@ import DealSection from '../models/DealSection.js';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import Review from '../models/Review.js';
+import { emitToAdmins } from '../realtime/socket.js';
 import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
@@ -136,6 +137,10 @@ export const createReview = asyncHandler(async (req, res) => {
     targetId: review._id,
     targetLabel: title,
   });
+
+  // Lets the admin sidebar's Reviews badge tick up live, the same way order:created
+  // already drives the Orders one.
+  emitToAdmins('review:created', { reviewId: review._id, title });
 
   res.status(201).json({ review: toReviewResponse(review) });
 });

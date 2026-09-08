@@ -164,6 +164,7 @@
 }
 
 .navIcon {
+  position: relative;
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -201,6 +202,36 @@
 
 .navItemActive .navIcon {
   color: var(--admin-red-light);
+}
+
+/* Unread count for the customer-driven sections (orders/reviews/signups) — see
+   hooks/useAdminActivityBadges. Sits at the far end of the row on the full sidebar;
+   below 900px the labels are hidden and the row becomes an icon strip, so the count
+   is swapped for .navIconDot on the icon itself. */
+.navBadge {
+  margin-left: auto;
+  min-width: 1.25rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  background: var(--admin-red);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.navIconDot {
+  display: none;
+  position: absolute;
+  top: -0.1rem;
+  right: -0.2rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--admin-red-light);
+  box-shadow: 0 0 0 2px #1a1b21;
 }
 
 .footer {
@@ -339,6 +370,16 @@
 
   .navLabel {
     display: none;
+  }
+
+  /* Icon-only strip: no room for a count next to a label that isn't there, so the
+     badge becomes a dot on the icon. */
+  .navBadge {
+    display: none;
+  }
+
+  .navIconDot {
+    display: block;
   }
 
   .footer {

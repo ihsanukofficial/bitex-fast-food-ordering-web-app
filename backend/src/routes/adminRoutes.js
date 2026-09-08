@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { deleteReview, listReviews } from '../controllers/adminReviewController.js';
 import {
   deleteUser,
+  getActivityCounts,
   getStats,
   getUserById,
   listUsers,
@@ -14,6 +15,7 @@ const router = Router();
 
 router.use(requireAuth, requireAdmin);
 router.get('/stats', getStats);
+router.get('/activity-counts', getActivityCounts);
 router.get('/users', listUsers);
 router.get('/users/:id', getUserById);
 router.put('/users/:id', updateUser);

@@ -1,6 +1,7 @@
 import DealSection from '../models/DealSection.js';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
+import Review from '../models/Review.js';
 import User from '../models/User.js';
 import { emitToUser } from '../realtime/socket.js';
 import { logActivity } from '../services/activityLogService.js';
@@ -34,6 +35,29 @@ export const getStats = asyncHandler(async (req, res) => {
       revenue: revenueAgg[0]?.total || 0,
     },
   });
+});
+
+/**
+ * Counts how much has arrived in each admin section since that section was last
+ * looked at — what the sidebar renders as an unread badge. Each `since` is sent by
+ * the client (it owns the per-admin "last seen" timestamps); an absent or unparsable
+ * one counts as nothing new rather than the entire history, so a first-time visit
+ * never opens with a badge of every order ever placed.
+ */
+export const getActivityCounts = asyncHandler(async (req, res) => {
+  const countSince = (Model, value) => {
+    const since = value ? new Date(value) : null;
+    if (!since || Number.isNaN(since.getTime())) return 0;
+    return Model.countDocuments({ createdAt: { $gt: since } });
+  };
+
+  const [orders, reviews, users] = await Promise.all([
+    countSince(Order, req.query.orders),
+    countSince(Review, req.query.reviews),
+    countSince(User, req.query.users),
+  ]);
+
+  res.json({ counts: { orders, reviews, users } });
 });
 
 export const listUsers = asyncHandler(async (req, res) => {

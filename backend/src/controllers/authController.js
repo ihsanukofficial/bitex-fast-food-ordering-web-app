@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
+import { emitToAdmins } from '../realtime/socket.js';
 import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
@@ -48,6 +49,10 @@ export const register = asyncHandler(async (req, res) => {
     targetId: user._id,
     targetLabel: user.name,
   });
+
+  // Drives the admin sidebar's Users badge live — see review:created/order:created.
+  emitToAdmins('user:registered', { userId: user._id, name: user.name });
+
   res.status(201).json({ user: toPublicUser(user) });
 });
 
