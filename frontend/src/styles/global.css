@@ -23,4 +23,12 @@
      (components/PopularItems/PopularItemsGrid) — named here so the site-wide
      scrollbar styling in index.css and that carousel's stay in sync. */
   --scrollbar-thumb: #d5b05c;
+
+  /* NavbarBar's own fixed height. Every full-height overlay (cart/delivery-details
+     drawers, their backdrops, the mobile nav drawer + its backdrop) starts below
+     this instead of at the very top of the viewport, so the navbar's own buttons
+     (cart toggle, notifications, account menu) stay reachable while one is open —
+     they used to sit underneath the overlay's full-viewport coverage and simply
+     couldn't be clicked at all. */
+  --navbar-height: 70px;
 }

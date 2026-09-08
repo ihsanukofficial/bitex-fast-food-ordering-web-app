@@ -1,10 +1,10 @@
 .drawer {
   position: fixed;
   z-index: 1100;
-  top: 0;
+  top: var(--navbar-height);
   left: 0;
   width: min(360px, 84vw);
-  height: 100dvh;
+  height: calc(100dvh - var(--navbar-height));
   display: none;
   grid-template-rows: auto 1fr auto;
   background: #fff;
