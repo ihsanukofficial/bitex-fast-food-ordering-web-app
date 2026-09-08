@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useToastNotificationAnimation from '../../../../hooks/useToastNotificationAnimation';
+import { CLOSE_OVERLAYS_EVENT } from '../../../../utils/notificationConstants';
 import Icon from '../../Icon/Icon';
 import styles from './Notification.module.css';
 
@@ -28,7 +29,12 @@ function Notification({
   useToastNotificationAnimation(notificationRef, isExiting);
 
   const handleReviewClick = () => {
-    navigate(`/profile/orders/${reviewOrderId}`);
+    // Same as the notification bell's own "Leave a Review" button (see
+    // NavbarNotificationButton) — close every other overlay (cart/delivery-details/
+    // mobile-nav drawers, the account menu) so nothing still covers the page this is
+    // about to scroll to, and ask OrderDetails to scroll to and highlight the item.
+    window.dispatchEvent(new CustomEvent(CLOSE_OVERLAYS_EVENT));
+    navigate(`/profile/orders/${reviewOrderId}`, { state: { scrollToReview: true } });
     onDismiss();
   };
 
