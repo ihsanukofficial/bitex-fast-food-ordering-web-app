@@ -61,11 +61,38 @@
   align-items: flex-start;
   padding-bottom: 1rem;
   border-bottom: 1px solid #f2f2f2;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease;
 }
 
 .item:last-child {
   padding-bottom: 0;
   border-bottom: none;
+}
+
+/* Briefly flashed on the item a notification's "Leave a Review" button scrolled to,
+   so it's obvious which one to act on instead of just landing on the page silently. */
+.itemHighlighted {
+  animation: reviewHighlight 2.2s ease-out;
+}
+
+@keyframes reviewHighlight {
+  0%,
+  35% {
+    background-color: var(--brand-red-soft);
+    box-shadow: 0 0 0 3px var(--brand-red-soft-border);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 0 3px transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itemHighlighted {
+    animation: none;
+    background-color: var(--brand-red-soft);
+  }
 }
 
 .itemImage {

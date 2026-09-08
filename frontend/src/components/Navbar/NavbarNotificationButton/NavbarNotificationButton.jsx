@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useNotifications } from '../../../context/NotificationContext';
+import { CLOSE_OVERLAYS_EVENT } from '../../../utils/notificationConstants';
 import Icon from '../../Utils/Icon/Icon';
 import NavbarCartBadge from '../NavbarCartBadge/NavbarCartBadge';
 import styles from './NavbarNotificationButton.module.css';
@@ -68,7 +69,10 @@ function NavbarNotificationButton() {
     event.stopPropagation();
     if (!notification.read) markAsRead(notification._id);
     setIsOpen(false);
-    navigate(`/profile/orders/${notification.order}`);
+    // Closes the cart/delivery-details/mobile-nav drawers (and the profile menu) so
+    // nothing is still covering the order page this is about to scroll to.
+    window.dispatchEvent(new CustomEvent(CLOSE_OVERLAYS_EVENT));
+    navigate(`/profile/orders/${notification.order}`, { state: { scrollToReview: true } });
   };
 
   return (

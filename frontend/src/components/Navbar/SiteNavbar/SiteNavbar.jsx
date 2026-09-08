@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../context/AuthContext'
 import useFocusTrap from '../../../hooks/useFocusTrap'
 import useNavbarEntranceAnimation from '../../../hooks/useNavbarEntranceAnimation'
+import { CLOSE_OVERLAYS_EVENT } from '../../../utils/notificationConstants'
 import { preloadPrimaryRoutes } from '../../../utils/routeLoaders'
 import Container from '../../Utils/Container/Container'
 import Logo from '../../Utils/Logo/Logo'
@@ -119,6 +120,20 @@ function SiteNavbar() {
     navigate('/menu')
   }, [navigate])
   const closeNavigation = useCallback(() => setIsNavOpen(false), [])
+
+  // A notification's "Leave a Review" button (or anything else that navigates the
+  // user somewhere it wants a clear view of) asks every navbar-owned overlay to
+  // close first, via a plain window event rather than prop-drilling — see
+  // CLOSE_OVERLAYS_EVENT.
+  useEffect(() => {
+    const closeAllOverlays = () => {
+      setIsDeliveryDetailsOpen(false)
+      setIsCartOpen(false)
+      setIsNavOpen(false)
+    }
+    window.addEventListener(CLOSE_OVERLAYS_EVENT, closeAllOverlays)
+    return () => window.removeEventListener(CLOSE_OVERLAYS_EVENT, closeAllOverlays)
+  }, [])
 
   const toggleNavigation = useCallback(() => {
     setIsDeliveryDetailsOpen(false)

@@ -83,6 +83,17 @@ function Profile() {
     return () => socket.off('notification:new', handleNewNotification);
   }, [socket, loadOrders]);
 
+  // Clears the "scroll to the review button" flag the notification bell's "Leave a
+  // Review" button set on this navigation — called by OrderDetails itself once it has
+  // actually acted on the flag (orders load asynchronously, so clearing this eagerly
+  // on mount would race ahead of OrderDetails ever mounting to see it), so it doesn't
+  // fire again on a later visit to the same history entry (browser back/forward
+  // restores router state too).
+  const clearReviewScrollFlag = useCallback(() => {
+    navigate(location.pathname, { replace: true, state: {} });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
+
   const selectTab = (tab) => {
     navigate(tab === 'overview' ? '/profile' : `/profile/${tab}`);
     setIsEditingProfile(false);
@@ -169,6 +180,8 @@ function Profile() {
           onBack={() => navigate('/profile/orders')}
           onReviewSubmitted={(itemIndex, review) => handleReviewSubmitted(viewingOrder._id, itemIndex, review)}
           onReviewDeleted={(itemIndex) => handleReviewDeleted(viewingOrder._id, itemIndex)}
+          scrollToReview={Boolean(location.state?.scrollToReview)}
+          onReviewScrollHandled={clearReviewScrollFlag}
         />
       ) : (
         <ErrorState message="That order could not be found." onRetry={() => navigate('/profile/orders')} />

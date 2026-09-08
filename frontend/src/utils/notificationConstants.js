@@ -11,3 +11,11 @@ export const ORDER_NOTIFICATION_TOAST_EVENT = 'bitex:order-notification';
  * as ORDER_NOTIFICATION_TOAST_EVENT — see utils/toast.js for the dispatch helper.
  */
 export const ACCOUNT_TOAST_EVENT = 'bitex:account-toast';
+
+/**
+ * Fired when an action needs every other overlay (cart drawer, delivery-details
+ * drawer, mobile nav drawer, profile menu, ...) to close first — e.g. the
+ * notification bell's "Leave a Review" button, which then navigates and scrolls the
+ * page, so nothing should still be covering the content underneath.
+ */
+export const CLOSE_OVERLAYS_EVENT = 'bitex:close-overlays';

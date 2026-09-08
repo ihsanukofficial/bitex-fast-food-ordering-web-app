@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import { CLOSE_OVERLAYS_EVENT } from '../../../utils/notificationConstants';
 import { preloadRoute } from '../../../utils/routeLoaders';
 import Icon from '../../Utils/Icon/Icon';
 import styles from './NavbarProfileAvatar.module.css';
@@ -55,6 +56,11 @@ function NavbarProfileAvatar() {
   }, [isOpen]);
 
   const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    window.addEventListener(CLOSE_OVERLAYS_EVENT, closeMenu);
+    return () => window.removeEventListener(CLOSE_OVERLAYS_EVENT, closeMenu);
+  }, []);
 
   const handleLogout = async () => {
     closeMenu();
