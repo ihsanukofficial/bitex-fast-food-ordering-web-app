@@ -34,7 +34,7 @@
 }
 
 .textarea:focus {
-  border-color: #d71b1f;
+  border-color: var(--brand-red);
   outline: 2px solid rgba(215, 27, 31, 0.14);
   box-shadow: 0 0.45rem 1.2rem rgba(73, 42, 7, 0.07);
 }

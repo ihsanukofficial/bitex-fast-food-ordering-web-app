@@ -25,7 +25,7 @@
 }
 
 .textarea:focus {
-  border-color: #f6b800;
+  border-color: var(--brand-yellow);
   outline: 0;
   box-shadow: 0 0 0 3px rgba(246, 184, 0, 0.18);
 }

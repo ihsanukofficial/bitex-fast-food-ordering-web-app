@@ -18,7 +18,7 @@
 }
 
 .trigger:hover {
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .trigger:active {
@@ -35,7 +35,7 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  color: #d71b1f;
+  color: var(--brand-red);
   transform: var(--ingredients-chevron-transform);
   transition: transform 0.28s ease;
 }

@@ -7,7 +7,7 @@
 }
 
 .button:hover:not(:disabled) {
-  background: #fca810;
+  background: var(--star-gold);
 }
 
 .button:disabled {

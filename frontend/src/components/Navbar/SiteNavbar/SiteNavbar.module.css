@@ -14,7 +14,7 @@
 }
 
 .skipLink:focus-visible {
-  outline: 3px solid #f6b800;
+  outline: 3px solid var(--brand-yellow);
   outline-offset: 2px;
   transform: translateY(0);
 }

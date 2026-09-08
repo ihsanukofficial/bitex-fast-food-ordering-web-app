@@ -31,5 +31,5 @@
 }
 
 .grandTotal dd {
-  color: #d71b1f;
+  color: var(--brand-red);
 }

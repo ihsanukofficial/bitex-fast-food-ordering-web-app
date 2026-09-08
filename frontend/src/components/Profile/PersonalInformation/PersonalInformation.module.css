@@ -17,7 +17,7 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .editButton {
@@ -35,8 +35,8 @@
 }
 
 .editButton:hover {
-  border-color: #d71b1f;
-  color: #d71b1f;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }
 
 .list {
@@ -67,7 +67,7 @@
 .value {
   margin: 0;
   padding-left: 1.45rem;
-  color: #1a1a1a;
+  color: var(--ink);
   font-size: 0.95rem;
   font-weight: 600;
   overflow-wrap: anywhere;

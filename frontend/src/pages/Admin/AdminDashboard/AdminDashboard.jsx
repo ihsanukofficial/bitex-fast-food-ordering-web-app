@@ -318,7 +318,7 @@ function AdminDashboard() {
           `bitex-recent-orders.csv`,
           toCsv(
             orders.map((order) => ({
-              id: order._id.slice(-6).toUpperCase(),
+              id: order._id.slice(-8).toUpperCase(),
               customer: order.user?.name || order.delivery.name,
               items: order.items.reduce((sum, item) => sum + item.quantity, 0),
               total: order.total,
@@ -432,7 +432,7 @@ function AdminDashboard() {
                         className={adminStyles.clickableRow}
                         onClick={() => navigate(`/admin/orders/${order._id}`)}
                       >
-                        <td className={adminStyles.cellPrimary}>#{order._id.slice(-6).toUpperCase()}</td>
+                        <td className={adminStyles.cellPrimary}>#{order._id.slice(-8).toUpperCase()}</td>
                         <td className={adminStyles.cellMuted}>{order.user?.name || order.delivery.name}</td>
                         <td className={adminStyles.cellMuted}>
                           {order.items.reduce((sum, item) => sum + item.quantity, 0)} items

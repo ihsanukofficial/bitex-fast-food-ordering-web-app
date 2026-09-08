@@ -10,7 +10,7 @@
 }
 
 .button:hover:not(:disabled) {
-  background: #f6b800;
+  background: var(--brand-yellow);
   color: #2d2106;
 }
 

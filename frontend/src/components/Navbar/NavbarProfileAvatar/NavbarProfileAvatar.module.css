@@ -12,7 +12,7 @@
   padding: 0;
   border-radius: 50%;
   overflow: hidden;
-  background: #d71b1f;
+  background: var(--brand-red);
   border: 1.5px solid rgba(215, 27, 31, 0.2);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -92,7 +92,7 @@
   flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
-  background: #d71b1f;
+  background: var(--brand-red);
 }
 
 .menuHeaderText {
@@ -104,7 +104,7 @@
   overflow: hidden;
   font-size: 0.92rem;
   font-weight: 750;
-  color: #1a1a1a;
+  color: var(--ink);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -152,12 +152,12 @@
 .menuItem:hover,
 .menuItem:focus-visible {
   background: #fbeceb;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .menuItem:hover .menuItemIcon,
 .menuItem:focus-visible .menuItemIcon {
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .menuItem:active {
@@ -179,7 +179,7 @@
 
 .logoutItem:hover,
 .logoutItem:focus-visible {
-  background: #fdeceb;
+  background: var(--brand-red-soft);
   color: #b3151a;
 }
 

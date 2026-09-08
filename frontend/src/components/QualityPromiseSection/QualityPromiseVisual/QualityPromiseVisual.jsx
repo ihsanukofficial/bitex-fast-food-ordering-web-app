@@ -1,3 +1,5 @@
+import EditableImage from '../../Utils/Editable/EditableImage';
+import EditableText from '../../Utils/Editable/EditableText';
 import QualityPromiseAccent from '../QualityPromiseAccent/QualityPromiseAccent';
 import QualityPromiseImage from '../QualityPromiseImage/QualityPromiseImage';
 import QualityPromiseNote from '../QualityPromiseNote/QualityPromiseNote';
@@ -12,8 +14,15 @@ function QualityPromiseVisual({ image, noteTitle, noteDescription }) {
   return (
     <div className={styles.visual}>
       <QualityPromiseAccent />
-      <QualityPromiseImage image={image} />
-      <QualityPromiseNote title={noteTitle} description={noteDescription} />
+      <EditableImage page="about" path={['qualityPromise', 'image']}>
+        <QualityPromiseImage image={image} />
+      </EditableImage>
+      <QualityPromiseNote
+        title={<EditableText page="about" path={['qualityPromise', 'note', 'title']} value={noteTitle} />}
+        description={
+          <EditableText page="about" path={['qualityPromise', 'note', 'description']} value={noteDescription} />
+        }
+      />
     </div>
   );
 }

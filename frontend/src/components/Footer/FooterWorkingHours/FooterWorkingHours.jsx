@@ -1,4 +1,5 @@
 import { useContent } from '../../../hooks/data/useContent';
+import EditableText from '../../Utils/Editable/EditableText';
 import Icon from '../../Utils/Icon/Icon';
 import styles from './FooterWorkingHours.module.css';
 
@@ -17,8 +18,12 @@ function FooterWorkingHours() {
       <div className={styles.hours}>
         <Icon name="ri-time-line" size="1rem" ariaLabel="" />
         <div>
-          <p>{hours.days}</p>
-          <p>{hours.time}</p>
+          <p>
+            <EditableText page="footer" path={['hours', 'days']} value={hours.days} />
+          </p>
+          <p>
+            <EditableText page="footer" path={['hours', 'time']} value={hours.time} />
+          </p>
         </div>
       </div>
     </section>

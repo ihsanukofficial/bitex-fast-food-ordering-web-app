@@ -22,7 +22,7 @@
 }
 
 .missing {
-  color: #d71b1f !important;
+  color: var(--brand-red) !important;
 }
 
 .total {
@@ -40,7 +40,7 @@
 }
 
 .total dd {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 1.3rem;
   font-weight: 900;
 }

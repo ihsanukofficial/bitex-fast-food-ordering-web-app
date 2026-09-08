@@ -2,7 +2,7 @@
   width: 100%;
   margin: 0;
   padding: 0.1rem 0 0.1rem 1rem;
-  border-left: 4px solid #f6b800;
+  border-left: 4px solid var(--brand-yellow);
   background: transparent;
   color: #fff;
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);

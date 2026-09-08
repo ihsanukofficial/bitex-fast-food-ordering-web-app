@@ -1,4 +1,5 @@
 import Container from '../../Utils/Container/Container';
+import EditableText from '../../Utils/Editable/EditableText';
 import BiteXStoryContent from '../BiteXStoryContent/BiteXStoryContent';
 import BiteXStoryLayout from '../BiteXStoryLayout/BiteXStoryLayout';
 import BiteXStoryVisual from '../BiteXStoryVisual/BiteXStoryVisual';
@@ -15,10 +16,12 @@ function BiteXStorySection({ content }) {
       <Container>
         <BiteXStoryLayout>
           <BiteXStoryContent
-            eyebrow={content?.eyebrow}
-            heading={content?.heading}
-            lead={content?.lead}
-            description={content?.description}
+            eyebrow={<EditableText page="about" path={['story', 'eyebrow']} value={content?.eyebrow} />}
+            heading={<EditableText page="about" path={['story', 'heading']} value={content?.heading} />}
+            lead={<EditableText page="about" path={['story', 'lead']} value={content?.lead} />}
+            description={
+              <EditableText page="about" path={['story', 'description']} value={content?.description} />
+            }
             stats={content?.stats}
           />
           <BiteXStoryVisual

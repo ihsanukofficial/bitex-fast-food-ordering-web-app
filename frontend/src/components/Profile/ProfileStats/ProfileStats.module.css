@@ -20,14 +20,14 @@
   margin-bottom: 0.75rem;
   border-radius: 0.75rem;
   background: #fbeceb;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .value {
   margin: 0 0 0.2rem;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .label {

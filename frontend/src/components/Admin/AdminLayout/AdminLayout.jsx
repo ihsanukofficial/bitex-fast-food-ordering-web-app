@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import Icon from '../../Utils/Icon/Icon';
 import styles from './AdminLayout.module.css';
@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { to: '/admin/reviews', label: 'Reviews', icon: 'ri-star-fill' },
   { to: '/admin/users', label: 'Users', icon: 'ri-group-fill' },
   { to: '/admin/content', label: 'Site Content', icon: 'ri-article-line' },
+  { to: '/admin/editor', label: 'Visual Editor', icon: 'ri-pencil-line', desktopOnly: true },
   { to: '/admin/activity-log', label: 'Activity Log', icon: 'ri-history-line' },
 ];
 
@@ -35,11 +36,18 @@ const getInitials = (name) => {
 function AdminLayout({ children }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
     navigate('/');
   };
+
+  // The visual editor renders the real public pages full-bleed so it can be a
+  // faithful, pixel-perfect preview — the sidebar's admin chrome (and its
+  // border-box reset — see AdminLayout.module.css) would otherwise both crowd the
+  // page and risk changing how it renders.
+  if (location.pathname.startsWith('/admin/editor')) return children;
 
   return (
     <div className={styles.shell}>
@@ -68,7 +76,9 @@ function AdminLayout({ children }) {
               key={item.to}
               to={item.to}
               end={item.end}
-              className={({ isActive }) => (isActive ? styles.navItemActive : styles.navItem)}
+              className={({ isActive }) =>
+                `${isActive ? styles.navItemActive : styles.navItem} ${item.desktopOnly ? styles.navItemDesktopOnly : ''}`.trim()
+              }
             >
               <span className={styles.navIcon}>
                 <Icon name={item.icon} size="1.15rem" ariaLabel="" />

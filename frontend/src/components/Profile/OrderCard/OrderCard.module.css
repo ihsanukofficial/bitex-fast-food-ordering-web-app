@@ -28,7 +28,7 @@
 
 .orderCode {
   font-weight: 750;
-  color: #1a1a1a;
+  color: var(--ink);
   font-size: 0.92rem;
 }
 
@@ -58,7 +58,7 @@
 .total {
   margin: 0;
   font-weight: 750;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .viewButton {
@@ -74,8 +74,8 @@
 }
 
 .viewButton:hover {
-  border-color: #d71b1f;
-  color: #d71b1f;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }
 
 @media (max-width: 480px) {

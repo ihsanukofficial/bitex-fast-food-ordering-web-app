@@ -10,7 +10,7 @@ import { priceCartItem } from '../utils/cartPricing.js';
 import { notifyOrderStatus } from '../utils/orderNotifications.js';
 import { computeDiscount, resolveActivePromoCode } from '../utils/resolvePromoCode.js';
 
-const getOrderCode = (order) => order._id.toString().slice(-6).toUpperCase();
+const getOrderCode = (order) => order._id.toString().slice(-8).toUpperCase();
 
 const validateDelivery = (delivery) => {
   const name = delivery?.name?.trim() || '';

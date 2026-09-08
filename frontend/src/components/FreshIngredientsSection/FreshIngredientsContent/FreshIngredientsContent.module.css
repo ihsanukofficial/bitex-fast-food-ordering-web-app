@@ -4,7 +4,7 @@
 
 .eyebrow {
   margin: 0 0 0.9rem;
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -31,7 +31,7 @@
 .closing {
   margin: 1.8rem 0 0;
   padding-left: 1rem;
-  border-left: 3px solid #f6b800;
+  border-left: 3px solid var(--brand-yellow);
   color: #323232;
   font-size: 0.95rem;
   font-weight: 750;

@@ -1,4 +1,5 @@
 import Container from '../../Utils/Container/Container';
+import EditableText from '../../Utils/Editable/EditableText';
 import QualityPromiseContent from '../QualityPromiseContent/QualityPromiseContent';
 import QualityPromiseLayout from '../QualityPromiseLayout/QualityPromiseLayout';
 import QualityPromiseVisual from '../QualityPromiseVisual/QualityPromiseVisual';
@@ -16,9 +17,15 @@ function QualityPromiseSection({ content }) {
       <Container>
         <QualityPromiseLayout>
           <QualityPromiseContent
-            eyebrow={content?.eyebrow}
-            heading={content?.heading}
-            description={content?.description}
+            eyebrow={<EditableText page="about" path={['qualityPromise', 'eyebrow']} value={content?.eyebrow} />}
+            heading={<EditableText page="about" path={['qualityPromise', 'heading']} value={content?.heading} />}
+            description={
+              <EditableText
+                page="about"
+                path={['qualityPromise', 'description']}
+                value={content?.description}
+              />
+            }
             promises={content?.promises}
           />
           <QualityPromiseVisual

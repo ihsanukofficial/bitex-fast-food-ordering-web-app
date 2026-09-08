@@ -1,4 +1,5 @@
 import styles from '../admin.module.css';
+import contentStyles from './AdminContent.module.css';
 import { useContentPage } from './useContentPage';
 
 /** Editor for the footer's brand blurb, contact details, hours, and social links. */
@@ -30,74 +31,109 @@ function FooterContentForm() {
     update(['socialLinks'], content.socialLinks.filter((_, i) => i !== index));
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} style={{ borderTop: 'none', paddingTop: 0 }}>
-      {status && <p className={styles[status.type]}>{status.message}</p>}
-
-      <label className={styles.field}>
-        <span>Brand description</span>
-        <textarea rows={2} value={content.brandDescription} onChange={(e) => update(['brandDescription'], e.target.value)} />
-      </label>
-
-      <h2 style={{ margin: 0, fontSize: '1rem' }}>Contact</h2>
-      <div className={styles.formRow}>
-        <label className={styles.field}>
-          <span>Address</span>
-          <input value={content.contact.address} onChange={(e) => update(['contact', 'address'], e.target.value)} />
-        </label>
-        <label className={styles.field}>
-          <span>Phone</span>
-          <input value={content.contact.phone} onChange={(e) => update(['contact', 'phone'], e.target.value)} />
-        </label>
-        <label className={styles.field}>
-          <span>Email</span>
-          <input value={content.contact.email} onChange={(e) => update(['contact', 'email'], e.target.value)} />
-        </label>
-      </div>
-
-      <h2 style={{ margin: 0, fontSize: '1rem' }}>Working hours</h2>
-      <div className={styles.formRow}>
-        <label className={styles.field}>
-          <span>Days</span>
-          <input value={content.hours.days} onChange={(e) => update(['hours', 'days'], e.target.value)} />
-        </label>
-        <label className={styles.field}>
-          <span>Time</span>
-          <input value={content.hours.time} onChange={(e) => update(['hours', 'time'], e.target.value)} />
-        </label>
-      </div>
-
-      <div className={styles.panelHeader} style={{ marginBottom: '0.25rem' }}>
-        <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>Social links</span>
-        <button type="button" className={styles.secondaryButton} onClick={addSocialLink}>
-          Add link
-        </button>
-      </div>
-      <div className={styles.subList}>
-        {content.socialLinks.map((link, index) => (
-          <div key={index} className={styles.subListRow}>
-            <label className={styles.field}>
-              <span>Label</span>
-              <input value={link.label} onChange={(e) => updateSocialLink(index, { label: e.target.value })} />
-            </label>
-            <label className={styles.field}>
-              <span>URL</span>
-              <input value={link.href} onChange={(e) => updateSocialLink(index, { href: e.target.value })} />
-            </label>
-            <label className={styles.field}>
-              <span>Icon (remixicon class)</span>
-              <input value={link.icon} onChange={(e) => updateSocialLink(index, { icon: e.target.value })} />
-            </label>
-            <button type="button" className={styles.dangerButton} onClick={() => removeSocialLink(index)}>
-              Remove
-            </button>
+    <form className={contentStyles.formBody} onSubmit={handleSubmit}>
+      <section className={contentStyles.section}>
+        <div className={contentStyles.sectionHeader}>
+          <div className={contentStyles.sectionHeaderText}>
+            <h2 className={contentStyles.sectionTitle}>Brand</h2>
           </div>
-        ))}
-      </div>
+        </div>
+        <label className={styles.field}>
+          <span>Brand description</span>
+          <textarea rows={2} value={content.brandDescription} onChange={(e) => update(['brandDescription'], e.target.value)} />
+        </label>
+      </section>
 
-      <div className={styles.actions}>
+      <section className={contentStyles.section}>
+        <div className={contentStyles.sectionHeader}>
+          <div className={contentStyles.sectionHeaderText}>
+            <h2 className={contentStyles.sectionTitle}>Contact</h2>
+          </div>
+        </div>
+        <div className={styles.formRow}>
+          <label className={styles.field}>
+            <span>Address</span>
+            <input value={content.contact.address} onChange={(e) => update(['contact', 'address'], e.target.value)} />
+          </label>
+          <label className={styles.field}>
+            <span>Phone</span>
+            <input value={content.contact.phone} onChange={(e) => update(['contact', 'phone'], e.target.value)} />
+          </label>
+          <label className={styles.field}>
+            <span>Email</span>
+            <input value={content.contact.email} onChange={(e) => update(['contact', 'email'], e.target.value)} />
+          </label>
+        </div>
+      </section>
+
+      <section className={contentStyles.section}>
+        <div className={contentStyles.sectionHeader}>
+          <div className={contentStyles.sectionHeaderText}>
+            <h2 className={contentStyles.sectionTitle}>Working hours</h2>
+          </div>
+        </div>
+        <div className={styles.formRow}>
+          <label className={styles.field}>
+            <span>Days</span>
+            <input value={content.hours.days} onChange={(e) => update(['hours', 'days'], e.target.value)} />
+          </label>
+          <label className={styles.field}>
+            <span>Time</span>
+            <input value={content.hours.time} onChange={(e) => update(['hours', 'time'], e.target.value)} />
+          </label>
+        </div>
+      </section>
+
+      <section className={contentStyles.section}>
+        <div className={contentStyles.sectionHeader}>
+          <div className={contentStyles.sectionHeaderText}>
+            <h2 className={contentStyles.sectionTitle}>Social links</h2>
+          </div>
+          <button type="button" className={styles.secondaryButton} onClick={addSocialLink}>
+            Add link
+          </button>
+        </div>
+        {content.socialLinks.length === 0 ? (
+          <p className={contentStyles.emptyList}>No social links yet.</p>
+        ) : (
+          <div className={contentStyles.itemList}>
+            {content.socialLinks.map((link, index) => (
+              <div key={index} className={contentStyles.item}>
+                <div className={contentStyles.itemHeader}>
+                  <span className={contentStyles.itemIndex}>{index + 1}</span>
+                  <button type="button" className={contentStyles.itemRemove} onClick={() => removeSocialLink(index)}>
+                    Remove
+                  </button>
+                </div>
+                <div className={contentStyles.itemFields}>
+                  <label className={styles.field}>
+                    <span>Label</span>
+                    <input value={link.label} onChange={(e) => updateSocialLink(index, { label: e.target.value })} />
+                  </label>
+                  <label className={styles.field}>
+                    <span>URL</span>
+                    <input value={link.href} onChange={(e) => updateSocialLink(index, { href: e.target.value })} />
+                  </label>
+                  <label className={styles.field}>
+                    <span>Icon (remixicon class)</span>
+                    <input value={link.icon} onChange={(e) => updateSocialLink(index, { icon: e.target.value })} />
+                  </label>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <div className={contentStyles.saveBar}>
         <button className={styles.button} type="submit" disabled={isSaving}>
           {isSaving ? 'Saving…' : 'Save footer content'}
         </button>
+        {status && (
+          <p className={contentStyles.saveStatus} data-type={status.type}>
+            {status.message}
+          </p>
+        )}
       </div>
     </form>
   );

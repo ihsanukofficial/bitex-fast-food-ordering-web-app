@@ -24,7 +24,7 @@
 
 .login {
   background: transparent;
-  color: #d71b1f;
+  color: var(--brand-red);
   border: 1.5px solid rgba(215, 27, 31, 0.35);
 }
 

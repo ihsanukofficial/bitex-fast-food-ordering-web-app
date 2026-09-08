@@ -18,11 +18,11 @@
 }
 
 .thumbnail.active {
-  border-color: #d71b1f;
+  border-color: var(--brand-red);
 }
 
 .thumbnail:focus-visible {
-  outline: 3px solid #d71b1f;
+  outline: 3px solid var(--brand-red);
   outline-offset: 2px;
 }
 

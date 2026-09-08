@@ -1,4 +1,5 @@
 import Container from '../../Utils/Container/Container';
+import EditableText from '../../Utils/Editable/EditableText';
 import CallToActionActions from '../CallToActionActions/CallToActionActions';
 import CallToActionBackground from '../CallToActionBackground/CallToActionBackground';
 import CallToActionDescription from '../CallToActionDescription/CallToActionDescription';
@@ -17,7 +18,9 @@ function CallToActionSection({ content }) {
       <Container>
         <CallToActionPanel>
           <CallToActionHeading>{content?.heading}</CallToActionHeading>
-          <CallToActionDescription>{content?.description}</CallToActionDescription>
+          <CallToActionDescription>
+            <EditableText page="home" path={['cta', 'description']} value={content?.description} />
+          </CallToActionDescription>
           <CallToActionActions />
         </CallToActionPanel>
       </Container>

@@ -1,4 +1,5 @@
 import { useContent } from '../../../hooks/data/useContent';
+import EditableText from '../../Utils/Editable/EditableText';
 import styles from './FooterBrandDescription.module.css';
 
 /**
@@ -11,7 +12,11 @@ function FooterBrandDescription() {
 
   return (
     <p className={styles.description}>
-      {content?.brandDescription || 'Fresh comfort food, bold flavor, and good moments—made the BiteX way.'}
+      <EditableText
+        page="footer"
+        path={['brandDescription']}
+        value={content?.brandDescription || 'Fresh comfort food, bold flavor, and good moments—made the BiteX way.'}
+      />
     </p>
   );
 }

@@ -2,10 +2,10 @@
   align-self: flex-start;
   padding: 0.4rem 0.85rem;
   margin-top: 0.35rem;
-  border: 1px solid #d71b1f;
+  border: 1px solid var(--brand-red);
   border-radius: 999px;
   background: #fff;
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
@@ -13,11 +13,11 @@
 }
 
 .addButton:hover {
-  background: #fdeceb;
+  background: var(--brand-red-soft);
 }
 
 .addButton:focus-visible {
-  outline: 2px solid #d71b1f;
+  outline: 2px solid var(--brand-red);
   outline-offset: 2px;
 }
 
@@ -72,13 +72,13 @@
 }
 
 .editButton:hover {
-  border-color: #d71b1f;
-  color: #d71b1f;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }
 
 .deleteButton {
   padding: 0.3rem 0.75rem;
-  border: 1px solid #f3c8c8;
+  border: 1px solid var(--brand-red-soft-border);
   border-radius: 999px;
   background: #fff;
   color: #b3151a;
@@ -88,5 +88,5 @@
 }
 
 .deleteButton:hover {
-  background: #fdeceb;
+  background: var(--brand-red-soft);
 }

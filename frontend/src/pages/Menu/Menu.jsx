@@ -11,7 +11,9 @@ import menuSearchBackgroundImage from '../../assets/gallery/1.webp';
 import MenuSearchSection from '../../components/MenuSearchSection/MenuSearchSection/MenuSearchSection';
 import MenuProductsSection from '../../components/MenuProductsSection/MenuProductsSection/MenuProductsSection';
 import PageLoadingState from '../../components/Utils/PageLoadingState/PageLoadingState';
+import { useEditMode } from '../../context/EditModeContext';
 import { ALL_CATEGORY_ID, useCategoryNavigation } from '../../hooks/data/useCategories';
+import { useContent } from '../../hooks/data/useContent';
 import { useMenuProductsPage } from '../../hooks/data/useMenuProducts';
 import usePageEntranceAnimations from '../../hooks/usePageEntranceAnimations';
 import styles from './Menu.module.css';
@@ -37,6 +39,12 @@ function Menu() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { category: categorySlug } = useParams();
   const initialQuery = new URLSearchParams(location.search).get('q') || '';
+  // AdminLiveEditor mounts this exact page inside /admin/editor — none of its
+  // filters should actually navigate there, since Menu normally does that via the
+  // app's single router (setSearchParams/navigate), which would otherwise carry the
+  // admin straight out of the editor and onto the real public /menu route.
+  const edit = useEditMode();
+  const { content: menuContent } = useContent('menu');
   const {
     isLoading: isLoadingCategories,
     menuCategoryOptions,
@@ -120,6 +128,7 @@ function Menu() {
   };
 
   const handleCategoryChange = (event) => {
+    if (edit) return;
     const nextCategoryId = event.target.value;
     setSelectedCategoryId(nextCategoryId);
     // A fresh path with no `page` in it — building it from scratch (rather than
@@ -133,6 +142,7 @@ function Menu() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
+    if (edit) return;
     const queryValue = searchText.trim();
 
     setSearchText(queryValue);
@@ -142,6 +152,7 @@ function Menu() {
   };
 
   const handlePageChange = (nextPage) => {
+    if (edit) return;
     setSearchParams((previous) => {
       const next = new URLSearchParams(previous);
       if (nextPage <= 1) next.delete('page');
@@ -164,7 +175,7 @@ function Menu() {
       tabIndex="-1"
     >
       <MenuSearchSection
-        backgroundImageUrl={menuSearchBackgroundImage}
+        backgroundImageUrl={menuContent?.searchBanner?.backgroundImage || menuSearchBackgroundImage}
         categoryOptions={menuCategoryOptions}
         selectedCategoryId={selectedCategoryId}
         onCategoryChange={handleCategoryChange}

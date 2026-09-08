@@ -8,7 +8,7 @@ import styles from './HeroEyebrow.module.css';
 function HeroEyebrow({ children = 'Fresh. Fast. Full of flavor.' }) {
   return (
     <p className={styles.eyebrow}>
-      <span aria-hidden="true" />
+      <span className={styles.bar} aria-hidden="true" />
       {children}
     </p>
   );

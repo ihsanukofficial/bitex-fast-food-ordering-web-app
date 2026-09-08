@@ -27,12 +27,12 @@
 }
 
 .section a:hover {
-  color: #fca810;
+  color: var(--star-gold);
   transform: translateX(3px);
 }
 
 .section a:focus-visible {
   border-radius: 4px;
-  outline: 2px solid #fca810;
+  outline: 2px solid var(--star-gold);
   outline-offset: 3px;
 }

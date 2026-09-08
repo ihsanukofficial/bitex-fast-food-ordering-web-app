@@ -1,6 +1,9 @@
 .bar {
   position: sticky;
-  top: 0;
+  /* AdminLiveEditor sets this custom property on its preview wrapper so the sticky
+     navbar sticks just below its own save/exit toolbar instead of underneath it —
+     unset anywhere else, so the public site keeps sticking to the true viewport top. */
+  top: var(--live-editor-navbar-top, 0);
   z-index: 1000;
   width: 100%;
   height: 70px;

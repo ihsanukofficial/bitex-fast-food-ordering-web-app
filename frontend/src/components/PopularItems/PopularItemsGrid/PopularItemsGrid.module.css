@@ -42,3 +42,59 @@
     background: #d5b05c;
   }
 }
+
+/* Editor-only: wraps each card with its product picker below AdminLiveEditor renders. */
+.editItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.editPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  border: 1.5px dashed rgba(215, 27, 31, 0.4);
+  border-radius: 1.35rem;
+  background: rgba(215, 27, 31, 0.04);
+  color: var(--brand-red-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.editControls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.editSelect {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #e5e6ec;
+  border-radius: 0.5rem;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.editRemove {
+  flex-shrink: 0;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--brand-red-soft-border);
+  border-radius: 0.5rem;
+  background: var(--brand-red-soft);
+  color: var(--brand-red-dark);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.editRemove:hover {
+  background: var(--brand-red-soft-border);
+}

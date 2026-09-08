@@ -31,11 +31,42 @@
 
 .links a:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: #fca810;
+  color: var(--star-gold);
   transform: translateY(-2px);
 }
 
 .links a:focus-visible {
-  outline: 2px solid #fca810;
+  outline: 2px solid var(--star-gold);
   outline-offset: 3px;
+}
+
+/* Editor-only: the field group AdminLiveEditor renders under the icon row. */
+.editList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.editRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 0.4rem;
+  padding-right: 1.25rem;
+}
+
+.editInput {
+  min-width: 0;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.editInput::placeholder {
+  color: rgba(255, 255, 255, 0.45);
 }

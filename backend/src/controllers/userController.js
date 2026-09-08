@@ -37,6 +37,15 @@ export const updateAvatar = asyncHandler(async (req, res) => {
   await req.user.save();
   await deleteAvatarFile(previousAvatar);
 
+  logActivity({
+    user: req.user,
+    action: 'user.avatar_updated',
+    description: `${req.user.name} updated their profile photo.`,
+    targetType: 'user',
+    targetId: req.user._id,
+    targetLabel: req.user.name,
+  });
+
   res.json({ user: toPublicUser(req.user) });
 });
 
@@ -46,21 +55,51 @@ export const removeAvatar = asyncHandler(async (req, res) => {
   await req.user.save();
   await deleteAvatarFile(previousAvatar);
 
+  logActivity({
+    user: req.user,
+    action: 'user.avatar_removed',
+    description: `${req.user.name} removed their profile photo.`,
+    targetType: 'user',
+    targetId: req.user._id,
+    targetLabel: req.user.name,
+  });
+
   res.json({ user: toPublicUser(req.user) });
 });
 
 export const updateProfile = asyncHandler(async (req, res) => {
   const { name, phone, address } = req.body;
   const user = req.user;
+  const wasModified = { name: false, phone: false, address: false };
 
   if (name !== undefined) {
     if (!name.trim()) throw new ApiError(400, 'Name cannot be empty.');
+    wasModified.name = name.trim() !== user.name;
     user.name = name.trim();
   }
-  if (phone !== undefined) user.phone = phone.trim();
-  if (address !== undefined) user.address = address.trim();
+  if (phone !== undefined) {
+    wasModified.phone = phone.trim() !== user.phone;
+    user.phone = phone.trim();
+  }
+  if (address !== undefined) {
+    wasModified.address = address.trim() !== user.address;
+    user.address = address.trim();
+  }
 
   await user.save();
+
+  const changedFields = Object.keys(wasModified).filter((field) => wasModified[field]);
+  if (changedFields.length > 0) {
+    logActivity({
+      user,
+      action: 'user.profile_updated',
+      description: `${user.name} updated their ${changedFields.join(', ')}.`,
+      targetType: 'user',
+      targetId: user._id,
+      targetLabel: user.name,
+    });
+  }
+
   res.json({ user: toPublicUser(user) });
 });
 
@@ -79,8 +118,37 @@ export const changePassword = asyncHandler(async (req, res) => {
 
   user.passwordHash = await bcrypt.hash(newPassword, 10);
   await user.save();
+
+  logActivity({
+    user,
+    action: 'user.password_changed',
+    description: `${user.name} changed their account password.`,
+    targetType: 'user',
+    targetId: user._id,
+    targetLabel: user.name,
+  });
+
   res.status(204).end();
 });
+
+/**
+ * Permanently removes a user's account and the private, no-longer-useful data it
+ * owns (cart, wishlist, notifications, avatar file). Shared by the self-service
+ * deleteAccount below and the admin-initiated deleteUser (adminUserController) so
+ * both paths stay in sync. Orders, reviews, and activity-log entries are kept as
+ * historical records — they already denormalize the customer's name/email so they
+ * stay meaningful once the account is gone (see ActivityLog's own comment, and
+ * Order's user?.name fallback to its delivery snapshot on the admin screens).
+ */
+export const purgeUserAccount = async (user) => {
+  await Promise.all([
+    Cart.deleteOne({ user: user._id }),
+    Wishlist.deleteOne({ user: user._id }),
+    Notification.deleteMany({ user: user._id }),
+  ]);
+  await deleteAvatarFile(user.avatar);
+  await User.deleteOne({ _id: user._id });
+};
 
 export const deleteAccount = asyncHandler(async (req, res) => {
   const { password } = req.body;
@@ -99,18 +167,7 @@ export const deleteAccount = asyncHandler(async (req, res) => {
     targetLabel: user.name,
   });
 
-  // Orders, reviews, and activity-log entries are kept as historical records — they
-  // already denormalize the customer's name/email so they stay meaningful once the
-  // account is gone (see ActivityLog's own comment, and Order's user?.name fallback
-  // to its delivery snapshot on the admin screens). Only the account's private,
-  // no-longer-useful data is removed here.
-  await Promise.all([
-    Cart.deleteOne({ user: user._id }),
-    Wishlist.deleteOne({ user: user._id }),
-    Notification.deleteMany({ user: user._id }),
-  ]);
-  await deleteAvatarFile(user.avatar);
-  await User.deleteOne({ _id: user._id });
+  await purgeUserAccount(user);
 
   clearAuthCookie(res);
   res.status(204).end();

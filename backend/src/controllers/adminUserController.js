@@ -7,6 +7,7 @@ import { logActivity } from '../services/activityLogService.js';
 import { notifyUser } from '../services/notificationService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
+import { purgeUserAccount } from './userController.js';
 
 const NOTIFICATION_MESSAGE_MAX_LENGTH = 500;
 
@@ -94,6 +95,37 @@ export const updateUser = asyncHandler(async (req, res) => {
   }
 
   res.json({ user: { ...user.toObject(), passwordHash: undefined } });
+});
+
+/**
+ * Admin-initiated account deletion — unlike the customer-facing deleteAccount, this
+ * needs no password confirmation (the admin isn't the account owner) and is gated
+ * only by requireAdmin on this router, the same way deleteReview works for reviews.
+ */
+export const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) throw new ApiError(404, 'User not found.');
+
+  if (user._id.equals(req.user._id)) {
+    throw new ApiError(400, 'You cannot delete your own account from here.');
+  }
+
+  logActivity({
+    user: req.user,
+    action: 'user.account_deleted',
+    description: `${req.user.name} deleted ${user.name}'s account.`,
+    targetType: 'user',
+    targetId: user._id,
+    targetLabel: user.name,
+  });
+
+  emitToUser(user._id, 'auth:access-revoked', {
+    message: 'Your account has been removed.',
+  });
+
+  await purgeUserAccount(user);
+
+  res.status(204).end();
 });
 
 /** Sends a one-off custom message to a single user's notification bell, in real time. */

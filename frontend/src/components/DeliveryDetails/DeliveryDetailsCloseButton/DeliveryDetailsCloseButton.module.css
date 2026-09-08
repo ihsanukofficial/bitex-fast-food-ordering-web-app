@@ -16,7 +16,7 @@
 }
 
 .button:hover {
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   transform: rotate(4deg);
 }

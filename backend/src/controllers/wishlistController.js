@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Product from '../models/Product.js';
 import Wishlist from '../models/Wishlist.js';
+import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 
@@ -44,6 +45,15 @@ export const addWishlistItem = asyncHandler(async (req, res) => {
   if (!alreadyIn) {
     wishlist.products.push(product._id);
     await wishlist.save();
+
+    logActivity({
+      user: req.user,
+      action: 'wishlist.item_added',
+      description: `${req.user.name} added ${product.title} to their wishlist.`,
+      targetType: 'product',
+      targetId: product._id,
+      targetLabel: product.title,
+    });
   }
 
   await respondWithWishlist(res, wishlist, 201);
@@ -54,8 +64,21 @@ export const removeWishlistItem = asyncHandler(async (req, res) => {
   if (!mongoose.isValidObjectId(productId)) throw new ApiError(400, 'Invalid product.');
 
   const wishlist = await findOrCreateWishlist(req.user._id);
+  const wasIn = wishlist.products.some((id) => id.equals(productId));
   wishlist.products = wishlist.products.filter((id) => !id.equals(productId));
   await wishlist.save();
+
+  if (wasIn) {
+    const product = await Product.findById(productId).select('title');
+    logActivity({
+      user: req.user,
+      action: 'wishlist.item_removed',
+      description: `${req.user.name} removed ${product?.title || 'an item'} from their wishlist.`,
+      targetType: 'product',
+      targetId: productId,
+      targetLabel: product?.title || '',
+    });
+  }
 
   await respondWithWishlist(res, wishlist);
 });

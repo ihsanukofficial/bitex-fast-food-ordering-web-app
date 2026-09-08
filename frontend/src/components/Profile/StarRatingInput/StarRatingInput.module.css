@@ -20,6 +20,6 @@
 }
 
 .starButton:focus-visible {
-  outline: 2px solid #d71b1f;
+  outline: 2px solid var(--brand-red);
   outline-offset: 1px;
 }

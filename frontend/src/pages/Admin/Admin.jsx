@@ -12,6 +12,7 @@ import AdminPromoCodes from './AdminPromoCodes/AdminPromoCodes';
 import AdminReviews from './AdminReviews/AdminReviews';
 import AdminUserDetail from './AdminUserDetail/AdminUserDetail';
 import AdminUsers from './AdminUsers/AdminUsers';
+import LiveEditor from './AdminContent/LiveEditor/LiveEditor';
 
 /**
  * Admin
@@ -35,6 +36,7 @@ function Admin() {
         <Route path="/users" element={<AdminUsers />} />
         <Route path="/users/:id" element={<AdminUserDetail />} />
         <Route path="/content" element={<AdminContent />} />
+        <Route path="/editor" element={<LiveEditor />} />
         <Route path="/activity-log" element={<AdminActivityLog />} />
       </Routes>
     </AdminLayout>

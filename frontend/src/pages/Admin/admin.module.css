@@ -592,6 +592,56 @@
   flex-wrap: wrap;
 }
 
+/* Compact icon-only row actions for tables — the .linkButton/.dangerButton pill
+   pattern (icon + label, full border) reads as noisy boilerplate once it repeats
+   twice per row across a long list, so a table's Edit/Delete pair uses this instead.
+   Edit tints neutral-blue on hover, Delete tints red, so the two stay easy to tell
+   apart without a text label. Reserve labeled buttons for actions that aren't a
+   repeated per-row pair (a lone delete, a page-level action, anything whose meaning
+   isn't obvious from a pencil/trash icon alone). */
+.rowActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.rowIconButton {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.rowIconButton:hover {
+  border-color: #b9c6ef;
+  background: var(--admin-info-soft);
+  color: var(--admin-info);
+}
+
+.rowIconButton:focus-visible {
+  outline: 2px solid var(--admin-red);
+  outline-offset: 2px;
+}
+
+.rowIconButton:disabled {
+  color: var(--admin-muted-soft);
+  background: var(--admin-surface);
+  cursor: not-allowed;
+}
+
+.rowIconButtonDanger:hover {
+  border-color: var(--admin-red-soft-border);
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+}
+
 .success {
   display: flex;
   align-items: center;

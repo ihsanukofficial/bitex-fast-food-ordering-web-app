@@ -5,5 +5,5 @@
   place-items: center;
   border-radius: 50%;
   background: #fff2c9;
-  color: #d71b1f;
+  color: var(--brand-red);
 }

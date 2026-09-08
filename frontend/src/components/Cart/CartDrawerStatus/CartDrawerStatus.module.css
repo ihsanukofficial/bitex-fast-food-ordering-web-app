@@ -10,5 +10,5 @@
 }
 
 .status[data-tone='error'] {
-  color: #d71b1f;
+  color: var(--brand-red);
 }

@@ -1,5 +1,5 @@
 .discountedPrice {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 1.8rem;
   font-weight: 800;
 }

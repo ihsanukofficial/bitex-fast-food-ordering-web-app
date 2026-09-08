@@ -1,5 +1,5 @@
 .card {
-  --popular-item-arrow-background: #f6b800;
+  --popular-item-arrow-background: var(--brand-yellow);
   --popular-item-arrow-color: #292929;
   --popular-item-arrow-shift: 0;
   --popular-item-image-scale: 1;
@@ -18,7 +18,7 @@
 }
 
 .card:hover {
-  --popular-item-arrow-background: #d71b1f;
+  --popular-item-arrow-background: var(--brand-red);
   --popular-item-arrow-color: #fff;
   --popular-item-arrow-shift: 2px;
   --popular-item-image-scale: 1.035;
@@ -27,7 +27,7 @@
 }
 
 .card:focus-visible {
-  outline: 3px solid #d71b1f;
+  outline: 3px solid var(--brand-red);
   outline-offset: 4px;
 }
 

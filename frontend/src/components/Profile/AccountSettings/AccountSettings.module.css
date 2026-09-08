@@ -15,7 +15,7 @@
   margin: 0 0 1.1rem;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .form {
@@ -43,7 +43,7 @@
 
 .field input:focus-visible {
   outline: none;
-  border-color: #d71b1f;
+  border-color: var(--brand-red);
   box-shadow: 0 0 0 3px rgba(215, 27, 31, 0.12);
 }
 
@@ -51,7 +51,7 @@
   margin: 0;
   padding: 0.6rem 0.85rem;
   border-radius: 0.6rem;
-  background: #fdeceb;
+  background: var(--brand-red-soft);
   color: #b3151a;
   font-size: 0.85rem;
   font-weight: 600;
@@ -62,7 +62,7 @@
   padding: 0.7rem 1.3rem;
   border: none;
   border-radius: 999px;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   font-weight: 750;
   cursor: pointer;
@@ -84,7 +84,7 @@
 }
 
 .accountEmail strong {
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .logoutButton {
@@ -92,7 +92,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.65rem 1.25rem;
-  border: 1px solid #f3c8c8;
+  border: 1px solid var(--brand-red-soft-border);
   border-radius: 999px;
   background: #fff;
   color: #b3151a;
@@ -102,12 +102,12 @@
 }
 
 .logoutButton:hover {
-  background: #fdeceb;
+  background: var(--brand-red-soft);
 }
 
 .dangerSection {
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  border: 1px solid #f3c8c8;
+  border: 1px solid var(--brand-red-soft-border);
   border-radius: 1.25rem;
   background: #fff;
 }

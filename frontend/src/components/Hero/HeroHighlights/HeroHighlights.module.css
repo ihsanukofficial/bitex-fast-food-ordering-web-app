@@ -18,7 +18,7 @@
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 50%;
-  background: #d71b1f;
+  background: var(--brand-red);
   content: '';
 }
 

@@ -39,17 +39,17 @@
 }
 
 .tab:hover {
-  border-color: #d71b1f;
+  border-color: var(--brand-red);
 }
 
 .tab:focus-visible {
-  outline: 3px solid #d71b1f;
+  outline: 3px solid var(--brand-red);
   outline-offset: 2px;
 }
 
 .activeTab {
-  border-color: #d71b1f;
-  background: #d71b1f;
+  border-color: var(--brand-red);
+  background: var(--brand-red);
   color: #fff;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .panelPrice {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 0.9rem;
   font-weight: 800;
   white-space: nowrap;

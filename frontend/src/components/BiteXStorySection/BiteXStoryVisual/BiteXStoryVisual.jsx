@@ -1,3 +1,5 @@
+import EditableImage from '../../Utils/Editable/EditableImage';
+import EditableText from '../../Utils/Editable/EditableText';
 import BiteXStoryCaption from '../BiteXStoryCaption/BiteXStoryCaption';
 import BiteXStoryImageFrame from '../BiteXStoryImageFrame/BiteXStoryImageFrame';
 import styles from './BiteXStoryVisual.module.css';
@@ -10,8 +12,15 @@ import styles from './BiteXStoryVisual.module.css';
 function BiteXStoryVisual({ image, captionTitle, captionDescription }) {
   return (
     <figure className={styles.figure}>
-      <BiteXStoryImageFrame image={image} />
-      <BiteXStoryCaption title={captionTitle} description={captionDescription} />
+      <EditableImage page="about" path={['story', 'image']}>
+        <BiteXStoryImageFrame image={image} />
+      </EditableImage>
+      <BiteXStoryCaption
+        title={<EditableText page="about" path={['story', 'caption', 'title']} value={captionTitle} />}
+        description={
+          <EditableText page="about" path={['story', 'caption', 'description']} value={captionDescription} />
+        }
+      />
     </figure>
   );
 }

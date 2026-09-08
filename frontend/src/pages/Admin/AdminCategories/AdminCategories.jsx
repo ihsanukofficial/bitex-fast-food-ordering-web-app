@@ -147,14 +147,24 @@ function AdminCategories() {
                 <td className={styles.cellMuted}>{category.itemCount}</td>
                 <td className={styles.cellMuted}>{category.order}</td>
                 <td>
-                  <div className={styles.actions}>
-                    <button className={styles.linkButton} type="button" onClick={() => startEdit(category)}>
-                      <Icon name="ri-pencil-line" size="0.9rem" ariaLabel="" />
-                      Edit
+                  <div className={styles.rowActions}>
+                    <button
+                      className={styles.rowIconButton}
+                      type="button"
+                      title="Edit category"
+                      aria-label={`Edit ${category.name}`}
+                      onClick={() => startEdit(category)}
+                    >
+                      <Icon name="ri-pencil-line" size="0.95rem" ariaLabel="" />
                     </button>
-                    <button className={styles.dangerButton} type="button" onClick={() => handleDelete(category)}>
-                      <Icon name="ri-delete-bin-line" size="0.9rem" ariaLabel="" />
-                      Delete
+                    <button
+                      className={`${styles.rowIconButton} ${styles.rowIconButtonDanger}`}
+                      type="button"
+                      title="Delete category"
+                      aria-label={`Delete ${category.name}`}
+                      onClick={() => handleDelete(category)}
+                    >
+                      <Icon name="ri-delete-bin-line" size="0.95rem" ariaLabel="" />
                     </button>
                   </div>
                 </td>

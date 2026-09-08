@@ -1,7 +1,19 @@
 import Cart from '../models/Cart.js';
+import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { clampQuantity, priceCartItem } from '../utils/cartPricing.js';
+
+/** Best-effort title lookup for a log description — a stale/removed line must never
+ * block the cart mutation it's describing, so any pricing failure falls back to a
+ * generic label instead of throwing. */
+const describeCartItem = async (item) => {
+  try {
+    return (await priceCartItem(item)).title;
+  } catch {
+    return 'an item';
+  }
+};
 
 const findOrCreateCart = async (userId) => {
   const cart = await Cart.findOneAndUpdate(
@@ -156,6 +168,15 @@ export const addCartItem = asyncHandler(async (req, res) => {
 
   await cart.save();
 
+  logActivity({
+    user: req.user,
+    action: 'cart.item_added',
+    description: `${req.user.name} added ${rawItem.quantity}× ${priced.title} to their cart.`,
+    targetType: 'cart_item',
+    targetId: resultItem._id,
+    targetLabel: priced.title,
+  });
+
   res.status(201).json({
     cart: await priceCartForResponse(cart),
     result: {
@@ -173,8 +194,19 @@ export const updateCartItemQuantity = asyncHandler(async (req, res) => {
   const item = cart.items.id(req.params.itemId);
   if (!item) throw new ApiError(404, 'Cart item not found.');
 
+  const title = await describeCartItem(item);
   item.quantity = clampQuantity(req.body.quantity);
   await cart.save();
+
+  logActivity({
+    user: req.user,
+    action: 'cart.item_quantity_updated',
+    description: `${req.user.name} set ${title} to quantity ${item.quantity} in their cart.`,
+    targetType: 'cart_item',
+    targetId: item._id,
+    targetLabel: title,
+  });
+
   res.json({ cart: await priceCartForResponse(cart) });
 });
 
@@ -183,14 +215,38 @@ export const removeCartItem = asyncHandler(async (req, res) => {
   const item = cart.items.id(req.params.itemId);
   if (!item) throw new ApiError(404, 'Cart item not found.');
 
+  const title = await describeCartItem(item);
   item.deleteOne();
   await cart.save();
+
+  logActivity({
+    user: req.user,
+    action: 'cart.item_removed',
+    description: `${req.user.name} removed ${title} from their cart.`,
+    targetType: 'cart_item',
+    targetId: req.params.itemId,
+    targetLabel: title,
+  });
+
   res.json({ cart: await priceCartForResponse(cart) });
 });
 
 export const clearCart = asyncHandler(async (req, res) => {
   const cart = await findOrCreateCart(req.user._id);
+  const clearedCount = cart.items.length;
   cart.items = [];
   await cart.save();
+
+  if (clearedCount > 0) {
+    logActivity({
+      user: req.user,
+      action: 'cart.cleared',
+      description: `${req.user.name} cleared ${clearedCount} item${clearedCount === 1 ? '' : 's'} from their cart.`,
+      targetType: 'cart',
+      targetId: req.user._id,
+      targetLabel: req.user.name,
+    });
+  }
+
   res.json({ cart: await priceCartForResponse(cart) });
 });

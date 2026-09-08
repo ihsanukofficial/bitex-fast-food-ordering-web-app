@@ -2,6 +2,7 @@ import AboutContent from '../models/content/AboutContent.js';
 import BrandingContent from '../models/content/BrandingContent.js';
 import FooterContent from '../models/content/FooterContent.js';
 import HomeContent from '../models/content/HomeContent.js';
+import MenuContent from '../models/content/MenuContent.js';
 import NavigationContent from '../models/content/NavigationContent.js';
 import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
@@ -13,6 +14,7 @@ const MODELS_BY_PAGE = {
   footer: FooterContent,
   navigation: NavigationContent,
   branding: BrandingContent,
+  menu: MenuContent,
 };
 
 const getModel = (page) => {
@@ -36,6 +38,7 @@ const PAGE_LABELS = {
   footer: 'Footer',
   navigation: 'Navigation',
   branding: 'Branding',
+  menu: 'Menu page',
 };
 
 export const updatePageContent = asyncHandler(async (req, res) => {

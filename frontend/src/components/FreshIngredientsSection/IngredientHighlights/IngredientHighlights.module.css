@@ -12,3 +12,16 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Editor-only: the small accent picker AdminLiveEditor renders next to each label. */
+.accentSelect {
+  margin-left: auto;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid rgba(60, 39, 10, 0.15);
+  border-radius: 0.4rem;
+  background: #fff;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}

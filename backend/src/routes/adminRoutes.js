@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { deleteReview, listReviews } from '../controllers/adminReviewController.js';
 import {
+  deleteUser,
   getStats,
   getUserById,
   listUsers,
@@ -16,6 +17,7 @@ router.get('/stats', getStats);
 router.get('/users', listUsers);
 router.get('/users/:id', getUserById);
 router.put('/users/:id', updateUser);
+router.delete('/users/:id', deleteUser);
 router.post('/users/:id/notifications', sendUserNotification);
 router.get('/reviews', listReviews);
 router.delete('/reviews/:reviewId', deleteReview);

@@ -1,6 +1,7 @@
 import defaultLogo from '../../../components/Utils/Logo/logo.svg';
 import { uploadFile } from '../../../services/apiClient';
 import styles from '../admin.module.css';
+import contentStyles from './AdminContent.module.css';
 import { useContentPage } from './useContentPage';
 
 /**
@@ -29,36 +30,36 @@ function BrandingContentForm() {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} style={{ borderTop: 'none', paddingTop: 0 }}>
-      {status && <p className={styles[status.type]}>{status.message}</p>}
+    <form className={contentStyles.formBody} onSubmit={handleSubmit}>
+      <section className={contentStyles.section}>
+        <div className={contentStyles.sectionHeader}>
+          <div className={contentStyles.sectionHeaderText}>
+            <h2 className={contentStyles.sectionTitle}>Site logo</h2>
+            <p className={contentStyles.sectionHint}>Shown in the navbar, footer, and other brand placements.</p>
+          </div>
+        </div>
+        <div className={contentStyles.logoPreview}>
+          <img className={contentStyles.logoPreviewImage} src={content.logoUrl || defaultLogo} alt="" />
+          <div className={contentStyles.logoPreviewActions}>
+            <input type="file" accept="image/*" onChange={handleUpload} />
+            {content.logoUrl && (
+              <button type="button" className={styles.secondaryButton} onClick={handleReset}>
+                Reset to default logo
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
 
-      <label className={styles.field}>
-        <span>Site Logo</span>
-        <img
-          src={content.logoUrl || defaultLogo}
-          alt=""
-          width={140}
-          style={{
-            display: 'block',
-            marginBottom: '0.5rem',
-            padding: '0.75rem',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        />
-        <input type="file" accept="image/*" onChange={handleUpload} />
-      </label>
-
-      {content.logoUrl && (
-        <button type="button" className={styles.secondaryButton} style={{ alignSelf: 'flex-start' }} onClick={handleReset}>
-          Reset to Default Logo
-        </button>
-      )}
-
-      <div className={styles.actions}>
+      <div className={contentStyles.saveBar}>
         <button className={styles.button} type="submit" disabled={isSaving}>
-          {isSaving ? 'Saving…' : 'Save Logo'}
+          {isSaving ? 'Saving…' : 'Save logo'}
         </button>
+        {status && (
+          <p className={contentStyles.saveStatus} data-type={status.type}>
+            {status.message}
+          </p>
+        )}
       </div>
     </form>
   );

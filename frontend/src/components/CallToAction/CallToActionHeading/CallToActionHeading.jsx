@@ -1,4 +1,4 @@
-import HighlightedText from '../../Utils/HighlightedText/HighlightedText';
+import { EditableHighlightedText } from '../../Utils/Editable/EditableText';
 import SectionHeading from '../../Utils/SectionHeading/SectionHeading';
 import styles from './CallToActionHeading.module.css';
 
@@ -7,7 +7,7 @@ import styles from './CallToActionHeading.module.css';
  *
  * Renders the semantic heading for the call-to-action experience with feature-specific
  * presentation. The *asterisk*-wrapped word (see HighlightedText) is what admins move
- * via the Site Content editor instead of code.
+ * via the Site Content editor or the live visual editor instead of code.
  */
 function CallToActionHeading({ children = 'Ready for Your Next *Delicious* Bite?' }) {
   return (
@@ -15,7 +15,7 @@ function CallToActionHeading({ children = 'Ready for Your Next *Delicious* Bite?
       id="call-to-action-heading"
       className={styles.heading}
     >
-      <HighlightedText text={children} />
+      <EditableHighlightedText page="home" path={['cta', 'heading']} value={children} />
     </SectionHeading>
   );
 }

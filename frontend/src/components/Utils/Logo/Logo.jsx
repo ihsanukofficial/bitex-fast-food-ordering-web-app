@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useBranding } from '../../../context/BrandingContext'
+import EditableImage from '../Editable/EditableImage'
 import styles from './Logo.module.css'
 
 /**
@@ -14,13 +15,15 @@ function Logo() {
 
   return (
     <Link to="/" className={styles.logo}>
-      <img
-        src={logoUrl}
-        alt="BiteX Logo"
-        width="908"
-        height="377"
-        decoding="async"
-      />
+      <EditableImage page="branding" path={['logoUrl']}>
+        <img
+          src={logoUrl}
+          alt="BiteX Logo"
+          width="908"
+          height="377"
+          decoding="async"
+        />
+      </EditableImage>
     </Link>
   )
 }

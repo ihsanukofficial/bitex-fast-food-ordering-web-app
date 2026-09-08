@@ -1,6 +1,6 @@
 .eyebrow {
   margin: 0 0 0.9rem;
-  color: #f6b800;
+  color: var(--brand-yellow);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.16em;

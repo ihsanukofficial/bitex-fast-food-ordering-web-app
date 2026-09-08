@@ -16,7 +16,7 @@
   margin-top: 0.42rem;
   border: 2px solid #fff;
   border-radius: 50%;
-  background: #fca810;
+  background: var(--star-gold);
   box-shadow: 0 0 0 1px rgba(215, 27, 31, 0.3);
   content: '';
 }

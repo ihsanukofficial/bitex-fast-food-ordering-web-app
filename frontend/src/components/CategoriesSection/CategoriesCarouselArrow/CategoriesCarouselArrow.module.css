@@ -11,7 +11,7 @@
   border: 3px solid #fff8e9;
   border-radius: 50%;
   padding: 0;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   cursor: pointer;
   transform: translateY(-50%);
@@ -36,7 +36,7 @@
 /* Interaction states */
 
 .arrow:hover {
-  background: #f6b800;
+  background: var(--brand-yellow);
   color: #171717;
   box-shadow:
     0 0 0 1px rgba(43, 43, 43, 0.32),
@@ -50,7 +50,7 @@
 }
 
 .arrow:focus-visible {
-  outline: 4px solid #d71b1f;
+  outline: 4px solid var(--brand-red);
   outline-offset: 3px;
 }
 

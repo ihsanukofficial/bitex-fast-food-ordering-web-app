@@ -12,7 +12,7 @@
 }
 
 .remove:hover {
-  color: #d71b1f;
+  color: var(--brand-red);
   text-decoration: underline;
 }
 

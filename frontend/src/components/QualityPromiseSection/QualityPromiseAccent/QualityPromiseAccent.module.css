@@ -5,5 +5,5 @@
   width: 62%;
   height: 62%;
   border-radius: 1.4rem;
-  background: #f6b800;
+  background: var(--brand-yellow);
 }

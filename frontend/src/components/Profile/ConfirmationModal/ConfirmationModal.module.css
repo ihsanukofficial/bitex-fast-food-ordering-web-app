@@ -50,7 +50,7 @@
   margin: 0 0 0.5rem;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .message {
@@ -93,7 +93,7 @@
 }
 
 .confirmButton {
-  background: #d71b1f;
+  background: var(--brand-red);
 }
 
 .confirmButton:hover:not(:disabled) {

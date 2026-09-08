@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { apiClient } from '../../../services/apiClient';
 import AdminDrawer from '../../../components/Admin/AdminDrawer/AdminDrawer';
 import Icon from '../../../components/Utils/Icon/Icon';
@@ -35,6 +35,7 @@ function AdminPromoCodes() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [status, setStatus] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [search, setSearch] = useState('');
 
   const load = () => apiClient.get('/promo-codes').then((data) => setPromoCodes(data.promoCodes));
 
@@ -53,6 +54,18 @@ function AdminPromoCodes() {
 
   const dealNameById = new Map(deals.map((deal) => [deal.id, deal.name]));
   const productTitleById = new Map(products.map((product) => [product._id, product.title]));
+
+  const filteredPromoCodes = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    if (!query) return promoCodes;
+    return promoCodes.filter((promoCode) => {
+      const scopedNames = [...(promoCode.products || []), ...(promoCode.deals || [])].map(
+        (id) => productTitleById.get(id) || dealNameById.get(id) || '',
+      );
+      return [promoCode.code, ...scopedNames].some((field) => field?.toLowerCase().includes(query));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [promoCodes, products, deals, search]);
 
   const resetForm = () => {
     setForm(EMPTY_FORM);
@@ -130,7 +143,7 @@ function AdminPromoCodes() {
       <div className={styles.panelHeader}>
         <div className={styles.panelHeaderText}>
           <h1 className={styles.panelTitle}>Promo Codes</h1>
-          <p className={styles.panelSubtitle}>{promoCodes.length} discount codes</p>
+          <p className={styles.panelSubtitle}>{filteredPromoCodes.length} discount codes</p>
         </div>
         <button className={styles.button} type="button" onClick={startAdd}>
           <Icon name="ri-add-line" size="1rem" ariaLabel="" />
@@ -139,6 +152,19 @@ function AdminPromoCodes() {
       </div>
 
       {status && <p className={styles[status.type]}>{status.message}</p>}
+
+      <div className={styles.filters}>
+        <div className={styles.searchField}>
+          <Icon name="ri-search-line" size="1rem" ariaLabel="" />
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search by code, product, or deal…"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+        </div>
+      </div>
 
       <div className={styles.tableWrap}>
         <table className={styles.table}>
@@ -154,7 +180,7 @@ function AdminPromoCodes() {
             </tr>
           </thead>
           <tbody>
-            {promoCodes.map((promoCode) => (
+            {filteredPromoCodes.map((promoCode) => (
               <tr key={promoCode._id}>
                 <td className={styles.cellPrimary}>{promoCode.code}</td>
                 <td className={styles.cellMuted}>{promoCode.discountPercentage}%</td>
@@ -198,14 +224,24 @@ function AdminPromoCodes() {
                   {promoCode.expiresAt ? new Date(promoCode.expiresAt).toLocaleDateString() : '—'}
                 </td>
                 <td>
-                  <div className={styles.actions}>
-                    <button className={styles.linkButton} type="button" onClick={() => startEdit(promoCode)}>
-                      <Icon name="ri-pencil-line" size="0.9rem" ariaLabel="" />
-                      Edit
+                  <div className={styles.rowActions}>
+                    <button
+                      className={styles.rowIconButton}
+                      type="button"
+                      title="Edit promo code"
+                      aria-label={`Edit ${promoCode.code}`}
+                      onClick={() => startEdit(promoCode)}
+                    >
+                      <Icon name="ri-pencil-line" size="0.95rem" ariaLabel="" />
                     </button>
-                    <button className={styles.dangerButton} type="button" onClick={() => handleDelete(promoCode)}>
-                      <Icon name="ri-delete-bin-line" size="0.9rem" ariaLabel="" />
-                      Delete
+                    <button
+                      className={`${styles.rowIconButton} ${styles.rowIconButtonDanger}`}
+                      type="button"
+                      title="Delete promo code"
+                      aria-label={`Delete ${promoCode.code}`}
+                      onClick={() => handleDelete(promoCode)}
+                    >
+                      <Icon name="ri-delete-bin-line" size="0.95rem" ariaLabel="" />
                     </button>
                   </div>
                 </td>
@@ -215,6 +251,13 @@ function AdminPromoCodes() {
               <tr>
                 <td colSpan={7} className={styles.emptyState}>
                   No promo codes yet — add your first one to get started.
+                </td>
+              </tr>
+            )}
+            {promoCodes.length > 0 && filteredPromoCodes.length === 0 && (
+              <tr>
+                <td colSpan={7} className={styles.emptyState}>
+                  No promo codes match your search.
                 </td>
               </tr>
             )}

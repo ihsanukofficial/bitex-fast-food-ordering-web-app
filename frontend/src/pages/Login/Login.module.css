@@ -20,7 +20,7 @@
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .heading {
@@ -51,14 +51,14 @@
 }
 
 .field input:focus-visible {
-  border-color: #d71b1f;
+  border-color: var(--brand-red);
 }
 
 .error {
   margin: 0;
   padding: 0.65rem 0.9rem;
   border-radius: 0.6rem;
-  background: #fdeceb;
+  background: var(--brand-red-soft);
   color: #b3151a;
   font-size: 0.85rem;
   font-weight: 600;
@@ -69,7 +69,7 @@
   padding: 0.85rem 1rem;
   border: none;
   border-radius: 999px;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 750;
@@ -93,7 +93,7 @@
 }
 
 .footer a {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-weight: 700;
   text-decoration: none;
 }

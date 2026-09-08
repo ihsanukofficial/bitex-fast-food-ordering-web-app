@@ -15,7 +15,7 @@
   margin: 0 0 1.1rem;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .headingCount {
@@ -42,9 +42,9 @@
 }
 
 .showMoreButton:hover {
-  border-color: #d71b1f;
-  color: #d71b1f;
-  background: #fdeceb;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+  background: var(--brand-red-soft);
 }
 
 .noneYet {
@@ -101,7 +101,7 @@
 .pendingTitle {
   margin: 0;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--ink);
   font-size: 0.9rem;
 }
 

@@ -1,4 +1,4 @@
-import HighlightedText from '../../Utils/HighlightedText/HighlightedText';
+import { EditableHighlightedText } from '../../Utils/Editable/EditableText';
 import styles from './Headline.module.css';
 
 /**
@@ -6,12 +6,12 @@ import styles from './Headline.module.css';
  *
  * Provides the primary homepage promise as the hero section semantic heading. The
  * *asterisk*-wrapped word (see HighlightedText) is what admins move via the Site
- * Content editor instead of code.
+ * Content editor or the live visual editor instead of code.
  */
 const Headline = ({ children = 'The *Taste* You Remember.' }) => {
   return (
     <h1 className={styles.headline}>
-      <HighlightedText text={children} />
+      <EditableHighlightedText page="home" path={['hero', 'headline']} value={children} />
     </h1>
   );
 };

@@ -3,7 +3,7 @@ import User from '../models/User.js';
 import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import { clearAuthCookie, setAuthCookie, signAuthToken } from '../utils/jwt.js';
+import { AUTH_COOKIE_NAME, clearAuthCookie, setAuthCookie, signAuthToken, verifyAuthToken } from '../utils/jwt.js';
 
 const PASSWORD_MIN_LENGTH = 8;
 
@@ -64,11 +64,43 @@ export const login = asyncHandler(async (req, res) => {
   if (!passwordMatches) throw new ApiError(401, 'Invalid email or password.');
 
   setAuthCookie(res, signAuthToken(user));
+  logActivity({
+    user,
+    action: 'user.logged_in',
+    description: `${user.name} logged in.`,
+    targetType: 'user',
+    targetId: user._id,
+    targetLabel: user.name,
+  });
   res.json({ user: toPublicUser(user) });
 });
 
+// This route runs without requireAuth (logout must always succeed, even with an
+// expired/missing cookie), so the logged-out user is resolved leniently here — any
+// failure just skips the log entry rather than blocking the logout itself.
 export const logout = asyncHandler(async (req, res) => {
   clearAuthCookie(res);
+
+  const token = req.cookies?.[AUTH_COOKIE_NAME];
+  if (token) {
+    try {
+      const payload = verifyAuthToken(token);
+      const user = await User.findById(payload.sub);
+      if (user) {
+        logActivity({
+          user,
+          action: 'user.logged_out',
+          description: `${user.name} logged out.`,
+          targetType: 'user',
+          targetId: user._id,
+          targetLabel: user.name,
+        });
+      }
+    } catch {
+      // Expired/invalid token — nothing meaningful to log.
+    }
+  }
+
   res.status(204).end();
 });
 

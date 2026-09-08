@@ -1,0 +1,206 @@
+/* This screen intentionally bypasses AdminLayout's sidebar (see AdminLayout.jsx) so
+   the live-rendered public pages below the toolbar get zero admin CSS interference —
+   the border-box reset AdminLayout scopes to `.shell` for its own screens never
+   reaches here, so Home/About render with the exact box model the public site uses.
+   The toolbar gets its own small, self-contained reset instead. */
+.toolbar,
+.toolbar * {
+  box-sizing: border-box;
+}
+
+.shell {
+  min-height: 100vh;
+  background: #f4f5f9;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 3.5rem;
+  padding: 0 1.25rem;
+  background: #14151a;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.exitLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+.exitLink:hover {
+  opacity: 1;
+}
+
+.pageTabs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 auto;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pageTab,
+.pageTabActive {
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.pageTab:hover {
+  color: #fff;
+}
+
+.pageTabActive {
+  background: #d71b1f;
+  color: #fff;
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.statusError,
+.statusSuccess,
+.statusDirty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusError {
+  color: #ff8583;
+}
+
+.statusSuccess {
+  color: #6fe0a0;
+}
+
+.statusDirty {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.saveButton {
+  border: none;
+  padding: 0.55rem 1.2rem;
+  border-radius: 0.5rem;
+  background: #d71b1f;
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.saveButton:hover:not(:disabled) {
+  background: #a81216;
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.preview {
+  /* Sticks SiteNavbar's own sticky bar just below the toolbar instead of under it. */
+  --live-editor-navbar-top: 3.5rem;
+}
+
+.centeredState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 100vh;
+  font-family: 'Outfit', sans-serif;
+  color: #40414a;
+  text-align: center;
+}
+
+.centeredStateDetail {
+  color: #6b6c76;
+  font-size: 0.85rem;
+}
+
+.desktopOnly {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: #f4f5f9;
+  font-family: 'Outfit', sans-serif;
+}
+
+.desktopOnlyCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 26rem;
+  padding: 2.25rem 1.75rem;
+  border-radius: 0.9rem;
+  background: #fff;
+  border: 1px solid #e5e6ec;
+  box-shadow: 0 12px 32px rgba(15, 15, 25, 0.1);
+  text-align: center;
+  color: #14151a;
+}
+
+.desktopOnlyCard svg,
+.desktopOnlyCard [class*='ri-'] {
+  color: #d71b1f;
+}
+
+.desktopOnlyCard h1 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.desktopOnlyCard p {
+  margin: 0;
+  color: #6b6c76;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.desktopOnlyLink {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  background: #d71b1f;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+}

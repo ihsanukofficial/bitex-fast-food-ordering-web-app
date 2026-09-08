@@ -50,7 +50,7 @@
   margin: 0 0 1rem;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--ink);
   text-align: center;
 }
 
@@ -63,7 +63,7 @@
   margin: 0 auto;
   overflow: hidden;
   border-radius: 0.9rem;
-  background: #1a1a1a;
+  background: var(--ink);
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -98,7 +98,7 @@
 
 .zoomSlider {
   flex: 1;
-  accent-color: #d71b1f;
+  accent-color: var(--brand-red);
   cursor: pointer;
 }
 
@@ -132,7 +132,7 @@
   padding: 0.6rem 1.3rem;
   border: none;
   border-radius: 999px;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   font-weight: 750;
   font-size: 0.88rem;

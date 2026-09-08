@@ -9,7 +9,7 @@
   border: 0;
   border-radius: 999px;
   padding: 0.85rem 1rem;
-  background: var(--deal-accent, #d71b1f);
+  background: var(--deal-accent, var(--brand-red));
   color: #fff;
   cursor: pointer;
   font-size: 0.95rem;
@@ -22,13 +22,13 @@
 }
 
 .button:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--deal-accent, #d71b1f) 84%, black);
+  background: color-mix(in srgb, var(--deal-accent, var(--brand-red)) 84%, black);
   box-shadow: 0 0.8rem 1.8rem rgba(215, 27, 31, 0.25);
   transform: translateY(-2px);
 }
 
 .button:focus-visible {
-  outline: 3px solid var(--deal-accent, #d71b1f);
+  outline: 3px solid var(--deal-accent, var(--brand-red));
   outline-offset: 2px;
 }
 

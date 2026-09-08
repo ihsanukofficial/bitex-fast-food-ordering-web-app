@@ -357,3 +357,12 @@
     padding: 1.25rem;
   }
 }
+
+/* The visual editor needs desktop-sized room to work in (see AdminLiveEditor), so its
+   nav entry doesn't offer a route that would just bounce back with a "too small"
+   notice. Its own breakpoint (1024px) matches the one it guards itself with. */
+@media (max-width: 1023px) {
+  .navItemDesktopOnly {
+    display: none;
+  }
+}

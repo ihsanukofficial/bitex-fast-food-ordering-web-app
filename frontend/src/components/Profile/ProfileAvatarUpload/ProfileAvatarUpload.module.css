@@ -13,7 +13,7 @@
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: #d71b1f;
+  background: var(--brand-red);
   cursor: pointer;
   overflow: visible;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -65,7 +65,7 @@
   height: 1.5rem;
   border: 2px solid #fff;
   border-radius: 50%;
-  background: #1a1a1a;
+  background: var(--ink);
 }
 
 .hiddenInput {

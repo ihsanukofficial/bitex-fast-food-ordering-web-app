@@ -4,7 +4,7 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #f6b800;
+  background: var(--brand-yellow);
   color: #2a1a06;
   font-weight: 900;
 }

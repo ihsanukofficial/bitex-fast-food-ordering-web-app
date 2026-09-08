@@ -1,5 +1,5 @@
 .price {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 1.3rem;
   font-weight: 850;
   letter-spacing: -0.02em;

@@ -31,7 +31,7 @@
   border: 1px solid rgba(17, 24, 39, 0.1);
   border-radius: 0.75rem;
   background: #fff;
-  color: #1a1a1a;
+  color: var(--ink);
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
@@ -45,7 +45,7 @@
 .stepButton:hover:not(:disabled),
 .pageButton:hover:not([data-active='true']) {
   border-color: rgba(215, 27, 31, 0.35);
-  color: #d71b1f;
+  color: var(--brand-red);
   transform: translateY(-1px);
 }
 
@@ -56,8 +56,8 @@
 }
 
 .pageButton[data-active='true'] {
-  border-color: #d71b1f;
-  background: #d71b1f;
+  border-color: var(--brand-red);
+  background: var(--brand-red);
   color: #fff;
   cursor: default;
   transform: none;

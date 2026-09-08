@@ -6,7 +6,7 @@
   border-radius: 999px;
   color: #fff;
   text-decoration: none;
-  background: #d71b1f;
+  background: var(--brand-red);
   padding: 0.95rem 1.5rem;
   margin-top: 1.5rem;
   font-size: 1rem;

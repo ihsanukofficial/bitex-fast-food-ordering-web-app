@@ -39,7 +39,7 @@
 .productName {
   margin: 0 0 0.3rem;
   font-weight: 750;
-  color: #1a1a1a;
+  color: var(--ink);
   font-size: 0.95rem;
 }
 
@@ -85,16 +85,16 @@
 }
 
 .editButton:hover {
-  border-color: #d71b1f;
-  color: #d71b1f;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }
 
 .deleteButton {
-  border: 1px solid #f3c8c8;
+  border: 1px solid var(--brand-red-soft-border);
   background: #fff;
   color: #b3151a;
 }
 
 .deleteButton:hover {
-  background: #fdeceb;
+  background: var(--brand-red-soft);
 }

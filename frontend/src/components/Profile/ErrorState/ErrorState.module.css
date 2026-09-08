@@ -15,7 +15,7 @@
   height: 3.25rem;
   margin-bottom: 0.25rem;
   border-radius: 50%;
-  background: #fdeceb;
+  background: var(--brand-red-soft);
   color: #b3151a;
 }
 
@@ -40,6 +40,6 @@
 }
 
 .retry:hover {
-  border-color: #d71b1f;
-  color: #d71b1f;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }

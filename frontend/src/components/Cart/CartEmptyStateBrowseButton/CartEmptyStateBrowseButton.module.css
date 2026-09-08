@@ -2,7 +2,7 @@
   border: 0;
   border-radius: 999px;
   padding: 0.8rem 1.15rem;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   cursor: pointer;
   font-weight: 800;

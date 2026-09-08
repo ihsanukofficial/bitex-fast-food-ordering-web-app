@@ -1,4 +1,5 @@
 import Container from '../../Utils/Container/Container';
+import EditableText from '../../Utils/Editable/EditableText';
 import useProductDetailRoutePreload from '../../../hooks/useProductDetailRoutePreload';
 import PopularItemsBackground from '../PopularItemsBackground/PopularItemsBackground';
 import PopularItemsEyebrow from '../PopularItemsEyebrow/PopularItemsEyebrow';
@@ -20,9 +21,15 @@ const PopularItems = ({ content }) => {
     <PopularItemsBackground>
       <Container>
         <PopularItemsHeader>
-          <PopularItemsEyebrow>{content?.eyebrow}</PopularItemsEyebrow>
-          <PopularItemsHeading>{content?.heading}</PopularItemsHeading>
-          <PopularItemsSubtitle>{content?.subtitle}</PopularItemsSubtitle>
+          <PopularItemsEyebrow>
+            <EditableText page="home" path={['popularItems', 'eyebrow']} value={content?.eyebrow} />
+          </PopularItemsEyebrow>
+          <PopularItemsHeading>
+            <EditableText page="home" path={['popularItems', 'heading']} value={content?.heading} />
+          </PopularItemsHeading>
+          <PopularItemsSubtitle>
+            <EditableText page="home" path={['popularItems', 'subtitle']} value={content?.subtitle} />
+          </PopularItemsSubtitle>
         </PopularItemsHeader>
         <PopularItemsGrid items={content?.items || []} />
       </Container>

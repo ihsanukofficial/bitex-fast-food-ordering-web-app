@@ -1,10 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { apiClient } from '../../../services/apiClient';
 import Icon from '../../../components/Utils/Icon/Icon';
+import { PERIODS, filterOrdersByRange, getPeriodRange } from '../AdminDashboard/dashboardAnalytics';
 import adminStyles from '../admin.module.css';
 import styles from './AdminReviews.module.css';
 
 const STAR_VALUES = [1, 2, 3, 4, 5];
+// Same period/date-range control as AdminOrders and the analytics dashboard — "All
+// Time" is prepended since (unlike the dashboard's own report) this is a browse tool,
+// where defaulting to a 30-day window would just hide an older review someone's
+// looking for.
+const REVIEW_PERIODS = [{ id: 'all', label: 'All Time' }, ...PERIODS];
 
 const formatDate = (isoString) =>
   new Date(isoString).toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -41,6 +47,9 @@ function AdminReviews() {
   const [deletingId, setDeletingId] = useState(null);
   const [search, setSearch] = useState('');
   const [ratingFilter, setRatingFilter] = useState('');
+  const [period, setPeriod] = useState('all');
+  const [customStart, setCustomStart] = useState('');
+  const [customEnd, setCustomEnd] = useState('');
 
   const load = () => apiClient.get('/admin/reviews').then((data) => setReviews(data.reviews));
 
@@ -63,10 +72,35 @@ function AdminReviews() {
     }
   };
 
+  const handlePeriodClick = (id) => {
+    setPeriod(id);
+    if (id === 'custom' && !customStart && !customEnd) {
+      const end = new Date();
+      const start = new Date(end.getTime() - 29 * 24 * 60 * 60 * 1000);
+      setCustomStart(start.toISOString().slice(0, 10));
+      setCustomEnd(end.toISOString().slice(0, 10));
+    }
+  };
+
   const filteredReviews = useMemo(() => {
     if (!reviews) return [];
+
+    const reviewsInRange =
+      period === 'all'
+        ? reviews
+        : filterOrdersByRange(
+            reviews,
+            getPeriodRange(
+              period,
+              new Date(),
+              period === 'custom' && customStart && customEnd
+                ? { start: new Date(`${customStart}T00:00:00`), end: new Date(`${customEnd}T23:59:59.999`) }
+                : null,
+            ),
+          );
+
     const query = search.trim().toLowerCase();
-    return reviews.filter((review) => {
+    return reviewsInRange.filter((review) => {
       if (ratingFilter && review.stars !== Number(ratingFilter)) return false;
       if (!query) return true;
       return (
@@ -77,7 +111,7 @@ function AdminReviews() {
         review.text.toLowerCase().includes(query)
       );
     });
-  }, [reviews, search, ratingFilter]);
+  }, [reviews, search, ratingFilter, period, customStart, customEnd]);
 
   const averageRating = useMemo(() => {
     if (!reviews || reviews.length === 0) return 0;
@@ -147,6 +181,41 @@ function AdminReviews() {
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className={adminStyles.controlsRow}>
+            <div className={adminStyles.periodFilter} role="group" aria-label="Time period">
+              {REVIEW_PERIODS.map((entry) => (
+                <button
+                  key={entry.id}
+                  type="button"
+                  className={entry.id === period ? adminStyles.periodButtonActive : adminStyles.periodButton}
+                  onClick={() => handlePeriodClick(entry.id)}
+                >
+                  {entry.label}
+                </button>
+              ))}
+            </div>
+            {period === 'custom' && (
+              <div className={adminStyles.customRangeRow}>
+                <input
+                  type="date"
+                  value={customStart}
+                  max={customEnd || undefined}
+                  onChange={(event) => setCustomStart(event.target.value)}
+                  aria-label="Custom range start date"
+                />
+                <span className={adminStyles.customRangeSeparator}>to</span>
+                <input
+                  type="date"
+                  value={customEnd}
+                  min={customStart || undefined}
+                  max={new Date().toISOString().slice(0, 10)}
+                  onChange={(event) => setCustomEnd(event.target.value)}
+                  aria-label="Custom range end date"
+                />
+              </div>
+            )}
           </div>
         </>
       )}

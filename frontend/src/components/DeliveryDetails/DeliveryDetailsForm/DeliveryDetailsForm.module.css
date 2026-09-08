@@ -9,7 +9,7 @@
   margin: 0 0 1rem;
   padding: 0.65rem 0.9rem;
   border-radius: 0.6rem;
-  background: #fdeceb;
+  background: var(--brand-red-soft);
   color: #b3151a;
   font-size: 0.85rem;
   font-weight: 600;

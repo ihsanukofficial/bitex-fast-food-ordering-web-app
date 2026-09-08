@@ -22,7 +22,7 @@
 }
 
 .card:hover {
-  --category-card-arrow-background: #f6b800;
+  --category-card-arrow-background: var(--brand-yellow);
   --category-card-arrow-shift: 2px;
   --category-card-image-scale: 1.045;
   transform: translate3d(0, -6px, 0);
@@ -30,7 +30,7 @@
 }
 
 .card:focus-visible {
-  outline: 3px solid #d71b1f;
+  outline: 3px solid var(--brand-red);
   outline-offset: 4px;
 }
 

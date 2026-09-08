@@ -1,6 +1,6 @@
 import { notifyUser } from '../services/notificationService.js';
 
-const getOrderCode = (order) => order._id.toString().slice(-6).toUpperCase();
+const getOrderCode = (order) => order._id.toString().slice(-8).toUpperCase();
 
 const ORDER_STATUS_NOTIFICATION_COPY = {
   pending: {

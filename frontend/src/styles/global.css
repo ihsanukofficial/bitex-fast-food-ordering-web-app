@@ -1,0 +1,21 @@
+/**
+ * Site-wide design tokens for the public storefront.
+ *
+ * The admin panel already has its own token layer (--admin-* custom properties in
+ * components/Admin/AdminLayout/AdminLayout.module.css). These are the public-site
+ * equivalents — the same literal values that were previously repeated as raw hex
+ * across dozens of component .module.css files, now named once here so those files
+ * can reference them instead. Every value below is unchanged from what it replaces,
+ * so swapping a literal for its var() is a no-op visually.
+ */
+
+:root {
+  --brand-red: #d71b1f;
+  --brand-red-dark: #a81216;
+  --brand-red-soft: #fdeceb;
+  --brand-red-soft-border: #f3c8c8;
+  --brand-yellow: #f6b800;
+  --star-gold: #fca810;
+  --ink: #1a1a1a;
+  --font-base: 'Outfit', sans-serif;
+}

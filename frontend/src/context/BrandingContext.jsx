@@ -4,6 +4,11 @@ import defaultLogo from '../components/Utils/Logo/logo.svg';
 
 const BrandingContext = createContext(null);
 
+// Exported (in addition to the hook below) so AdminLiveEditor can nest its own
+// Provider around the live-rendered public pages, overriding the logo with the
+// in-progress edit instead of the one BrandingProvider already fetched at the root.
+export { BrandingContext };
+
 /**
  * BrandingProvider
  *

@@ -13,14 +13,14 @@
 
 .addon:hover,
 .selected {
-  border-color: #f6b800;
+  border-color: var(--brand-yellow);
   background: #fff9e9;
 }
 
 .checkbox {
   width: 18px;
   height: 18px;
-  accent-color: #d71b1f;
+  accent-color: var(--brand-red);
 }
 
 .name {
@@ -29,7 +29,7 @@
 }
 
 .price {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 0.85rem;
   font-weight: 750;
 }

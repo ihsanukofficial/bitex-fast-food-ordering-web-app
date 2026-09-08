@@ -17,7 +17,7 @@
 }
 
 .mainFrame:focus-visible {
-  outline: 3px solid #d71b1f;
+  outline: 3px solid var(--brand-red);
   outline-offset: 4px;
 }
 

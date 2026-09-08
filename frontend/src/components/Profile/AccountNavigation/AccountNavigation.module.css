@@ -37,16 +37,16 @@
 
 .item:hover {
   background: #fbeceb;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .item[data-active='true'] {
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
 }
 
 .item:focus-visible {
-  outline: 2px solid #d71b1f;
+  outline: 2px solid var(--brand-red);
   outline-offset: 2px;
 }
 
@@ -56,7 +56,7 @@
   justify-content: center;
   gap: 0.6rem;
   padding: 0.7rem 0.9rem;
-  border: 1px solid #f3c8c8;
+  border: 1px solid var(--brand-red-soft-border);
   border-radius: 0.75rem;
   background: #fff;
   color: #b3151a;
@@ -67,7 +67,7 @@
 }
 
 .logout:hover {
-  background: #fdeceb;
+  background: var(--brand-red-soft);
 }
 
 @media (max-width: 900px) {

@@ -1,0 +1,71 @@
+.wrap {
+  position: relative;
+  display: block;
+}
+
+/* Covers the whole image (or, in standalone mode, whatever position:relative element
+   the caller already has) so hovering anywhere over the picture reveals the button —
+   not just when hovering the button itself. z-index is explicit (not just relying on
+   DOM order) because standalone mode sits behind real page content stacked on top of
+   the same background — e.g. MenuSearchBanner's search bar is z-index: 30 over its
+   own z-index: 1 content wrapper — so without this the button rendered, but under
+   that content, and was never actually clickable. */
+.hoverZone {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  border-radius: inherit;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(20, 15, 10, 0);
+  opacity: 0;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+  pointer-events: none;
+}
+
+.hoverZone:hover .scrim,
+.hoverZone:focus-within .scrim {
+  opacity: 1;
+  background: rgba(20, 15, 10, 0.45);
+}
+
+.overlayButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(20, 21, 26, 0.88);
+  color: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.hoverZone:hover .overlayButton,
+.hoverZone:focus-within .overlayButton {
+  opacity: 1;
+}
+
+.overlayButton:hover:not(:disabled) {
+  background: var(--brand-red);
+}
+
+.overlayButton:disabled {
+  opacity: 1;
+  cursor: wait;
+}

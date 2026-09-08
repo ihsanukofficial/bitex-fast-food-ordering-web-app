@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .header h3 {

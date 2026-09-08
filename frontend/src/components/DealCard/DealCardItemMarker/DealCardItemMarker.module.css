@@ -6,6 +6,6 @@
   place-items: center;
   margin-top: 0.02rem;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--deal-accent, #d71b1f) 12%, white);
+  background: color-mix(in srgb, var(--deal-accent, var(--brand-red)) 12%, white);
   color: var(--deal-accent, #b8171b);
 }

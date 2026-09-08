@@ -36,6 +36,7 @@ function Home() {
         headline={content.hero.headline}
         subHeadline={content.hero.subHeadline}
         highlights={content.hero.highlights}
+        images={content.hero.images}
       />
       <PopularItems content={content.popularItems} />
       <CategoriesSection categories={categories} content={content.categoriesSection} />

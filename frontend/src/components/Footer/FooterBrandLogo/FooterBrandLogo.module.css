@@ -18,7 +18,7 @@
 }
 
 .logo:focus-visible {
-  outline: 3px solid #fca810;
+  outline: 3px solid var(--star-gold);
   outline-offset: 5px;
 }
 

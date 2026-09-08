@@ -10,15 +10,27 @@ import styles from './PopularItemCard.module.css';
 /**
  * PopularItemCard
  *
- * Links one curated popular product to its canonical product-detail route.
+ * Links one curated popular product to its canonical product-detail route. Inside
+ * AdminLiveEditor (`disabled`) it renders the identical card as a non-navigating
+ * `<div>` instead.
  */
-const PopularItemCard = ({
-  src,
-  alt = 'Popular item',
-  label,
-  to,
-  className = '',
-}) => {
+const PopularItemCard = ({ src, alt = 'Popular item', label, to, className = '', disabled = false }) => {
+  const content = (
+    <>
+      <PopularItemVisual>
+        <PopularItemImage src={src} alt={alt} />
+      </PopularItemVisual>
+      <PopularItemDetails>
+        <PopularItemTitle>{label}</PopularItemTitle>
+        <PopularItemArrow />
+      </PopularItemDetails>
+    </>
+  );
+
+  if (disabled) {
+    return <div className={`${styles.card} ${className}`.trim()}>{content}</div>;
+  }
+
   return (
     <Link
       className={`${styles.card} ${className}`.trim()}
@@ -28,13 +40,7 @@ const PopularItemCard = ({
       onPointerDown={() => preloadRoute(to)}
       onFocus={() => preloadRoute(to)}
     >
-      <PopularItemVisual>
-        <PopularItemImage src={src} alt={alt} />
-      </PopularItemVisual>
-      <PopularItemDetails>
-        <PopularItemTitle>{label}</PopularItemTitle>
-        <PopularItemArrow />
-      </PopularItemDetails>
+      {content}
     </Link>
   );
 };

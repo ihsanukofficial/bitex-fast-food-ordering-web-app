@@ -61,7 +61,7 @@
   align-items: center;
   justify-content: center;
   margin-left: 0.75rem;
-  color: #d71b1f;
+  color: var(--brand-red);
   pointer-events: none;
   transition: transform 0.2s ease;
 }
@@ -118,7 +118,7 @@
 }
 
 .selected {
-  background-color: #f6b800;
+  background-color: var(--brand-yellow);
   color: #2c2006;
   font-weight: 700;
 }

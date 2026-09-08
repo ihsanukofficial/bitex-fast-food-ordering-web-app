@@ -1,6 +1,6 @@
 .notes {
   margin: 0;
-  border-left: 2px solid #f6b800;
+  border-left: 2px solid var(--brand-yellow);
   padding-left: 0.5rem;
   color: #7b746b;
   font-size: 0.72rem;

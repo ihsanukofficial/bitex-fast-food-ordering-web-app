@@ -19,11 +19,11 @@
 }
 
 .red {
-  background: #d71b1f;
+  background: var(--brand-red);
 }
 
 .yellow {
-  background: #f6b800;
+  background: var(--brand-yellow);
 }
 
 .dark {

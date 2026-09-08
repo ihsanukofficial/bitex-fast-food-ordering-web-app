@@ -1,0 +1,44 @@
+.removeButton {
+  position: absolute;
+  top: -0.55rem;
+  right: -0.55rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--brand-red);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+.removeButton:hover {
+  background: var(--brand-red-dark);
+  transform: scale(1.08);
+}
+
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.1rem;
+  border: 1.5px dashed rgba(215, 27, 31, 0.55);
+  border-radius: 0.75rem;
+  background: rgba(215, 27, 31, 0.04);
+  color: var(--brand-red);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.addButton:hover {
+  background: rgba(215, 27, 31, 0.09);
+  border-color: var(--brand-red);
+}

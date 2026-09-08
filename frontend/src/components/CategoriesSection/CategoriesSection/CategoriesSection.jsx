@@ -1,4 +1,5 @@
 import Container from '../../Utils/Container/Container';
+import EditableText from '../../Utils/Editable/EditableText';
 import CategoriesBackground from '../CategoriesBackground/CategoriesBackground';
 import CategoriesCarousel from '../CategoriesCarousel/CategoriesCarousel';
 import CategoriesContent from '../CategoriesContent/CategoriesContent';
@@ -19,9 +20,15 @@ function CategoriesSection({ categories, content }) {
       <Container>
         <CategoriesContent>
           <CategoriesHeader>
-            <CategoriesEyebrow>{content?.eyebrow}</CategoriesEyebrow>
-            <CategoriesTitle>{content?.title}</CategoriesTitle>
-            <CategoriesSubtitle>{content?.subtitle}</CategoriesSubtitle>
+            <CategoriesEyebrow>
+              <EditableText page="home" path={['categoriesSection', 'eyebrow']} value={content?.eyebrow} />
+            </CategoriesEyebrow>
+            <CategoriesTitle>
+              <EditableText page="home" path={['categoriesSection', 'title']} value={content?.title} />
+            </CategoriesTitle>
+            <CategoriesSubtitle>
+              <EditableText page="home" path={['categoriesSection', 'subtitle']} value={content?.subtitle} />
+            </CategoriesSubtitle>
           </CategoriesHeader>
           <CategoriesCarousel categories={categories} />
         </CategoriesContent>

@@ -10,9 +10,9 @@
   text-transform: uppercase;
 }
 
-.eyebrow span {
+.eyebrow .bar {
   width: 2rem;
   height: 3px;
   border-radius: 999px;
-  background: #f6b800;
+  background: var(--brand-yellow);
 }

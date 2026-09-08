@@ -16,14 +16,14 @@
   margin-bottom: 0.25rem;
   border-radius: 50%;
   background: #f6f1ea;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .title {
   margin: 0;
   font-size: 1rem;
   font-weight: 750;
-  color: #1a1a1a;
+  color: var(--ink);
 }
 
 .message {
@@ -38,7 +38,7 @@
   padding: 0.65rem 1.4rem;
   border: none;
   border-radius: 999px;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   font-weight: 750;
   font-size: 0.88rem;

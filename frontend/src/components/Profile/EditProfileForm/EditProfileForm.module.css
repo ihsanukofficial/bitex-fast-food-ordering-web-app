@@ -26,7 +26,7 @@
 .field input:focus-visible,
 .field textarea:focus-visible {
   outline: none;
-  border-color: #d71b1f;
+  border-color: var(--brand-red);
   box-shadow: 0 0 0 3px rgba(215, 27, 31, 0.12);
 }
 
@@ -45,7 +45,7 @@
   margin: 0;
   padding: 0.6rem 0.85rem;
   border-radius: 0.6rem;
-  background: #fdeceb;
+  background: var(--brand-red-soft);
   color: #b3151a;
   font-size: 0.85rem;
   font-weight: 600;
@@ -74,7 +74,7 @@
   padding: 0.7rem 1.3rem;
   border: none;
   border-radius: 999px;
-  background: #d71b1f;
+  background: var(--brand-red);
   color: #fff;
   font-weight: 750;
   cursor: pointer;

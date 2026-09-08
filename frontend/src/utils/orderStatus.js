@@ -24,7 +24,7 @@ export const ORDER_STATUS_TONES = {
 
 export const getOrderStatusLabel = (status) => ORDER_STATUS_LABELS[status] || status;
 
-export const getOrderCode = (orderId) => `#${String(orderId).slice(-6).toUpperCase()}`;
+export const getOrderCode = (orderId) => `#${String(orderId).slice(-8).toUpperCase()}`;
 
 export const formatCurrency = (amount) => `Rs. ${Number(amount || 0).toLocaleString('en-PK')}`;
 

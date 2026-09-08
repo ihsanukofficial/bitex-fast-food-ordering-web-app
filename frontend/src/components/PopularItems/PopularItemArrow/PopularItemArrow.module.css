@@ -5,7 +5,7 @@
   height: 2.1rem;
   place-items: center;
   border-radius: 50%;
-  background: var(--popular-item-arrow-background, #f6b800);
+  background: var(--popular-item-arrow-background, var(--brand-yellow));
   color: var(--popular-item-arrow-color, #292929);
   transform: translateX(var(--popular-item-arrow-shift, 0));
   transition:

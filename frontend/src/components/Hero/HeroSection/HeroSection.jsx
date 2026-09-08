@@ -1,5 +1,6 @@
 import Container from '../../Utils/Container/Container';
 import DiscoverOurMenuBtn from '../../Utils/Button/DiscoverOurMenuBtn/DiscoverOurMenuBtn';
+import EditableText from '../../Utils/Editable/EditableText';
 import Headline from '../Headline/Headline';
 import HeroContent from '../HeroContent/HeroContent';
 import HeroEyebrow from '../HeroEyebrow/HeroEyebrow';
@@ -15,19 +16,23 @@ import SubHeadline from '../SubHeadline/SubHeadline';
  * Composes the homepage value proposition, primary actions, highlights, and
  * promotional imagery.
  */
-const HeroSection = ({ eyebrow, headline, subHeadline, highlights }) => {
+const HeroSection = ({ eyebrow, headline, subHeadline, highlights, images }) => {
   return (
     <HeroShell>
       <Container>
         <HeroContent>
           <HeroTextBlock>
-            <HeroEyebrow>{eyebrow}</HeroEyebrow>
+            <HeroEyebrow>
+              <EditableText page="home" path={['hero', 'eyebrow']} value={eyebrow} />
+            </HeroEyebrow>
             <Headline>{headline}</Headline>
-            <SubHeadline>{subHeadline}</SubHeadline>
+            <SubHeadline>
+              <EditableText page="home" path={['hero', 'subHeadline']} value={subHeadline} />
+            </SubHeadline>
             <DiscoverOurMenuBtn />
             <HeroHighlights highlights={highlights} />
           </HeroTextBlock>
-          <HeroImageGallery />
+          <HeroImageGallery images={images} />
         </HeroContent>
       </Container>
     </HeroShell>

@@ -1,6 +1,6 @@
 .original,
 .discountedOriginal {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 1.75rem;
   font-weight: 800;
 }

@@ -1,0 +1,194 @@
+/* Deal sections and their "Includes" editor — the shared .subList/.subListRow
+   primitives read as an undifferentiated wall of repeated fields once a deal item
+   carries several variation choices alongside it, so this page gets its own card
+   treatment instead (same idea as AdminProducts' variation cards). */
+
+.sectionCard {
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  overflow: hidden;
+}
+
+.sectionCard + .sectionCard {
+  margin-top: 1.1rem;
+}
+
+.sectionCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.9rem 1rem;
+  background: var(--admin-bg);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.sectionCardHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.sectionCardTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--admin-ink);
+}
+
+.sectionCardMeta {
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--admin-muted);
+}
+
+/* One pill per bundled item, so several items wrap onto their own lines instead of
+   running together as one unreadable comma-joined sentence. */
+.includesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-width: 22rem;
+}
+
+.includesPill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--admin-bg);
+  color: var(--admin-ink-soft);
+  font-size: 0.76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.includesPillQty {
+  color: var(--admin-red-dark);
+  font-weight: 800;
+}
+
+.includesPillVariation {
+  color: var(--admin-muted);
+  font-weight: 500;
+}
+
+.dealItemCard {
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-md);
+  overflow: hidden;
+}
+
+.dealItemCard + .dealItemCard {
+  margin-top: 0.85rem;
+}
+
+.dealItemCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--admin-bg);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.dealItemBadge {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--admin-red-soft);
+  color: var(--admin-red-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.dealItemBadgeText {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--admin-ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dealItemRemove {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-surface);
+  color: var(--admin-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.dealItemRemove:hover {
+  border-color: var(--admin-red);
+  color: var(--admin-red);
+  background: var(--admin-red-soft);
+}
+
+.dealItemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.8rem 0.75rem;
+}
+
+.dealItemMainRow {
+  display: grid;
+  grid-template-columns: minmax(12rem, 3fr) minmax(6rem, 1fr);
+  gap: 0.6rem;
+}
+
+.dealItemVariations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--admin-border-soft);
+}
+
+.dealItemVariations > label {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.addRowButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px dashed var(--admin-border);
+  border-radius: var(--admin-radius-sm);
+  background: transparent;
+  color: var(--admin-ink-soft);
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.addRowButton:hover {
+  border-color: var(--admin-red);
+  color: var(--admin-red);
+  background: var(--admin-red-soft);
+}
+
+.emptyHint {
+  padding: 0.6rem 0;
+  color: var(--admin-muted);
+  font-size: 0.82rem;
+}

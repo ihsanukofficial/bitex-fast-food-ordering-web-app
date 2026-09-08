@@ -3,6 +3,7 @@ import { apiClient, uploadFile } from '../../../services/apiClient';
 import AdminDrawer from '../../../components/Admin/AdminDrawer/AdminDrawer';
 import Icon from '../../../components/Utils/Icon/Icon';
 import styles from '../admin.module.css';
+import dealStyles from './AdminDeals.module.css';
 
 const EMPTY_SECTION_FORM = {
   id: '',
@@ -28,13 +29,8 @@ const slugify = (value) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
-const describeItem = (item) => {
-  const base = `${item.quantity}× ${item.product?.title || 'Unknown product'}`;
-  const variationText = (item.variationSelections || []).map((selection) => selection.optionLabel).join(', ');
-  return variationText ? `${base} (${variationText})` : base;
-};
-
-const describeItems = (items) => items.map(describeItem).join(', ');
+const describeItemVariations = (item) =>
+  (item.variationSelections || []).map((selection) => selection.optionLabel).join(', ');
 
 /**
  * AdminDeals
@@ -266,9 +262,14 @@ function AdminDeals() {
       {status && <p className={styles[status.type]}>{status.message}</p>}
 
       {sections.map((section) => (
-        <div key={section._id} className={styles.subList} style={{ marginBottom: '1.25rem' }}>
-          <div className={styles.panelHeader}>
-            <h2 className={styles.formHeading}>{section.title}</h2>
+        <div key={section._id} className={dealStyles.sectionCard}>
+          <div className={dealStyles.sectionCardHeader}>
+            <div className={dealStyles.sectionCardHeaderText}>
+              <h2 className={dealStyles.sectionCardTitle}>{section.title}</h2>
+              <p className={dealStyles.sectionCardMeta}>
+                {section.deals.length} {section.deals.length === 1 ? 'deal' : 'deals'}
+              </p>
+            </div>
             <div className={styles.actions}>
               <button className={styles.linkButton} type="button" onClick={() => startAddDeal(section._id)}>
                 <Icon name="ri-add-line" size="0.9rem" ariaLabel="" />
@@ -310,20 +311,45 @@ function AdminDeals() {
                     </td>
                     <td className={styles.cellPrimary}>{deal.name}</td>
                     <td className={styles.cellPrimary}>Rs. {deal.price}</td>
-                    <td className={styles.cellMuted}>{describeItems(deal.items) || '—'}</td>
                     <td>
-                      <div className={styles.actions}>
-                        <button className={styles.linkButton} type="button" onClick={() => startEditDeal(section._id, deal)}>
-                          <Icon name="ri-pencil-line" size="0.9rem" ariaLabel="" />
-                          Edit
+                      {deal.items.length === 0 ? (
+                        <span className={styles.cellMuted}>—</span>
+                      ) : (
+                        <div className={dealStyles.includesList}>
+                          {deal.items.map((item, index) => {
+                            const variationText = describeItemVariations(item);
+                            return (
+                              <span className={dealStyles.includesPill} key={index}>
+                                <span className={dealStyles.includesPillQty}>{item.quantity}×</span>
+                                {item.product?.title || 'Unknown product'}
+                                {variationText && (
+                                  <span className={dealStyles.includesPillVariation}>({variationText})</span>
+                                )}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </td>
+                    <td>
+                      <div className={styles.rowActions}>
+                        <button
+                          className={styles.rowIconButton}
+                          type="button"
+                          title="Edit deal"
+                          aria-label={`Edit ${deal.name}`}
+                          onClick={() => startEditDeal(section._id, deal)}
+                        >
+                          <Icon name="ri-pencil-line" size="0.95rem" ariaLabel="" />
                         </button>
                         <button
-                          className={styles.dangerButton}
+                          className={`${styles.rowIconButton} ${styles.rowIconButtonDanger}`}
                           type="button"
+                          title="Delete deal"
+                          aria-label={`Delete ${deal.name}`}
                           onClick={() => handleDeleteDeal(section._id, deal)}
                         >
-                          <Icon name="ri-delete-bin-line" size="0.9rem" ariaLabel="" />
-                          Delete
+                          <Icon name="ri-delete-bin-line" size="0.95rem" ariaLabel="" />
                         </button>
                       </div>
                     </td>
@@ -448,73 +474,90 @@ function AdminDeals() {
 
           <div className={styles.panelHeader} style={{ marginBottom: '0.25rem' }}>
             <span style={{ fontSize: '0.85rem', fontWeight: 700 }}>Includes</span>
-            <button type="button" className={styles.secondaryButton} onClick={addDealItem}>
-              Add product
-            </button>
           </div>
-          <div className={styles.subList}>
-            {dealForm.items.map((item, index) => {
-              const selectedProduct = products.find((product) => product._id === item.product);
-              return (
-                <div key={index} className={styles.subListRow}>
-                  <label className={styles.field}>
-                    <span>Product</span>
-                    <select
-                      required
-                      value={item.product}
-                      onChange={(event) =>
-                        // Changing the product invalidates any variation choice made for the
-                        // previous one (the option names no longer apply).
-                        updateDealItem(index, { product: event.target.value, variationSelections: [] })
-                      }
-                    >
-                      <option value="">Select a product</option>
-                      {products.map((product) => (
-                        <option key={product._id} value={product._id}>
-                          {product.title}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className={styles.field}>
-                    <span>Quantity</span>
-                    <input
-                      type="number"
-                      min={1}
-                      required
-                      value={item.quantity}
-                      onChange={(event) => updateDealItem(index, { quantity: event.target.value })}
-                    />
-                  </label>
-                  {selectedProduct?.variations?.map((variation) => {
-                    const currentSelection = (item.variationSelections || []).find(
-                      (selection) => selection.variationName === variation.name,
-                    );
-                    return (
-                      <label className={styles.field} key={variation.name}>
-                        <span>{variation.name}</span>
-                        <select
-                          value={currentSelection?.optionLabel || ''}
-                          onChange={(event) => setDealItemVariation(index, variation.name, event.target.value)}
-                        >
-                          <option value="">{variation.required ? 'Choose which to include…' : 'None specified'}</option>
-                          {variation.options.map((option) => (
-                            <option key={option.label} value={option.label}>
-                              {option.label}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                    );
-                  })}
-                  <button type="button" className={styles.dangerButton} onClick={() => removeDealItem(index)}>
-                    Remove
+          {dealForm.items.length === 0 && <p className={dealStyles.emptyHint}>No products added yet.</p>}
+          {dealForm.items.map((item, index) => {
+            const selectedProduct = products.find((product) => product._id === item.product);
+            return (
+              <div key={index} className={dealStyles.dealItemCard}>
+                <div className={dealStyles.dealItemCardHeader}>
+                  <span className={dealStyles.dealItemBadge}>{index + 1}</span>
+                  <span className={dealStyles.dealItemBadgeText}>{selectedProduct?.title || 'Choose a product'}</span>
+                  <button
+                    type="button"
+                    className={dealStyles.dealItemRemove}
+                    aria-label="Remove item"
+                    title="Remove item"
+                    onClick={() => removeDealItem(index)}
+                  >
+                    <Icon name="ri-delete-bin-line" size="0.95rem" ariaLabel="" />
                   </button>
                 </div>
-              );
-            })}
-            {dealForm.items.length === 0 && <p className={styles.emptyState}>No products added yet.</p>}
-          </div>
+                <div className={dealStyles.dealItemBody}>
+                  <div className={dealStyles.dealItemMainRow}>
+                    <label className={styles.field}>
+                      <span>Product</span>
+                      <select
+                        required
+                        value={item.product}
+                        onChange={(event) =>
+                          // Changing the product invalidates any variation choice made for the
+                          // previous one (the option names no longer apply).
+                          updateDealItem(index, { product: event.target.value, variationSelections: [] })
+                        }
+                      >
+                        <option value="">Select a product</option>
+                        {products.map((product) => (
+                          <option key={product._id} value={product._id}>
+                            {product.title}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label className={styles.field}>
+                      <span>Quantity</span>
+                      <input
+                        type="number"
+                        min={1}
+                        required
+                        value={item.quantity}
+                        onChange={(event) => updateDealItem(index, { quantity: event.target.value })}
+                      />
+                    </label>
+                  </div>
+                  {selectedProduct?.variations?.length > 0 && (
+                    <div className={dealStyles.dealItemVariations}>
+                      {selectedProduct.variations.map((variation) => {
+                        const currentSelection = (item.variationSelections || []).find(
+                          (selection) => selection.variationName === variation.name,
+                        );
+                        return (
+                          <label className={styles.field} key={variation.name}>
+                            <span>{variation.name}</span>
+                            <select
+                              value={currentSelection?.optionLabel || ''}
+                              onChange={(event) => setDealItemVariation(index, variation.name, event.target.value)}
+                            >
+                              <option value="">{variation.required ? 'Choose which to include…' : 'None specified'}</option>
+                              {variation.options.map((option) => (
+                                <option key={option.label} value={option.label}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+          <button type="button" className={dealStyles.addRowButton} onClick={addDealItem}>
+            <Icon name="ri-add-line" size="0.9rem" ariaLabel="" />
+            Add product
+          </button>
         </form>
       </AdminDrawer>
     </div>

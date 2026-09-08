@@ -75,6 +75,19 @@ function AdminUserDetail() {
     }
   };
 
+  const handleDelete = async () => {
+    if (!window.confirm(`Permanently delete ${user.name}'s account? This cannot be undone.`)) return;
+    setIsUpdating(true);
+    setError('');
+    try {
+      await apiClient.delete(`/admin/users/${id}`);
+      navigate('/admin/users');
+    } catch (requestError) {
+      setError(requestError.message);
+      setIsUpdating(false);
+    }
+  };
+
   return (
     <div className={styles.panel}>
       <button
@@ -148,6 +161,15 @@ function AdminUserDetail() {
                 onClick={() => handleUpdate({ active: !user.active })}
               >
                 {user.active ? 'Deactivate' : 'Reactivate'}
+              </button>
+              <button
+                className={styles.dangerButton}
+                type="button"
+                disabled={isSelf || isUpdating}
+                onClick={handleDelete}
+              >
+                <Icon name="ri-delete-bin-line" size="0.9rem" ariaLabel="" />
+                Delete account
               </button>
             </div>
           </div>

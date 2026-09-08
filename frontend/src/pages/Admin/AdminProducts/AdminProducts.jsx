@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { apiClient, uploadFile } from '../../../services/apiClient';
 import AdminDrawer from '../../../components/Admin/AdminDrawer/AdminDrawer';
+import AdminPagination from '../../../components/Admin/AdminPagination/AdminPagination';
 import Icon from '../../../components/Utils/Icon/Icon';
 import { calculateDiscountedPrice, getProductPricing } from '../../../utils/pricing';
 import styles from '../admin.module.css';
 import productStyles from './AdminProducts.module.css';
+
+const PAGE_SIZE = 15;
 
 const EMPTY_FORM = {
   categoryId: '',
@@ -79,6 +82,8 @@ function AdminProducts() {
   const [isSaving, setIsSaving] = useState(false);
   const [importVariationSource, setImportVariationSource] = useState('');
   const [importAddonSource, setImportAddonSource] = useState('');
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
 
   const load = () => apiClient.get('/products').then((data) => setProducts(data.products));
 
@@ -89,6 +94,27 @@ function AdminProducts() {
 
   const categoryName = (categoryId) =>
     categories.find((category) => category.id === categoryId)?.name || categoryId;
+
+  const filteredProducts = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    if (!query) return products;
+    const categoryNameById = new Map(categories.map((category) => [category.id, category.name]));
+    return products.filter((product) =>
+      [product.title, categoryNameById.get(product.categoryId), ...(product.tags || [])].some((field) =>
+        field?.toLowerCase().includes(query),
+      ),
+    );
+  }, [products, categories, search]);
+
+  // A narrowed search (or the catalog shrinking) can leave `page` past the new last
+  // page — never shown as "current" while out of range, corrected here instead.
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const pagedProducts = filteredProducts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
 
   const resetForm = () => {
     setForm(EMPTY_FORM);
@@ -273,7 +299,7 @@ function AdminProducts() {
       <div className={styles.panelHeader}>
         <div className={styles.panelHeaderText}>
           <h1 className={styles.panelTitle}>Products</h1>
-          <p className={styles.panelSubtitle}>{products.length} items in the catalog</p>
+          <p className={styles.panelSubtitle}>{filteredProducts.length} items in the catalog</p>
         </div>
         <button className={styles.button} type="button" onClick={startAdd}>
           <Icon name="ri-add-line" size="1rem" ariaLabel="" />
@@ -282,6 +308,19 @@ function AdminProducts() {
       </div>
 
       {status && <p className={styles[status.type]}>{status.message}</p>}
+
+      <div className={styles.filters}>
+        <div className={styles.searchField}>
+          <Icon name="ri-search-line" size="1rem" ariaLabel="" />
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search by title, category, or tag…"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+        </div>
+      </div>
 
       <div className={styles.tableWrap}>
         <table className={styles.table}>
@@ -296,8 +335,12 @@ function AdminProducts() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
+            {pagedProducts.map((product) => (
+              <tr
+                key={product._id}
+                className={styles.clickableRow}
+                onClick={() => startEdit(product)}
+              >
                 <td>
                   {product.images?.[0] ? (
                     <img className={styles.tableImage} src={product.images[0]} alt="" />
@@ -317,15 +360,25 @@ function AdminProducts() {
                     {product.available ? 'Available' : 'Unavailable'}
                   </span>
                 </td>
-                <td>
-                  <div className={styles.actions}>
-                    <button className={styles.linkButton} type="button" onClick={() => startEdit(product)}>
-                      <Icon name="ri-pencil-line" size="0.9rem" ariaLabel="" />
-                      Edit
+                <td onClick={(event) => event.stopPropagation()}>
+                  <div className={styles.rowActions}>
+                    <button
+                      className={styles.rowIconButton}
+                      type="button"
+                      title="Edit product"
+                      aria-label={`Edit ${product.title}`}
+                      onClick={() => startEdit(product)}
+                    >
+                      <Icon name="ri-pencil-line" size="0.95rem" ariaLabel="" />
                     </button>
-                    <button className={styles.dangerButton} type="button" onClick={() => handleDelete(product)}>
-                      <Icon name="ri-delete-bin-line" size="0.9rem" ariaLabel="" />
-                      Delete
+                    <button
+                      className={`${styles.rowIconButton} ${styles.rowIconButtonDanger}`}
+                      type="button"
+                      title="Delete product"
+                      aria-label={`Delete ${product.title}`}
+                      onClick={() => handleDelete(product)}
+                    >
+                      <Icon name="ri-delete-bin-line" size="0.95rem" ariaLabel="" />
                     </button>
                   </div>
                 </td>
@@ -338,9 +391,24 @@ function AdminProducts() {
                 </td>
               </tr>
             )}
+            {products.length > 0 && filteredProducts.length === 0 && (
+              <tr>
+                <td colSpan={6} className={styles.emptyState}>
+                  No products match your search.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
+
+      <AdminPagination
+        page={currentPage}
+        totalPages={totalPages}
+        totalItems={filteredProducts.length}
+        pageSize={PAGE_SIZE}
+        onPageChange={setPage}
+      />
 
       <AdminDrawer
         isOpen={isDrawerOpen}

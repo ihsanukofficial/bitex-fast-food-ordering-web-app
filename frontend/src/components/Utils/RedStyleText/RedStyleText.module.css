@@ -5,7 +5,7 @@
 }
 
 .redStyleText {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-family: 'Bently Rittero DEMO VERSION', serif;
   font-weight: 400;
   letter-spacing: 0.02em;

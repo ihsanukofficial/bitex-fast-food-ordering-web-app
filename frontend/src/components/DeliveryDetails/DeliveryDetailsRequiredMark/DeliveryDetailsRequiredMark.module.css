@@ -1,6 +1,6 @@
 .mark {
   margin-left: 0.2rem;
-  color: #d71b1f;
+  color: var(--brand-red);
 }
 
 .compact {

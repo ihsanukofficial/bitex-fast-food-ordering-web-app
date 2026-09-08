@@ -45,7 +45,7 @@
 }
 
 .caption span {
-  color: #d71b1f;
+  color: var(--brand-red);
   font-size: 1.1rem;
 }
 
