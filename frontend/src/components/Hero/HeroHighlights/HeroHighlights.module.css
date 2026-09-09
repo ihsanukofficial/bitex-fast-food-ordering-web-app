@@ -9,7 +9,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  color: #535353;
+  color: var(--color-text-secondary);
   font-size: 0.78rem;
   font-weight: 650;
 }

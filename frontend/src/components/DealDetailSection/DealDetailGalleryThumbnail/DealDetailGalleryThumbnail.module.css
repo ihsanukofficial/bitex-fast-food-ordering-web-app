@@ -8,7 +8,7 @@
   border: 2px solid transparent;
   border-radius: 0.9rem;
   padding: 0;
-  background: #fff;
+  background: var(--color-surface);
   cursor: pointer;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }

@@ -12,12 +12,12 @@
 }
 
 .item strong {
-  color: #333;
+  color: var(--color-text-primary);
   font-size: 0.78rem;
 }
 
 .item small {
   overflow-wrap: anywhere;
-  color: #747474;
+  color: var(--color-text-secondary);
   line-height: 1.35;
 }

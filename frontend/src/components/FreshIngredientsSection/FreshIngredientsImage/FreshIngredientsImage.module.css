@@ -24,7 +24,7 @@
   aspect-ratio: 1.12;
   object-fit: cover;
   border-radius: 0.8rem 2rem 0.8rem 2rem;
-  box-shadow: 0 1.8rem 4.5rem rgba(79, 46, 10, 0.18);
+  box-shadow: 0 1.8rem 4.5rem rgba(var(--shadow-rgb), 0.18);
 }
 
 .caption {
@@ -37,9 +37,9 @@
   margin: 0;
   padding: 0.95rem 1.2rem;
   border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 0.8rem 2.5rem rgba(79, 46, 10, 0.14);
-  color: #3f3f3f;
+  background: var(--color-surface);
+  box-shadow: 0 0.8rem 2.5rem rgba(var(--shadow-rgb), 0.14);
+  color: var(--color-text-secondary);
   font-size: 0.82rem;
   font-weight: 700;
 }

@@ -4,7 +4,7 @@
   align-items: flex-start;
   gap: 0.55rem;
   overflow-wrap: anywhere;
-  color: #5d6269;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   line-height: 1.45;
 }
@@ -14,7 +14,7 @@
   height: 7px;
   flex: 0 0 auto;
   margin-top: 0.42rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-border);
   border-radius: 50%;
   background: var(--star-gold);
   box-shadow: 0 0 0 1px rgba(215, 27, 31, 0.3);

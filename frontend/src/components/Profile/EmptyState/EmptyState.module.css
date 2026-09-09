@@ -15,7 +15,7 @@
   height: 3.25rem;
   margin-bottom: 0.25rem;
   border-radius: 50%;
-  background: #f6f1ea;
+  background: var(--color-surface);
   color: var(--brand-red);
 }
 
@@ -29,7 +29,7 @@
 .message {
   margin: 0;
   max-width: 26rem;
-  color: #777;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
 

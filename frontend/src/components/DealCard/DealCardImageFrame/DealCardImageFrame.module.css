@@ -5,7 +5,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 0;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .frame:hover {

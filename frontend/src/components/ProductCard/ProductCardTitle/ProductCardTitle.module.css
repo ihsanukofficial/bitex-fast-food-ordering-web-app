@@ -3,7 +3,7 @@
   min-width: 0;
   margin: 0;
   overflow: hidden;
-  color: #232323;
+  color: var(--color-text-primary);
   font-size: 1.02rem;
   font-weight: 800;
   letter-spacing: -0.02em;

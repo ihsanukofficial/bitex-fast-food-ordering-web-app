@@ -8,12 +8,12 @@
   justify-content: center;
   width: 1.6rem;
   height: 1.6rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-border);
   border-radius: 50%;
   background: var(--brand-red);
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.2);
   transition: transform 0.12s ease, background-color 0.12s ease;
 }
 

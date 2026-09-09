@@ -13,8 +13,8 @@
   padding: 0.65rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1.35rem;
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 1rem 2.5rem rgba(17, 10, 3, 0.22);
+  background: rgba(var(--color-surface-rgb), 0.14);
+  box-shadow: 0 1rem 2.5rem rgba(var(--shadow-rgb), 0.22);
   backdrop-filter: blur(10px);
   box-sizing: border-box;
 }

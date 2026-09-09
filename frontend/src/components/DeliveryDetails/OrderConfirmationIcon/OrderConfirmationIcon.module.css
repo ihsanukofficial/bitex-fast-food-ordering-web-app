@@ -4,6 +4,6 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #fff2c9;
+  background: color-mix(in srgb, #fff2c9 55%, var(--color-surface));
   color: var(--brand-red);
 }

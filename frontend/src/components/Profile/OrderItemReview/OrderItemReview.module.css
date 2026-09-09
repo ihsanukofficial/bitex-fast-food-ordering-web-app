@@ -4,7 +4,7 @@
   margin-top: 0.35rem;
   border: 1px solid var(--brand-red);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-surface);
   color: var(--brand-red);
   font-size: 0.8rem;
   font-weight: 700;
@@ -24,16 +24,16 @@
 .unavailable {
   margin: 0.35rem 0 0;
   font-size: 0.78rem;
-  color: #999;
+  color: var(--color-text-secondary);
   font-style: italic;
 }
 
 .submitted {
   margin-top: 0.4rem;
   padding: 0.65rem 0.75rem;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-border);
   border-radius: 0.75rem;
-  background: #fafafa;
+  background: var(--color-surface);
 }
 
 .submittedHeader {
@@ -46,13 +46,13 @@
 
 .submittedDate {
   font-size: 0.75rem;
-  color: #888;
+  color: var(--color-text-secondary);
 }
 
 .submittedText {
   margin: 0.4rem 0 0;
   font-size: 0.85rem;
-  color: #444;
+  color: var(--color-text-secondary);
 }
 
 .reviewActions {
@@ -63,9 +63,9 @@
 
 .editButton {
   padding: 0.3rem 0.75rem;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-surface);
   font-size: 0.76rem;
   font-weight: 700;
   cursor: pointer;
@@ -80,7 +80,7 @@
   padding: 0.3rem 0.75rem;
   border: 1px solid var(--brand-red-soft-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-surface);
   color: #b3151a;
   font-size: 0.76rem;
   font-weight: 700;

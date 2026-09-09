@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import useAdminActivityBadges from '../../../hooks/useAdminActivityBadges';
 import Icon from '../../Utils/Icon/Icon';
+import ThemeToggle from '../../Utils/ThemeToggle/ThemeToggle';
 import styles from './AdminLayout.module.css';
 
 // `badge` names the section whose unread count this item shows — see
@@ -125,6 +126,7 @@ function AdminLayout({ children }) {
             <p className={styles.adminName}>{user?.name}</p>
             <p className={styles.adminRole}>{user?.role}</p>
           </span>
+          <ThemeToggle placement="up" />
           <button
             type="button"
             className={styles.logout}

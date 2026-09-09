@@ -3,10 +3,12 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, 0.96);
+  /* Theme-aware neutral gray border — flips from a soft light-gray hairline to
+     a soft dark-gray one instead of staying a stark opaque white ring. */
+  border: 1px solid var(--color-border);
   border-radius: 1.35rem;
-  background: #fff;
-  box-shadow: 0 0.75rem 2rem rgba(79, 45, 5, 0.13);
+  background: var(--color-surface);
+  box-shadow: 0 0.75rem 2rem rgba(var(--shadow-rgb), 0.13);
   box-sizing: border-box;
 }
 
@@ -19,7 +21,6 @@
 
 @media (max-width: 767px) {
   .heroImageItem {
-    border-width: 2px;
     border-radius: 1rem;
   }
 }

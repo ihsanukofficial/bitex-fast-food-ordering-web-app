@@ -1,5 +1,5 @@
 .label {
-  color: #333;
+  color: var(--color-text-primary);
   font-size: 0.72rem;
   font-weight: 800;
 }

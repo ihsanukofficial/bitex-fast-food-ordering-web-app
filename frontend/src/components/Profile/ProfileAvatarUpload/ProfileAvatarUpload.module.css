@@ -63,9 +63,11 @@
   justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-border);
   border-radius: 50%;
-  background: var(--ink);
+  /* Always a dark badge — deliberately not the theme-reactive --ink token,
+     which would turn light in Dark mode. */
+  background: #1a1a1a;
 }
 
 .hiddenInput {
@@ -81,7 +83,7 @@
   border: none;
   background: transparent;
   padding: 0;
-  color: #999;
+  color: var(--color-text-secondary);
   font-size: 0.72rem;
   font-weight: 700;
   cursor: pointer;

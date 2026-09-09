@@ -1,7 +1,7 @@
 .menuItem {
   position: relative;
   display: inline-block;
-  color: #1f2937;
+  color: var(--color-text-primary);
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 500;
@@ -58,11 +58,14 @@
   }
 
   .menuItem:hover {
-    background: #fff6df;
+    background: var(--color-surface);
     transform: translateX(3px);
   }
 
   .active {
-    background: #fff1ce;
+    /* Mixed with the theme surface instead of used raw, so this highlight pill
+       tones down into a muted warm accent in Dark mode instead of staying a
+       bright cream patch against the rest of the (now dark) drawer. */
+    background: color-mix(in srgb, #fff1ce 55%, var(--color-surface));
   }
 }

@@ -3,8 +3,8 @@
   align-items: center;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
-  background: #f2f2f2;
-  color: #333;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   font-size: 0.78rem;
   font-weight: 750;
   white-space: nowrap;
@@ -12,18 +12,18 @@
 
 .badge[data-status='pending'],
 .badge[data-status='confirmed'] {
-  background: #fff6e0;
+  background: var(--color-surface);
   color: #8a6100;
 }
 
 .badge[data-status='preparing'],
 .badge[data-status='out_for_delivery'] {
-  background: #eef2fd;
+  background: var(--color-surface);
   color: #2b4fb0;
 }
 
 .badge[data-status='delivered'] {
-  background: #e9f8ee;
+  background: var(--color-surface);
   color: #1b7a3c;
 }
 

@@ -12,6 +12,7 @@ import cameraLine from 'remixicon/icons/Media/camera-line.svg?raw';
 import checkboxCircleFill from 'remixicon/icons/System/checkbox-circle-fill.svg?raw';
 import checkLine from 'remixicon/icons/System/check-line.svg?raw';
 import closeLine from 'remixicon/icons/System/close-line.svg?raw';
+import computerLine from 'remixicon/icons/Device/computer-line.svg?raw';
 import couponLine from 'remixicon/icons/Finance/coupon-3-line.svg?raw';
 import dashboardLine from 'remixicon/icons/System/dashboard-line.svg?raw';
 import deleteBinLine from 'remixicon/icons/System/delete-bin-line.svg?raw';
@@ -29,6 +30,7 @@ import logoutBoxRLine from 'remixicon/icons/System/logout-box-r-line.svg?raw';
 import mailLine from 'remixicon/icons/Business/mail-line.svg?raw';
 import mapPinLine from 'remixicon/icons/Map/map-pin-line.svg?raw';
 import menuLine from 'remixicon/icons/System/menu-3-line.svg?raw';
+import moonLine from 'remixicon/icons/Weather/moon-line.svg?raw';
 import notificationLine from 'remixicon/icons/Media/notification-3-line.svg?raw';
 import pencilLine from 'remixicon/icons/Design/pencil-line.svg?raw';
 import phoneLine from 'remixicon/icons/Device/phone-line.svg?raw';
@@ -42,6 +44,7 @@ import shoppingCartLine from 'remixicon/icons/Finance/shopping-cart-2-line.svg?r
 import starFill from 'remixicon/icons/System/star-fill.svg?raw';
 import starLine from 'remixicon/icons/System/star-line.svg?raw';
 import subtractLine from 'remixicon/icons/System/subtract-line.svg?raw';
+import sunLine from 'remixicon/icons/Weather/sun-line.svg?raw';
 import tiktokFill from 'remixicon/icons/Logos/tiktok-fill.svg?raw';
 import timeLine from 'remixicon/icons/System/time-line.svg?raw';
 import crownFill from 'remixicon/icons/Finance/vip-crown-2-fill.svg?raw';
@@ -68,6 +71,7 @@ const iconAssets = Object.fromEntries(
     'ri-checkbox-circle-fill': checkboxCircleFill,
     'ri-check-line': checkLine,
     'ri-close-line': closeLine,
+    'ri-computer-line': computerLine,
     'ri-coupon-3-line': couponLine,
     'ri-dashboard-line': dashboardLine,
     'ri-delete-bin-line': deleteBinLine,
@@ -85,6 +89,7 @@ const iconAssets = Object.fromEntries(
     'ri-mail-line': mailLine,
     'ri-map-pin-line': mapPinLine,
     'ri-menu-3-line': menuLine,
+    'ri-moon-line': moonLine,
     'ri-notification-3-line': notificationLine,
     'ri-pencil-line': pencilLine,
     'ri-phone-line': phoneLine,
@@ -98,6 +103,7 @@ const iconAssets = Object.fromEntries(
     'ri-star-fill': starFill,
     'ri-star-line': starLine,
     'ri-subtract-line': subtractLine,
+    'ri-sun-line': sunLine,
     'ri-tiktok-fill': tiktokFill,
     'ri-time-line': timeLine,
     'ri-vip-crown-2-fill': crownFill,

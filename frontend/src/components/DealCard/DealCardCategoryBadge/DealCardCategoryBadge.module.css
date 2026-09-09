@@ -6,7 +6,7 @@
   border-radius: 999px;
   padding: 0.42rem 0.7rem;
   background: var(--deal-accent, var(--brand-red));
-  box-shadow: 0 0.45rem 1.2rem rgba(35, 21, 5, 0.16);
+  box-shadow: 0 0.45rem 1.2rem rgba(var(--shadow-rgb), 0.16);
   color: #fff;
   font-size: 0.66rem;
   font-weight: 800;

@@ -4,5 +4,5 @@
   aspect-ratio: 1;
   min-height: 120px;
   overflow: hidden;
-  background: linear-gradient(145deg, #fffaf0, #f7ebd3);
+  background: linear-gradient(145deg, var(--color-surface), var(--color-surface));
 }

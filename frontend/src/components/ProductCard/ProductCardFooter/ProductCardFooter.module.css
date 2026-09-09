@@ -6,7 +6,7 @@
   gap: 0.6rem;
   min-width: 0;
   padding: 0.8rem 1rem 1rem;
-  border-top: 1px solid #eee3d2;
+  border-top: 1px solid var(--color-border);
 }
 
 /* Its own column now (see ProductCardShell), not a row spanning underneath — this is
@@ -22,7 +22,7 @@
     gap: 0.5rem;
     padding: 1rem 1.1rem;
     border-top: none;
-    border-left: 1px solid #eee3d2;
+    border-left: 1px solid var(--color-border);
   }
 }
 

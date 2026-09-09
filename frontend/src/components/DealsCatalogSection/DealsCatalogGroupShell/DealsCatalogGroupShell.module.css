@@ -1,10 +1,18 @@
 .group {
   scroll-margin-top: 6rem;
-  border: 1px solid color-mix(in srgb, var(--section-accent) 18%, white);
+  border: 1px solid color-mix(in srgb, var(--section-accent) 18%, var(--color-surface));
   border-radius: 2rem;
   padding: clamp(1.25rem, 3vw, 2.25rem);
+  /* --section-tint is a fixed light pastel per deal category (see data/deals.js) —
+     mixing it with the theme surface instead of using it raw keeps each category's
+     color personality while pulling the card dark in Dark mode instead of leaving a
+     bright, low-contrast patch behind the heading text. */
   background:
-    linear-gradient(135deg, var(--section-tint), rgba(255, 255, 255, 0.92));
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--section-tint) 55%, var(--color-surface)),
+      rgba(var(--color-surface-rgb), 0.92)
+    );
 }
 
 @media (max-width: 639px) {

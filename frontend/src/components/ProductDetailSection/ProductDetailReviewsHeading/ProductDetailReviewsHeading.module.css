@@ -1,5 +1,5 @@
 .heading {
   margin: 0;
-  color: #282828;
+  color: var(--color-text-primary);
   font-size: 1.3rem;
 }

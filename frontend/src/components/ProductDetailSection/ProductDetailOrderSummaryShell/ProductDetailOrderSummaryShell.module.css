@@ -4,5 +4,5 @@
   border: 1px solid #f0dfb7;
   border-radius: 0.9rem;
   padding: 1rem;
-  background: #fff6df;
+  background: var(--color-surface);
 }

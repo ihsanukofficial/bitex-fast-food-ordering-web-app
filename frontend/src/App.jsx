@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthContext'
 import { BrandingProvider } from './context/BrandingContext'
 import { CartProvider } from './context/CartContext'
 import { NotificationProvider } from './context/NotificationContext'
+import { ThemeProvider } from './context/ThemeContext'
 import { WishlistProvider } from './context/WishlistContext'
 import {
   loadAboutRoute,
@@ -52,58 +53,60 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin')
 
   return (
-    <BrandingProvider>
-      <AuthProvider>
-        <CartProvider>
-          <NotificationProvider>
-            <WishlistProvider>
-              <RouteScrollManager />
-              {!isAdminRoute && <SiteNavbar />}
+    <ThemeProvider>
+      <BrandingProvider>
+        <AuthProvider>
+          <CartProvider>
+            <NotificationProvider>
+              <WishlistProvider>
+                <RouteScrollManager />
+                {!isAdminRoute && <SiteNavbar />}
 
-              <Suspense fallback={<PageLoadingState />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/menu/:category?" element={<Menu />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/deals" element={<Deals />} />
-                  <Route path="/productdetail/:slug" element={<ProductDetail />} />
-                  <Route path="/dealdetail/:id" element={<DealDetail />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route
-                    path="/profile/*"
-                    element={
-                      <RequireAuth>
-                        <Profile />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/wishlist"
-                    element={
-                      <RequireAuth>
-                        <Wishlist />
-                      </RequireAuth>
-                    }
-                  />
-                  <Route
-                    path="/admin/*"
-                    element={
-                      <RequireAdmin>
-                        <Admin />
-                      </RequireAdmin>
-                    }
-                  />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
-              {!isAdminRoute && <SiteFooter />}
-              <ToastNotificationContainer />
-            </WishlistProvider>
-          </NotificationProvider>
-        </CartProvider>
-      </AuthProvider>
-    </BrandingProvider>
+                <Suspense fallback={<PageLoadingState />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/menu/:category?" element={<Menu />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/deals" element={<Deals />} />
+                    <Route path="/productdetail/:slug" element={<ProductDetail />} />
+                    <Route path="/dealdetail/:id" element={<DealDetail />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route
+                      path="/profile/*"
+                      element={
+                        <RequireAuth>
+                          <Profile />
+                        </RequireAuth>
+                      }
+                    />
+                    <Route
+                      path="/wishlist"
+                      element={
+                        <RequireAuth>
+                          <Wishlist />
+                        </RequireAuth>
+                      }
+                    />
+                    <Route
+                      path="/admin/*"
+                      element={
+                        <RequireAdmin>
+                          <Admin />
+                        </RequireAdmin>
+                      }
+                    />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+                {!isAdminRoute && <SiteFooter />}
+                <ToastNotificationContainer />
+              </WishlistProvider>
+            </NotificationProvider>
+          </CartProvider>
+        </AuthProvider>
+      </BrandingProvider>
+    </ThemeProvider>
   )
 }
 

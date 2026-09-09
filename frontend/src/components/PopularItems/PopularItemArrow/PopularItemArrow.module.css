@@ -6,7 +6,7 @@
   place-items: center;
   border-radius: 50%;
   background: var(--popular-item-arrow-background, var(--brand-yellow));
-  color: var(--popular-item-arrow-color, #292929);
+  color: var(--popular-item-arrow-color, var(--color-text-primary));
   transform: translateX(var(--popular-item-arrow-shift, 0));
   transition:
     background-color 0.2s ease,

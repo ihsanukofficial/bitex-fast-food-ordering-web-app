@@ -33,6 +33,10 @@
   --admin-warning-soft: #fff2e0;
   --admin-info: #2b4fb0;
   --admin-info-soft: #eef2fd;
+  --admin-info-border: #b9c6ef;
+  --admin-backdrop: rgba(17, 18, 22, 0.5);
+  --admin-on-accent: #ffffff;
+  --admin-surface-rgb: 255, 255, 255;
   --admin-radius-sm: 0.45rem;
   --admin-radius-md: 0.6rem;
   --admin-radius-lg: 0.75rem;
@@ -42,12 +46,56 @@
   --admin-shadow-md: 0 2px 8px rgba(15, 15, 25, 0.05);
   --admin-shadow-lg: 0 12px 32px rgba(15, 15, 25, 0.14);
   --admin-font: 'Outfit', sans-serif;
+  color-scheme: light;
 
   display: flex;
   min-height: 100vh;
   background: var(--admin-bg);
   font-family: var(--admin-font);
   color: var(--admin-ink);
+}
+
+/* Only the content-area tokens flip — the sidebar (below) is already a dark
+   brand surface in both themes, so it's left untouched here on purpose. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .shell {
+    --admin-ink: #efeef2;
+    --admin-ink-soft: #c6c7d1;
+    --admin-muted: #9294a0;
+    --admin-muted-soft: #6b6c76;
+    --admin-border: #2c2d34;
+    --admin-border-soft: #24252b;
+    --admin-surface: #1c1d22;
+    --admin-surface-rgb: 28, 29, 34;
+    --admin-bg: #16171b;
+    --admin-bg-alt: #1c1d22;
+    --admin-success-soft: #103821;
+    --admin-warning-soft: #3a2a0c;
+    --admin-info-soft: #1b2540;
+    --admin-info-border: #33437a;
+    --admin-red-soft: #3a1517;
+    --admin-backdrop: rgba(0, 0, 0, 0.65);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] .shell {
+  --admin-ink: #efeef2;
+  --admin-ink-soft: #c6c7d1;
+  --admin-muted: #9294a0;
+  --admin-muted-soft: #6b6c76;
+  --admin-border: #2c2d34;
+  --admin-border-soft: #24252b;
+  --admin-surface: #1c1d22;
+  --admin-bg: #16171b;
+  --admin-bg-alt: #1c1d22;
+  --admin-success-soft: #103821;
+  --admin-warning-soft: #3a2a0c;
+  --admin-info-soft: #1b2540;
+  --admin-info-border: #33437a;
+  --admin-red-soft: #3a1517;
+  --admin-backdrop: rgba(0, 0, 0, 0.65);
+  color-scheme: dark;
 }
 
 .sidebar {

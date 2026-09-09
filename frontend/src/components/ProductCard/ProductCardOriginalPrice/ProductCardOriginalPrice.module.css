@@ -1,6 +1,6 @@
 .price {
   margin-left: 0.35rem;
-  color: #a39a8d;
+  color: var(--color-text-secondary);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: line-through;

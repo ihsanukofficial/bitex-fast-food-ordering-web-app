@@ -6,7 +6,7 @@
   object-fit: cover;
   object-position: center 38%;
   border-radius: 1.4rem;
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.28);
+  box-shadow: 0 2rem 5rem rgba(var(--shadow-rgb), 0.28);
 }
 
 @media (max-width: 860px) {

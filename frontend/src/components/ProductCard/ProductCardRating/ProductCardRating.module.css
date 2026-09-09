@@ -6,7 +6,7 @@
   height: 1.6rem;
   padding: 0 0.55rem;
   border-radius: 999px;
-  background: #fff5d8;
+  background: var(--color-surface);
   font-size: 0.72rem;
   box-sizing: border-box;
 }
@@ -21,7 +21,7 @@
 }
 
 .noReviews {
-  color: #8c8168;
+  color: var(--color-text-secondary);
   font-weight: 600;
 }
 

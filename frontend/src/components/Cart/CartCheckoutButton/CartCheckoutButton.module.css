@@ -31,8 +31,8 @@
 }
 
 .button:disabled {
-  background: #ddd;
-  color: #888;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
   cursor: not-allowed;
   box-shadow: none;
 }

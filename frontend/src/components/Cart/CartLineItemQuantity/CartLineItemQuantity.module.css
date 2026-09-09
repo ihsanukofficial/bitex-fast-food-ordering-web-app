@@ -3,7 +3,7 @@
   grid-template-columns: 24px 26px 24px;
   align-items: center;
   overflow: hidden;
-  border: 1px solid #e1d5c3;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #fffaf1;
+  background: var(--color-surface);
 }

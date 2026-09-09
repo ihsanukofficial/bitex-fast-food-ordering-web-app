@@ -7,11 +7,11 @@
   display: grid;
   place-items: center;
   box-sizing: border-box;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-border);
   border-radius: 999px;
   padding-inline: 3px;
   background: #fcae24;
-  color: #241b09;
+  color: var(--color-text-primary);
   font-family: 'Outfit', sans-serif;
   font-size: 0.62rem;
   font-weight: 800;

@@ -19,10 +19,12 @@
   position: absolute;
   z-index: -1;
   inset: 0;
-  border: 1px solid rgba(238, 217, 180, 0.8);
+  /* Mixed with the theme surface instead of used raw, so this warm tan ring
+     tones down in Dark mode instead of staying a bright, high-contrast edge. */
+  border: 1px solid color-mix(in srgb, rgba(238, 217, 180, 0.8), var(--color-surface) 55%);
   border-radius: 2.5rem;
-  background: #fff;
-  box-shadow: 0 1.5rem 4rem rgba(86, 52, 9, 0.09);
+  background: var(--color-surface);
+  box-shadow: 0 1.5rem 4rem rgba(var(--shadow-rgb), 0.09);
   content: '';
 }
 
@@ -42,7 +44,7 @@
 
 .galleryItem:hover {
   z-index: 4;
-  box-shadow: 0 1.25rem 2.5rem rgba(57, 33, 5, 0.18);
+  box-shadow: 0 1.25rem 2.5rem rgba(var(--shadow-rgb), 0.18);
   transform: translate3d(0, -5px, 0);
 }
 

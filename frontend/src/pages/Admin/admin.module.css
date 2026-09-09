@@ -779,7 +779,7 @@
 
 .statusSelect[data-status='preparing'],
 .statusSelect[data-status='out_for_delivery'] {
-  border-color: #dfe7fb;
+  border-color: var(--admin-border);
   background: var(--admin-info-soft);
   color: var(--admin-info);
 }

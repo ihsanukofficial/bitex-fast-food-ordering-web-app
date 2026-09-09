@@ -1,8 +1,8 @@
 .count {
-  border: 1px solid color-mix(in srgb, var(--section-accent) 25%, white);
+  border: 1px solid color-mix(in srgb, var(--section-accent) 25%, var(--color-surface));
   border-radius: 999px;
   padding: 0.45rem 0.75rem;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(var(--color-surface-rgb), 0.72);
   color: var(--section-accent);
   font-size: 0.72rem;
   font-weight: 800;

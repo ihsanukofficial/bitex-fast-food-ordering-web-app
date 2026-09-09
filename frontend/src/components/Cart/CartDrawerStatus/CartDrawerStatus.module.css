@@ -5,7 +5,7 @@
   align-content: center;
   padding: 2rem;
   text-align: center;
-  color: #6b6b6b;
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
 }
 

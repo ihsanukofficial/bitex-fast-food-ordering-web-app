@@ -16,7 +16,11 @@
   --brand-red-soft-border: #f3c8c8;
   --brand-yellow: #f6b800;
   --star-gold: #fca810;
-  --ink: #1a1a1a;
+  /* Alias, not a separate value: dozens of components already reference --ink for
+     body/heading text (predates this Dark mode work). Pointing it at the new
+     theme-reactive token means every one of them re-themes automatically instead
+     of staying stuck at its light-mode value (near-invisible on a dark page). */
+  --ink: var(--color-text-primary);
   --font-base: 'Outfit', sans-serif;
 
   /* Same gold used by the Popular Items mobile carousel's own scrollbar
@@ -31,4 +35,50 @@
      they used to sit underneath the overlay's full-viewport coverage and simply
      couldn't be clicked at all. */
   --navbar-height: 70px;
+
+  /* Theme tokens — the light values every component should reference instead of
+     a raw hex, so Dark mode (see the two blocks below and ThemeContext, which
+     sets the `data-theme` attribute this reads) is a matter of swapping these
+     six values rather than touching every component. Brand colors above stay
+     fixed across both themes on purpose. */
+  --color-bg: #fffdf9;
+  --color-surface: #ffffff;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b6b6b;
+  --color-border: #eadfcd;
+  --color-on-brand: #ffffff;
+  /* RGB triplets (no alpha) so component CSS can compose its own opacity per use,
+     e.g. rgba(var(--shadow-rgb), 0.12) or rgba(var(--color-surface-rgb), 0.9) for a
+     translucent surface (the Navbar's frosted background, etc.) — both vary their
+     alpha per component, so a single fixed color+opacity wouldn't fit every use. */
+  --shadow-rgb: 15, 15, 15;
+  --color-surface-rgb: 255, 255, 255;
+  color-scheme: light;
+}
+
+/* Followed the OS setting ("system", ThemeContext's default) — only applies
+   when no explicit choice has stamped `data-theme` on the root element. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #16130f;
+    --color-surface: #201c17;
+    --color-text-primary: #f3ede3;
+    --color-text-secondary: #b6ada0;
+    --color-border: #3a332a;
+    --shadow-rgb: 0, 0, 0;
+    --color-surface-rgb: 32, 28, 23;
+    color-scheme: dark;
+  }
+}
+
+/* Explicit "dark" choice — wins regardless of the OS setting. */
+:root[data-theme='dark'] {
+  --color-bg: #16130f;
+  --color-surface: #201c17;
+  --color-text-primary: #f3ede3;
+  --color-text-secondary: #b6ada0;
+  --color-border: #3a332a;
+  --shadow-rgb: 0, 0, 0;
+  --color-surface-rgb: 32, 28, 23;
+  color-scheme: dark;
 }

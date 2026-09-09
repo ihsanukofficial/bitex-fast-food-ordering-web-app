@@ -7,8 +7,8 @@
   height: calc(100dvh - var(--navbar-height));
   display: none;
   grid-template-rows: auto 1fr auto;
-  background: #fff;
-  box-shadow: 18px 0 42px rgba(0, 0, 0, 0.18);
+  background: var(--color-surface);
+  box-shadow: 18px 0 42px rgba(var(--shadow-rgb), 0.18);
   transform: translateX(-105%);
   visibility: hidden;
   transition: transform 0.35s ease, visibility 0s linear 0.35s;

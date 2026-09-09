@@ -9,7 +9,7 @@
   background:
     radial-gradient(circle at 83% 42%, rgba(246, 184, 0, 0.24), transparent 24rem),
     radial-gradient(circle at 8% 88%, rgba(215, 27, 31, 0.08), transparent 25rem),
-    #fffaf0;
+    var(--color-surface);
 }
 
 .shell::before {

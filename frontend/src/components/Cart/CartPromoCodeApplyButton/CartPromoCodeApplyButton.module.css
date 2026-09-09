@@ -3,7 +3,7 @@
   border-radius: 0 0.75rem 0.75rem 0;
   padding-inline: 0.8rem;
   background: var(--brand-yellow);
-  color: #2d2106;
+  color: var(--color-text-primary);
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 800;

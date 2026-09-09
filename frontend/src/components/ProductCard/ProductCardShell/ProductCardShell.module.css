@@ -17,12 +17,12 @@
      happens to be tallest — see ProductCardFooter, the one area that opts back into
      stretching once there's a row (tablet+) worth stretching within. */
   align-items: start;
-  border: 1px solid #eadfcd;
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
   overflow: hidden;
-  background: #fff;
+  background: var(--color-surface);
   box-sizing: border-box;
-  box-shadow: 0 0.5rem 1.5rem rgba(83, 50, 9, 0.06);
+  box-shadow: 0 0.5rem 1.5rem rgba(var(--shadow-rgb), 0.06);
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
@@ -31,7 +31,7 @@
 
 .card:hover {
   border-color: #e1c994;
-  box-shadow: 0 0.9rem 2.2rem rgba(83, 50, 9, 0.12);
+  box-shadow: 0 0.9rem 2.2rem rgba(var(--shadow-rgb), 0.12);
   transform: translateY(-3px);
 }
 

@@ -9,7 +9,7 @@
   overflow: hidden;
   border-radius: 2rem;
   background:
-    radial-gradient(circle at 10% 15%, rgba(255, 255, 255, 0.42), transparent 11rem),
+    radial-gradient(circle at 10% 15%, rgba(var(--color-surface-rgb), 0.42), transparent 11rem),
     var(--brand-yellow);
   box-shadow: 0 1.5rem 4rem rgba(107, 65, 4, 0.14);
   box-sizing: border-box;

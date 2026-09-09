@@ -14,8 +14,8 @@
   width: min(100%, 22rem);
   padding: 1.5rem;
   border-radius: 1.1rem;
-  background: #fff;
-  box-shadow: 0 20px 45px -10px rgba(20, 12, 5, 0.35);
+  background: var(--color-surface);
+  box-shadow: 0 20px 45px -10px rgba(var(--shadow-rgb), 0.35);
   animation: popIn 0.16s ease-out;
 }
 
@@ -63,7 +63,9 @@
   margin: 0 auto;
   overflow: hidden;
   border-radius: 0.9rem;
-  background: var(--ink);
+  /* Always a dark backdrop for the photo being cropped — deliberately not the
+     theme-reactive --ink token, which would turn light in Dark mode. */
+  background: #1a1a1a;
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -85,7 +87,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 9999px rgba(var(--shadow-rgb), 0.5);
   pointer-events: none;
 }
 
@@ -111,16 +113,16 @@
 
 .cancelButton {
   padding: 0.6rem 1.2rem;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-surface);
   font-weight: 700;
   font-size: 0.88rem;
   cursor: pointer;
 }
 
 .cancelButton:hover:not(:disabled) {
-  border-color: #999;
+  border-color: var(--color-border);
 }
 
 .cancelButton:disabled {

@@ -12,7 +12,7 @@
   border-radius: 14px;
   background: #211a12;
   color: #fff;
-  box-shadow: 0 14px 36px rgba(20, 13, 4, 0.28);
+  box-shadow: 0 14px 36px rgba(var(--shadow-rgb), 0.28);
   box-sizing: border-box;
 }
 
@@ -93,7 +93,7 @@
 }
 
 .dismissButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--color-surface-rgb), 0.1);
 }
 
 .dismissButton:focus-visible {

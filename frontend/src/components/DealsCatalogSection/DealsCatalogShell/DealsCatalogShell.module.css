@@ -2,5 +2,5 @@
   padding-block: clamp(3.5rem, 7vw, 6rem);
   background:
     radial-gradient(circle at 100% 8%, rgba(246, 184, 0, 0.1), transparent 24rem),
-    #fffaf1;
+    var(--color-surface);
 }

@@ -1,4 +1,4 @@
 .label {
-  color: #3b3732;
+  color: var(--color-text-primary);
   font-weight: 750;
 }

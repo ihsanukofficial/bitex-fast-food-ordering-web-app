@@ -4,8 +4,8 @@
   gap: 1rem;
   padding: 1rem;
   border-radius: 1.25rem;
-  background: #fff;
-  box-shadow: 0 1.5rem 3rem rgba(15, 15, 15, 0.06);
+  background: var(--color-surface);
+  box-shadow: 0 1.5rem 3rem rgba(var(--shadow-rgb), 0.06);
   height: fit-content;
 }
 
@@ -27,7 +27,7 @@
   border: none;
   border-radius: 0.75rem;
   background: transparent;
-  color: #444;
+  color: var(--color-text-secondary);
   font-weight: 650;
   font-size: 0.92rem;
   text-align: left;
@@ -36,7 +36,7 @@
 }
 
 .item:hover {
-  background: #fbeceb;
+  background: var(--color-surface);
   color: var(--brand-red);
 }
 
@@ -58,7 +58,7 @@
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--brand-red-soft-border);
   border-radius: 0.75rem;
-  background: #fff;
+  background: var(--color-surface);
   color: #b3151a;
   font-weight: 700;
   font-size: 0.88rem;
@@ -99,7 +99,7 @@
   .nav {
     padding: 0.6rem;
     gap: 0.6rem;
-    box-shadow: 0 0.5rem 1.25rem rgba(15, 15, 15, 0.05);
+    box-shadow: 0 0.5rem 1.25rem rgba(var(--shadow-rgb), 0.05);
   }
 
   .list {

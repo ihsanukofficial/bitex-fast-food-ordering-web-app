@@ -5,19 +5,19 @@
   display: grid;
   align-items: center;
   padding-block: clamp(4rem, 10vw, 8rem);
-  color: #24201c;
+  color: var(--color-text-primary);
   background:
     radial-gradient(circle at 72% 32%, rgba(246, 184, 0, 0.18), transparent 24rem),
-    #fffaf1;
+    var(--color-surface);
 }
 
 .content {
   width: min(100%, 720px);
   margin-inline: auto;
   padding: clamp(2rem, 7vw, 4.5rem);
-  border: 1px solid #eadbc4;
+  border: 1px solid var(--color-border);
   border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(var(--color-surface-rgb), 0.88);
   text-align: center;
 }
 
@@ -39,7 +39,7 @@
 .description {
   max-width: 34rem;
   margin: 1.25rem auto 0;
-  color: #6b5d50;
+  color: var(--color-text-secondary);
   font-size: clamp(1rem, 2vw, 1.12rem);
   line-height: 1.7;
 }
@@ -73,8 +73,8 @@
 }
 
 .secondaryAction {
-  border: 1px solid #dfd0b9;
-  background: #fff;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
 }
 
 .primaryAction:focus-visible,

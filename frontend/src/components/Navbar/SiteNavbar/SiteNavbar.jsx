@@ -33,6 +33,7 @@ import NavbarMobileDrawerNote from '../NavbarMobileDrawerNote/NavbarMobileDrawer
 import NavbarMobileDrawerTagline from '../NavbarMobileDrawerTagline/NavbarMobileDrawerTagline'
 import NavbarNotificationButton from '../NavbarNotificationButton/NavbarNotificationButton'
 import NavbarProfileAvatar from '../NavbarProfileAvatar/NavbarProfileAvatar'
+import ThemeToggle from '../../Utils/ThemeToggle/ThemeToggle'
 import styles from './SiteNavbar.module.css'
 
 // Start loading the cart with the persistent Navbar so it can mount closed and be
@@ -195,6 +196,7 @@ function SiteNavbar() {
             <Logo />
             <MenuGroup />
             <NavbarActions>
+              <ThemeToggle />
               {isAuthenticated ? (
                 <>
                   <NavbarCartButton isOpen={isCartOpen} onClick={toggleCart} />
@@ -223,6 +225,7 @@ function SiteNavbar() {
           <MenuGroup variant="sidebar" onNavigate={closeNavigation} />
         </NavbarMobileDrawerNavigation>
         <NavbarMobileDrawerFooter>
+          <ThemeToggle />
           <NavbarMobileDrawerTagline />
           <NavbarMobileDrawerNote />
         </NavbarMobileDrawerFooter>

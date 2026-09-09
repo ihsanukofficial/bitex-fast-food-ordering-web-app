@@ -1,6 +1,6 @@
 .availability {
   margin: 0.25rem 0 0;
-  color: #777067;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   font-weight: 600;
 }

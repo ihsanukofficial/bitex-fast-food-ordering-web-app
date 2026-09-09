@@ -8,7 +8,7 @@
   height: 58px;
   display: grid;
   place-items: center;
-  border: 3px solid #fff8e9;
+  border: 3px solid var(--color-border);
   border-radius: 50%;
   padding: 0;
   background: var(--brand-red);
@@ -17,7 +17,7 @@
   transform: translateY(-50%);
   box-shadow:
     0 0 0 1px rgba(215, 27, 31, 0.18),
-    0 10px 24px rgba(88, 31, 14, 0.2);
+    0 10px 24px rgba(var(--shadow-rgb), 0.2);
   transition:
     background-color 0.2s ease,
     color 0.2s ease,
@@ -37,10 +37,10 @@
 
 .arrow:hover {
   background: var(--brand-yellow);
-  color: #171717;
+  color: var(--color-text-primary);
   box-shadow:
-    0 0 0 1px rgba(43, 43, 43, 0.32),
-    0 12px 28px rgba(43, 43, 43, 0.28);
+    0 0 0 1px rgba(var(--shadow-rgb), 0.32),
+    0 12px 28px rgba(var(--shadow-rgb), 0.28);
   transform: translateY(-50%) scale(1.06);
 }
 

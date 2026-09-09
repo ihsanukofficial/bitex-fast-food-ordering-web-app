@@ -2,7 +2,7 @@
   width: 100%;
   padding-block: clamp(4rem, 8vw, 7rem);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 44%),
+    linear-gradient(135deg, rgba(var(--color-surface-rgb), 0.035), transparent 44%),
     #232323;
   color: #fff;
   box-sizing: border-box;

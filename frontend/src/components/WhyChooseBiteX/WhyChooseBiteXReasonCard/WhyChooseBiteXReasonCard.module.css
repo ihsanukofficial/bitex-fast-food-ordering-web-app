@@ -7,7 +7,7 @@
   padding: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.075);
+  background: rgba(var(--color-surface-rgb), 0.075);
   backdrop-filter: blur(5px);
   color: #fff;
   box-sizing: border-box;

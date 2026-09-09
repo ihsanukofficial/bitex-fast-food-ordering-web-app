@@ -1,8 +1,8 @@
 .button {
   height: 42px;
   border: 0;
-  background: #f5f5f5;
-  color: #222;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   cursor: pointer;
 }
 
@@ -11,6 +11,6 @@
 }
 
 .button:disabled {
-  color: #aaa;
+  color: var(--color-text-secondary);
   cursor: not-allowed;
 }

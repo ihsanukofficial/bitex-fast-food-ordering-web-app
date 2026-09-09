@@ -8,10 +8,10 @@
   aspect-ratio: 1;
   overflow: hidden;
   box-sizing: border-box;
-  border: 1px solid #ece2d3;
+  border: 1px solid var(--color-border);
   border-radius: 1.5rem;
-  background: #fff;
-  box-shadow: 0 1.25rem 3.5rem rgba(78, 46, 8, 0.09);
+  background: var(--color-surface);
+  box-shadow: 0 1.25rem 3.5rem rgba(var(--shadow-rgb), 0.09);
   touch-action: pan-y;
   user-select: none;
 }

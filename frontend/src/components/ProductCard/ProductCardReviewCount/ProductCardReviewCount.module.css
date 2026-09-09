@@ -1,4 +1,4 @@
 .count {
-  color: #887e68;
+  color: var(--color-text-secondary);
   font-weight: 400;
 }

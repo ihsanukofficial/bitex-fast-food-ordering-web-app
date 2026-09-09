@@ -5,8 +5,8 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--category-card-arrow-background, #f8edda);
-  color: #222;
+  background: var(--category-card-arrow-background, var(--color-surface));
+  color: var(--color-text-primary);
   transform: translateX(var(--category-card-arrow-shift, 0));
   transition:
     background-color 0.2s ease,

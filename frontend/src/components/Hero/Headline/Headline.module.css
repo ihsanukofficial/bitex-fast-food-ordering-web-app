@@ -1,7 +1,7 @@
 .headline {
   max-width: 10ch;
   margin: 0.35rem 0 0;
-  color: #232323;
+  color: var(--color-text-primary);
   font-size: clamp(3rem, 5.2vw, 5.35rem);
   font-weight: 850;
   letter-spacing: -0.055em;

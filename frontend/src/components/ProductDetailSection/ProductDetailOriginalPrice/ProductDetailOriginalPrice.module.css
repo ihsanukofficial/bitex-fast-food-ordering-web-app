@@ -6,7 +6,7 @@
 }
 
 .discountedOriginal {
-  color: #858585;
+  color: var(--color-text-secondary);
   font-size: 1.15rem;
   font-weight: 600;
   text-decoration: line-through;

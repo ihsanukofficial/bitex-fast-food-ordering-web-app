@@ -1,5 +1,5 @@
 .indicator {
-  color: #858585;
+  color: var(--color-text-secondary);
   font-size: 0.68rem;
   font-weight: 500;
 }

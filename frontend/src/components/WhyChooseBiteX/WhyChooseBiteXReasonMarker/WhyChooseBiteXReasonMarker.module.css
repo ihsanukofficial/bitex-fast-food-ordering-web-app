@@ -5,7 +5,7 @@
   place-items: center;
   border-radius: 50%;
   background: var(--brand-yellow);
-  color: #2a1a06;
+  color: var(--color-text-primary);
   font-weight: 900;
 }
 

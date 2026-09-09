@@ -2,9 +2,9 @@
   width: 64px;
   height: 64px;
   display: block;
-  border: 1px solid #eee4d5;
+  border: 1px solid var(--color-border);
   border-radius: 0.65rem;
-  background: #fff;
+  background: var(--color-surface);
   object-fit: cover;
   box-sizing: border-box;
 }

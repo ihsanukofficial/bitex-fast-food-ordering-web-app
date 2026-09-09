@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  box-shadow: 0 1.5rem 4rem rgba(57, 31, 7, 0.16);
+  box-shadow: 0 1.5rem 4rem rgba(var(--shadow-rgb), 0.16);
 }
 
 @media (max-width: 900px) {

@@ -3,7 +3,7 @@
   aspect-ratio: 1.2;
   overflow: hidden;
   border-radius: 2rem 0.6rem 2rem 0.6rem;
-  box-shadow: 0 1.8rem 4.5rem rgba(58, 35, 13, 0.18);
+  box-shadow: 0 1.8rem 4.5rem rgba(var(--shadow-rgb), 0.18);
 }
 
 .frame::after {

@@ -5,8 +5,8 @@
   height: 1.6rem;
   padding: 0 0.55rem;
   border-radius: 999px;
-  background: #f5f1ea;
-  color: #4a453d;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
   font-size: 0.7rem;
   font-weight: 700;
   box-sizing: border-box;

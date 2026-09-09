@@ -10,7 +10,7 @@
 
 .shell {
   min-height: 100vh;
-  background: #f4f5f9;
+  background: var(--admin-bg);
 }
 
 .toolbar {
@@ -51,7 +51,7 @@
   margin: 0 auto;
   padding: 0.25rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--admin-surface-rgb), 0.08);
 }
 
 .pageTab,
@@ -142,12 +142,12 @@
   gap: 0.35rem;
   min-height: 100vh;
   font-family: 'Outfit', sans-serif;
-  color: #40414a;
+  color: var(--admin-ink-soft);
   text-align: center;
 }
 
 .centeredStateDetail {
-  color: #6b6c76;
+  color: var(--admin-muted);
   font-size: 0.85rem;
 }
 
@@ -157,7 +157,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 1.5rem;
-  background: #f4f5f9;
+  background: var(--admin-bg);
   font-family: 'Outfit', sans-serif;
 }
 
@@ -170,11 +170,11 @@
   max-width: 26rem;
   padding: 2.25rem 1.75rem;
   border-radius: 0.9rem;
-  background: #fff;
-  border: 1px solid #e5e6ec;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   box-shadow: 0 12px 32px rgba(15, 15, 25, 0.1);
   text-align: center;
-  color: #14151a;
+  color: var(--admin-ink);
 }
 
 .desktopOnlyCard svg,
@@ -189,7 +189,7 @@
 
 .desktopOnlyCard p {
   margin: 0;
-  color: #6b6c76;
+  color: var(--admin-muted);
   font-size: 0.9rem;
   line-height: 1.5;
 }

@@ -6,7 +6,7 @@
   place-items: center;
   border: 1px solid rgba(246, 184, 0, 0.36);
   border-radius: 0.7rem;
-  background: #fff8e9;
+  background: var(--color-surface);
   box-sizing: border-box;
 }
 

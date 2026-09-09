@@ -30,7 +30,7 @@
 }
 
 .links a:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--color-surface-rgb), 0.08);
   color: var(--star-gold);
   transform: translateY(-2px);
 }
@@ -61,7 +61,7 @@
   padding: 0.4rem 0.55rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.4rem;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--color-surface-rgb), 0.08);
   color: #fff;
   font: inherit;
   font-size: 0.78rem;

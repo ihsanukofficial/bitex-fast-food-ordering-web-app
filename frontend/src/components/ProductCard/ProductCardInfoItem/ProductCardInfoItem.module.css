@@ -5,18 +5,18 @@
   height: 1.6rem;
   padding: 0 0.55rem;
   border-radius: 999px;
-  background: #f5f1ea;
+  background: var(--color-surface);
   font-size: 0.7rem;
   box-sizing: border-box;
 }
 
 .label {
-  color: #857c6d;
+  color: var(--color-text-secondary);
   font-weight: 600;
 }
 
 .value {
-  color: #4a453d;
+  color: var(--color-text-secondary);
   font-weight: 700;
 }
 

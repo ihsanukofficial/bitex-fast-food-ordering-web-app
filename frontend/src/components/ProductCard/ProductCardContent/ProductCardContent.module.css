@@ -1,19 +1,19 @@
 .content {
   grid-area: content;
   min-width: 0;
-  background: #fff;
+  background: var(--color-surface);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.9rem 1rem;
-  border-top: 1px solid #eee3d2;
+  border-top: 1px solid var(--color-border);
 }
 
 @media (min-width: 640px) {
   .content {
     padding: 1rem 1.1rem;
     border-top: none;
-    border-left: 1px solid #eee3d2;
+    border-left: 1px solid var(--color-border);
   }
 }
 

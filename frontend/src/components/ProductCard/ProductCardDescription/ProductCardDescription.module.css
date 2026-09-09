@@ -2,7 +2,7 @@
   margin: 0;
   display: -webkit-box;
   overflow: hidden;
-  color: #726c62;
+  color: var(--color-text-secondary);
   font-size: 0.82rem;
   line-height: 1.5;
   -webkit-box-orient: vertical;

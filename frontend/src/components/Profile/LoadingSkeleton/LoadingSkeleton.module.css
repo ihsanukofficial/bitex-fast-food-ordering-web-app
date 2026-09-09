@@ -21,7 +21,7 @@
 
 .item {
   border-radius: 1rem;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface) 37%, var(--color-surface) 63%);
   background-size: 400% 100%;
   animation: shimmer 1.4s ease infinite;
 }

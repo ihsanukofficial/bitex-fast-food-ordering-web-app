@@ -8,10 +8,10 @@
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  color: #222;
+  background: rgba(var(--color-surface-rgb), 0.92);
+  color: var(--color-text-primary);
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 18px rgba(var(--shadow-rgb), 0.18);
   transform: translateY(-50%);
 }
 

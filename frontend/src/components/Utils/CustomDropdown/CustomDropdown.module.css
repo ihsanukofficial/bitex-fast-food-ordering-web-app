@@ -18,13 +18,13 @@
     --dropdown-control-radius,
     var(--search-control-radius, 12px)
   );
-  background: #fff;
-  color: #111827;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   font: inherit;
   font-size: 0.98rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 0.3rem 1rem rgba(22, 14, 5, 0.07);
+  box-shadow: 0 0.3rem 1rem rgba(var(--shadow-rgb), 0.07);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -33,7 +33,7 @@
 
 .trigger:hover {
   border-color: rgba(246, 184, 0, 0.65);
-  box-shadow: 0 0.5rem 1.2rem rgba(22, 14, 5, 0.1);
+  box-shadow: 0 0.5rem 1.2rem rgba(var(--shadow-rgb), 0.1);
 }
 
 .trigger:focus-visible {
@@ -51,7 +51,7 @@
 }
 
 .placeholder {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-weight: 600;
 }
 
@@ -87,20 +87,20 @@
   overflow-y: auto;
   list-style: none;
   margin: 8px 0 0;
-  border: 1px solid #eee2cf;
+  border: 1px solid var(--color-border);
   border-radius: var(
     --dropdown-control-radius,
     var(--search-control-radius, 12px)
   );
   padding: 0;
-  background-color: #fff;
-  box-shadow: 0 1rem 2.5rem rgba(54, 32, 5, 0.15);
+  background-color: var(--color-surface);
+  box-shadow: 0 1rem 2.5rem rgba(var(--shadow-rgb), 0.15);
 }
 
 .option {
   padding: 0.75rem 1rem;
   cursor: pointer;
-  color: #111827;
+  color: var(--color-text-primary);
   font-size: 0.9rem;
   transition:
     background-color 0.15s ease,
@@ -108,7 +108,7 @@
 }
 
 .option:hover {
-  background-color: #fff5dd;
+  background-color: var(--color-surface);
   color: #b8171b;
 }
 
@@ -119,6 +119,6 @@
 
 .selected {
   background-color: var(--brand-yellow);
-  color: #2c2006;
+  color: var(--color-text-primary);
   font-weight: 700;
 }

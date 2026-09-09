@@ -399,7 +399,9 @@
   gap: 0.1rem;
   padding: 0.4rem 0.6rem;
   border-radius: var(--admin-radius-sm);
-  background: var(--admin-ink);
+  /* Always a dark tooltip — deliberately not the theme-reactive --admin-ink
+     token, which would turn light in Dark mode. */
+  background: #14151a;
   color: #fff;
   font-size: 0.76rem;
   white-space: nowrap;
@@ -411,6 +413,9 @@
   font-size: 0.85rem;
 }
 
+/* The tooltip itself is always dark (see .chartTooltip's fixed background
+   above) — these stay fixed light literals rather than the theme-reactive
+   --admin-muted-soft token, which would turn dark-on-dark in Dark mode. */
 .chartTooltip span {
   color: #c7c7cc;
 }
@@ -725,7 +730,9 @@
   gap: 0.1rem;
   padding: 0.4rem 0.6rem;
   border-radius: var(--admin-radius-sm);
-  background: var(--admin-ink);
+  /* Always a dark tooltip — deliberately not the theme-reactive --admin-ink
+     token, which would turn light in Dark mode. */
+  background: #14151a;
   color: #fff;
   font-size: 0.72rem;
   white-space: nowrap;
@@ -738,6 +745,8 @@
   font-size: 0.78rem;
 }
 
+/* Fixed light literal, not the theme-reactive token — see .heatmapTooltip's
+   fixed dark background above. */
 .heatmapTooltip span {
   color: #c7c7cc;
 }
@@ -784,7 +793,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--admin-surface-rgb), 0.5), transparent);
   transform: translateX(-100%);
   animation: shimmer 1.4s infinite;
 }

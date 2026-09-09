@@ -1,0 +1,146 @@
+/**
+ * Rendered both in the public Navbar (where only the --color- and --brand-
+ * prefixed tokens exist) and inside the admin shell (where --admin- prefixed
+ * tokens additionally exist and take precedence). Every color below reads
+ * var(--admin-x, var(--site-equivalent)) so this one file re-themes
+ * correctly in both places without any admin/public branching.
+ */
+
+.container {
+  position: relative;
+}
+
+.trigger {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1.5px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--admin-ink-soft, var(--color-text-secondary));
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.2s ease;
+}
+
+.trigger:hover {
+  background: var(--admin-bg-alt, var(--color-border));
+  color: var(--admin-red, var(--brand-red));
+  transform: translateY(-2px);
+}
+
+.trigger:focus-visible {
+  outline: 3px solid rgba(215, 27, 31, 0.3);
+  outline-offset: 2px;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  z-index: 1200;
+  width: 11.5rem;
+  padding: 0.4rem;
+  border: 1px solid var(--admin-border, var(--color-border));
+  border-radius: 1rem;
+  background: var(--admin-surface, var(--color-surface));
+  box-shadow: var(--admin-shadow-lg, 0 20px 45px -10px rgba(var(--shadow-rgb, 15, 15, 15), 0.28));
+  overflow: hidden;
+  animation: menuIn 0.16s ease-out;
+  transform-origin: top right;
+}
+
+.menuUp {
+  top: auto;
+  bottom: calc(100% + 14px);
+  transform-origin: bottom right;
+}
+
+/* Matches AdminLayout.module.css's own sidebar-to-topbar breakpoint — once the
+   admin sidebar collapses into a horizontal top bar, its footer is no longer
+   pinned to the bottom of the screen, so the menu should drop down like it
+   does everywhere else instead of opening upward off the top of the page. */
+@media (max-width: 900px) {
+  .menuUp {
+    top: calc(100% + 14px);
+    bottom: auto;
+    transform-origin: top right;
+  }
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.6rem 0.65rem;
+  border: none;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--admin-ink-soft, var(--color-text-secondary));
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--admin-red-soft, var(--brand-red-soft));
+  color: var(--admin-red, var(--brand-red));
+}
+
+.menuItem:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgba(215, 27, 31, 0.35);
+}
+
+.menuItem[aria-checked='true'] {
+  color: var(--admin-red, var(--brand-red));
+  font-weight: 700;
+}
+
+.menuItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.menuItemCheck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  color: inherit;
+}
+
+@media (max-width: 420px) {
+  .menu {
+    width: min(85vw, 11.5rem);
+  }
+}

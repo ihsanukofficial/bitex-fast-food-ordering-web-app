@@ -8,12 +8,12 @@
   padding: 0 1.15rem;
   outline: none;
   background: transparent;
-  color: #252525;
+  color: var(--color-text-primary);
   font-size: 1rem;
 }
 
 .input::placeholder {
-  color: #888178;
+  color: var(--color-text-secondary);
 }
 
 .input:focus {
