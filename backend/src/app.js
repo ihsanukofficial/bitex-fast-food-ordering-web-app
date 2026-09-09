@@ -1,3 +1,4 @@
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
@@ -21,6 +22,7 @@ import wishlistRoutes from './routes/wishlistRoutes.js';
 
 const app = express();
 
+app.use(compression());
 app.use(
   cors({
     origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
@@ -29,7 +31,10 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(uploadsDirectory));
+// Uploaded filenames are content-addressed (a random UUID per file, see
+// middleware/upload.js) — the same URL never resolves to different bytes, so browsers
+// can cache a fetched upload forever instead of revalidating on every page load.
+app.use('/uploads', express.static(uploadsDirectory, { maxAge: '1y', immutable: true }));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
