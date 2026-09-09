@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { apiClient } from '../../../../services/apiClient';
 
-const PAGES = ['home', 'about', 'menu', 'footer', 'branding'];
+const PAGES = ['home', 'about', 'menu', 'footer', 'branding', 'navigation'];
 
 /**
  * useLiveEditorSession

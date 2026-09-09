@@ -6,9 +6,15 @@ import styles from "./MenuItem.module.css";
  * MenuItem
  *
  * Renders a route-aware navigation link and exposes navigation completion to overlay
- * owners.
+ * owners. Inside AdminLiveEditor (`disabled`) it renders as a plain, non-navigating
+ * `<span>` instead — its label there is a contentEditable EditableText, which doesn't
+ * mix well nested inside a real anchor (focus/selection/click all fight the link).
  */
-function MenuItem({ to, label, onClick }) {
+function MenuItem({ to, label, onClick, disabled = false }) {
+  if (disabled) {
+    return <span className={styles.menuItem}>{label}</span>;
+  }
+
   return (
     <NavLink
       to={to}
