@@ -1,10 +1,11 @@
 .button {
   border: 0;
   border-radius: 0 0.75rem 0.75rem 0;
-  padding-inline: 1rem;
+  padding-inline: 0.8rem;
   background: var(--brand-yellow);
   color: #2d2106;
   cursor: pointer;
+  font-size: 0.8rem;
   font-weight: 800;
   transition: background-color 0.2s ease;
 }

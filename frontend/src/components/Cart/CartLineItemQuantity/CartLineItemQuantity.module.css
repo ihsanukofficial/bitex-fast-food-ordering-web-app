@@ -1,6 +1,6 @@
 .quantity {
   display: grid;
-  grid-template-columns: 30px 34px 30px;
+  grid-template-columns: 24px 26px 24px;
   align-items: center;
   overflow: hidden;
   border: 1px solid #e1d5c3;

@@ -1,9 +1,10 @@
 .totals {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.4rem;
   margin: 0;
-  padding: 0.85rem;
+  padding: 0.6rem 0.7rem;
   border: 1px solid #eee3d3;
-  border-radius: 0.85rem;
+  border-radius: 0.7rem;
   background: #fffaf1;
+  font-size: 0.85rem;
 }

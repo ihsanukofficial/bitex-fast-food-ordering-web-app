@@ -2,9 +2,9 @@
   flex: 1;
   display: grid;
   align-content: start;
-  gap: 1rem;
+  gap: 0.65rem;
   overflow-y: auto;
-  padding: 1.25rem clamp(1rem, 3vw, 2rem);
+  padding: 0.75rem clamp(1rem, 3vw, 2rem);
   overscroll-behavior: contain;
   scrollbar-color: #d8bd80 transparent;
 }

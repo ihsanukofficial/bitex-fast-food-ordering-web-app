@@ -1,7 +1,7 @@
 .collapse {
   display: grid;
   grid-template-rows: 1fr;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.55rem;
   transform-origin: right center;
 }
 

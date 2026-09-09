@@ -1,9 +1,9 @@
 .image {
-  width: 92px;
-  height: 92px;
+  width: 64px;
+  height: 64px;
   display: block;
   border: 1px solid #eee4d5;
-  border-radius: 0.8rem;
+  border-radius: 0.65rem;
   background: #fff;
   object-fit: cover;
   box-sizing: border-box;
@@ -11,7 +11,7 @@
 
 @media (max-width: 480px) {
   .image {
-    width: 76px;
-    height: 76px;
+    width: 56px;
+    height: 56px;
   }
 }
