@@ -1,7 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import useAdminOrderEvents from '../../../hooks/useAdminOrderEvents';
+import useHighlightedIds from '../../../hooks/useHighlightedIds';
 import { apiClient } from '../../../services/apiClient';
+import { getAdminSectionSeenAt } from '../../../utils/adminActivitySeen';
 import { getOrderCode } from '../../../utils/orderStatus';
 import Icon from '../../../components/Utils/Icon/Icon';
 import { PERIODS, filterOrdersByRange, getPeriodRange } from '../AdminDashboard/dashboardAnalytics';
@@ -42,6 +45,7 @@ function AdminOrders() {
   // Falls back to "All" for a stale/hand-edited URL naming a status that no longer
   // exists, rather than silently sending it to the API as an unrecognized filter.
   const statusFilter = STATUSES.includes(requestedStatus) ? requestedStatus : '';
+  const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState('');
   const [updatingId, setUpdatingId] = useState(null);
@@ -49,10 +53,26 @@ function AdminOrders() {
   const [period, setPeriod] = useState('all');
   const [customStart, setCustomStart] = useState('');
   const [customEnd, setCustomEnd] = useState('');
+  const { highlightedIds, highlight, highlightMany } = useHighlightedIds();
+  // Captured once, on mount, before AdminLayout's own effect marks "orders" seen for
+  // this visit — everything already in the list newer than this is flashed below.
+  const [highlightSince] = useState(() => getAdminSectionSeenAt(user?.id, 'orders'));
+  const appliedInitialHighlightRef = useRef(false);
 
   const load = () => {
     const query = statusFilter ? `?status=${statusFilter}` : '';
-    return apiClient.get(`/orders${query}`).then((data) => setOrders(data.orders));
+    return apiClient.get(`/orders${query}`).then((data) => {
+      setOrders(data.orders);
+      if (!appliedInitialHighlightRef.current) {
+        appliedInitialHighlightRef.current = true;
+        if (highlightSince) {
+          const newIds = data.orders
+            .filter((order) => new Date(order.createdAt) > new Date(highlightSince))
+            .map((order) => order._id);
+          highlightMany(newIds);
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -61,9 +81,11 @@ function AdminOrders() {
   }, [statusFilter]);
 
   // Refetch on every live order broadcast so new orders and status changes made from
-  // another tab/admin show up here without a manual reload.
-  useAdminOrderEvents(() => {
+  // another tab/admin show up here without a manual reload — and flash the new row
+  // when this is a brand-new order rather than a status update on an existing one.
+  useAdminOrderEvents((order, eventName) => {
     load().catch((requestError) => setError(requestError.message));
+    if (eventName === 'order:created' && order?._id) highlight(order._id);
   });
 
   const handleStatusChange = async (order, status) => {
@@ -221,7 +243,7 @@ function AdminOrders() {
               {filteredOrders.map((order) => (
                 <tr
                   key={order._id}
-                  className={styles.clickableRow}
+                  className={`${styles.clickableRow} ${highlightedIds.has(order._id) ? styles.rowHighlight : ''}`.trim()}
                   onClick={() => navigate(`/admin/orders/${order._id}`)}
                 >
                   <td className={styles.cellPrimary}>{getOrderCode(order._id)}</td>
@@ -231,7 +253,19 @@ function AdminOrders() {
                     <br />
                     <small className={styles.cellMuted}>{order.delivery.phone}</small>
                   </td>
-                  <td className={styles.cellMuted}>{order.items.map((item) => `${item.quantity}× ${item.title}`).join(', ')}</td>
+                  <td className={styles.cellMuted}>
+                    {order.items.map((item, index) => (
+                      <span key={index} className={styles.itemNoteLine}>
+                        {item.quantity}× {item.title}
+                        {item.specialInstructions && (
+                          <span className={styles.noteTag} title={item.specialInstructions}>
+                            <Icon name="ri-sticky-note-fill" size="0.85rem" ariaLabel="" />
+                            Note
+                          </span>
+                        )}
+                      </span>
+                    ))}
+                  </td>
                   <td className={styles.cellPrimary}>{formatCurrency(order.total)}</td>
                   <td onClick={(event) => event.stopPropagation()}>
                     <select

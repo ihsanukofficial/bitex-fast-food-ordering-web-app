@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import useAdminActivityBadges from '../../../hooks/useAdminActivityBadges';
+import useAdminOrderSound from '../../../hooks/useAdminOrderSound';
 import Icon from '../../Utils/Icon/Icon';
 import ThemeToggle from '../../Utils/ThemeToggle/ThemeToggle';
 import styles from './AdminLayout.module.css';
@@ -46,6 +47,7 @@ function AdminLayout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { counts, markSeen } = useAdminActivityBadges();
+  useAdminOrderSound();
 
   // Opening a section (or sitting on it while something new lands there) clears its
   // badge — the admin is looking straight at the thing it would be pointing to.

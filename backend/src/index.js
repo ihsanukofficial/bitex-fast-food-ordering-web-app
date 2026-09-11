@@ -41,12 +41,9 @@ const startWorker = async () => {
   }
 
   // Socket.IO needs the raw HTTP server (not the Express app) so it can hijack the
-  // upgrade handshake for WebSocket connections alongside normal HTTP traffic. Only
-  // clustered mode needs the Redis adapter — a lone process has nothing to broadcast
-  // across, and requiring Redis here too would break the zero-config dev fallback for
-  // anyone who hasn't set one up locally.
+  // upgrade handshake for WebSocket connections alongside normal HTTP traffic.
   const httpServer = http.createServer(app);
-  await initSocket(httpServer, { useRedisAdapter: isClustered });
+  await initSocket(httpServer);
 
   // In a forked worker, Node's cluster module transparently shares this port across
   // every worker (the primary process load-balances incoming connections between

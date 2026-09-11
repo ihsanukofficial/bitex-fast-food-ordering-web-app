@@ -43,6 +43,7 @@ import shoppingCartFill from 'remixicon/icons/Finance/shopping-cart-2-fill.svg?r
 import shoppingCartLine from 'remixicon/icons/Finance/shopping-cart-2-line.svg?raw';
 import starFill from 'remixicon/icons/System/star-fill.svg?raw';
 import starLine from 'remixicon/icons/System/star-line.svg?raw';
+import stickyNoteFill from 'remixicon/icons/Document/sticky-note-fill.svg?raw';
 import subtractLine from 'remixicon/icons/System/subtract-line.svg?raw';
 import sunLine from 'remixicon/icons/Weather/sun-line.svg?raw';
 import tiktokFill from 'remixicon/icons/Logos/tiktok-fill.svg?raw';
@@ -102,6 +103,7 @@ const iconAssets = Object.fromEntries(
     'ri-shopping-cart-2-line': shoppingCartLine,
     'ri-star-fill': starFill,
     'ri-star-line': starLine,
+    'ri-sticky-note-fill': stickyNoteFill,
     'ri-subtract-line': subtractLine,
     'ri-sun-line': sunLine,
     'ri-tiktok-fill': tiktokFill,

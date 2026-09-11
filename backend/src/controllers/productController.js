@@ -1,6 +1,5 @@
 import Product from '../models/Product.js';
 import { logActivity } from '../services/activityLogService.js';
-import { getCachedAllProducts, invalidateProductsCache, setCachedAllProducts } from '../services/productCache.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { slugify } from '../utils/slugify.js';
@@ -9,15 +8,8 @@ export const listProducts = asyncHandler(async (req, res) => {
   const { categoryId, q, page, limit } = req.query;
   const isUnfilteredFullList = !categoryId || categoryId === 'all';
 
-  // The storefront's own menu/catalog fetch is exactly this shape — no filter, no
-  // pagination — so it's the one request worth caching. A category filter, search
-  // term, or explicit page/limit always goes straight to MongoDB below.
   if (isUnfilteredFullList && !q?.trim() && !page && !limit) {
-    const cached = await getCachedAllProducts();
-    if (cached) return res.json({ products: cached });
-
     const products = await Product.find({}).sort({ createdAt: -1 });
-    await setCachedAllProducts(products);
     return res.json({ products });
   }
 
@@ -183,7 +175,6 @@ export const createProduct = asyncHandler(async (req, res) => {
   assertValidPricing(req.body);
   const slug = await generateUniqueSlug(req.body.title);
   const product = await Product.create({ ...req.body, slug });
-  await invalidateProductsCache();
   logActivity({
     user: req.user,
     action: 'product.created',
@@ -202,7 +193,6 @@ export const updateProduct = asyncHandler(async (req, res) => {
   Object.assign(product, req.body);
   assertValidPricing(product);
   await product.save();
-  await invalidateProductsCache();
   logActivity({
     user: req.user,
     action: 'product.updated',
@@ -217,7 +207,6 @@ export const updateProduct = asyncHandler(async (req, res) => {
 export const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findByIdAndDelete(req.params.id);
   if (!product) throw new ApiError(404, 'Product not found.');
-  await invalidateProductsCache();
   logActivity({
     user: req.user,
     action: 'product.deleted',

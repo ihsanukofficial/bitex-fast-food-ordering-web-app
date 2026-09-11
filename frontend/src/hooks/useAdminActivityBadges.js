@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNotifications } from '../context/NotificationContext';
 import { apiClient } from '../services/apiClient';
+import { readAdminSeenMap, writeAdminSeenMap } from '../utils/adminActivitySeen';
 
 /**
  * The sidebar sections that can carry an unread badge — the three that fill up from
@@ -19,26 +20,6 @@ const SECTION_EVENTS = {
 };
 
 const EMPTY_COUNTS = { orders: 0, reviews: 0, users: 0 };
-
-const storageKey = (userId) => `bitex:admin-seen:${userId}`;
-
-const readSeen = (userId) => {
-  try {
-    return JSON.parse(localStorage.getItem(storageKey(userId))) || {};
-  } catch {
-    // A private window, cleared site data, or hand-edited JSON — treat as "nothing
-    // seen yet", which the caller then backfills to "now".
-    return {};
-  }
-};
-
-const writeSeen = (userId, seen) => {
-  try {
-    localStorage.setItem(storageKey(userId), JSON.stringify(seen));
-  } catch {
-    // Storage full or blocked — badges just won't persist across reloads.
-  }
-};
 
 /**
  * useAdminActivityBadges
@@ -64,13 +45,13 @@ function useAdminActivityBadges() {
 
   useEffect(() => {
     if (!userId) return;
-    const stored = readSeen(userId);
+    const stored = readAdminSeenMap(userId);
     const now = new Date().toISOString();
     const backfilled = Object.fromEntries(
       BADGE_SECTIONS.map((section) => [section, stored[section] || now]),
     );
     seenRef.current = backfilled;
-    writeSeen(userId, backfilled);
+    writeAdminSeenMap(userId, backfilled);
   }, [userId]);
 
   const refresh = useCallback(() => {
@@ -109,7 +90,7 @@ function useAdminActivityBadges() {
       if (!userId || !BADGE_SECTIONS.includes(section)) return;
 
       seenRef.current = { ...seenRef.current, [section]: new Date().toISOString() };
-      writeSeen(userId, seenRef.current);
+      writeAdminSeenMap(userId, seenRef.current);
       setCounts((current) => (current[section] === 0 ? current : { ...current, [section]: 0 }));
     },
     [userId],

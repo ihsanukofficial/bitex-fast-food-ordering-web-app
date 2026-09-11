@@ -1,7 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import useAdminUserEvents from '../../../hooks/useAdminUserEvents';
+import useHighlightedIds from '../../../hooks/useHighlightedIds';
 import { apiClient } from '../../../services/apiClient';
+import { getAdminSectionSeenAt } from '../../../utils/adminActivitySeen';
 import AdminUserAvatar from '../../../components/Admin/AdminUserAvatar/AdminUserAvatar';
 import Icon from '../../../components/Utils/Icon/Icon';
 import adminStyles from '../admin.module.css';
@@ -28,12 +31,37 @@ function AdminUsers() {
   const [search, setSearch] = useState('');
   const [error, setError] = useState('');
   const [updatingId, setUpdatingId] = useState(null);
+  const { highlightedIds, highlight, highlightMany } = useHighlightedIds();
+  // Captured once, on mount, before AdminLayout's own effect marks "users" seen for
+  // this visit — everything already in the list newer than this is flashed below.
+  const [highlightSince] = useState(() => getAdminSectionSeenAt(currentUser?.id, 'users'));
+  const appliedInitialHighlightRef = useRef(false);
 
-  const load = () => apiClient.get('/admin/users').then((data) => setUsers(data.users));
+  const load = () =>
+    apiClient.get('/admin/users').then((data) => {
+      setUsers(data.users);
+      if (!appliedInitialHighlightRef.current) {
+        appliedInitialHighlightRef.current = true;
+        if (highlightSince) {
+          const newIds = data.users
+            .filter((entry) => new Date(entry.createdAt) > new Date(highlightSince))
+            .map((entry) => entry._id);
+          highlightMany(newIds);
+        }
+      }
+    });
 
   useEffect(() => {
     load().catch((requestError) => setError(requestError.message));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Refetch on every live "new signup" broadcast so it shows up here without a manual
+  // reload, and flash it — an admin already sitting on this page should notice too.
+  useAdminUserEvents((payload) => {
+    load().catch((requestError) => setError(requestError.message));
+    if (payload?.userId) highlight(payload.userId);
+  });
 
   const roleCounts = useMemo(
     () => ({
@@ -141,7 +169,7 @@ function AdminUsers() {
                 return (
                   <tr
                     key={user._id}
-                    className={adminStyles.clickableRow}
+                    className={`${adminStyles.clickableRow} ${highlightedIds.has(user._id) ? adminStyles.rowHighlight : ''}`.trim()}
                     onClick={() => navigate(`/admin/users/${user._id}`)}
                   >
                     <td className={adminStyles.cellPrimary}>

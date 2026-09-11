@@ -1,5 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useAuth } from '../../../context/AuthContext';
+import useAdminReviewEvents from '../../../hooks/useAdminReviewEvents';
+import useHighlightedIds from '../../../hooks/useHighlightedIds';
 import { apiClient } from '../../../services/apiClient';
+import { getAdminSectionSeenAt } from '../../../utils/adminActivitySeen';
 import Icon from '../../../components/Utils/Icon/Icon';
 import { PERIODS, filterOrdersByRange, getPeriodRange } from '../AdminDashboard/dashboardAnalytics';
 import adminStyles from '../admin.module.css';
@@ -42,6 +46,7 @@ function StarDisplay({ rating }) {
  * product's aggregate rating in sync exactly the same way.
  */
 function AdminReviews() {
+  const { user } = useAuth();
   const [reviews, setReviews] = useState(null);
   const [error, setError] = useState('');
   const [deletingId, setDeletingId] = useState(null);
@@ -50,12 +55,37 @@ function AdminReviews() {
   const [period, setPeriod] = useState('all');
   const [customStart, setCustomStart] = useState('');
   const [customEnd, setCustomEnd] = useState('');
+  const { highlightedIds, highlight, highlightMany } = useHighlightedIds();
+  // Captured once, on mount, before AdminLayout's own effect marks "reviews" seen for
+  // this visit — everything already in the list newer than this is flashed below.
+  const [highlightSince] = useState(() => getAdminSectionSeenAt(user?.id, 'reviews'));
+  const appliedInitialHighlightRef = useRef(false);
 
-  const load = () => apiClient.get('/admin/reviews').then((data) => setReviews(data.reviews));
+  const load = () =>
+    apiClient.get('/admin/reviews').then((data) => {
+      setReviews(data.reviews);
+      if (!appliedInitialHighlightRef.current) {
+        appliedInitialHighlightRef.current = true;
+        if (highlightSince) {
+          const newIds = data.reviews
+            .filter((review) => new Date(review.createdAt) > new Date(highlightSince))
+            .map((review) => review._id);
+          highlightMany(newIds);
+        }
+      }
+    });
 
   useEffect(() => {
     load().catch((requestError) => setError(requestError.message));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Refetch on every live "new review" broadcast so it shows up here without a manual
+  // reload, and flash it — an admin already sitting on this page should notice too.
+  useAdminReviewEvents((payload) => {
+    load().catch((requestError) => setError(requestError.message));
+    if (payload?.reviewId) highlight(payload.reviewId);
+  });
 
   const handleDelete = async (review) => {
     const who = review.reviewer?.name ? ` from ${review.reviewer.name}` : '';
@@ -241,7 +271,10 @@ function AdminReviews() {
       {!isLoading && filteredReviews.length > 0 && (
         <ul className={styles.reviewList}>
           {filteredReviews.map((review) => (
-            <li key={review._id} className={styles.reviewCard}>
+            <li
+              key={review._id}
+              className={`${styles.reviewCard} ${highlightedIds.has(review._id) ? adminStyles.rowHighlight : ''}`.trim()}
+            >
               <div className={styles.reviewProduct}>
                 {review.product?.image || review.deal?.image ? (
                   <img className={adminStyles.tableImage} src={review.product?.image || review.deal?.image} alt="" />

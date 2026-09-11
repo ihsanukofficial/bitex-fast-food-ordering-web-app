@@ -796,6 +796,76 @@
   color: var(--admin-red-dark);
 }
 
+/* A customer's per-item special instructions — needs to read as an unmissable flag
+   for kitchen/ops staff scanning a table, not blend in as more muted metadata. */
+.noteCallout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin: 0.35rem 0 0;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(161, 92, 0, 0.22);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-warning-soft);
+  color: var(--admin-warning);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.noteCallout strong {
+  color: var(--admin-warning);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.noteCalloutIcon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.noteTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.4rem;
+  padding: 0.15rem 0.55rem 0.15rem 0.4rem;
+  border: 1px solid rgba(161, 92, 0, 0.22);
+  border-radius: 999px;
+  background: var(--admin-warning-soft);
+  color: var(--admin-warning);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.itemNoteLine {
+  display: block;
+  margin-top: 0.15rem;
+}
+
+/* Flashes a row/card that just arrived (a new order, review, or signup) — either
+   because it came in live while the admin was already on that page, or because it's
+   newer than the last time the admin visited this section (see getAdminSectionSeenAt).
+   Two soft pulses in the success tone rather than a single flash, so it stays
+   noticeable even if the admin's eyes aren't on it the instant it lands. */
+@keyframes adminRowHighlight {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  15%,
+  45% {
+    background-color: color-mix(in srgb, var(--admin-success) 32%, var(--admin-success-soft));
+  }
+}
+
+.rowHighlight {
+  animation: adminRowHighlight 2.4s ease-in-out 2;
+}
+
 .emptyState {
   padding: 2rem 1.5rem;
   text-align: center;

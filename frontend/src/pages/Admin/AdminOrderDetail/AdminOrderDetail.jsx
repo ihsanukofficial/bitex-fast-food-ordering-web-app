@@ -118,6 +118,25 @@ function AdminOrderDetail() {
                       <td className={styles.cellMuted}>{formatCurrency(item.unitPrice)}</td>
                       <td className={styles.cellPrimary}>{formatCurrency(item.lineTotal)}</td>
                     </tr>
+                    {item.specialInstructions && (
+                      <tr>
+                        <td />
+                        <td colSpan={4} style={{ paddingTop: 0, paddingBottom: '0.75rem' }}>
+                          <div className={styles.noteCallout}>
+                            <Icon
+                              name="ri-sticky-note-fill"
+                              size="1rem"
+                              className={styles.noteCalloutIcon}
+                              ariaLabel=""
+                            />
+                            <span>
+                              <strong>Special instructions: </strong>
+                              {item.specialInstructions}
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
                     {/* The customer's own feedback on this specific line, if they left
                         one — see getOrderById, which attaches it by matching this
                         item's index against the Review collection. */}

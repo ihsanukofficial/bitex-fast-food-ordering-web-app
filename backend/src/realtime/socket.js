@@ -1,7 +1,5 @@
-import { createAdapter } from '@socket.io/redis-adapter';
 import { parse as parseCookie } from 'cookie';
 import { Server } from 'socket.io';
-import { connectRedis } from '../config/redis.js';
 import User from '../models/User.js';
 import { AUTH_COOKIE_NAME, verifyAuthToken } from '../utils/jwt.js';
 
@@ -17,28 +15,19 @@ const ADMINS_ROOM = 'admins';
  * Admin accounts additionally join a shared "admins" room for store-wide broadcasts
  * (new orders, status changes) that power the live admin dashboard.
  *
- * In clustered mode (multiple worker processes), a broadcast from emitToAdmins/
+ * Note: in clustered mode (multiple worker processes) a broadcast from emitToAdmins/
  * emitToUser only reaches sockets connected to *this* process's in-memory `io`
- * instance by default — an admin whose connection landed on a different worker would
- * silently miss it. The Redis adapter fixes this by publishing every broadcast
- * through Redis pub/sub so all workers relay it to their own local sockets, making
- * the "admins" room (and per-user rooms) effectively shared across the whole cluster
- * instead of scoped to one process.
+ * instance — an admin whose connection landed on a different worker will miss it.
+ * There is no cross-worker adapter wired up, so live updates are only fully reliable
+ * with a single worker process.
  */
-export const initSocket = async (httpServer, { useRedisAdapter = false } = {}) => {
+export const initSocket = async (httpServer) => {
   io = new Server(httpServer, {
     cors: {
       origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
       credentials: true,
     },
   });
-
-  if (useRedisAdapter) {
-    const pubClient = await connectRedis();
-    const subClient = pubClient.duplicate();
-    await subClient.connect();
-    io.adapter(createAdapter(pubClient, subClient));
-  }
 
   io.use(async (socket, next) => {
     try {
