@@ -25,7 +25,8 @@ function Admin() {
     <AdminLayout>
       <Routes>
         <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
-        <Route path="/dashboard/:tab?" element={<AdminDashboard />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route path="/dashboard/*" element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="/products" element={<AdminProducts />} />
         <Route path="/categories" element={<AdminCategories />} />
         <Route path="/deals" element={<AdminDeals />} />
