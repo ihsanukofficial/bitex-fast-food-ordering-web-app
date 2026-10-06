@@ -52,8 +52,16 @@
 @media (min-width: 640px) {
   .button {
     width: 100%;
-    padding: 0.7rem 1rem;
-    font-size: 0.92rem;
+    /* The footer column here (see ProductCardShell) is only ~100-125px of usable
+       width after padding — too tight for a longer label like "Select Options" at
+       one line. Wrapping instead of clipping (the card's overflow: hidden would
+       otherwise cut the text off) is the safe fallback; centering keeps a wrapped
+       two-line label looking intentional rather than ragged. */
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.65rem 0.6rem;
+    font-size: 0.82rem;
   }
 }
 

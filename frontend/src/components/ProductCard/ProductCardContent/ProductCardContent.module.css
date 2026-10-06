@@ -1,3 +1,7 @@
+/* Sits beside media at every width (see ProductCardShell) — stretched to the row's
+   full height so border-left reaches all the way down instead of stopping wherever
+   this area's own content happens to end (see ProductCardFooter, which does the same
+   for its own border-left). */
 .content {
   grid-area: content;
   min-width: 0;
@@ -6,14 +10,13 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.9rem 1rem;
-  border-top: 1px solid var(--color-border);
+  align-self: stretch;
+  border-left: 1px solid var(--color-border);
 }
 
 @media (min-width: 640px) {
   .content {
     padding: 1rem 1.1rem;
-    border-top: none;
-    border-left: 1px solid var(--color-border);
   }
 }
 

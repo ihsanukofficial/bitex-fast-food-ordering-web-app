@@ -1,9 +1,9 @@
 .badge {
   position: absolute;
-  top: 0.45rem;
-  left: 0.45rem;
+  top: 0.4rem;
+  left: 0.6rem;
   z-index: 2;
-  max-width: calc(100% - 0.9rem);
+  max-width: calc(100% - 1.2rem);
   overflow: hidden;
   padding: 0.2rem 0.45rem;
   border-radius: 999px;
@@ -17,8 +17,19 @@
   box-shadow: 0 0.2rem 0.5rem rgba(215, 27, 31, 0.25);
 }
 
+/* More top/left breathing room at wider cards — otherwise the badge reads as
+   flush against the card's top edge next to the content column's own padding. */
+@media (min-width: 640px) {
+  .badge {
+    top: 0.55rem;
+    left: 0.85rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .badge {
+    top: 0.7rem;
+    left: 1.1rem;
     padding: 0.24rem 0.55rem;
     font-size: 0.64rem;
   }

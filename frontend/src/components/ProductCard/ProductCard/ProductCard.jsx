@@ -13,6 +13,7 @@ import ProductCardImage from '../ProductCardImage/ProductCardImage';
 import ProductCardImageFrame from '../ProductCardImageFrame/ProductCardImageFrame';
 import ProductCardInfo from '../ProductCardInfo/ProductCardInfo';
 import ProductCardMedia from '../ProductCardMedia/ProductCardMedia';
+import mediaStyles from '../ProductCardMedia/ProductCardMedia.module.css';
 import ProductCardPricing from '../ProductCardPricing/ProductCardPricing';
 import ProductCardPurchaseMeta from '../ProductCardPurchaseMeta/ProductCardPurchaseMeta';
 import ProductCardRating from '../ProductCardRating/ProductCardRating';
@@ -90,7 +91,7 @@ function ProductCard({
           <ProductCardImage src={image} alt={title} />
         </ProductCardImageFrame>
         <ProductCardBadge badges={badges} />
-        <WishlistHeartButton productId={productId} />
+        <WishlistHeartButton productId={productId} className={mediaStyles.wishlistButton} />
       </ProductCardMedia>
       <ProductCardContent>
         <ProductCardHeader>

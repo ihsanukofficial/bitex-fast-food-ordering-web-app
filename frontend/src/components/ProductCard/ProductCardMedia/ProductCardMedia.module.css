@@ -11,3 +11,31 @@
   background: var(--color-surface);
   overflow: hidden;
 }
+
+/* Positioning override for the wishlist heart specifically as used here (passed via
+   its `className` prop) — matches ProductCardBadge's top spacing so neither overlay
+   reads as flush against the card's top edge. Scoped to this usage only, since the
+   same shared WishlistHeartButton also sits over the much larger product-detail
+   gallery image with its own default spacing.
+   Selector repeated (.wishlistButton.wishlistButton) to outweigh WishlistHeartButton
+   .module.css's own same-specificity `.heart` rule regardless of which of the two
+   CSS modules the bundler happens to inject first — without this, whichever loads
+   last would silently win instead of the override always winning. */
+.wishlistButton.wishlistButton {
+  top: 0.4rem;
+  right: 0.6rem;
+}
+
+@media (min-width: 640px) {
+  .wishlistButton.wishlistButton {
+    top: 0.55rem;
+    right: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wishlistButton.wishlistButton {
+    top: 0.7rem;
+    right: 1.1rem;
+  }
+}
