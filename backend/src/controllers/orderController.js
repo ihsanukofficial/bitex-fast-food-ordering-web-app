@@ -3,6 +3,7 @@ import Order, { ORDER_STATUSES } from '../models/Order.js';
 import PromoCode from '../models/PromoCode.js';
 import Review from '../models/Review.js';
 import { emitToAdmins } from '../realtime/socket.js';
+import { notifyAdminsPush } from '../services/pushService.js';
 import { logActivity } from '../services/activityLogService.js';
 import { ApiError } from '../utils/ApiError.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
@@ -79,6 +80,12 @@ export const createOrder = asyncHandler(async (req, res) => {
   notifyOrderStatus(order, order.status);
   await order.populate('user', 'name email');
   emitToAdmins('order:created', order);
+  notifyAdminsPush({
+    title: 'New order received',
+    body: `${order.user?.name || order.delivery?.name || 'A customer'} placed an order for Rs. ${Math.round(order.total).toLocaleString('en-PK')}.`,
+    url: `/admin/orders/${order._id}`,
+    tag: `order-${order._id}`,
+  });
   logActivity({
     user: req.user,
     action: 'order.placed',

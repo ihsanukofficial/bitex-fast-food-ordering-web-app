@@ -15,6 +15,7 @@ import notificationRoutes from './routes/notificationRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import promoCodeRoutes from './routes/promoCodeRoutes.js';
+import pushRoutes from './routes/pushRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -51,6 +52,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/push', pushRoutes);
 app.use('/api/activity-logs', activityLogRoutes);
 app.use('/api/uploads', uploadRoutes);
 

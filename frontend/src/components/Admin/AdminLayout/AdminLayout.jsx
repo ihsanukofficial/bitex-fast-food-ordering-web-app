@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import useAdminActivityBadges from '../../../hooks/useAdminActivityBadges';
 import useAdminOrderSound from '../../../hooks/useAdminOrderSound';
+import useAdminPushNotifications from '../../../hooks/useAdminPushNotifications';
 import Icon from '../../Utils/Icon/Icon';
 import ThemeToggle from '../../Utils/ThemeToggle/ThemeToggle';
 import styles from './AdminLayout.module.css';
@@ -48,6 +49,7 @@ function AdminLayout({ children }) {
   const location = useLocation();
   const { counts, markSeen } = useAdminActivityBadges();
   useAdminOrderSound();
+  const { permission: pushPermission, enable: enablePush } = useAdminPushNotifications();
 
   // Opening a section (or sitting on it while something new lands there) clears its
   // badge — the admin is looking straight at the thing it would be pointing to.
@@ -119,6 +121,21 @@ function AdminLayout({ children }) {
             );
           })}
         </nav>
+
+        {pushPermission === 'default' && (
+          <button type="button" className={`${styles.visitWebsite} ${styles.enableAlerts}`} onClick={enablePush}>
+            <span className={styles.navIcon}>
+              <Icon name="ri-time-line" size="1.05rem" ariaLabel="" />
+            </span>
+            <span className={styles.navLabelText}>Enable order alerts</span>
+          </button>
+        )}
+
+        {pushPermission === 'denied' && (
+          <p className={styles.alertsBlocked}>
+            Order alerts are blocked. Allow notifications for this site in your browser settings.
+          </p>
+        )}
 
         <div className={styles.footer}>
           <span className={styles.avatar} aria-hidden="true">
